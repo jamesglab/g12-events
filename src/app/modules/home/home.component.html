@@ -1,0 +1,136 @@
+<app-navbar></app-navbar>
+
+<div class="app-container">
+    <div class="breadcum-element">
+        <span>Home/</span> Events
+    </div>
+
+    <app-events-slider [events]="events"></app-events-slider>
+
+    <div class="events-content">
+        <div class="left-side">
+            <h3>Filtros</h3>
+            <div class="categories">
+                <div class="categories-title">
+                    <span>Categorias</span>
+                    <div>
+                        <mat-icon>expand_less</mat-icon>
+                    </div>
+                </div>
+
+                <div class="categories-group">
+                    <div class="categorie-item" *ngFor="let cat of categories">
+                        <mat-checkbox #checkbox class="example-margin" (click)="pushCategory(checkbox,cat)">{{ cat }}</mat-checkbox>
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="filter-button" [ngClass]="{'button is-loading': isLoading}" [disabled]="categoriesFilter.length == 0" (click)="filterEventsByCategories()">
+                Filtrar Eventos</button>
+            <button class="clean-button" (click)="cleanFilter()">Limpiar Filtro</button>
+
+        </div>
+        <div class="right-side">
+            <div class="title-bar">
+                <div class="title-item">
+                    <h3>Eventos</h3>
+                    <div class="visibility-types">
+                        <span [ngClass]="{ 'isActive': !isGrid }"  (click)="isGrid = false">
+                            <i class="fas fa-bars"></i>
+                        </span>
+                        &nbsp;
+                        <span [ngClass]="{ 'isActive': isGrid }" class="isActive" (click)="isGrid = true">
+                            <i class="fas fa-th-large"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <span>Ordenar</span>
+                </div>
+            </div>
+
+            <div class="list-events-container">
+
+                <div class="events-cards" [ngClass]="{ 'events-cards': isGrid, 'events-cards-list': !isGrid }">
+                    <ng-container *ngFor="let event of events">
+                        <app-event-card [event]="event" [isGrid]="isGrid"></app-event-card>
+                    </ng-container>
+                </div>
+
+                <div class="paginator-container">
+                    <div class="info-data">
+                        Pagina 1 de 4
+                    </div>
+                    <div class="paginator">
+                        <nav class="pagination is-centered is-small" role="navigation" aria-label="pagination">
+                            <a class="pagination-previous fw-b">Anterior</a>
+                            <a class="pagination-next fw-b">Siguiente</a>
+                            <ul class="pagination-list">
+                                <li><a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+                                </li>
+                                <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+                                <li><a class="pagination-link" aria-label="Goto Page 3">3</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+<div class="features-container">
+
+    <div class="feature-item">
+        <div class="feature-icon">
+            <img src="/assets/icons/energy.svg">
+        </div>
+        <div class="feature-desc">
+            <h6>Eventos G12</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-icon">
+            <img src="/assets/icons/secure_payment.svg">
+        </div>
+        <div class="feature-desc">
+            <h6>Pago Seguro</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-icon">
+            <img src="/assets/icons/best_quality.svg">
+        </div>
+        <div class="feature-desc">
+            <h6>Alta calidad</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+        </div>
+    </div>
+
+    <div class="feature-item">
+        <div class="feature-icon">
+            <img src="/assets/icons/star.svg">
+        </div>
+        <div class="feature-desc">
+            <h6 class="fw-b">Tus favoritos</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+        </div>
+    </div>
+
+</div>
+<div class="subscription">
+    <app-subscription></app-subscription>
+
+</div>
+
+<app-footer></app-footer>
+
+<!-- <button (click)="eventDetail()">EVENTO</button> -->

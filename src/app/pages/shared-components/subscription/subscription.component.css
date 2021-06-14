@@ -1,0 +1,43 @@
+.general-cont {
+  height: 353.67px;
+  width: 100%;
+  background: #6C5DD3;
+  border-radius: 32px;
+  position: relative;
+}
+
+.title-sub {
+
+  height: 106.29px;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 55px;
+  text-align: center;
+  color: white;
+  padding-left: 19rem;
+  padding-top: 4rem;
+  padding-right: 19rem;
+}
+
+.input-search {
+  background: #7C6DE3;
+  border: 1px solid #7C6DE3;
+  color: white;
+}
+
+input:focus {
+  border: unset;
+
+}
+
+input::placeholder {
+  color: white;
+}
+
+.btn-search {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  font-weight: bold;
+}
+
+

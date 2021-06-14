@@ -1,0 +1,28 @@
+<div class="slider-events-container">
+    <div class="slider-left">
+        <div class="circles-container">
+            <img src="/assets/figures/circles.svg">
+        </div>
+        <div class="info-container">
+            <span>Visión G12</span>
+            <h2>{{ events[currentEvent]?.name || '...' }}</h2>
+            <p>{{ events[currentEvent]?.description || 
+                'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore, nesciunt facere.' }}</p>
+        </div>
+        <div class="button-container">
+            <div class="btn-details" (click)="eventDetail(events[currentEvent].id)">
+                <div>Detalles</div>
+                <div>
+                    <mat-icon>arrow_right_alt</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="slider-indicator" *ngIf="events">
+            <span *ngFor="let item of events; let i = index;" (click)="setCurrentEvent(i)"
+            [ngClass]="{ 'active': i == currentEvent }" class="dot"></span>
+        </div>
+    </div>
+    <div class="slider-right">
+        <img class="ellipse" src="/assets/figures/Ellipse_3.svg">
+    </div>
+</div>

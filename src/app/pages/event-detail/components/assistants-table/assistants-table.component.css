@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+
+
+
+mat-row,
+mat-header-row,
+mat-footer-row {
+  background: #EAEAEA;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  font-weight: bold;
+  color: black;
+  
+}
+mat-cell:first-of-type, mat-header-cell{
+    padding-left: 24px;
+    color: black;
+    font-weight: bold;
+    font-size: 15px !important;
+}

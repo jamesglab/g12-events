@@ -1,0 +1,77 @@
+<mat-dialog-content>
+    <div class="modal-content">
+
+        <div class="container-response">
+
+            <div class="container-image" [ngClass]="{ 'check': response.status == 'SUCCESS', 'info': response.status == 'PENDING', 
+                'reject' : response.status == 'FAILED' }">
+
+                <div class="center-image">
+                    <img style="height: 120px;" src="/assets/status/{{response.status.toLowerCase()}}.svg" alt="">
+                </div>
+
+                <div style="height: 70px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                        style="height: 100%; width: 100%;">
+                        <path d="M0.00,49.98 C149.99,150.00 342.83,-40.95 520.59,113.97 L500.00,150.00 L0.00,150.00 Z"
+                            style="stroke: none; fill: white;"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="response-content">
+
+                <div class="title" [ngClass]="{ 'title-check': response.status == 'SUCCESS', 'title-info': response.status == 'PENDING',
+                     'title-reject' : response.status == 'FAILED' }">
+                    {{ messageTitle(response?.status) }}
+                </div>
+
+                <div class="desc">
+                    {{response?.message }}
+                </div>
+
+                <div class="desc" *ngIf="response?.message || response?.url">
+
+                    <article class="message" [ngClass]="{ 'is-success': response.status == 'SUCCESS', 
+                        'is-info': response.status == 'PENDING', 'is-danger' : response.status == 'FAILED' }">
+                        <div class="message-body">
+                            <!-- <ng-container *ngIf="response?.message">
+                                {{ response?.message }} <br>
+                            </ng-container> -->
+                            <ng-container *ngIf="response?.ref">
+                                Transacción #{{ response?.ref }}
+                            </ng-container>
+                            <ng-container *ngIf="response?.convenio">
+                                | Referencia #{{ response?.convenio }}
+                            </ng-container>
+                            <ng-container *ngIf="response?.medio">
+                                | Convenio {{ response?.medio }}
+                            </ng-container>
+                        </div>
+                    </article>
+
+                    <div class="content-link"
+                        *ngIf="response?.typePayment == 'pse' || response?.typePayment == 'cash' || response?.typePayment == 'stripe'">
+
+                        <ng-container *ngIf="response?.status != 'FAILED'">
+                            Si no te redireccionó a tu portal bancario, haz clic
+                            <button class="button" (click)="redirectAgain();" [ngClass]="{ 'is-success': response.status == 'SUCCESS', 'is-info': response.status == 'PENDING', 
+                                'is-danger' : response.status == 'FAILED' }">Aquí</button>
+                        </ng-container>
+
+                    </div>
+
+                </div>
+
+                <div class="butt">
+                    <button class="button is-outlined is-rounded" [ngClass]="{ 'is-success': response.status == 'SUCCESS', 'is-info': response.status == 'PENDING',
+                         'is-danger' : response.status == 'FAILED' }" (click)="handleClose();">
+                        Entendido
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</mat-dialog-content>

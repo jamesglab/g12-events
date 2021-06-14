@@ -1,0 +1,211 @@
+<app-navbar></app-navbar>
+<div class="payment-container">
+    <form [formGroup]="donationForm" (ngSubmit)="submit();" style="width: 100%;">
+        <mat-card class="payment-card">
+
+            <div class="event-container">
+
+                <div class="title-container">
+                    <h1 class="event-title">DESCRIPCIÓN DE LA DONACIÓN</h1>
+                </div>
+
+                <div class="description-container">
+                    <p><span>Nombre del evento:</span> {{ event?.name.toUpperCase() || 'DEFAULT' }} </p>
+                    <p><span>Valor:</span> $ {{ event?.prices.cop * event?.assistants || '' }}
+                        COP</p>
+                    <p><span>Cantidad de entradas:</span> {{event?.assistants}}</p>
+                </div>
+            </div>
+
+            <div class="data-container">
+                <div class="info-container">
+                    <div class="forms-title text-center">
+                        <h3>Datos del donante </h3>
+                    </div>
+                    <br>
+
+                    <!-- <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Tipo de documento* </mat-label>
+                        <mat-select type="select" formControlName="DocumentType">
+                            <mat-option *ngFor="let type of documentTypes" value="{{type.code}}">
+                                {{type.description}}</mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+
+                    <mat-form-field appearance="fill" class="w-100">
+                        <!-- formControlName="numberDocument" -->
+                        <mat-label>Número de documento* </mat-label>
+                        <input matInput autocomplete="off" formControlName="document" (keypress)="numberOnly($event);">
+                        <!-- <mat-error *ngIf="paymentWay.controls.numberDocument.errors?.required">
+                            {{ 'registration.documentNumber.required' | translate }}
+                        </mat-error> -->
+                        <!-- <mat-error *ngIf="paymentWay.controls.numberDocument.errors?.pattern 
+                    || paymentWay.controls.numberDocument.errors?.minlength
+                    || paymentWay.controls.numberDocument.errors?.maxlength">
+                            {{ 'registration.documentNumber.invalid' | translate }}</mat-error> -->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Nombre*</mat-label>
+                        <input matInput autocomplete="off" formControlName="name">
+                        <!-- <mat-error *ngIf="form.names.errors?.required">El nombre es requerido
+                            </mat-error> -->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Apellido*</mat-label>
+                        <input matInput autocomplete="off" formControlName="lastName">
+                        <!-- <mat-error *ngIf="form.surNames.errors?.required">El apellido es requerido
+                            </mat-error> -->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Email*</mat-label>
+                        <!-- formControlName="email" -->
+                        <input matInput type="email" autocomplete="off" formControlName="email">
+                        <!-- <mat-error *ngIf="generalConfiguration.controls.email.errors?.required">
+                            {{ 'registration.email.required' | translate }}</mat-error>
+                        <mat-error *ngIf="generalConfiguration.controls.email.errors?.email">
+                            {{ 'registration.email.invalid' | translate }}</mat-error> -->
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Celular*</mat-label>
+                        <input matInput placeholder="Número de celular" autocomplete="off"
+                            formControlName="contactPhone" (keypress)="numberOnly($event);">
+                        <!-- <mat-error *ngIf="paymentWay.controls.cellphone.errors?.required">
+                            {{ 'registration.cellphone.required' | translate }}</mat-error> -->
+                    </mat-form-field>
+
+                </div>
+                <div class="to-pay-container">
+                    <div class="forms-title text-center">
+                        <h3>Método de donación</h3>
+                    </div>
+                    <br>
+                    <mat-tab-group #tabGroup (selectedTabChange)="tabChanged($event)">
+                        <mat-tab label="PSE">
+                            <br>
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Selecciona tu banco</mat-label>
+                                <!-- formControlName="bank" -->
+                                <mat-select (click)="getBanks()" formControlName="financialInstitutionCode">
+                                    <mat-option *ngFor="let bank of banks" value="{{bank.bankCode}}">
+                                        {{bank.bankName}}
+                                    </mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="paymentWay.controls.bank.errors?.required">
+                                        Selecciona tu banco
+                                    </mat-error> -->
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Tipo de persona</mat-label>
+                                <!-- formControlName="typePerson" -->
+                                <mat-select formControlName="clientType">
+                                    <mat-option value="N">
+                                        Persona Natural</mat-option>
+                                    <mat-option value="J">
+                                        Persona Juridica
+                                    </mat-option>
+                                </mat-select>
+                                <!-- <mat-error *ngIf="paymentWay.controls.typePerson.errors?.required">
+                                        Selecciona tipo de persona
+                                    </mat-error> -->
+                            </mat-form-field>
+
+                            <!-- <mat-form-field appearance="fill">
+                                    <mat-label></mat-label>
+                                    <input matInput placeholder="Número de celular" autocomplete="off"
+                                        formControlName="cellphone" (keypress)="numberOnly($event);">
+                                    <mat-error *ngIf="paymentWay.controls.cellphone.errors?.required">
+                                        {{ 'registration.cellphone.required' | translate }}</mat-error>
+                                </mat-form-field> -->
+
+
+                        </mat-tab>
+                        <mat-tab label="Crédito">
+                            <br>
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Número de tarjeta</mat-label>
+                                <input matInput placeholder="**** **** **** ****" formControlName="cardNumber"
+                                    maxlength="18" (keypress)="numberOnly($event);">
+                                <mat-icon matSuffix>
+                                    <img (error)="onError($event);" [src]="urlCard" height="30">
+                                </mat-icon>
+                                <!-- <mat-error *ngIf="paymentWay.controls.numberCard.errors?.required">
+                                    {{ 'registration.cardNumber.required' | translate }}
+                                </mat-error> -->
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Nombre en tarjeta</mat-label>
+                                <!--formControlName="cardName"-->
+                                <input matInput formControlName="cardName">
+                                <!-- <mat-error *ngIf="paymentWay.controls.cardName.errors?.required">
+                                    Digita el nombre que aparece en la tarjeta
+                                </mat-error> -->
+                            </mat-form-field>
+
+                            <div class="container-card">
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Mes</mat-label>
+                                    <mat-select formControlName="cardMonth">
+                                        <!--formControlName=""-->
+                                        <mat-option *ngFor="let month of monthsCreditCard" value="{{month.id}}">
+                                            {{month.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-hint>Fecha de vencimiento</mat-hint>
+                                </mat-form-field>
+                                &nbsp;
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Año</mat-label>
+                                    <mat-select formControlName="cardYear">
+                                        <!--formControlName="dateExpYear"-->
+                                        <mat-option *ngFor="let year of yearsCreditCard" value="{{year.id}}">
+                                            {{year.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                            </div>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>CVC</mat-label>
+                                <input matInput formControlName="cardSecurityCode" placeholder="CVC" type="password"
+                                    autocomplete="off" maxlength="4">
+                                <!--formControlName="codeSecurity"-->
+                            </mat-form-field>
+
+                        </mat-tab>
+
+                        <mat-tab label="Efectivo">
+                            <br>
+                            <mat-form-field class="w-100" appearance="fill">
+                                <mat-label>Selecciona tu método de pago</mat-label>
+                                <mat-select formControlName="paymentMethod">
+                                    <!--formControlName="pointPayment"-->
+                                    <mat-option value="EFECTY">Efecty</mat-option>
+                                    <mat-option value="BALOTO">Baloto</mat-option>
+                                    <mat-option value="OTHERS_CASH">Paga Todo</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </div>
+            <div class="next">
+                <div>
+                    <mat-icon style="color: #ff4081">keyboard_arrow_left</mat-icon>
+                    <a id="before" (click)="goBack()">Atrás</a>
+                </div>
+                <div>
+                    <mat-progress-spinner *ngIf="isLoading" diameter="20" mode="indeterminate" value="100"></mat-progress-spinner>
+                    <button mat-button color="primary" *ngIf="!isLoading">
+                        Completar Donación <mat-icon style="color: #25cd90;">done</mat-icon></button>
+                </div>
+            </div>
+        </mat-card>
+    </form>
+</div>

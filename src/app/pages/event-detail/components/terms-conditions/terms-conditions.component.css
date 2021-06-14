@@ -1,0 +1,15 @@
+a {
+ color: rgb(138, 175, 245);
+}
+.terms-container {
+    overflow: auto;
+    justify-content: space-between;
+    padding: 20px;
+    max-height: 300px;
+    background-color: rgb(235, 232, 232);
+    display: block;
+    margin-bottom: 10px;
+}
+strong {
+    font-weight: bold;
+}

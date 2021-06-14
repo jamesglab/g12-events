@@ -1,0 +1,48 @@
+<div class="transaction-container">
+    <div class="card-container">
+        <mat-card class="transaction-card">
+            <div class="card-content">
+                <ng-container *ngIf="isSuccess">
+                    <section class="hero is-success">
+                        <div class="hero-body">
+                            <div class="container">
+                                <h3 style="color: hsl(158, 69%, 47%);">Transacción exitosa</h3>
+                            </div>
+                        </div>
+                    </section>
+                    <h4 style="width: 100%;">
+                        Donación en validación.
+                    </h4>
+                    <p class="subtitle">
+                        Se está realizando la validación de su donación, este proceso puede tardar algunos minutos. una vez la donacion se encuentre confirmada enviaremos un correo electrónico con su información de acceso.
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="!isSuccess">
+                    <section class="hero is-danger">
+                        <div class="hero-body">
+                            <div class="container">
+                                <h3 style="color: #f44336">Transacción rechazada</h3>
+                            </div>
+                        </div>
+                    </section>
+                    <h4 style="width: 100%;">
+                        Ops!
+                    </h4>
+                    <p class="subtitle">
+                        Lo sentimos, no hemos podido procesar el pago, por favor intentalo nuevamente.
+                    </p>
+                    <br>
+                </ng-container>
+            </div>
+            <footer class="card-footer">
+                <div class="card-footer-item" style="padding:12px">
+                    <button *ngIf="isSuccess" class="ok-button" mat-button color="primary" (click)="handleConfirmation();">
+                        Entiendo <mat-icon style="color: #25cd90;">done</mat-icon></button>
+
+                    <button *ngIf="!isSuccess" class="ok-button" mat-button color="warn" (click)="handleConfirmation();">
+                        Entiendo</button>
+                </div>
+            </footer>
+        </mat-card>
+    </div>
+</div>

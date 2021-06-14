@@ -1,0 +1,167 @@
+<app-navbar></app-navbar>
+
+<div class="events-container">
+  <div class="cont-img" [ngStyle]="{'background-image': 'url(' + (event?.image.url ? event.image.url : photo) + ')'}">
+
+  </div>
+  <div class="cont-description pl-5  pb-5">
+    <div class="title">
+      {{ event?.name || 'DEFAULT_NAME' }}
+    </div>
+    <div class="social-networks">
+      <!-- if we'll need stars  -->
+      <!-- <div class="cont-starts">
+        <i [ngClass]="true ? 'start-active':'start-not'" class="fas fa-lg fa-star ml-2"></i>
+        <i [ngClass]="true ? 'start-active':'start-not'" class="fas fa-lg fa-star ml-2"></i>
+        <i [ngClass]="true ? 'start-active':'start-not'" class="fas fa-lg fa-star ml-2"></i>
+        <i [ngClass]="true ? 'start-active':'start-not'" class="fas  fa-lg fa-star ml-2"></i>
+        <i [ngClass]="false ? 'start-active':'start-not'" class="fas fa-lg fa-star ml-2"></i>
+        <div class="cont-price ml-2">
+          4.0
+        </div>
+      </div> -->
+      <div class="coments">
+
+        <div class="m-2">
+          <i class="icon-color  fa-lg  fas fa-comment-dots mr-2"></i>
+          00000
+        </div>
+
+        <div class="m-2">
+          <i class="icon-color  fa-lg  fas fa-thumbs-up ml-2 mr-2"></i>
+          00000
+
+        </div>
+
+      </div>
+
+      <div class="social-netw-btns">
+
+        <button class="button btn-facebook  m-2">
+          <span class="icon">
+            <i class="fab fa-lg fa-facebook-f"></i>
+          </span>
+          <span>Facebook</span>
+        </button>
+
+
+        <button class="button btn-twitter  m-2">
+          <span class="icon">
+            <i class="fab fa-lg fa-twitter"></i>
+          </span>
+          <span>Twitter</span>
+        </button>
+
+        <button class="button btn-whatsaap  m-2">
+          <span class="icon">
+            <i class="fab fa-lg fa-whatsapp"></i>
+          </span>
+          <span>Whatsapp</span>
+        </button>
+
+        <button class="button btn-email  m-2">
+          <span class="icon">
+            <i class="far fa-lg fa-envelope"></i>
+          </span>
+          <span>Email</span>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="description mt-5">
+     {{ event?.description || 
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime dolore tempora hic, architecto repudiandae quasi asperiores ut illum labore optio ullam deserunt.' }}
+    </div>
+
+    <div class="social-networks mt-5">
+
+      <div class="cont-user">
+
+        <!-- <div class="event-user">
+          <img class="event-user" [src]="user" alt="">
+        </div> -->
+        <div class="ml-4">
+          <div>
+            Publicado por
+          </div>
+          <div class="bold-text">
+            Eventos G12
+          </div>
+        </div>
+
+        <div class="ml-6">
+          <div>
+            Categoria
+          </div>
+          <div class="bold-text">
+            {{ event?.category[0] || 'DEFAULT' }}
+          </div>
+        </div>
+        <div class="ml-6">
+          <div>
+            Year
+          </div>
+          <div class="bold-text">
+            {{ date | date:'YYYY' }}
+          </div>
+        </div>
+      </div>
+      <div class="social-btns">
+        <button class="button btn-free  m-2">
+          <span class="icon">
+            <i class="fas fa-lg fa-bolt"></i>
+          </span>
+          <span>VISION G12</span>
+        </button>
+        <button class="button btn-stock  m-2">
+          <span class="icon">
+            <i class="fas fa-shield-alt fa-lg"></i>
+          </span>
+          <span>SEGURO</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="events-container">
+  <div class="cont-register">
+    <div class="subtitle bold-text">
+      Registrar Usuarios
+    </div>
+  </div>
+  <div class="cont-price">
+    <div class="price">
+      $ {{ (assistants.length > 0) ? event?.prices.cop * assistants.length : event?.prices.cop }}
+    </div>
+    <div class="old-price">
+      $16,99
+    </div>
+    <div class="desc">
+      2%
+    </div>
+  </div>
+  <div class="cont-btn-register">
+    <button class="button btn-register mt-2" (click)="handleAdd()">
+      <span class="icon">
+        <i class="fa-lg fas fa-users mr-5"></i>
+      </span>
+      <span>Registrar Usuario</span>
+    </button>
+  </div>
+</div>
+<div class="events-container">
+  <div class="container-table">
+    <app-assistants-table [search]="search"></app-assistants-table>
+    <button *ngIf="assistants.length > 0" class="button btn-register mt-2" (click)="setDataOnStorage()">
+      <span class="icon">
+        <i class="fa-lg fas fa-money-bill mr-5"></i>
+      </span>
+      <span>Donar Ahora</span>
+    </button>
+  </div>
+</div>
+<div class="cont-subscribe">
+    <app-subscription></app-subscription>
+</div>
+<app-footer></app-footer>

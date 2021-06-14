@@ -1,0 +1,173 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~animate.css/animate.min';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200&display=swap');
+*, body, button, input, optgroup, select, textarea {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+:root {
+    --purple: #6C5DD3;
+    --darkpurple: #11142D;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.mat-table {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+}
+
+.mat-header-cell {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px !important;
+    text-align: center !important;
+}
+
+.mat-cell {
+    font-size: 13px !important;
+}
+
+.mat-dialog-content {
+    max-height: none !important;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background: whitesmoke;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(160, 159, 159, 0.418);
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b2b2b3;
+}
+
+@media only screen and (max-width: 700px) {
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 2px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .mat-table {
+        border: 0;
+        vertical-align: middle
+    }
+    .mat-table caption {
+        font-size: 1em;
+    }
+    /*  Enable this to hide header
+
+    */
+    .mat-table .mat-header-cell {
+        border: 10px solid;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        background-color: transparent;
+    }
+    .mat-table .mat-row {
+        border-bottom: 5px solid #ddd;
+        display: block;
+    }
+    /*
+    .mat-table .mat-row:nth-child(even) {background: #CCC}
+    .mat-table .mat-row:nth-child(odd) {background: #FFF}
+    */
+    .mat-table .mat-cell {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 1em;
+        text-align: left;
+        font-weight: bold;
+        height: 30px;
+        margin-bottom: 4%;
+    }
+    .mat-table .mat-cell:before {
+        /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        font-weight: normal;
+        font-size: .85em;
+    }
+    .mat-table .mat-cell:last-child {
+        border-bottom: 0;
+    }
+    .mat-table .mat-cell:first-child {
+        margin-top: 4%;
+        padding-left: unset !important;
+    }
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.col-6 {
+    display: block;
+    width: 50%;
+    padding: 10px;
+}
+
+.col-12 {
+    display: block;
+    width: 100%;
+    padding: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .row {
+        display: block;
+    }
+    .col-6 {
+        width: 100%;
+        padding: 5px;
+    }
+    .mat-dialog-content {
+        padding: 0px !important;
+    }
+    .mat-expansion-panel-header-title {
+        text-align: center !important;
+    }
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+textarea:focus, input:focus, button:focus {
+    outline: none !important;
+    border-color: unset !important;
+    box-shadow: unset !important;
+}

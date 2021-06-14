@@ -1,0 +1,288 @@
+.events-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  max-width: 98rem;
+}
+
+.cont-subscribe {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  max-width: 98rem;
+}
+
+.cont-img {
+  width: 13rem;
+  height: 21rem;
+  background: #C4C4C4;
+  border-radius: 20px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cont-description {
+  width: calc(100% - 13rem);
+  border-bottom: 5px solid whitesmoke;
+  border-bottom-style: dashed;
+}
+
+.social-networks {
+  display: flex;
+  align-items: center;
+
+}
+
+.cont-starss {
+  display: flex;
+  align-items: center;
+  /* width: 20%; */
+}
+
+.stars-not {
+  color: #e1e1e1 !important
+}
+
+.stars-active {
+  color: #ff764c !important
+}
+
+
+.icon-color {
+  color: #6C5DD3 !important
+}
+
+
+.coments {
+  text-align: center;
+  display: flex;
+}
+
+.btn-facebook {
+  background: #1E33E5;
+  color: white;
+  width: 10rem;
+  border-radius: 10px;
+
+}
+
+.btn-twitter {
+  background: #61C3E2;
+  color: white;
+  width: 10rem;
+  border-radius: 10px;
+
+}
+
+.btn-whatsaap {
+  background: #53C258;
+  color: white;
+  width: 10rem;
+  border-radius: 10px;
+
+}
+
+.btn-email {
+  background: #AAAAAA;
+  color: white;
+  width: 10rem;
+  border-radius: 10px;
+
+}
+
+.social-netw-btns {
+  text-align: end;
+  width: 80%;
+}
+
+.social-btns {
+  text-align: end;
+  width: 60%;
+}
+
+.btn-free {
+  background: #EBE8FE;
+  color: #6C5DD3;
+  border-radius: 10px;
+}
+
+.btn-stock {
+  background: #DDF5E4;
+  color: #3EB760;
+  border-radius: 10px;
+}
+
+.button {
+  padding: 20px !important;
+  width: 10rem;
+}
+
+.btn-register {
+  width: 289px;
+  background: #6C5DD3;
+  color: white;
+  box-shadow: 0px 25px 33px rgba(108, 93, 211, 0.25);
+  border-radius: 14px;
+}
+
+.event-user {
+  width: 50px;
+  height: 47.01px;
+  border-radius: 20px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: #C4C4C4;
+  border-radius: 14px;
+
+}
+
+.cont-user {
+  display: flex;
+}
+
+.bold-text {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.cont-price {
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  font-weight: bold;
+  width: 67%;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.old-price {
+  text-decoration-line: line-through;
+  margin-right: 1.5rem;
+}
+
+.desc {
+
+  width: 44px;
+  height: 27.26px;
+  display: flex;
+  color: white;
+  background: #FF754C;
+  border-radius: 14px;
+  margin-right: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.cont-btn-register {
+  text-align: end;
+
+}
+
+.container-table {
+  width: 100%;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .cont-description {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .social-btns {
+    width: 100%;
+    text-align: unset;
+  }
+
+  .cont-starss {
+    width: inherit;
+  }
+
+  .social-networks {
+    display: block;
+  }
+
+  .events-container {
+    padding: 1.5rem !important;
+    width: 100%;
+    display: block;
+    text-align: -webkit-center;
+  }
+
+  .cont-user {
+    display: block;
+  }
+
+  .event-user {
+    margin-bottom: 1.5rem;
+  }
+
+  .actions-container {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  .mat-form-field {
+    padding-top: 8px !important;
+    width: 100% !important;
+    margin-left: 0px;
+  }
+
+  .coments {
+    text-align: unset;
+    display: block;
+    margin-left: unset;
+  }
+
+  .social-netw-btns {
+    width: 100%;
+    text-align: unset;
+  }
+
+  .icon-color {
+    margin-left: unset !important;
+  }
+
+  .ml-4 {
+    margin-left: unset !important;
+  }
+
+  .ml-6 {
+    margin-top: 1.5rem;
+    margin-left: unset !important;
+  }
+
+  .description {
+    text-align: initial;
+  }
+
+  .button {
+    width: 15rem;
+  }
+
+  .cont-btn-register {
+    text-align: unset;
+  }
+
+  .cont-price {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+
+  .btn-register {
+    margin-top: 1.5rem !important;
+  }
+}
+
+
