@@ -1,8 +1,9 @@
 <app-navbar></app-navbar>
 
 <div class="events-container">
-  <div class="cont-img" [ngStyle]="{'background-image': 'url(' + (event?.image.url ? event.image.url : photo) + ')'}">
-
+  <div class="cont-img">
+    <img src="{{event?.image.url}}" style="width: 180px; height: 198px;" 
+    (error)="handleErrorImage($event)" draggable="false">
   </div>
   <div class="cont-description pl-5  pb-5">
     <div class="title">

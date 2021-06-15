@@ -87,4 +87,8 @@ export class EventDetailComponent implements OnInit {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 
+  handleErrorImage($event: any) {
+    $event.target.src = "/assets/cover.png";
+  }
+
 }

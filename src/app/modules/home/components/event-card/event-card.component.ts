@@ -20,5 +20,9 @@ export class EventCardComponent implements OnInit {
     const _id = btoa(id.toString());
     this.router.navigate(['home/event', _id]); // ENCRIPT ID AND GO TO DETAIL
   }
+
+  handleErrorImage($event: any) {
+    $event.target.src = "/assets/cover.png";
+  }
   
 }

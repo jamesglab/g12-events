@@ -12,7 +12,7 @@ import { Event } from '../_models/event.model';
 })
 export class HomeComponent implements OnInit {
 
-  public isGrid: boolean = true;
+  public isGrid: boolean = false;
   public events: Event[] = [];
   public categories: string[] = [];
   public categoriesFilter: string[] = [];

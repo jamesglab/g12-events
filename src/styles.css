@@ -34,7 +34,7 @@ html, body {
 }
 
 .mat-dialog-content {
-    max-height: none !important;
+    max-height: 75vh !important;
 }
 
 ::-webkit-scrollbar {

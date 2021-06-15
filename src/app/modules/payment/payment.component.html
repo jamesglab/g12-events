@@ -103,9 +103,9 @@
                                 <mat-label>Tipo de persona</mat-label>
                                 <!-- formControlName="typePerson" -->
                                 <mat-select formControlName="clientType">
-                                    <mat-option value="N">
+                                    <mat-option value="0">
                                         Persona Natural</mat-option>
-                                    <mat-option value="J">
+                                    <mat-option value="1">
                                         Persona Juridica
                                     </mat-option>
                                 </mat-select>
@@ -202,7 +202,7 @@
                 </div>
                 <div>
                     <mat-progress-spinner *ngIf="isLoading" diameter="20" mode="indeterminate" value="100"></mat-progress-spinner>
-                    <button mat-button color="primary" *ngIf="!isLoading">
+                    <button mat-button color="primary" *ngIf="!isLoading" style="font-weight: bold; font-size:medium;">
                         Completar Donación <mat-icon style="color: #25cd90;">done</mat-icon></button>
                 </div>
             </div>

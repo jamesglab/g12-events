@@ -14,8 +14,9 @@
 .title-container {
     width: 100%;
     display: block;
-    border-bottom: 1px solid #25cd90;
+    border-bottom: 1px solid var(--purple);
 }
+
 
 .event-title {
     color: #181C32;
@@ -47,7 +48,8 @@
 }
 
 .forms-title>h3 {
-    color: #939394 !important;
+    color: var(--darkpurple) !important;
+    font-weight: bold;
 }
 
 .info-container {
