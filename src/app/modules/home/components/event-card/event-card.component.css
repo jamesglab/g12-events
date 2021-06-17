@@ -1,5 +1,5 @@
 .card-item {
-  max-width: 240px;
+  max-width: 250px;
   /* width: 240px; */
   padding: 16px;
   border-radius: 20px;
@@ -103,17 +103,18 @@
 }
 
 .cont-price-list {
-  width: 100%;
+  width: 40%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   margin-top: 20px;
+  margin-bottom: 20px;
   font-weight: bold;
   font-size: normal;
 }
 
 .price-list {
   font-weight: bold;
-  font-size: large;
+  font-size: x-large;
   color: var(--darkpurple);
 }
 
@@ -133,6 +134,12 @@
 
 .old-price {
   text-decoration-line: line-through;
+  font-size: normal;
+}
+
+.old-price-list {
+  text-decoration-line: line-through;
+  font-size: x-large;
 }
 
 .final-content {
@@ -142,7 +149,7 @@
 .written-content {
   width: 60%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 p {
@@ -192,6 +199,13 @@ p {
     margin-top: 1.5rem;
   }
   .cont-price-list {
-    place-content: center;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .price-list {
+    font-size: large;
+  }
+  .old-price {
+    font-size: large;
   }
 }

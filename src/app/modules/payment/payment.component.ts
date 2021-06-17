@@ -132,72 +132,54 @@ export class PaymentComponent implements OnInit {
   }
 
   psePayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.prices.cop}, 
-    this.event, this.assistantsService.assistants.length);
-    const pseSubscr = this.paymentService.proccessPaymentPSE(data)
+    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop}, 
+    this.event, this.assistantsService.assistants);
+    const pseSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
         if(res.url) { window.open(res.url,'_blank'); }
+        this.storageService.setItem("paymentRef", res.paymentRef);
         this.showPopUp(res);
-      }, err => { this.isLoading = false; throw err; })
+      }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
     this.unsubscribe.push(pseSubscr);
   }
 
   creditCardPayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.prices.cop}, 
-    this.event, this.assistantsService.assistants.length);
-    const creditSubscr = this.paymentService.proccessPaymentCard(data)
+    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop}, 
+    this.event, this.assistantsService.assistants);
+    const creditSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
         this.showPopUp(res);
         // console.log("CARD RESPONSE", res);
-      }, err => { this.isLoading = false; throw err; })
+      }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
     this.unsubscribe.push(creditSubscr);
   }
 
   cashPayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.prices.cop}, 
-    this.event, this.assistantsService.assistants.length);
-    const cashSubscr = this.paymentService.proccessPaymentCash(data)
+    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop}, 
+    this.event, this.assistantsService.assistants);
+    const cashSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
         window.open(res.url,'_blank');
         this.showPopUp(res);
         // console.log("CASH RESPONSE", res);
-      }, err => { this.isLoading = false; throw err; })
+      }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
     this.unsubscribe.push(cashSubscr);
   }
 
-  registerUsers(response: any) {
-    this.paymentService.registerUsers({
-      usersList: this.assistantsService.assistants,
-      donation: this.event.id,
-      transaction: response.ref
-    })
-      .subscribe((res) => {
-        // console.log("REGISTERED USERS", res);
-        this.router.navigate(['/home']);
-      }, err => { throw err; })
-  }
-
-  handleResponse(res) {
-    // if (data.Payment.PaymentType == "PSE") {
-    //   this.storageService.setItem("paymentRef", res.orderId)
-    //   res.state = "PENDING";
-    //   res.urlRedirect = res.response;
-    //   setTimeout(() => { window.open(res.response, '_blank'); }, 500);
-    // } else if (data.Payment.PaymentType == "TC") {
-    //   if (res.state == "Rechazada" || res.state == "Fallida" || res.state == "DECLINED") {
-    //     res.state = "FAILED";
-    //   } else {
-    //     res.state = "SUCCESS";
-    //   }
-    // } else {
-    //   res.urlRedirect = res.Url_Html;
-    //   setTimeout(() => { window.open(res.Url_Html, '_blank'); }, 500);
-    // }
-    
-  }
+  // registerUsers(response: any) {
+  //   this.paymentService.registerUsers({
+  //     usersList: this.assistantsService.assistants,
+  //     donation: this.event.id,
+  //     transaction: response.ref
+  //   })
+  //     .subscribe((res) => {
+  //       // console.log("REGISTERED USERS", res);
+  //       this.router.navigate(['/home']);
+  //     }, err => { throw err; })
+  // }
 
   showPopUp(response: any) {
     //cdkFocusInitial 
@@ -207,7 +189,7 @@ export class PaymentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log("MODAL RESULT", result);
       if(result.status != "FAILED"){
-        this.registerUsers(result);
+        this.router.navigate(['/home']);
       }
     });
   }

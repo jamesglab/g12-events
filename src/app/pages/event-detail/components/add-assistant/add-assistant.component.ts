@@ -87,7 +87,6 @@ export class AddAssistantComponent implements OnInit {
   getChurchTypes() {
     const getChurchTypesSubcr = this.mainService
       .getChurchTypes().subscribe((res: any) => {
-        console.log("LLEGAN", res.entity)
         this.churchTypes = res.entity || [];
         this.cdr.detectChanges();
       })
@@ -98,7 +97,6 @@ export class AddAssistantComponent implements OnInit {
     if (this.cities.length == 0) {
       const getCitiesSubscr = this.mainService
         .getCities().subscribe((res: any) => {
-          console.log("cities", res);
           this.cities = res || [];
           this.cdr.detectChanges();
         })

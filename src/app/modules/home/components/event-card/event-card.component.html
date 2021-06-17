@@ -7,20 +7,21 @@
                     <i class="fas fa-shopping-cart"></i>
                 </div>
             </div>
-            <img src="{{event?.image.url}}" style="width: 170px; height: 198px;" 
-            (error)="handleErrorImage($event)" draggable="false">
+            <img src="{{event?.image.url}}" style="width: 170px; height: 198px;" (error)="handleErrorImage($event)"
+                draggable="false">
         </div>
         <div class="event-info">
             <h3>{{ event.name || 'TITLE_DEFAULT' }}</h3>
             <div class="categories-list">
                 <span *ngFor="let cat of event.category">{{ cat }} </span>
             </div>
+
             <div class="cont-price">
                 <div class="price">
-                    $ {{ event.prices.cop }}
+                    ${{ event?.financialCut[0].prices.cop }}
                 </div>
                 <div class="old-price">
-                    $16,99
+                    ${{ event?.financialCut[0].prices.cop - ((event?.financialCut[0].prices.cop * 20)/100) }}
                 </div>
             </div>
 
@@ -30,8 +31,8 @@
 <ng-container *ngIf="!isGrid">
     <div class="card-item-list">
         <div class="card-img-list">
-            <img src="{{event?.image.url}}" style="width: 170px; height: 198px;" 
-            (error)="handleErrorImage($event)" draggable="false">
+            <img src="{{event?.image.url}}" style="width: 170px; height: 198px;" (error)="handleErrorImage($event)"
+                draggable="false">
         </div>
         <div class="event-info-list">
             <h3>{{ event.name || 'TITLE_DEFAULT' }}</h3>
@@ -39,17 +40,18 @@
                 <span *ngFor="let cat of event.category">{{ cat.toUpperCase() }} </span>
             </div>
             <div class="event-desc-list">
-               {{ event.description }}
+                {{ event.description }}
             </div>
+
             <div class="cont-price-list">
                 <div class="price-list">
-                    $ {{ event.prices.cop }}
+                    ${{ event?.financialCut[0].prices.cop }}
                 </div>
-                &nbsp;
-                <div class="old-price">
-                    $16,99
+                <div class="old-price-list">
+                    ${{ event?.financialCut[0].prices.cop - ((event?.financialCut[0].prices.cop * 20)/100) }} COP
                 </div>
             </div>
+
             <div class="final-content">
                 <div class="written-content">
                     <div>
@@ -64,11 +66,11 @@
                 <div class="cont-buy">
                     <div class="buy-ticket" (click)="eventDetail(event.id)">
                         Comprar Ticket
-                    </div>    
+                    </div>
                 </div>
-                
+
             </div>
-    
+
         </div>
     </div>
 

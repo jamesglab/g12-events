@@ -23,7 +23,7 @@ export class ResponsePopupComponent implements OnInit {
     // if(this.response.state != "FAILED"){
     //   this.eventsService.insertFirebaseTransaction(this.response.data);
     // }
-    console.log("COMO LLEGA EL RESPONSE AL DIALOG", this.response);
+    // console.log("COMO LLEGA EL RESPONSE AL DIALOG", this.response);
     this.cdr.detectChanges();
   }
 

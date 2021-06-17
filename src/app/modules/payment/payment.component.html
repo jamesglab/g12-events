@@ -11,7 +11,7 @@
 
                 <div class="description-container">
                     <p><span>Nombre del evento:</span> {{ event?.name.toUpperCase() || 'DEFAULT' }} </p>
-                    <p><span>Valor:</span> $ {{ event?.prices.cop * event?.assistants || '' }}
+                    <p><span>Valor:</span> $ {{ (event?.financialCut[event?.financialCutSelected].prices.cop * event?.assistants) || '' }}
                         COP</p>
                     <p><span>Cantidad de entradas:</span> {{event?.assistants}}</p>
                 </div>

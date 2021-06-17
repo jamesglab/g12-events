@@ -66,13 +66,12 @@ export const validateCardFlag = (number: string) => {
 }
 
 export const getJSONPaymentType = (formFields, eventName: string, assistants: number): any => {
-    console.log("FORMFIELDS", formFields);
-    console.log("ASSISTANTS", assistants);
     switch (formFields.paymentType) {
         case 'PSE':
             return {
                 "customer": getCustomer(formFields),
                 "payment": {
+                    "paymentType": "PSE",
                     "doc_type": "CC",
                     "doc_number": formFields.document,
                     "name": formFields.name,
@@ -91,6 +90,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
             return {
                 "customer": getCustomer(formFields),
                 "payment": {
+                    "paymentType": "CREDIT",
                     "card": {
                         "number": formFields.cardNumber,
                         "exp_year": formFields.cardYear,
@@ -110,9 +110,11 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
             return {
                 "customer": getCustomer(formFields),
                 "payment": {
+                    "paymentType": "CASH",
                     "pointPayment": formFields.paymentMethod,
                     "amount": parseInt(formFields.amount) * assistants,
                     "description": "Compra online " + eventName,
+                    "addDays": 1
                 }
             }
     }

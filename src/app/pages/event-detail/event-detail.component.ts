@@ -18,6 +18,7 @@ export class EventDetailComponent implements OnInit {
   public date: Date = new Date();
   public search: string = "";
   public assistants: any[] = [];
+  public financialCutSelected = 0;
   private unsubscribe: Subscription[] = [];
   
   photo = '/assets/cover.png';
@@ -40,7 +41,6 @@ export class EventDetailComponent implements OnInit {
     const eventId = atob(this.route.snapshot.paramMap.get("id"));
     const getEventSubscr = this.eventsService
     .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
-      console.log("EVENTOOOOOO", res);
       this.event = res[0];
     });
   this.unsubscribe.push(getEventSubscr);
@@ -77,7 +77,7 @@ export class EventDetailComponent implements OnInit {
 
   setDataOnStorage() {
     this.event.assistants = this.assistants.length;
-    this.event.prices.cop = parseInt(this.event.prices.cop);
+    this.event.financialCutSelected = this.financialCutSelected;
     this.eventsService.setEvent(this.event);
     this.assistantsService.saveAssistantOnStorage();
     this.router.navigate(['/payment']);

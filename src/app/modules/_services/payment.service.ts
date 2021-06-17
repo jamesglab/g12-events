@@ -63,9 +63,9 @@ export class PaymentService {
     );
   }
 
-  registerUsers(data: { usersList: any[], donation: number, transaction: any }): Observable<any> {
+  registerUsers(data: any): Observable<any> {
     return this.http.post<any>(
-      `${environment.apiUrlG12Connect}donations/donations/register-users`,
+      `https://13e576456284.ngrok.io/api/v2/donations/donations/register-users`,
       JSON.stringify(data), { headers: header }).pipe(
         map((res: any) => {
           return res;

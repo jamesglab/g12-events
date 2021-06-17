@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 20px;
   display: flex;
+  /* justify-content: space-between; */
   max-width: 98rem;
 }
 
@@ -151,26 +152,76 @@
   font-size: 1.2rem;
 }
 
-.cont-price {
-  align-items: center;
-  justify-content: flex-end;
-  display: flex;
-  font-weight: bold;
-  width: 67%;
+
+
+
+.cont-prices {
+  padding-right: 180px;
+  padding-left: 180px;
+  width: 100%;
+  /* border: 1px solid black; */
 }
 
-.price {
+.container-items {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.container-items-2 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+h4 {
   font-weight: bold;
-  font-size: 1.5rem;
+  color: var(--darkpurple);
+  padding-left: 20px;
+  text-transform: uppercase;
+}
+
+.financial-item {
+  border: 1px solid rgb(239 238 238);
+  border-radius: 10px;
+  width: 30%;
+  cursor:pointer;
+  margin-bottom: 20px;
+}
+
+.financial-item:not(:nth-child(3n+1)) {
+  margin-left: calc( (100% - (10% * 3)) / 16 );       /*  added  */
+}
+
+.financial-item:hover {
+  box-shadow: 0px 25px 33px rgba(108, 93, 211, 0.25);
+}
+
+.is-selected-item {
+  background-color: #EBE8FE !important;
+} 
+
+.info-price {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.current-price {
+  font-weight: bold;
+  color: var(--purple);
   margin-right: 1.5rem;
+  font-size: x-large;
 }
 
 .old-price {
   text-decoration-line: line-through;
+  color: var(--darkpurple);
+  font-weight: bold;
   margin-right: 1.5rem;
+  font-size: x-large;
 }
-
-.desc {
+.discount {
 
   width: 44px;
   height: 27.26px;
@@ -184,8 +235,11 @@
 }
 
 
+
+
+
 .cont-btn-register {
-  text-align: end;
+  /* text-align: end; */
 
 }
 

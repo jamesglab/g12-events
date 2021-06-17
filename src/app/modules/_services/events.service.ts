@@ -40,7 +40,7 @@ export class EventsService {
   }
 
   getFilterCategories(filter): Observable<any> {
-    console.log("FILTER", filter)
+    // console.log("FILTER", filter)
     return this.http.get<any>(`${environment.apiUrlG12Connect}donations/donations/filter-category`,
     { headers: header, params: filter }).pipe(
       map((res: any) => {
