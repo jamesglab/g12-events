@@ -51,8 +51,8 @@ export class EventsService {
   }
 
   getCategories(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrlG12Connect}donations/donations/categories`,
-    { headers: header }).pipe(
+    return this.http.get<any>(`${environment.apiUrlG12Connect}managment/data-dictionary/filter`,
+    { headers: header, params: { type: 'G12_EVENT' } }).pipe(
       map((res: any) => {
         return res;
       }),
