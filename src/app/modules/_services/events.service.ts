@@ -30,7 +30,7 @@ export class EventsService {
   }
 
   getFilter(payload: any):Observable<any> {
-    return this.http.get<any>(`http://localhost:3001/api/v2/donations/donations/filter`,
+    return this.http.get<any>(`${environment.apiUrlG12Connect}donations/donations/filter`,
       { headers: header, params: payload }).pipe(
         map((res: any) => {
           return res;
