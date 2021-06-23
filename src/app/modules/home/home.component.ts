@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { EventsService } from '../_services/events.service';
@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
 
   private unsubscribe: Subscription[] = [];
 
-  constructor(private router: Router, private eventsService: EventsService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, 
+    private eventsService: EventsService) { }
 
   ngOnInit(): void {
     this.getEvents();
@@ -29,8 +30,13 @@ export class HomeComponent implements OnInit {
   }
 
   getEvents() {
+    // console.log("RE SUAVE MI PAPA", this.activatedRoute.snapshot.queryParamMap.get("visibility"));
+    var visibility = [];
+    if(this.activatedRoute.snapshot.paramMap.get('visibility') === "all"){ visibility = ['international','bogota']; }
+    else{ visibility = ['bogota'] }
+
     const getEventsSubscr = this.eventsService
-      .getFilter({ type: 'G12_EVENT' }).subscribe((res: Event[]) => {
+      .getFilter({ type: 'G12_EVENT', visibility: JSON.stringify(visibility) }).subscribe((res: Event[]) => {
         res.reverse(); //TO SORT ARRAY
         this.events = res;
       });
@@ -62,8 +68,12 @@ export class HomeComponent implements OnInit {
   filterEventsByCategories() {
     if(this.categoriesFilter.length > 0){
       this.isLoading = true;
+      let visibility = [];
+      if(this.activatedRoute.snapshot.paramMap.get('visibility') === "all"){ visibility = ['international','bogota']; }
+      else{ visibility = ['bogota'] }
+
       const getEventsSubscr = this.eventsService
-      .getFilterCategories({ category: JSON.stringify(this.categoriesFilter) }).subscribe((res: Event[]) => {
+      .getFilterCategories({ category: JSON.stringify(this.categoriesFilter), visibility: JSON.stringify(visibility) }).subscribe((res: Event[]) => {
         this.events = res;
         this.isLoading = false;
       });

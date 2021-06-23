@@ -20,7 +20,7 @@
 
                 <div class="categories-group">
                     <div class="categorie-item" *ngFor="let cat of categories">
-                        <mat-checkbox #checkbox class="example-margin" (click)="pushCategory(checkbox,cat.value)">{{ cat.value }}</mat-checkbox>
+                        <mat-checkbox #checkbox (click)="pushCategory(checkbox,cat.value)">{{ cat.value }}</mat-checkbox>
                     </div>
                 </div>
 

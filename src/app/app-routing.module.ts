@@ -4,7 +4,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: 'home/:visibility',
     loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
   },
   {
@@ -22,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home', //J2415Whr7FrkId41lnnb03AaI7w==,
+    redirectTo: 'home/all', //J2415Whr7FrkId41lnnb03AaI7w==,
     pathMatch: "full"
   },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
