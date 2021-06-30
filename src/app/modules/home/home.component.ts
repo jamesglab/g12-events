@@ -77,7 +77,8 @@ export class HomeComponent implements OnInit {
       else{ visibility = ['bogota'] }
 
       const getEventsSubscr = this.eventsService
-      .getFilterCategories({ category: JSON.stringify(this.categoriesFilter), visibility: JSON.stringify(visibility) }).subscribe((res: Event[]) => {
+      .getFilterCategories({ type: 'G12_EVENT', category: JSON.stringify(this.categoriesFilter), 
+      visibility: JSON.stringify(visibility) }).subscribe((res: Event[]) => {
         this.events = res;
         this.isLoading = false;
       });
