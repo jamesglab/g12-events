@@ -6,13 +6,18 @@ import { EventDetailComponent } from 'src/app/pages/event-detail/event-detail.co
 
 const routes: Routes = [
   { 
-    path: '',
+    path: 'all',
     component: HomeComponent,
+  },
+  {
+    path: 'bogota',
+    component: HomeComponent
   },
   {
     path: 'event/:id',
     component: EventDetailComponent
-  }
+  },
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 ];
 
 @NgModule({

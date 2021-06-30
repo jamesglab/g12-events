@@ -4,7 +4,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   {
-    path: 'home/:visibility',
+    path: 'home',
     loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule),
   },
   {

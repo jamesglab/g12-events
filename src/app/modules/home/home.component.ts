@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { EventsService } from '../_services/events.service';
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   private unsubscribe: Subscription[] = [];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, 
+  constructor(private router: Router,
     private eventsService: EventsService) { }
 
   ngOnInit(): void {
@@ -30,9 +30,11 @@ export class HomeComponent implements OnInit {
   }
 
   getEvents() {
-    // console.log("RE SUAVE MI PAPA", this.activatedRoute.snapshot.queryParamMap.get("visibility"));
+    
+    const route = this.router.url.split("/")[2];
     var visibility = [];
-    if(this.activatedRoute.snapshot.paramMap.get('visibility') === "all"){ visibility = ['international','bogota']; }
+
+    if(route === "all"){ visibility = ['international','bogota']; }
     else{ visibility = ['bogota'] }
 
     const getEventsSubscr = this.eventsService
@@ -68,8 +70,10 @@ export class HomeComponent implements OnInit {
   filterEventsByCategories() {
     if(this.categoriesFilter.length > 0){
       this.isLoading = true;
+      const route = this.router.url.split("/")[2];
       let visibility = [];
-      if(this.activatedRoute.snapshot.paramMap.get('visibility') === "all"){ visibility = ['international','bogota']; }
+      
+      if(route === "all"){ visibility = ['international','bogota']; }
       else{ visibility = ['bogota'] }
 
       const getEventsSubscr = this.eventsService
