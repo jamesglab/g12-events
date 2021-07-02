@@ -15,11 +15,11 @@ export class PaymentService {
   getePaycoBanks(): Observable<any> {
     return this.http.get<any>(
       `${environment.apiUrlG12Connect}payments/transaction/epayco/banks`).pipe(
-      map((res: any) => {
-        return res;
-      }),
-      catchError(handleError)
-    );
+        map((res: any) => {
+          return res;
+        }),
+        catchError(handleError)
+      );
   }
 
   proccessPaymentPSE(payload: any): Observable<any> {
@@ -44,28 +44,28 @@ export class PaymentService {
   }
 
   proccessPaymentCard(payload: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrlG12Connect}payments/transaction/epayco/credit`, 
-    payload).pipe(
-      map((res: any) => {
-        return res;
-      }),
-      catchError(handleError)
-    );
+    return this.http.post<any>(`${environment.apiUrlG12Connect}payments/transaction/epayco/credit`,
+      payload).pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(handleError)
+      );
   }
 
   proccessPaymentCash(payload: any): Observable<any> {
     return this.http.post<any>(`${environment.apiUrlG12Connect}payments/transaction/payu`, payload)
-    .pipe(
-      map((res: any) => {
-        return res;
-      }),
-      catchError(handleError)
-    );
+      .pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(handleError)
+      );
   }
 
   registerUsers(data: any): Observable<any> {
     return this.http.post<any>(
-      `${environment.apiUrlG12Connect}donations/donations/register-users`,
+      `${'https://14375c5ae734.ngrok.io/api/v2/'}donations/donations/register-users`,
       JSON.stringify(data), { headers: header }).pipe(
         map((res: any) => {
           return res;

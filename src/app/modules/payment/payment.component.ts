@@ -9,7 +9,7 @@ import { numberOnly, validateCardFlag } from 'src/app/_helpers/tools/validator.t
 import { MONTHS_CREDIT_CARD, YEARS_CREDIT_CARD } from 'src/app/_helpers/tools/fakedb.tool';
 import { NEW_DONATION, donation_errors } from 'src/app/_helpers/objects/forms.objects';
 import { insertPayment } from 'src/app/_helpers/tools/toInsert.tool';
-
+import { COUNTRIES, ENGLISH_COUNTRIES } from 'src/app/_helpers/tools/countrys.tools'
 import { EventsService } from 'src/app/modules/_services/events.service';
 import { AssistantsService } from 'src/app/modules/_services/assistants.service';
 import { PaymentService } from 'src/app/modules/_services/payment.service';
@@ -36,6 +36,7 @@ export class PaymentComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
 
   public method_selected = 1;
+  public countrys_language = COUNTRIES;
 
   constructor(private fb: FormBuilder, private eventsService: EventsService,
     private assistantsService: AssistantsService, private paymentService: PaymentService,
@@ -45,7 +46,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.event = this.eventsService.event;
     if (!this.event || this.assistantsService.assistants.length < 1) {
-      // this.goBack();
+      this.goBack();
     }
     this.buildForm();
     this.form.cardNumber.valueChanges
@@ -57,7 +58,15 @@ export class PaymentComponent implements OnInit {
 
   buildForm() {
     this.donationForm = this.fb.group(NEW_DONATION);
-    this.form.paymentType.setValue("PSE");
+    this.donationForm.get('currency').setValue('COP');
+    this.donationForm.controls.currency.disable();
+    this.donationForm.get('country').setValue('Colombia');
+    this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop);
+    this.donationForm.controls.amount.disable();
+    this.form.paymentType.setValue("CAR");
+    this.donationForm.get("country").valueChanges.subscribe(country => {
+      this.validateCountry(country)
+    })
   }
 
   get form() { return this.donationForm.controls; }
@@ -90,12 +99,28 @@ export class PaymentComponent implements OnInit {
     this.form.paymentType.setValue(tabChangeEvent.tab.textLabel);
   }
 
+  validateCountry(country) {
+    if (country == "Colombia") {
+      this.donationForm.get('currency').setValue('COP');
+      this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop);
+    } else {
+      this.donationForm.get('currency').setValue('USD');
+      if (this.event.financialCut[this.event.financialCutSelected].prices.usd) {
+        this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.usd);
+      } else {
+        this.donationForm.get('country').setValue('Colombia')
+      }
+
+    }
+  }
   submit() {
 
+    this.storageService.removeItem('paymentRef');
     const personal_info_validate = this.validateFormErrors();
+    this.donationForm.get('paymentType').setValue(this.method_selected.toString())
     if (personal_info_validate) {
 
-      const validate_info_pay = this.validatePayInformation(this.form.paymentType.value);
+      const validate_info_pay = this.validatePayInformation(this.method_selected);
       if (validate_info_pay) {
 
         //      this.isLoading = true
@@ -109,12 +134,12 @@ export class PaymentComponent implements OnInit {
         //PRIMERO DEBO DE HACER EL PAGO CON LOS ENDPOINT DE DONACIONES
         //LUEGO SI ES SATISFACTORIO,REGISTRAR A LOS USUARIOS
         this.isLoading = true;
-        if (this.form.paymentType.value == "PSE") {
-          this.psePayment();
-        } else if (this.form.paymentType.value == "Crédito") {
+        if (this.method_selected == 1) {
           this.creditCardPayment();
+        } else if (this.method_selected == 1) {
+          this.psePayment();
         } else {
-          this.cashPayment()
+          this.cashPayment
         }
 
         // const paymentSubscr = this.eventsService
@@ -134,7 +159,8 @@ export class PaymentComponent implements OnInit {
   }
 
   psePayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop },
+
+    const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
     const pseSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
@@ -147,7 +173,7 @@ export class PaymentComponent implements OnInit {
   }
 
   creditCardPayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop },
+    const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
     const creditSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
@@ -159,7 +185,7 @@ export class PaymentComponent implements OnInit {
   }
 
   cashPayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop },
+    const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
     const cashSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {

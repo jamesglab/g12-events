@@ -1,238 +1,273 @@
 <app-navbar></app-navbar>
 
-
-<div class="is-flex is-justify-content-center mt-6">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-half p-5">
-        <div class="title is-4">
-          Datos del Donante
-        </div>
-        <div class="columns">
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">Nombre</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="nombre">
-              </div>
-            </div>
+<form [formGroup]="donationForm">
+  <div class="is-flex is-justify-content-center mt-6">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-half p-5">
+          <div class="title is-4">
+            Datos del Donante
           </div>
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">Apellido</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="apellido">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="Email">
-              </div>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">Numero de telefono</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="apellido">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Direccion</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Direccion">
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column is-half">
-            <label class="label">Estado</label>
-            <div class="field has-addons">
-              <div class="control is-expanded">
-                <div class="select is-fullwidth">
-                  <select name="country">
-                    <option value="Argentina">Argentina</option>
-                    <option value="Bolivia">Bolivia</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="Guyana">Guyana</option>
-                    <option value="Paraguay">Paraguay</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Suriname">Suriname</option>
-                    <option value="Uruguay">Uruguay</option>
-                    <option value="Venezuela">Venezuela</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">Codigo postal</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="apellido">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="field-body">
           <div class="field">
-            <label class="label">Nota</label>
+            <label class="label">Documento</label>
             <div class="control">
-              <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-half p-5">
-        <div class="title is-4">
-          Informacion de Donacion
-        </div>
-        <div class="field">
-          <label class="label">Evento</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="evento">
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">Moneda</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="moneda">
-              </div>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">Valor</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="valor">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-6 title is-4">
-          Medios de Donacion
-        </div>
-        <div class="columns">
-          <div class="column is-one-third">
-            <div class="card p-5" [ngClass]="{'card-selected':method_selected == 1}" (click)="method_selected = 1">
-              <div class="is-flex is-justify-content-center">
-                <i class="far fa-credit-card fa-2x"></i>
-              </div>
-              <div class="is-flex is-justify-content-center mt-3">
-                Credit Card
-              </div>
-            </div>
-          </div>
-          <div class="column is-one-third">
-            <div class="card p-5" [ngClass]="{'card-selected':method_selected == 2}" (click)="method_selected = 2">
-              <div class="is-flex is-justify-content-center">
-                <i class="fas fa-exchange-alt fa-2x"></i>
-              </div>
-              <div class="is-flex is-justify-content-center mt-3">
-                Bank Transfer
-              </div>
-            </div>
-          </div>
-          <div class="column is-one-third">
-            <div class="card p-5" [ngClass]="{'card-selected':method_selected == 3}" (click)="method_selected = 3">
-              <div class="is-flex is-justify-content-center">
-                <i class="fas fa-money-bill-wave fa-2x"></i>
-              </div>
-              <div class="is-flex is-justify-content-center mt-3">
-                Efectivo
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div *ngIf="method_selected == 1">
-          <div class="field mt-5">
-            <label class="label">Nombre de la tarjeta</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="evento">
+              <input class="input" type="text" autocomplete="off" formControlName="document"
+                (keypress)="numberOnly($event);">
             </div>
           </div>
           <div class="columns">
-            <div class="column is-four-fifths">
+            <div class="column is-half">
               <div class="field">
-                <label class="label">Numero de tarjeta</label>
+                <label class="label">Nombre</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="00000-00000-0000-0000">
+                  <input class="input" type="text" placeholder="nombre" formControlName="name">
                 </div>
               </div>
             </div>
-            <div class="column">
+            <div class="column is-half">
               <div class="field">
-                <label class="label">CVC</label>
+                <label class="label">Apellido</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="***">
+                  <input class="input" type="text" placeholder="apellido" formControlName="lastName">
                 </div>
               </div>
             </div>
           </div>
           <div class="columns">
             <div class="column is-half">
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Email" formControlName="email">
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Numero de telefono</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Numero de telefono" formControlName="contactPhone"
+                    (keypress)="numberOnly($event);">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Direccion</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Direccion" form="">
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-half">
+              <label class="label">Pais</label>
               <div class="field has-addons">
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
-                    <select name="country">
-                      <option value="Argentina">Argentina</option>
-                      <option value="Bolivia">Bolivia</option>
-                      <option value="Brazil">Brazil</option>
-                      <option value="Chile">Chile</option>
-                      <option value="Colombia">Colombia</option>
-                      <option value="Ecuador">Ecuador</option>
-                      <option value="Guyana">Guyana</option>
-                      <option value="Paraguay">Paraguay</option>
-                      <option value="Peru">Peru</option>
-                      <option value="Suriname">Suriname</option>
-                      <option value="Uruguay">Uruguay</option>
-                      <option value="Venezuela">Venezuela</option>
+                    <select formControlName="country">
+                      <option [value]="country.name" *ngFor="let country of countrys_language"
+                        (click)="validateCountry(country)">
+                        {{country.name}}</option>
                     </select>
                   </div>
                 </div>
               </div>
             </div>
             <div class="column is-half">
+              <div class="field">
+                <label class="label">Codigo postal</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="codigo postal" formControlName="postalCode">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <label class="label">Nota</label>
+              <div class="control">
+                <textarea class="textarea" placeholder="" formControlName="nota"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-half p-5">
+          <div class="title is-4">
+            Informacion de Donacion
+          </div>
+          <div class="field">
+            <div class="control title is-flex is-justify-content-center">
+              {{ event?.name.toUpperCase() || 'DEFAULT' }}
+            </div>
+          </div>
+          <div class="columns mt-5">
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Moneda</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="moneda" formControlName="currency">
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Valor</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="valor" formControlName="amount">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 title is-4">
+            Medios de Donacion
+          </div>
+          <div class="columns">
+            <div class="column is-one-third">
+              <div class="card p-5" [ngClass]="{'card-selected':method_selected == 1}" (click)="method_selected = 1">
+                <div class="is-flex is-justify-content-center">
+                  <i class="far fa-credit-card fa-2x"></i>
+                </div>
+                <div class="is-flex is-justify-content-center mt-3">
+                  Credito 
+                </div>
+              </div>
+            </div>
+            <div class="column is-one-third">
+              <div class="card p-5" [ngClass]="{'card-selected':method_selected == 2}" (click)="method_selected = 2">
+                <div class="is-flex is-justify-content-center">
+                  <i class="fas fa-exchange-alt fa-2x"></i>
+                </div>
+                <div class="is-flex is-justify-content-center mt-3">
+                  Banco
+                </div>
+              </div>
+            </div>
+            <div class="column is-one-third">
+              <div class="card p-5" [ngClass]="{'card-selected':method_selected == 3}" (click)="method_selected = 3">
+                <div class="is-flex is-justify-content-center">
+                  <i class="fas fa-money-bill-wave fa-2x"></i>
+                </div>
+                <div class="is-flex is-justify-content-center mt-3">
+                  Efectivo
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div *ngIf="method_selected == 1">
+            <div class="field mt-5">
+              <label class="label">Nombre de la tarjeta</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="nombre de la tarjeta" formControlName="cardName">
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-four-fifths">
+                <div class="field">
+                  <label class="label">Numero de tarjeta</label>
+                  <div class="control">
+                    <input class="input" type="text" placeholder="00000-00000-0000-0000" formControlName="cardNumber"
+                      maxlength="18" (keypress)="numberOnly($event);">
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <label class="label">CVC</label>
+                  <div class="control">
+                    <input class="input" type="text" placeholder="***" formControlName="cardSecurityCode"
+                      autocomplete="off" maxlength="4">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-half">
+                <label class="label">Mes</label>
+                <div class="field has-addons">
+                  <div class="control is-expanded">
+                    <div class="select is-fullwidth">
+                      <select formControlName="cardMonth">
+                        <option *ngFor="let month of monthsCreditCard" value="{{month.id}}">{{month.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-half">
+                <label class="label">Año</label>
+                <div class="field has-addons">
+                  <div class="control is-expanded">
+                    <div class="select is-fullwidth">
+                      <select formControlName="cardYear">
+                        <option *ngFor="let year of yearsCreditCard" value="{{year.id}}">{{year.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="method_selected == 2">
+            <div>
+              <label class="label">Banco</label>
               <div class="field has-addons">
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
-                    <select name="country">
-                      <option value="Argentina">Argentina</option>
-                      <option value="Bolivia">Bolivia</option>
-                      <option value="Brazil">Brazil</option>
-                      <option value="Chile">Chile</option>
-                      <option value="Colombia">Colombia</option>
-                      <option value="Ecuador">Ecuador</option>
-                      <option value="Guyana">Guyana</option>
-                      <option value="Paraguay">Paraguay</option>
-                      <option value="Peru">Peru</option>
-                      <option value="Suriname">Suriname</option>
-                      <option value="Uruguay">Uruguay</option>
-                      <option value="Venezuela">Venezuela</option>
+                    <select name="" formControlName="financialInstitutionCode" (click)="getBanks()">
+                      <option *ngFor="let bank of banks" value="{{bank.bankCode}}">
+                        {{bank.bankName}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5">
+              <label class="label">Tipo de persona</label>
+              <div class="field has-addons">
+                <div class="control is-expanded">
+                  <div class="select is-fullwidth">
+                    <select name="" formControlName="clientType" (click)="getBanks()">
+                      <option value="0">
+                        Persona Natural
+                      </option>
+                      <option value="1">
+                        Persona Juridica
+                      </option>
                     </select>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div *ngIf="method_selected == 3">
+            <div>
+              <label class="label">Efectivo</label>
+              <div class="field has-addons">
+                <div class="control is-expanded">
+                  <div class="select is-fullwidth">
+                    <select formControlName="paymentMethod">
+                      <option value="EFECTY">Efecty</option>
+                      <option value="BALOTO">Baloto</option>
+                      <option value="OTHERS_CASH">Paga Todo</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <button (click)="submit()" class="button btn is-small is-fullwidth mt-5">Realizar Donacion</button>
         </div>
-        <button class="button btn is-small is-fullwidth mt-5">Realizar Donacion</button>
       </div>
     </div>
   </div>
-</div>
+
+</form>
+
 
 <!-- <app-navbar></app-navbar>
 <div class="payment-container">
@@ -246,7 +281,7 @@
                 </div>
 
                 <div class="description-container">
-                    <p><span>Nombre del evento:</span> {{ event?.name.toUpperCase() || 'DEFAULT' }} </p>
+                    <p><span>Nombre  evento:</span> {{ event?.name.toUpperCase() || 'DEFAULT' }} </p>
                     <p><span>Valor:</span> $ {{ (event?.financialCut[event?.financialCutSelected].prices.cop * event?.assistants) || '' }}
                         COP</p>
                     <p><span>Cantidad de entradas:</span> {{event?.assistants}}</p>

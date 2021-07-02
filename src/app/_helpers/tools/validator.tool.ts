@@ -66,6 +66,11 @@ export const validateCardFlag = (number: string) => {
 }
 
 export const getJSONPaymentType = (formFields, eventName: string, assistants: number): any => {
+    console.log('form', formFields);
+    console.log('event', formFields);
+    console.log('event', assistants)
+
+
     switch (formFields.paymentType) {
         case 'PSE':
             return {
@@ -77,7 +82,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                     "name": formFields.name,
                     "last_name": formFields.lastName,
                     "email": formFields.email,
-                    "currency": "COP",
+                    "currency": formFields.currency.toUpperCase(),
                     "value": parseInt(formFields.amount) * assistants,
                     "bank": formFields.financialInstitutionCode,
                     "type_person": formFields.clientType,
@@ -90,20 +95,20 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
             return {
                 "customer": getCustomer(formFields),
                 "payment": {
-                    "paymentType": "CREDIT",
+                    "paymentType": (formFields.currency == "cop") ? 'CREDIT' : "stripe",
                     "card": {
                         "number": formFields.cardNumber,
                         "exp_year": formFields.cardYear,
                         "exp_month": formFields.cardMonth,
                         "cvc": formFields.cardSecurityCode
-                      },
-                      "doc_type": "CC",
-                      "doc_number": formFields.document,
-                      "name": formFields.name,
-                      "last_name": formFields.lastName,
-                      "email": formFields.email,
-                      "currency": "COP",
-                      "value": parseInt(formFields.amount) * assistants
+                    },
+                    "doc_type": "CC",
+                    "doc_number": formFields.document,
+                    "name": formFields.name,
+                    "last_name": formFields.lastName,
+                    "email": formFields.email,
+                    "currency": formFields.currency.toLowerCase(),
+                    "value": (formFields.currency == "cop") ? parseInt(formFields.amount) * assistants : parseInt(formFields.amount) * assistants * 100
                 }
             }
         case 'PE':

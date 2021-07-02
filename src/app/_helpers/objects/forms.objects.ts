@@ -29,7 +29,7 @@ export const NEW_DONATION = {
     clientType: [null, [Validators.required]], //PERSON TYPE
     paymentType: [null,], //PSE,TC,PE
     orderType: ["Donacion"],
-    paymentMethod: [null,[Validators.required]], // PSE,TC,PE
+    paymentMethod: [null, [Validators.required]], // PSE,TC,PE
     amount: [null], //PRICE OF EVENT
     cardInstallmentsNumber: [15],
     cardNumber: [null, [Validators.required]],
@@ -49,6 +49,10 @@ export const NEW_DONATION = {
     returnUrl: [''], // PENDING
     pastor: [''],
     leader: [''],
+    postalCode: [''],
+    country: [''],
+    nota: [''],
+    currency: ['']
 };
 
 export const donation_errors = {
@@ -76,7 +80,7 @@ export const donation_errors = {
         ],
     },
 
-    PSE: {
+    2: {
         'financialInstitutionCode': [
             { type: 'required', message: 'Selecciona un banco' },
         ],
@@ -85,7 +89,7 @@ export const donation_errors = {
         ]
 
     },
-    Crédito: {
+    1: {
         cardNumber: [
             { type: 'required', message: 'Escribe numero de tarjeta' },
 
@@ -117,8 +121,8 @@ export const donation_errors = {
 
 
     },
-    Efectivo: {
-        paymentMethod:[
+    3: {
+        paymentMethod: [
             { type: 'required', message: 'Selecciona un metodo de pago' },
 
         ]

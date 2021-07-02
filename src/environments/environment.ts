@@ -7,6 +7,7 @@ export const environment = {
   // apiUrlConexion12: "http://51.79.78.171:7003/",
   // apiUrlDonations: "http://51.79.78.171:3002/",
   apiUrlG12Connect: "https://dev-api.g12connect.com/api/v2/",
+  redirecToPse: "http://localhost:4200//payment/transaction"
   // Initialize Firebase
   // firebase.initializeApp(firebaseConfig);
   // firebase.analytics();
