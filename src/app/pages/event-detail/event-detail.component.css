@@ -114,13 +114,15 @@
 
 .btn-stock {
   background: #DDF5E4;
-  color: #3EB760;
+  color: #36bd5c;
   border-radius: 10px;
+  border: none;
+  font-weight: bold;
 }
 
 .button {
   padding: 20px !important;
-  width: 10rem;
+  width: auto;
 }
 
 .btn-register {

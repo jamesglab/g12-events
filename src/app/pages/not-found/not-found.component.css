@@ -1,0 +1,16 @@
+.not-found{
+    height: calc(100vh - 60px);
+    width: 100%;
+    position: relative;
+}
+.message-info {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+} 

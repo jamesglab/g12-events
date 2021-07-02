@@ -13,7 +13,7 @@ export class AssistantsTableComponent implements OnInit {
   @Input() public search: String = "";
   private unsubscribe: Subscription[] = [];
 
-  public displayedColumns: String[] = ['id', 'document', 'name', 'phone', 'delete'];
+  public displayedColumns: String[] = ['name', 'document', 'email', 'phone', 'delete'];
   public dataSource: MatTableDataSource<any[]>; //ANY CHANGE FOR ASSISTANT
 
   constructor(private assistantsService: AssistantsService) { }

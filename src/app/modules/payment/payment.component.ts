@@ -196,9 +196,9 @@ export class PaymentComponent implements OnInit {
 
   goBack() {
     if(!this.event?.id){
-      this.router.navigate(['/home'])
+      this.router.navigate(['/home/all']);
     }else{
-      this.router.navigate(['/home/event', btoa(this.event.id)])
+      this.router.navigate(['/home/event', btoa(this.event.id)]);
     }
   }
 

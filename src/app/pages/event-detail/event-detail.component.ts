@@ -41,6 +41,7 @@ export class EventDetailComponent implements OnInit {
     const eventId = atob(this.route.snapshot.paramMap.get("id"));
     const getEventSubscr = this.eventsService
     .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
+      console.log("RESS", res[0]);
       this.event = res[0];
     });
   this.unsubscribe.push(getEventSubscr);

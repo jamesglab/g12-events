@@ -16,7 +16,7 @@ export class TransactionComponent implements OnInit {
     private paymentService: PaymentService, private _storageService: StorageService) { }
 
   ngOnInit(): void {
-    this.validateTrasaction();
+    // this.validateTrasaction();
   }
 
   validateTrasaction() {
