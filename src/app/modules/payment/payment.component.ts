@@ -35,6 +35,8 @@ export class PaymentComponent implements OnInit {
   public isLoading: boolean = false;
   private unsubscribe: Subscription[] = [];
 
+  public method_selected = 1;
+
   constructor(private fb: FormBuilder, private eventsService: EventsService,
     private assistantsService: AssistantsService, private paymentService: PaymentService,
     private storageService: StorageService, private router: Router,
@@ -43,7 +45,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.event = this.eventsService.event;
     if (!this.event || this.assistantsService.assistants.length < 1) {
-      this.goBack();
+      // this.goBack();
     }
     this.buildForm();
     this.form.cardNumber.valueChanges
@@ -96,48 +98,48 @@ export class PaymentComponent implements OnInit {
       const validate_info_pay = this.validatePayInformation(this.form.paymentType.value);
       if (validate_info_pay) {
 
-    //      this.isLoading = true
-    //         this.form.amount.setValue(this.event.prices.cop * this.assistantsService.assistants.length);
+        //      this.isLoading = true
+        //         this.form.amount.setValue(this.event.prices.cop * this.assistantsService.assistants.length);
 
-    // const data = {
-    // customer: insertPayment(this.donationForm.getRawValue()),
-    //   usersList: this.assistantsService.assistants
-    // };
+        // const data = {
+        // customer: insertPayment(this.donationForm.getRawValue()),
+        //   usersList: this.assistantsService.assistants
+        // };
 
-    //PRIMERO DEBO DE HACER EL PAGO CON LOS ENDPOINT DE DONACIONES
-    //LUEGO SI ES SATISFACTORIO,REGISTRAR A LOS USUARIOS
-    this.isLoading = true;
-    if (this.form.paymentType.value == "PSE") {
-      this.psePayment();
-    } else if (this.form.paymentType.value == "Crédito") {
-      this.creditCardPayment();
-    } else {
-      this.cashPayment()
-    }
+        //PRIMERO DEBO DE HACER EL PAGO CON LOS ENDPOINT DE DONACIONES
+        //LUEGO SI ES SATISFACTORIO,REGISTRAR A LOS USUARIOS
+        this.isLoading = true;
+        if (this.form.paymentType.value == "PSE") {
+          this.psePayment();
+        } else if (this.form.paymentType.value == "Crédito") {
+          this.creditCardPayment();
+        } else {
+          this.cashPayment()
+        }
 
-    // const paymentSubscr = this.eventsService
-    //   .proccessPayment(data).subscribe((res: any) => {
-    //     this.isLoading = false;
-    //     if(res.state != "Error" && !res.MessageError){
-    //       this.handleResponse(data, res);
-    //     }else{
-    //       //ERROR, ERROR
-    //       this.showPopUp({ state: 'FAILED', message: (res.MessageError) ? res.MessageError : null })
-    //     }
-    //   }, err => { throw err; })
-    // this.unsubscribe.push(paymentSubscr);
+        // const paymentSubscr = this.eventsService
+        //   .proccessPayment(data).subscribe((res: any) => {
+        //     this.isLoading = false;
+        //     if(res.state != "Error" && !res.MessageError){
+        //       this.handleResponse(data, res);
+        //     }else{
+        //       //ERROR, ERROR
+        //       this.showPopUp({ state: 'FAILED', message: (res.MessageError) ? res.MessageError : null })
+        //     }
+        //   }, err => { throw err; })
+        // this.unsubscribe.push(paymentSubscr);
       }
     }
 
   }
 
   psePayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop}, 
-    this.event, this.assistantsService.assistants);
+    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop },
+      this.event, this.assistantsService.assistants);
     const pseSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
-        if(res.url) { window.open(res.url,'_blank'); }
+        if (res.url) { window.open(res.url, '_blank'); }
         this.storageService.setItem("paymentRef", res.paymentRef);
         this.showPopUp(res);
       }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
@@ -145,8 +147,8 @@ export class PaymentComponent implements OnInit {
   }
 
   creditCardPayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop}, 
-    this.event, this.assistantsService.assistants);
+    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop },
+      this.event, this.assistantsService.assistants);
     const creditSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
@@ -157,12 +159,12 @@ export class PaymentComponent implements OnInit {
   }
 
   cashPayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop}, 
-    this.event, this.assistantsService.assistants);
+    const data = insertPayment({ ...this.donationForm.getRawValue(), amount: this.event.financialCut[this.event.financialCutSelected].prices.cop },
+      this.event, this.assistantsService.assistants);
     const cashSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
-        window.open(res.url,'_blank');
+        window.open(res.url, '_blank');
         this.showPopUp(res);
         // console.log("CASH RESPONSE", res);
       }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
@@ -188,16 +190,16 @@ export class PaymentComponent implements OnInit {
     dialogRef.componentInstance.response = response;
     dialogRef.afterClosed().subscribe(result => {
       console.log("MODAL RESULT", result);
-      if(result.status != "FAILED"){
+      if (result.status != "FAILED") {
         this.router.navigate(['/home']);
       }
     });
   }
 
   goBack() {
-    if(!this.event?.id){
+    if (!this.event?.id) {
       this.router.navigate(['/home'])
-    }else{
+    } else {
       this.router.navigate(['/home/event', btoa(this.event.id)])
     }
   }
