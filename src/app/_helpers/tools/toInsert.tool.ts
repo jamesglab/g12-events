@@ -1,17 +1,18 @@
 import { getJSONPaymentType, getIpAddress } from './validator.tool';
-
+import { environment } from '../../../environments/environment';
 const PAYMENT_TYPE = {
-    "PSE": "PSE",
-    "Crédito": "TC",
-    "Efectivo": "PE"
+    "1": "TC",
+    "2": "PSE",
+    "3": "PE"
 }
 
 export const insertPayment = (formFields, event: any, assistants: any[]) => {
+    console.log('asistants', assistants)
     formFields.paymentType = PAYMENT_TYPE[formFields.paymentType];
     let JSON_payment = getJSONPaymentType(formFields, event.name, assistants.length);
     JSON_payment.usersList = assistants;
     JSON_payment.platform = "EVENTOSG12";
-    JSON_payment.urlResponse = "https://mci.eventosg12.com/transaction";
+    JSON_payment.urlResponse = environment.redirecToPse;
     JSON_payment.donation = event.id;
     JSON_payment.financialCut = event.financialCut[event.financialCutSelected].id;
     return JSON_payment;
