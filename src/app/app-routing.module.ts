@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { TransactionComponent } from './pages/transaction/transaction.component';
 
 export const routes: Routes = [
   {
@@ -16,10 +15,6 @@ export const routes: Routes = [
   {
     path: 'payment',
     loadChildren: () => import('./modules/payment/payment.module').then((m) => m.PaymentModule)
-  },
-  {
-    path: 'transaction',
-    component: TransactionComponent
   },
   {
     path: 'not-found',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PaymentService } from 'src/app/modules/_services/payment.service';
 import { StorageService } from 'src/app/modules/_services/storage.service';
 
@@ -10,35 +11,58 @@ import { StorageService } from 'src/app/modules/_services/storage.service';
 })
 export class TransactionComponent implements OnInit {
 
-  public isSuccess: boolean = false;
+  public donationForm: FormGroup;
+  public isLoading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router,
+  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder,
     private paymentService: PaymentService, private _storageService: StorageService) { }
 
   ngOnInit(): void {
-    // this.validateTrasaction();
+    this.buildForm();
+
+    this.route.queryParams.subscribe((params) => {
+      // const paymentRef = this._storageService.getItem("paymentRef");
+      const { ref } = params;
+      this.validateTrasaction({ ref });
+    })
   }
 
-  validateTrasaction() {
-    const paymentRef = this._storageService.getItem("paymentRef");
+  buildForm() {
+    this.donationForm = this.fb.group({
+      name: [{ value: '', disabled: true }, [Validators.required]],
+      last_name: [{ value: '', disabled: true }, [Validators.required]],
+      email: [{ value: '', disabled: true }, [Validators.required]],
+      phone: [{ value: '', disabled: true }, [Validators.required]],
+      country: [{ value: '', disabled: true }, [Validators.required]],
+      city: [{ value: '', disabled: true }, [Validators.required]],
+      event: [{ value: '', disabled: true }, [Validators.required]],
+      amount: [{ value: '', disabled: true }, [Validators.required]],
+      currency: [{ value: '', disabled: true }, [Validators.required]],
+      paymentMethod: [{ value: '', disabled: true }, [Validators.required]],
+      reference: [{ value: '', disabled: true }, [Validators.required]],
+      status: [{ value: '', disabled: true }, [Validators.required]],
+    });
+  }
+
+  get form() { return this.donationForm.controls; }
+
+  validateTrasaction(params) {
+    // 
     // console.log("Payment ref", paymentRef);
-    this.paymentService.validatePSEPayment({ payment_ref: paymentRef })
+    this.paymentService.getTransactionInfo(params.ref)
       .subscribe(res => {
-        // console.log("Res check ref",res);
-        this.isSuccess = true;
-      }, err => {
-        this.isSuccess = false;
-        throw err;
-      })
+        this.donationForm.patchValue({ ...res, ...res.donation });
+      }, err => { throw err; })
   }
 
-  handleConfirmation() {
-    if (this.isSuccess) {
-      this._storageService.clear();
-      window.location.replace("https://mci12.com/eventos/");
-    } else {
-      this.router.navigate(['/payment']);
-    }
+  submit(): void {
+    const { reference } = this.donationForm.getRawValue();
+    this.isLoading = true;
+    this.paymentService.getTransactionInfo(reference)
+      .subscribe(res => {
+        this.isLoading = false;
+        this.donationForm.patchValue({ ...res, ...res.donation });
+      }, err => { throw err; })
   }
 
 }

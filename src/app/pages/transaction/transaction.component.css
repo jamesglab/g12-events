@@ -1,4 +1,4 @@
-.transaction-container{
+/* .transaction-container {
     height: 100vh;
     width: 100%;
     overflow: hidden;
@@ -17,7 +17,7 @@
     display: block;
 }
 
-.card-container{
+.card-container {
     height: 600px;
     width: 370px;
 }
@@ -26,6 +26,37 @@
     padding: 0px !important;
 }
 
-.ok-button{
+.ok-button {
     width: 100%;
+} */
+
+.input[disabled], .select fieldset[disabled] select, .select select[disabled], .textarea[disabled], fieldset[disabled] .input, fieldset[disabled] .select select, fieldset[disabled] .textarea {
+    background-color: #fff;
+    border-color: #dfdede;
+    box-shadow: none;
+    color: var(--darkpurple);
+}
+
+.transaction-info {
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 10px;
+    background-color: #ECECEC;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.info-title {
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.btn {
+    background: #6C5DD3;
+    color: white;
+    height: 39px;
+    border-radius: 8px !important;
+    font-size: 15px;
+    font-weight: bold;
 }

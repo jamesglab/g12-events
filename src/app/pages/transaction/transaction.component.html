@@ -1,49 +1,150 @@
-<!-- <div class="transaction-container">
-    <div class="card-container">
-        <mat-card class="transaction-card">
-            <div class="card-content">
-                <ng-container *ngIf="isSuccess">
-                    <section class="hero is-success">
-                        <div class="hero-body">
-                            <div class="container">
-                                <h3 style="color: hsl(158, 69%, 47%);">Transacción exitosa</h3>
-                            </div>
-                        </div>
-                    </section>
-                    <h4 style="width: 100%;">
-                        Donación en validación.
-                    </h4>
-                    <p class="subtitle">
-                        Se está realizando la validación de su donación, este proceso puede tardar algunos minutos. una vez la donacion se encuentre confirmada enviaremos un correo electrónico con su información de acceso.
-                    </p>
-                </ng-container>
-                <ng-container *ngIf="!isSuccess">
-                    <section class="hero is-danger">
-                        <div class="hero-body">
-                            <div class="container">
-                                <h3 style="color: #f44336">Transacción rechazada</h3>
-                            </div>
-                        </div>
-                    </section>
-                    <h4 style="width: 100%;">
-                        Ops!
-                    </h4>
-                    <p class="subtitle">
-                        Lo sentimos, no hemos podido procesar el pago, por favor intentalo nuevamente.
-                    </p>
-                    <br>
-                </ng-container>
-            </div>
-            <footer class="card-footer">
-                <div class="card-footer-item" style="padding:12px">
-                    <button *ngIf="isSuccess" class="ok-button" mat-button color="primary" (click)="handleConfirmation();">
-                        Entiendo <mat-icon style="color: #25cd90;">done</mat-icon></button>
+<app-navbar></app-navbar>
 
-                    <button *ngIf="!isSuccess" class="ok-button" mat-button color="warn" (click)="handleConfirmation();">
-                        Entiendo</button>
+<div class="transaction-info">
+
+  <div class="info-title">Información de Donación</div>
+
+</div>
+
+<form [formGroup]="donationForm" (ngSubmit)="submit();" style="width: 100%;">
+  <div class="is-flex is-justify-content-center mt-6 mb-6">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-half p-5">
+          <div class="title is-4">
+            Datos del Donante
+          </div>
+          <div class="columns">
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Nombres</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="nombre" formControlName="name">
                 </div>
-            </footer>
-        </mat-card>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Apellidos</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="apellido" formControlName="last_name">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Email" formControlName="email">
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Celular</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="apellido" formControlName="phone">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="field">
+            <label class="label">Direccion</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Direccion" formControlName="address">
+            </div>
+          </div> -->
+          <div class="columns">
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">País</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Ciudad" formControlName="country">
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Ciudad</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Ciudad" formControlName="city">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-half p-5">
+          <div class="title is-4">
+            Informacion de Donacion
+          </div>
+           <div class="field">
+            <label class="label">Evento / Donación</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="evento" formControlName="event">
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Valor Donación</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="valor" formControlName="amount">
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+                <div class="field">
+                  <label class="label">Moneda</label>
+                  <div class="control">
+                    <input class="input" type="text" placeholder="moneda" formControlName="currency">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="columns">
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Medio de Donación</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Medio" formControlName="paymentMethod">
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+                <div class="field">
+                  <label class="label">#Referencia</label>
+                  <div class="control">
+                    <input class="input" type="text" placeholder="referencia" formControlName="reference">
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="field mt-5">
+            <label class="label">Estado de Donación</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Estado de donación" formControlName="status">
+            </div>
+          </div>
+          <div class="subtitle is-4">
+            <strong>Estado de Donación</strong>
+          </div>
+          <article class="message is-link">
+            <div class="message-body">
+                Hola <strong>{{ form.name.value || '_' }},</strong> queremos informarte que el estado de tu donación es <strong>{{ form.status.value || '_' }}.</strong>
+                Muchas gracias por contribuir a nuestra visión!.
+            </div>
+          </article>
+          <button class="button btn is-small is-fullwidth mt-5" 
+          [disabled]="isLoading"
+          [ngClass]="{ 'is-loading': isLoading }">
+            Validar Estado</button>
+        </div>
+      </div>
     </div>
-</div> -->
-<p>transaction works!</p>
+  </div>
+</form>
+
+  <app-features></app-features>
+  <app-footer></app-footer>

@@ -18,6 +18,19 @@ html, body {
     padding: 0;
 }
 
+.input, .textarea  {
+    box-shadow: none;
+}
+
+.input, .select select, .textarea {
+    border-color: #E1E1E1;
+}
+
+.input:active, .input:focus, .is-active.input, .is-active.textarea, .is-focused.input, .is-focused.textarea, .select select.is-active, .select select.is-focused, .select select:active, .select select:focus, .textarea:active, .textarea:focus{
+    border-color: var(--darkpurple);
+    box-shadow: none;
+}
+
 .mat-table {
     font-family: 'Poppins', sans-serif;
     width: 100%;

@@ -32,9 +32,9 @@ export class PaymentService {
       );
   }
 
-  validatePSEPayment(payment_ref) {
-    return this.http.get<any>(`${environment.apiUrlG12Connect}payments/transaction/epayco/validate-pse`,
-      { params: { payment_ref } })
+  getTransactionInfo(ref: string) {
+    return this.http.get<any>(`${environment.apiUrlG12Connect}payments/transaction/validate-ref`,
+      { params: { ref } })
       .pipe(
         map((res: any) => {
           return res;

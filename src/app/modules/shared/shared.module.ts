@@ -19,13 +19,14 @@ import { MatButtonModule } from '@angular/material/button';
 
 //COMPONENTS
 import { NavbarComponent } from 'src/app/pages/shared-components/navbar/navbar.component';
+import { FeaturesComponent } from 'src/app/pages/shared-components/features/features.component';
 import { SubscriptionComponent } from 'src/app/pages/shared-components/subscription/subscription.component';
 import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.component';
 
 
 
 @NgModule({
-  declarations: [NavbarComponent,SubscriptionComponent,FooterComponent],
+  declarations: [NavbarComponent,FeaturesComponent,SubscriptionComponent,FooterComponent],
   imports: [
     CommonModule,
     //MATERIAL
@@ -47,6 +48,7 @@ import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.c
   ],
   exports:[
     NavbarComponent,
+    FeaturesComponent,
     FooterComponent,
     SubscriptionComponent,
     //MATERIAL

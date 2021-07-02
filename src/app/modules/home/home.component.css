@@ -200,49 +200,6 @@
 
 /*</ EVENTS - CONTENT*/
 
-
-/*FEATURES CONTAINER*/
-.features-container {
-  width: 100%;
-  padding: 50px;
-  margin-bottom: 20px;
-  background-color: #F0EEFF;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.feature-item {
-  width: 20%;
-  height: auto;
-  max-height: 140px;
-  display: flex;
-}
-
-.feature-icon {
-  width: 20%;
-  display: flex;
-  align-items: center;
-}
-
-.feature-desc {
-  width: 80%;
-  padding: 10px;
-}
-
-.feature-desc>h6 {
-  font-size: medium;
-  font-weight: bold;
-  color: var(--darkpurple);
-}
-
-.feature-desc>p {
-  font-size: small;
-  color: #AAAAAA;
-}
-
-/*</ FEATURES CONTAINER*/
-
 /*FOOTER CONTENT*/
 .footer-container {
   width: 100%;
@@ -292,13 +249,6 @@
 
   .events-cards {
     margin-top: 1.5rem;
-  }
-
-  .features-container{
-      display: block;
-  }
-  .feature-item{
-      width: 100%;
   }
   .paginator{
       width: 80%;
