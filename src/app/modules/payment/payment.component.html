@@ -1,4 +1,240 @@
 <app-navbar></app-navbar>
+
+
+<div class="is-flex is-justify-content-center mt-6">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half p-5">
+        <div class="title is-4">
+          Datos del Donante
+        </div>
+        <div class="columns">
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Nombre</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="nombre">
+              </div>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Apellido</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="apellido">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Email">
+              </div>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Numero de telefono</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="apellido">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Direccion</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Direccion">
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-half">
+            <label class="label">Estado</label>
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                <div class="select is-fullwidth">
+                  <select name="country">
+                    <option value="Argentina">Argentina</option>
+                    <option value="Bolivia">Bolivia</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="Guyana">Guyana</option>
+                    <option value="Paraguay">Paraguay</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Suriname">Suriname</option>
+                    <option value="Uruguay">Uruguay</option>
+                    <option value="Venezuela">Venezuela</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Codigo postal</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="apellido">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <label class="label">Nota</label>
+            <div class="control">
+              <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half p-5">
+        <div class="title is-4">
+          Informacion de Donacion
+        </div>
+        <div class="field">
+          <label class="label">Evento</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="evento">
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Moneda</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="moneda">
+              </div>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="field">
+              <label class="label">Valor</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="valor">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 title is-4">
+          Medios de Donacion
+        </div>
+        <div class="columns">
+          <div class="column is-one-third">
+            <div class="card p-5" [ngClass]="{'card-selected':method_selected == 1}" (click)="method_selected = 1">
+              <div class="is-flex is-justify-content-center">
+                <i class="far fa-credit-card fa-2x"></i>
+              </div>
+              <div class="is-flex is-justify-content-center mt-3">
+                Credit Card
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="card p-5" [ngClass]="{'card-selected':method_selected == 2}" (click)="method_selected = 2">
+              <div class="is-flex is-justify-content-center">
+                <i class="fas fa-exchange-alt fa-2x"></i>
+              </div>
+              <div class="is-flex is-justify-content-center mt-3">
+                Bank Transfer
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="card p-5" [ngClass]="{'card-selected':method_selected == 3}" (click)="method_selected = 3">
+              <div class="is-flex is-justify-content-center">
+                <i class="fas fa-money-bill-wave fa-2x"></i>
+              </div>
+              <div class="is-flex is-justify-content-center mt-3">
+                Efectivo
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div *ngIf="method_selected == 1">
+          <div class="field mt-5">
+            <label class="label">Nombre de la tarjeta</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="evento">
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-four-fifths">
+              <div class="field">
+                <label class="label">Numero de tarjeta</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="00000-00000-0000-0000">
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">CVC</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="***">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-half">
+              <div class="field has-addons">
+                <div class="control is-expanded">
+                  <div class="select is-fullwidth">
+                    <select name="country">
+                      <option value="Argentina">Argentina</option>
+                      <option value="Bolivia">Bolivia</option>
+                      <option value="Brazil">Brazil</option>
+                      <option value="Chile">Chile</option>
+                      <option value="Colombia">Colombia</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Peru">Peru</option>
+                      <option value="Suriname">Suriname</option>
+                      <option value="Uruguay">Uruguay</option>
+                      <option value="Venezuela">Venezuela</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="field has-addons">
+                <div class="control is-expanded">
+                  <div class="select is-fullwidth">
+                    <select name="country">
+                      <option value="Argentina">Argentina</option>
+                      <option value="Bolivia">Bolivia</option>
+                      <option value="Brazil">Brazil</option>
+                      <option value="Chile">Chile</option>
+                      <option value="Colombia">Colombia</option>
+                      <option value="Ecuador">Ecuador</option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Peru">Peru</option>
+                      <option value="Suriname">Suriname</option>
+                      <option value="Uruguay">Uruguay</option>
+                      <option value="Venezuela">Venezuela</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="button btn is-small is-fullwidth mt-5">Realizar Donacion</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-navbar></app-navbar>
 <div class="payment-container">
     <form [formGroup]="donationForm" (ngSubmit)="submit();" style="width: 100%;">
         <mat-card class="payment-card">
@@ -24,57 +260,37 @@
                     </div>
                     <br>
 
-                    <!-- <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>Tipo de documento* </mat-label>
-                        <mat-select type="select" formControlName="DocumentType">
-                            <mat-option *ngFor="let type of documentTypes" value="{{type.code}}">
-                                {{type.description}}</mat-option>
-                        </mat-select>
-                    </mat-form-field> -->
 
                     <mat-form-field appearance="fill" class="w-100">
-                        <!-- formControlName="numberDocument" -->
+
                         <mat-label>Número de documento* </mat-label>
                         <input matInput autocomplete="off" formControlName="document" (keypress)="numberOnly($event);">
-                        <!-- <mat-error *ngIf="paymentWay.controls.numberDocument.errors?.required">
-                            {{ 'registration.documentNumber.required' | translate }}
-                        </mat-error> -->
-                        <!-- <mat-error *ngIf="paymentWay.controls.numberDocument.errors?.pattern 
-                    || paymentWay.controls.numberDocument.errors?.minlength
-                    || paymentWay.controls.numberDocument.errors?.maxlength">
-                            {{ 'registration.documentNumber.invalid' | translate }}</mat-error> -->
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>Nombre*</mat-label>
                         <input matInput autocomplete="off" formControlName="name">
-                        <!-- <mat-error *ngIf="form.names.errors?.required">El nombre es requerido
-                            </mat-error> -->
+                        
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>Apellido*</mat-label>
                         <input matInput autocomplete="off" formControlName="lastName">
-                        <!-- <mat-error *ngIf="form.surNames.errors?.required">El apellido es requerido
-                            </mat-error> -->
+                        
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>Email*</mat-label>
-                        <!-- formControlName="email" -->
+                        
                         <input matInput type="email" autocomplete="off" formControlName="email">
-                        <!-- <mat-error *ngIf="generalConfiguration.controls.email.errors?.required">
-                            {{ 'registration.email.required' | translate }}</mat-error>
-                        <mat-error *ngIf="generalConfiguration.controls.email.errors?.email">
-                            {{ 'registration.email.invalid' | translate }}</mat-error> -->
+                        
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="w-100">
                         <mat-label>Celular*</mat-label>
                         <input matInput placeholder="Número de celular" autocomplete="off"
                             formControlName="contactPhone" (keypress)="numberOnly($event);">
-                        <!-- <mat-error *ngIf="paymentWay.controls.cellphone.errors?.required">
-                            {{ 'registration.cellphone.required' | translate }}</mat-error> -->
+                        
                     </mat-form-field>
 
                 </div>
@@ -88,20 +304,18 @@
                             <br>
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Selecciona tu banco</mat-label>
-                                <!-- formControlName="bank" -->
+                                
                                 <mat-select (click)="getBanks()" formControlName="financialInstitutionCode">
                                     <mat-option *ngFor="let bank of banks" value="{{bank.bankCode}}">
                                         {{bank.bankName}}
                                     </mat-option>
                                 </mat-select>
-                                <!-- <mat-error *ngIf="paymentWay.controls.bank.errors?.required">
-                                        Selecciona tu banco
-                                    </mat-error> -->
+                                
                             </mat-form-field>
 
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Tipo de persona</mat-label>
-                                <!-- formControlName="typePerson" -->
+                                
                                 <mat-select formControlName="clientType">
                                     <mat-option value="0">
                                         Persona Natural</mat-option>
@@ -109,18 +323,10 @@
                                         Persona Juridica
                                     </mat-option>
                                 </mat-select>
-                                <!-- <mat-error *ngIf="paymentWay.controls.typePerson.errors?.required">
-                                        Selecciona tipo de persona
-                                    </mat-error> -->
+                                
                             </mat-form-field>
 
-                            <!-- <mat-form-field appearance="fill">
-                                    <mat-label></mat-label>
-                                    <input matInput placeholder="Número de celular" autocomplete="off"
-                                        formControlName="cellphone" (keypress)="numberOnly($event);">
-                                    <mat-error *ngIf="paymentWay.controls.cellphone.errors?.required">
-                                        {{ 'registration.cellphone.required' | translate }}</mat-error>
-                                </mat-form-field> -->
+                            
 
 
                         </mat-tab>
@@ -133,18 +339,14 @@
                                 <mat-icon matSuffix>
                                     <img (error)="onError($event);" [src]="urlCard" height="30">
                                 </mat-icon>
-                                <!-- <mat-error *ngIf="paymentWay.controls.numberCard.errors?.required">
-                                    {{ 'registration.cardNumber.required' | translate }}
-                                </mat-error> -->
+                            
                             </mat-form-field>
 
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Nombre en tarjeta</mat-label>
-                                <!--formControlName="cardName"-->
+                                
                                 <input matInput formControlName="cardName">
-                                <!-- <mat-error *ngIf="paymentWay.controls.cardName.errors?.required">
-                                    Digita el nombre que aparece en la tarjeta
-                                </mat-error> -->
+                                
                             </mat-form-field>
 
                             <div class="container-card">
@@ -152,7 +354,7 @@
                                 <mat-form-field appearance="fill">
                                     <mat-label>Mes</mat-label>
                                     <mat-select formControlName="cardMonth">
-                                        <!--formControlName=""-->
+                                        
                                         <mat-option *ngFor="let month of monthsCreditCard" value="{{month.id}}">
                                             {{month.name}}
                                         </mat-option>
@@ -163,7 +365,7 @@
                                 <mat-form-field appearance="fill">
                                     <mat-label>Año</mat-label>
                                     <mat-select formControlName="cardYear">
-                                        <!--formControlName="dateExpYear"-->
+                                        
                                         <mat-option *ngFor="let year of yearsCreditCard" value="{{year.id}}">
                                             {{year.name}}</mat-option>
                                     </mat-select>
@@ -175,7 +377,7 @@
                                 <mat-label>CVC</mat-label>
                                 <input matInput formControlName="cardSecurityCode" placeholder="CVC" type="password"
                                     autocomplete="off" maxlength="4">
-                                <!--formControlName="codeSecurity"-->
+                                
                             </mat-form-field>
 
                         </mat-tab>
@@ -185,7 +387,7 @@
                             <mat-form-field class="w-100" appearance="fill">
                                 <mat-label>Selecciona tu método de pago</mat-label>
                                 <mat-select formControlName="paymentMethod">
-                                    <!--formControlName="pointPayment"-->
+                                    
                                     <mat-option value="EFECTY">Efecty</mat-option>
                                     <mat-option value="BALOTO">Baloto</mat-option>
                                     <mat-option value="OTHERS_CASH">Paga Todo</mat-option>
@@ -208,4 +410,4 @@
             </div>
         </mat-card>
     </form>
-</div>
+</div> -->

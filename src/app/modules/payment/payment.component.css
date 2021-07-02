@@ -1,120 +1,146 @@
 .payment-container {
-    /* height: 100vh; */
-    /* width: 100%; */
-    /* border: 1px solid red; */
-    padding: 40px 250px 20px 250px;
+  /* height: 100vh; */
+  /* width: 100%; */
+  /* border: 1px solid red; */
+  padding: 40px 250px 20px 250px;
 }
 
 .payment-card {
-    box-shadow: none;
-    background-color: rgb(248, 247, 247);
-    display: block;
+  box-shadow: none;
+  background-color: rgb(248, 247, 247);
+  display: block;
 }
 
 .title-container {
-    width: 100%;
-    display: block;
-    border-bottom: 1px solid var(--purple);
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid var(--purple);
 }
 
 
 .event-title {
-    color: #181C32;
-    font-size: medium;
-    font-weight: bold;
+  color: #181C32;
+  font-size: medium;
+  font-weight: bold;
 }
 
 .event-description {
-    color: rgb(172, 172, 172);
+  color: rgb(172, 172, 172);
 }
 
 .description-container {
-    padding: 10px;
-    display: block;
+  padding: 10px;
+  display: block;
 }
 
 .desc-title {
-    font-weight: bold;
-    font-size: medium;
+  font-weight: bold;
+  font-size: medium;
 }
 
 .data-container {
-    display: flex;
-    padding: 10px;
+  display: flex;
+  padding: 10px;
 }
 
 .forms-title {
-    border-bottom: 1px solid rgb(231, 229, 229);
+  border-bottom: 1px solid rgb(231, 229, 229);
 }
 
 .forms-title>h3 {
-    color: var(--darkpurple) !important;
-    font-weight: bold;
+  color: var(--darkpurple) !important;
+  font-weight: bold;
 }
 
 .info-container {
-    padding-left: 10px;
-    padding-right: 10px;
-    /* border: 1px solid red; */
-    width: 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* border: 1px solid red; */
+  width: 50%;
 }
 
 .to-pay-container {
-    padding-left: 10px;
-    padding-right: 10px;
-    /* border: 1px solid green; */
-    width: 50%;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* border: 1px solid green; */
+  width: 50%;
 }
 
 span {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .mat-tab {
-    padding: 10px !important;
+  padding: 10px !important;
 }
 
 .container-card {
-    display: flex;
+  display: flex;
 }
 
 .next {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #next {
-    color: #25cd90;
-    font-weight: bold;
+  color: #25cd90;
+  font-weight: bold;
 }
 
 #before {
-    color: #ff4081;
-    font-weight: bold;
+  color: #ff4081;
+  font-weight: bold;
 }
 
 a:hover {
-    cursor: pointer;
-    text-decoration: underline;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 800px) {
-    .payment-container {
-        padding: 10px !important;
-    }
-    .data-container {
-        display: block;
-    }
-    .info-container {
-        width: 100%;
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-    }
-    .to-pay-container {
-        width: 100%;
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-    }
+  .payment-container {
+    padding: 10px !important;
+  }
+
+  .data-container {
+    display: block;
+  }
+
+  .info-container {
+    width: 100%;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .to-pay-container {
+    width: 100%;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+
+
+/* new styles */
+
+.btn {
+  background: #6C5DD3;
+  color: white;
+  height: 39px;
+  border-radius: 8px !important;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.card-selected {
+  color: #6C5DD3 !important;
+  background: #F0F0F0 !important;
+  border: 1px solid !important;
 }
