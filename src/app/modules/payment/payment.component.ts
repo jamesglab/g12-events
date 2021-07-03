@@ -139,7 +139,7 @@ export class PaymentComponent implements OnInit {
         } else if (this.method_selected == 1) {
           this.psePayment();
         } else {
-          this.cashPayment
+          this.cashPayment();
         }
 
         // const paymentSubscr = this.eventsService
@@ -217,7 +217,7 @@ export class PaymentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log("MODAL RESULT", result);
       if (result.status != "FAILED") {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/all']);
       }
     });
   }

@@ -6,7 +6,7 @@
             <div class="container-image" [ngClass]="{ 'check': response.status == 'SUCCESS', 'info': response.status == 'PENDING', 
                 'reject' : response.status == 'FAILED' }">
 
-                <div class="center-image">
+                <div class="center-image" *ngIf="response.status">
                     <img style="height: 120px;" src="/assets/status/{{response.status.toLowerCase()}}.svg" alt="">
                 </div>
 
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="desc">
-                    {{response?.message }}
+                    {{response?.message || 'Lo sentimos, no hemos podido comunicarnos con el servidor' }}
                 </div>
 
                 <div class="desc" *ngIf="response?.message || response?.url">

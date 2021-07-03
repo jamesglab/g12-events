@@ -260,7 +260,8 @@
 
 
           </div>
-          <button (click)="submit()" class="button btn is-small is-fullwidth mt-5">Realizar Donacion</button>
+          <button (click)="submit()" class="button btn is-small is-fullwidth mt-5"
+          [ngClass]="{ 'is-loading': isLoading }">Realizar Donacion</button>
         </div>
       </div>
     </div>

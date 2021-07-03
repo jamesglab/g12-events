@@ -92,10 +92,11 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                 }
             }
         case 'TC':
+            console.log("CURRENCY", formFields.currency)
             return {
                 "customer": getCustomer(formFields),
                 "payment": {
-                    "paymentType": (formFields.currency == "cop") ? 'CREDIT' : "stripe",
+                    "paymentType": (formFields.currency.toLowerCase() == "cop") ? 'CREDIT' : "stripe",
                     "card": {
                         "number": formFields.cardNumber,
                         "exp_year": formFields.cardYear,
@@ -108,7 +109,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                     "last_name": formFields.lastName,
                     "email": formFields.email,
                     "currency": formFields.currency.toLowerCase(),
-                    "value": (formFields.currency == "cop") ? parseInt(formFields.amount) * assistants : parseInt(formFields.amount) * assistants * 100
+                    "value": (formFields.currency.toLowerCase() == "cop") ? parseInt(formFields.amount) * assistants : parseInt(formFields.amount) * assistants * 100
                 }
             }
         case 'PE':
