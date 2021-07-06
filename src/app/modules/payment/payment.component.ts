@@ -166,7 +166,7 @@ export class PaymentComponent implements OnInit {
       .subscribe((res) => {
         this.isLoading = false;
         if (res.url) { window.open(res.url, '_blank'); }
-        this.storageService.setItem("paymentRef", res.paymentRef);
+        this.storageService.setItem("ref", res.ref);
         this.showPopUp(res);
       }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
     this.unsubscribe.push(pseSubscr);

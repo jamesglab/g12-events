@@ -21,7 +21,7 @@ export class TransactionComponent implements OnInit {
     this.buildForm();
 
     this.route.queryParams.subscribe((params) => {
-      const paymentRef = this._storageService.getItem("paymentRef");
+      const paymentRef = this._storageService.getItem("ref");
       const { ref } = params;
       if(paymentRef){
         this.validateTrasaction({ ref: paymentRef });
