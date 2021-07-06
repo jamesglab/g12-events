@@ -1,7 +1,7 @@
 .general-cont {
   height: 353.67px;
   width: 100%;
-  background: #6C5DD3;
+  background: #bfbfc0;
   border-radius: 32px;
   position: relative;
 }
@@ -20,8 +20,8 @@
 }
 
 .input-search {
-  background: #7C6DE3;
-  border: 1px solid #7C6DE3;
+  background: #9f9ea3;
+  border: 1px solid #87868f;
   color: white;
 }
 

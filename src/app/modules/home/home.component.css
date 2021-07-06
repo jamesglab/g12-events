@@ -12,7 +12,7 @@
 }
 
 .breadcum-element>span {
-  color: #6C5DD3;
+  color: var(--purple);
 }
 
 
@@ -34,7 +34,7 @@
 }
 
 .left-side>h3 {
-  color: var(--darkpurple);
+  color: var(--purple);
   font-weight: bold;
   font-size: 25px;
 }
@@ -118,7 +118,7 @@
 }
 
 .title-item>h3 {
-  color: var(--darkpurple);
+  color: var(--purple);
   font-weight: bold;
   font-size: 25px;
 }

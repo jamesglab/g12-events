@@ -9,8 +9,9 @@
 }
 
 :root {
-    --purple: #6C5DD3;
-    --darkpurple: #11142D;
+    /* --purple: #6C5DD3; */
+    --purple: #11142D;
+    --darkpurple: whitesmoke;
 }
 
 html, body {
