@@ -19,16 +19,15 @@ export class TransactionComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-
-    this.route.queryParams.subscribe((params) => {
-      const paymentRef = this._storageService.getItem("ref");
-      const { ref } = params;
-      if(paymentRef){
-        this.validateTrasaction({ ref: paymentRef });
-      }else{
+    const paymentRef = this._storageService.getItem("ref");
+    if(paymentRef){
+      this.validateTrasaction({ ref: paymentRef });
+    }else{
+      this.route.queryParams.subscribe((params) => {
+        const { ref } = params;
         this.validateTrasaction({ ref });
-      }
-    })
+      })
+    }
   }
 
   buildForm() {
