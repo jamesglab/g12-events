@@ -71,7 +71,7 @@ export class AddAssistantComponent implements OnInit {
 
   numberOnly($event): boolean { return numberOnly($event); }
 
-  buildForm() { this.assistantForm = this.fb.group(ADD_ASSISTANT); }
+  buildForm() { this.assistantForm = this.fb.group(ADD_ASSISTANT)}
 
   get form() { return this.assistantForm.controls; }
 
@@ -106,10 +106,10 @@ export class AddAssistantComponent implements OnInit {
 
   getPlaces(): void {
     const getPlacesSubscr = this.mainService
-    .getPlaces().subscribe((res) => {
-      this.places = res;
-      this.cdr.detectChanges();
-    }, err => { throw err; })
+      .getPlaces().subscribe((res) => {
+        this.places = res;
+        this.cdr.detectChanges();
+      }, err => { throw err; })
     // const getPlaceSubscr = this.mainService
     //   .getPlaces({ Type: 'NACIONALES' }).subscribe((nationals: any) => {
 
@@ -212,6 +212,7 @@ export class AddAssistantComponent implements OnInit {
 
   validateFormErrors(validate) {
     let errorText = '';
+    console.log('errorsss', this.assistantForm.controls)
     Object.keys(this.assistantForm.controls).forEach(key => {
       const controlErrors: ValidationErrors = this.assistantForm.get(key).errors;
       if (controlErrors != null) {

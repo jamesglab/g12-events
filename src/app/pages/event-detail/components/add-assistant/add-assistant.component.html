@@ -67,7 +67,7 @@
 
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>Fecha de nacimiento*</mat-label>
-              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="bornDate" formControlName="dateBirth">
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="bornDate" formControlName="dateBirth" disabled>
               <mat-datepicker-toggle matSuffix [for]="bornDate">
               </mat-datepicker-toggle>
               <mat-datepicker #bornDate disabled="false"></mat-datepicker>
