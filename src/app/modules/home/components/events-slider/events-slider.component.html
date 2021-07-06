@@ -5,9 +5,9 @@
         </div>
         <div class="info-container">
             <span>Visión G12</span>
-            <h2>{{ events[currentEvent]?.name || '...' }}</h2>
+            <h2>{{ events[currentEvent]?.name || 'Bienvenidos a Eventos G12' }}</h2>
             <p>{{ events[currentEvent]?.description || 
-                'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore, nesciunt facere.' }}</p>
+                'Todos los eventos de G12 disponibles en una sola plataforma.' }}</p>
         </div>
         <div class="button-container">
             <div class="btn-details" (click)="eventDetail(events[currentEvent].id)">

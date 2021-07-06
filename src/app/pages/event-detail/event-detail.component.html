@@ -144,28 +144,28 @@
         <div class="financial-item">
           <div class="info-price">
 
-            <div class="old-price">
-              ${{ (assistants.length > 0) ? (event?.financialCut[0].prices.cop * assistants.length) - (((event?.financialCut[0].prices.cop * assistants.length) * 20)/100) : 
-                (event?.financialCut[0].prices.cop) - (event?.financialCut[0].prices.cop*20)/100 }}
-            </div>
+            <!-- <div class="old-price">
+              ${{ (assistants.length > 0) ? (event?.financialCut[0].prices.cop * assistants.length) + (((event?.financialCut[0].prices.cop * assistants.length) * 20)/100) : 
+                (event?.financialCut[0].prices.cop) + ((event?.financialCut[0].prices.cop*20)/100) }}
+            </div> -->
             <div class="current-price">
               ${{ (assistants.length > 0) ? event?.financialCut[0].prices.cop * assistants.length : event?.financialCut[0].prices.cop }}
             </div>
-            <div class="discount">
+            <!-- <div class="discount">
               20%
-            </div>
+            </div> -->
           </div>
     
           <div class="info-price">
+            <!-- <div>
+              -
+            </div> -->
             <div>
-              ANTES
+             EVENTOS G12
             </div>
-            <div>
-              AHORA
-            </div>
-            <div>
-            DESC.
-            </div>
+            <!-- <div>
+            -
+            </div> -->
           </div>
         </div>
       </ng-container>
