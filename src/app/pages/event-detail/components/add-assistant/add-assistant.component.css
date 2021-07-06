@@ -6,7 +6,7 @@ h2{
     color: #181C32;
 }
 h3 {
-    color:rgb(223, 222, 222); 
+    color:rgb(173, 173, 173);
     display: flex;
     align-items: center;  
 }
@@ -15,7 +15,7 @@ strong {
 }
 .mat-expansion-panel-header.mat-expanded, .mat-expansion-panel-header.mat-expanded:hover ,.mat-expansion-panel-header.mat-expanded:focus {
     height: 50px;
-    background: #6C5DD3;
+    background: var(--purple);
     color: white!important;
     margin-bottom: 10px;
 }

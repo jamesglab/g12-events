@@ -34,7 +34,7 @@
     background-color: #fff;
     border-color: #dfdede;
     box-shadow: none;
-    color: var(--darkpurple);
+    color: var(--purple);
 }
 
 .transaction-info {
@@ -53,7 +53,7 @@
 }
 
 .btn {
-    background: #6C5DD3;
+    background: var(--purple);
     color: white;
     height: 39px;
     border-radius: 8px !important;

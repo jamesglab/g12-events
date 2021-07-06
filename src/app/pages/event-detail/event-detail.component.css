@@ -127,7 +127,7 @@
 
 .btn-register {
   width: 289px;
-  background: #6C5DD3;
+  background: var(--purple);
   color: white;
   box-shadow: 0px 25px 33px rgba(108, 93, 211, 0.25);
   border-radius: 14px;
@@ -201,7 +201,7 @@ h4 {
 }
 
 .is-selected-item {
-  background-color: #EBE8FE !important;
+  background-color: #d9d6eb !important;
 } 
 
 .info-price {
@@ -218,7 +218,7 @@ h4 {
 
 .old-price {
   text-decoration-line: line-through;
-  color: var(--darkpurple);
+  color: gray;
   font-weight: bold;
   margin-right: 1.5rem;
   font-size: x-large;

@@ -127,7 +127,7 @@ a:hover {
 /* new styles */
 
 .btn {
-  background: #6C5DD3;
+  background: var(--purple);
   color: white;
   height: 39px;
   border-radius: 8px !important;
@@ -140,7 +140,7 @@ a:hover {
 }
 
 .card-selected {
-  color: #6C5DD3 !important;
+  color: var(--purple) !important;
   background: #F0F0F0 !important;
   border: 1px solid !important;
 }
