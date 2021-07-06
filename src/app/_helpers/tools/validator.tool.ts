@@ -83,7 +83,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                     "last_name": formFields.lastName,
                     "email": formFields.email,
                     "currency": formFields.currency.toUpperCase(),
-                    "value": parseInt(formFields.amount) * assistants,
+                    "value": parseInt(formFields.amount),
                     "bank": formFields.financialInstitutionCode,
                     "type_person": formFields.clientType,
                     "country": "CO",
@@ -109,7 +109,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                     "last_name": formFields.lastName,
                     "email": formFields.email,
                     "currency": formFields.currency.toLowerCase(),
-                    "value": (formFields.currency.toLowerCase() == "cop") ? parseInt(formFields.amount) * assistants : parseInt(formFields.amount) * assistants * 100
+                    "value": (formFields.currency.toLowerCase() == "cop") ? parseInt(formFields.amount) : parseInt(formFields.amount) * 100
                 }
             }
         case 'PE':
@@ -118,7 +118,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                 "payment": {
                     "paymentType": "CASH",
                     "pointPayment": formFields.paymentMethod,
-                    "amount": parseInt(formFields.amount) * assistants,
+                    "amount": parseInt(formFields.amount),
                     "description": "Compra online " + eventName,
                     "addDays": 1
                 }

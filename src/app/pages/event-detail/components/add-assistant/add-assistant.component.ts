@@ -54,7 +54,7 @@ export class AddAssistantComponent implements OnInit {
   constructor(private fb: FormBuilder, private mainService: MainService,
     public dialog: MatDialogRef<AddAssistantComponent>, private cdr: ChangeDetectorRef) {
     this.minDate = new Date(1950, 0, 1);
-    this.maxDate = new Date(new Date().getFullYear() - 10, 0, 1);
+    this.maxDate = new Date(new Date().getFullYear() - 5, 0, 1);
   }
 
   ngOnInit(): void {

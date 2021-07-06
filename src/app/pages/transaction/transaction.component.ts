@@ -21,9 +21,13 @@ export class TransactionComponent implements OnInit {
     this.buildForm();
 
     this.route.queryParams.subscribe((params) => {
-      // const paymentRef = this._storageService.getItem("paymentRef");
+      const paymentRef = this._storageService.getItem("paymentRef");
       const { ref } = params;
-      this.validateTrasaction({ ref });
+      if(paymentRef){
+        this.validateTrasaction({ ref: paymentRef });
+      }else{
+        this.validateTrasaction({ ref });
+      }
     })
   }
 
@@ -47,8 +51,6 @@ export class TransactionComponent implements OnInit {
   get form() { return this.donationForm.controls; }
 
   validateTrasaction(params) {
-    // 
-    // console.log("Payment ref", paymentRef);
     this.paymentService.getTransactionInfo(params.ref)
       .subscribe(res => {
         this.donationForm.patchValue({ ...res, ...res.donation });
