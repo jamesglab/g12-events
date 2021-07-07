@@ -46,14 +46,6 @@ export class MainService {
   }
 
   getPlaces(): Observable<any> {
-    //NACIONALES,BOGOTA,INTERNACIONAL
-    // return this.http.post<any>(
-    //   `${environment.apiUrlConexion12}Parameterization/SedeXCountry/Get`, JSON.stringify(data), { headers: header }).pipe(
-    //     map((res: any) => {
-    //       return res;
-    //     }),
-    //     catchError(this.handleError)
-    //   );
     return this.http.get<any>(
       `${environment.apiUrlG12Connect}users/church`, { headers: header }).pipe(
         map((res: any) => {

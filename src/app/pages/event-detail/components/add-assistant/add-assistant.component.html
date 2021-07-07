@@ -318,6 +318,8 @@
 
         <mat-action-row>
           <button type="button" mat-button color="accent" (click)="prevStep()">Anterior</button>
+          <button type="button" mat-button color="primary" *ngIf="isMobile" 
+          (click)="nextStep()">OK</button>
         </mat-action-row>
       </mat-expansion-panel>
 

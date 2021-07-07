@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, ValidationErrors } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -33,6 +33,7 @@ export class AddAssistantComponent implements OnInit {
   public leadersObject: { [key: string]: string } = null; //FOR OBTAIN LEADER ID - NOT CODE
   // public filteredOptions: Observable<any[]>;
   public step: number = 0;
+  public isMobile: boolean = false;
   private unsubscribe: Subscription[] = [];
 
   public disableds = [false, true, true, true];
@@ -74,6 +75,15 @@ export class AddAssistantComponent implements OnInit {
   buildForm() { this.assistantForm = this.fb.group(ADD_ASSISTANT)}
 
   get form() { return this.assistantForm.controls; }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    if (window.innerWidth <= 550) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+  }
 
   // getDocumentTypes() {
   //   const getDocumentTypesSubscr = this.mainService
