@@ -136,7 +136,7 @@ export class PaymentComponent implements OnInit {
         this.isLoading = true;
         if (this.method_selected == 1) {
           this.creditCardPayment();
-        } else if (this.method_selected == 1) {
+        } else if (this.method_selected == 2) {
           this.psePayment();
         } else {
           this.cashPayment();
@@ -159,15 +159,14 @@ export class PaymentComponent implements OnInit {
   }
 
   psePayment() {
-
     const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
     const pseSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
-        if (res.url) { window.open(res.url, '_blank'); }
         this.storageService.setItem("ref", res.ref);
         this.showPopUp(res);
+        if (res.url) { window.open(res.url, '_blank'); }
       }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
     this.unsubscribe.push(pseSubscr);
   }
