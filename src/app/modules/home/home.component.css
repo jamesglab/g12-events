@@ -57,13 +57,13 @@
 
 .categories-group {
   width: 100%;
-  padding: 10px;
+  padding: 1.5rem;
   display: flex;
   flex-wrap: wrap;
 }
 
 .categorie-item {
-  width: 50%;
+  width: 100%;
   font-weight: bold;
   font-size: small;
   text-transform: capitalize;

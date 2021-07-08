@@ -38,9 +38,9 @@ html, body {
 }
 
 .mat-checkbox-layout .mat-checkbox-label{
-    overflow: hidden !important;
+    /* overflow: hidden !important;
     text-overflow: ellipsis !important;
-    width: 120px !important;
+    width: 120px !important; */
 }
 
 .mat-header-cell {
