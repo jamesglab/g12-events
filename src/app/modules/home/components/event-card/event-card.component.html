@@ -1,79 +1,83 @@
 <ng-container *ngIf="isGrid">
-    <div class="card-item">
+  <div class="card-item">
 
-        <div class="card-img">
-            <div class="to-details">
-                <div class="cont-icon favorite" (click)="eventDetail(event.id)">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-            </div>
-            <img src="{{event?.image.url}}" style="width: 170px; height: 198px;" (error)="handleErrorImage($event)"
-                draggable="false">
+    <div class="card-img">
+      <div class="to-details">
+        <div class="cont-icon favorite" (click)="eventDetail(event.id)">
+          <i class="fas fa-shopping-cart"></i>
         </div>
-        <div class="event-info">
-            <h3>{{ event.name || 'TITLE_DEFAULT' }}</h3>
-            <div class="categories-list">
-                <span *ngFor="let cat of event.category">{{ cat }} </span>
-            </div>
+      </div>
+      <img src="{{event?.image.url}}" style="width: 170px; height: 198px;" (error)="handleErrorImage($event)"
+        draggable="false">
+    </div>
+    <div class="event-info">
+      <h3>{{ event.name || 'TITLE_DEFAULT' }}</h3>
+      <div class="categories-list">
+        <span *ngFor="let cat of event.category">{{ cat }} </span>
+      </div>
 
-            <div class="cont-price">
-                <div class="price">
-                    ${{ event?.financialCut[0].prices.cop }}
-                    COP
-                </div>
-                <!-- <div class="old-price">
+      <div class="cont-price">
+        <div class="price">
+          ${{ event?.financialCut[0].prices.cop }}
+          COP
+        </div>
+        <!-- <div class="old-price">
                     ${{ event?.financialCut[0].prices.cop - ((event?.financialCut[0].prices.cop * 20)/100) }}
                 </div> -->
-            </div>
+      </div>
 
-        </div>
     </div>
+  </div>
 </ng-container>
 <ng-container *ngIf="!isGrid">
-    <div class="card-item-list">
-        <div class="card-img-list">
-            <img src="{{event?.image.url}}" style="width: 170px; height: 198px;" (error)="handleErrorImage($event)"
-                draggable="false">
-        </div>
-        <div class="event-info-list">
-            <h3>{{ event.name || 'TITLE_DEFAULT' }}</h3>
-            <div class="categories-list">
-                <span *ngFor="let cat of event.category">{{ cat.toUpperCase() }} </span>
-            </div>
-            <div class="event-desc-list">
-                {{ event.description }}
-            </div>
+  <div class="card-item-list">
+    <div class="card-img-list">
 
-            <div class="cont-price-list">
-                <div class="price-list">
-                    ${{ event?.financialCut[0].prices.cop }}
-                    COP
-                </div>
-                <!-- <div class="old-price-list">
+
+      <figure class="image image-event">
+        <img src="{{event?.image.url}}" (error)="handleErrorImage($event)" draggable="false">
+
+      </figure>
+    </div>
+    <div class="event-info-list">
+      <h3>{{ event.name || 'TITLE_DEFAULT' }}</h3>
+      <div class="categories-list">
+        <span *ngFor="let cat of event.category">{{ cat.toUpperCase() }} </span>
+      </div>
+      <div class="event-desc-list">
+        {{ event.description }}
+      </div>
+
+      <div class="cont-price-list">
+        <div class="price-list">
+          ${{ event?.financialCut[0].prices.cop }}
+          COP
+        </div>
+        <!-- <div class="old-price-list">
                     ${{ event?.financialCut[0].prices.cop - ((event?.financialCut[0].prices.cop * 20)/100) }} COP
                 </div> -->
-            </div>
+      </div>
 
-            <div class="final-content">
-                <div class="written-content">
-                    <div>
-                        <span style="color:gray;">Publicado por</span>
-                        <p style="color:gray;">Eventos G12</p>
-                    </div>
-                    <div>
-                        <span style="color:gray;">Año</span>
-                        <p style="color:gray;">2021</p>
-                    </div>
-                </div>
-                <div class="cont-buy">
-                    <div class="buy-ticket" (click)="eventDetail(event.id)">
-                        Comprar Ticket
-                    </div>
-                </div>
-
-            </div>
-
+      <div class="final-content">
+        <div class="written-content">
+          <div>
+            <span style="color:gray;">Publicado por</span>
+            <p style="color:gray;">Eventos G12</p>
+          </div>
+          <div>
+            <span style="color:gray;">Año</span>
+            <p style="color:gray;">2021</p>
+          </div>
         </div>
+        <div class="cont-buy">
+          <div class="buy-ticket" (click)="eventDetail(event.id)">
+            Comprar Ticket
+          </div>
+        </div>
+
+      </div>
+
     </div>
+  </div>
 
 </ng-container>

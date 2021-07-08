@@ -27,6 +27,9 @@
   cursor: pointer;
 }
 
+.image-event{
+  width: 190px;  
+}
 .card-img {
   width: 100%;
   position: relative;
@@ -34,8 +37,13 @@
 }
 
 .card-img-list {
+
   width: auto;
   object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .to-details {
