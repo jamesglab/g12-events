@@ -45,9 +45,9 @@ export class MainService {
       );
   }
 
-  getPlaces(): Observable<any> {
+  getPlaces(filter: any): Observable<any> {
     return this.http.get<any>(
-      `${environment.apiUrlG12Connect}users/church`, { headers: header }).pipe(
+      `${environment.apiUrlG12Connect}users/church/filter`, { headers: header, params: filter }).pipe(
         map((res: any) => {
           return res;
         }),

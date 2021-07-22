@@ -3,7 +3,8 @@
   <mat-dialog-content>
 
     <mat-accordion>
-      <mat-expansion-panel  disabled class="mat-elevation-z-0" [expanded]="step === 0" (opened)="setStep(0)" [disabled]="disableds[0]" hideToggle="true">
+      <mat-expansion-panel disabled class="mat-elevation-z-0" [expanded]="step === 0" (opened)="setStep(0)"
+        [disabled]="disableds[0]" hideToggle="true">
 
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -17,7 +18,19 @@
                 </mat-panel-description> -->
         </mat-expansion-panel-header>
 
-
+        <div class="row">
+          <h2 style="font-size: large; font-weight: bold;">Tipo de registro</h2>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <mat-radio-group name="registerType" aria-label="Select an option" 
+            (change)="handleRegisterType()" formControlName="registerType">
+              <mat-radio-button value="1">Registro Nacional (Colombia)</mat-radio-button>
+              <mat-radio-button class="ml-3" value="2">Registro Internacional</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+ 
         <div class="row">
           <div class="col-6">
 
@@ -29,7 +42,7 @@
               </mat-select>
             </mat-form-field> -->
 
-            <mat-form-field class="w-100" appearance="fill">
+            <mat-form-field class="w-100" appearance="fill" *ngIf="form.registerType.value == '1'">
               <mat-label>Número de documento* </mat-label>
               <input matInput autocomplete="off" formControlName="documentNumber">
               <!-- <mat-error *ngIf="form.documentNumber.errors?.required">El número de documento es
@@ -67,7 +80,8 @@
 
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>Fecha de nacimiento*</mat-label>
-              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="bornDate" formControlName="dateBirth" disabled>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="bornDate" formControlName="dateBirth"
+                disabled>
               <mat-datepicker-toggle matSuffix [for]="bornDate">
               </mat-datepicker-toggle>
               <mat-datepicker #bornDate disabled="false"></mat-datepicker>
@@ -81,7 +95,8 @@
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true" [disabled]="disableds[1]">
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true"
+        [disabled]="disableds[1]">
 
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -123,14 +138,14 @@
           <div class="col-6">
 
 
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100" *ngIf="form.registerType.value == '1'">
               <mat-label>Ciudad *</mat-label>
               <mat-select type="select" formControlName="city" (click)="getCities()">
                 <mat-option value="null">SELECCIONA CIUDAD</mat-option>
                 <mat-option *ngFor="let city of cities" value="{{city.city}}">{{ city.city }}</mat-option>
               </mat-select>
-              <!-- <mat-error *ngIf="form.Pastor.errors?.required">El pastor es requerido
-              </mat-error> -->
+              <mat-error *ngIf="form.city.errors?.required">La ciudad es requerida
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field class="w-100" appearance="fill">
@@ -153,7 +168,8 @@
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true"  [disabled]="disableds[2]">
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true"
+        [disabled]="disableds[2]">
 
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -227,7 +243,8 @@
               <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Pastor/Lider principal *</mat-label>
                 <mat-select type="select" formControlName="pastor" (selectionChange)="getLeaders($event.value)">
-                  <mat-option *ngFor="let pastor of pastors" value="{{pastor.user_code}}">{{ pastor.name }} {{ pastor.last_name }}
+                  <mat-option *ngFor="let pastor of pastors" value="{{pastor.user_code}}">{{ pastor.name }} {{
+                    pastor.last_name }}
                   </mat-option>
                 </mat-select>
                 <!-- <mat-error *ngIf="form.Pastor.errors?.required">El pastor es requerido
@@ -247,7 +264,8 @@
               <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Lider *</mat-label>
                 <mat-select type="select" formControlName="leader">
-                  <mat-option *ngFor="let leader of leaders" value="{{leader.id}}">{{ leader.name }} {{ leader.last_name }}
+                  <mat-option *ngFor="let leader of leaders" value="{{leader.id}}">{{ leader.name }} {{ leader.last_name
+                    }}
                   </mat-option>
                 </mat-select>
                 <!-- <mat-error *ngIf="form.Leader.errors?.required">El pastor es requerido
@@ -291,7 +309,8 @@
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true"  [disabled]="disableds[3]">
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true"
+        [disabled]="disableds[3]">
 
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -318,8 +337,7 @@
 
         <mat-action-row>
           <button type="button" mat-button color="accent" (click)="prevStep()">Anterior</button>
-          <button type="button" mat-button color="primary" *ngIf="isMobile" 
-          (click)="nextStep()">OK</button>
+          <button type="button" mat-button color="primary" *ngIf="isMobile" (click)="nextStep()">OK</button>
         </mat-action-row>
       </mat-expansion-panel>
 

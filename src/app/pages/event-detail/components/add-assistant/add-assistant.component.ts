@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
-import { FormGroup, FormBuilder, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -72,7 +72,7 @@ export class AddAssistantComponent implements OnInit {
 
   numberOnly($event): boolean { return numberOnly($event); }
 
-  buildForm() { this.assistantForm = this.fb.group(ADD_ASSISTANT)}
+  buildForm() { this.assistantForm = this.fb.group(ADD_ASSISTANT) }
 
   get form() { return this.assistantForm.controls; }
 
@@ -115,8 +115,9 @@ export class AddAssistantComponent implements OnInit {
   }
 
   getPlaces(): void {
+    const filter = { "1": "national", "2": "international" };
     const getPlacesSubscr = this.mainService
-      .getPlaces().subscribe((res) => {
+      .getPlaces({ type: filter[this.form.registerType.value] }).subscribe((res) => {
         this.places = res;
         this.cdr.detectChanges();
       }, err => { throw err; })
@@ -166,6 +167,23 @@ export class AddAssistantComponent implements OnInit {
         this.cdr.detectChanges();
       });
     this.unsubscribe.push(getLeadersSubscr);
+  }
+
+  handleRegisterType() {
+    const value = this.form.registerType.value;
+    this.form.documentNumber.setValidators(null);
+    this.form.city.setValidators(null);
+    if (value === "1") {
+      //NACIONAL
+      this.form.documentNumber.setValidators([Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
+      Validators.maxLength(13)]);
+      this.form.city.setValidators([Validators.required]);
+    } else {
+      this.form.documentNumber.setValidators(null);
+      this.form.documentNumber.setErrors(null);
+      this.form.city.setValidators(null);
+      this.form.city.setErrors(null);
+    }
   }
 
   //FOR LEADERS

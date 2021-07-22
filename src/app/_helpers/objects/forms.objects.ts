@@ -1,7 +1,8 @@
 import { Validators } from '@angular/forms';
 
 export const ADD_ASSISTANT = {
-    event: [null,],
+    event: [null],
+    registerType: ["1"],
     documentNumber: [null, [Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
     Validators.maxLength(13)]],
     name: ['', [Validators.required]],//
@@ -139,13 +140,13 @@ export const donation_errors = {
 export const error_messages = [
 
     {
-        'documentType': [{ type: 'required', message: 'Tipo de documento requerido' },],
-        'documentNumber': [
-            { type: 'required', message: 'Numero de documento requerido' },
-            { type: 'pattern', message: 'El documento no puede tener caracteres especiales' },
-            { type: 'minlength', message: 'El documento debe tener mas de 6 dígitos' },
-            { type: 'maxlength', message: 'El documento debe tener menos de 13 dígitos' }
-        ],
+        'documentType': [{ type: 'required', message: 'Tipo de documento requerido' }],
+        // 'documentNumber': [
+        //     { type: 'required', message: 'Numero de documento requerido' },
+        //     { type: 'pattern', message: 'El documento no puede tener caracteres especiales' },
+        //     { type: 'minlength', message: 'El documento debe tener mas de 6 dígitos' },
+        //     { type: 'maxlength', message: 'El documento debe tener menos de 13 dígitos' }
+        // ],
         'name': [{ type: 'required', message: 'Nombre requerido' }],
         'lastName': [{ type: 'required', message: 'Apellido requerido' }],
         'gender': [{ type: 'required', message: 'Genero Requerido' }],
@@ -165,7 +166,7 @@ export const error_messages = [
             { type: 'required', message: 'Correo requerido' },
             { type: 'email', message: 'Correo no identificado' }
         ],
-        'city': [{ type: 'required', message: 'Ciudad requerida' }],
+        // 'city': [{ type: 'required', message: 'Ciudad requerida' }],
         'address': [
             { type: 'pattern', message: 'No puedes poner caracteres que no sean una dirección' },
             { type: 'maxlength', message: 'La dirección no puede tener mas de 50 caracteres' },

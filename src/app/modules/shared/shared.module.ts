@@ -16,6 +16,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
 
 //COMPONENTS
 import { NavbarComponent } from 'src/app/pages/shared-components/navbar/navbar.component';
@@ -30,6 +31,7 @@ import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.c
   imports: [
     CommonModule,
     //MATERIAL
+    MatRadioModule,
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -52,6 +54,7 @@ import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.c
     FooterComponent,
     SubscriptionComponent,
     //MATERIAL
+    MatRadioModule,
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
