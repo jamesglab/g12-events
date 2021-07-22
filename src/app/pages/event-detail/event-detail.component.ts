@@ -6,6 +6,7 @@ import { AddAssistantComponent } from './components/add-assistant/add-assistant.
 
 import { EventsService } from 'src/app/modules/_services/events.service';
 import { AssistantsService } from 'src/app/modules/_services/assistants.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-event-detail',
@@ -20,7 +21,8 @@ export class EventDetailComponent implements OnInit {
   public assistants: any[] = [];
   public financialCutSelected = 0;
   private unsubscribe: Subscription[] = [];
-  
+  private validateSendMethod = false;
+
   photo = '/assets/cover.png';
   user = 'https://i.pinimg.com/280x280_RS/64/15/94/6415948d5a1366183e7a8c32131acb47.jpg'
 
@@ -30,21 +32,21 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit(): void {
     // getEventById
-    
+
     this.getEventById();
     this.assistants = this.assistantsService.assistants;
     this.susbcribeToChanges();
   }
 
   getEventById() {
-   // localStorage.clear();
+    // localStorage.clear();
     const eventId = atob(this.route.snapshot.paramMap.get("id"));
     const getEventSubscr = this.eventsService
-    .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
-      console.log("RESS", res[0]);
-      this.event = res[0];
-    });
-  this.unsubscribe.push(getEventSubscr);
+      .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
+        console.log("RESS", res[0]);
+        this.event = res[0];
+      });
+    this.unsubscribe.push(getEventSubscr);
     // if (eventId != "2") {
     //   const getCivilSubscr = this.eventsService
     //     .getEventById(eventId).subscribe((res: any) => {
@@ -62,6 +64,7 @@ export class EventDetailComponent implements OnInit {
 
   handleAdd() {
     //cdkFocusInitial 
+    console.log('event', this.event)
     const dialogRef = this.dialog.open(AddAssistantComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -77,11 +80,23 @@ export class EventDetailComponent implements OnInit {
   }
 
   setDataOnStorage() {
-    this.event.assistants = this.assistants.length;
-    this.event.financialCutSelected = this.financialCutSelected;
-    this.eventsService.setEvent(this.event);
-    this.assistantsService.saveAssistantOnStorage();
-    this.router.navigate(['/payment']);
+    if (!this.validateSendMethod) {
+      this.validateSendMethod = true;
+      this.eventsService.validateCapacity({ financial_cut: this.event.financialCut[this.financialCutSelected].id, users: this.assistants.length }).subscribe(res => {
+        if (res.status) {
+          this.validateSendMethod = false;
+          this.event.assistants = this.assistants.length;
+          this.event.financialCutSelected = this.financialCutSelected;
+          this.eventsService.setEvent(this.event);
+          this.assistantsService.saveAssistantOnStorage();
+          this.router.navigate(['/payment']);
+        } else {
+          Swal.fire('Este evento ya no tiene disponibilidad', 'lo sentimos los cupos para este evento ya fueron comprados', 'error')
+        }
+      }, err => {
+        this.validateSendMethod = false;
+      });
+    }
   }
 
   ngOnDestroy() {

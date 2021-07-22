@@ -14,9 +14,9 @@ export class EventsService {
   @Output() eventChange: EventEmitter<any[]> = new EventEmitter();
   public event: any = null;
 
-  constructor(private http: HttpClient, private storage: StorageService) { 
+  constructor(private http: HttpClient, private storage: StorageService) {
     const event = JSON.parse(localStorage.getItem("event"));
-    if(event){ this.event = event };
+    if (event) { this.event = event };
   }
 
   getAll(): Observable<any> {
@@ -29,7 +29,7 @@ export class EventsService {
       );
   }
 
-  getFilter(payload: any):Observable<any> {
+  getFilter(payload: any): Observable<any> {
     return this.http.get<any>(`${environment.apiUrlG12Connect}donations/donations/filter`,
       { headers: header, params: payload }).pipe(
         map((res: any) => {
@@ -42,27 +42,37 @@ export class EventsService {
   getFilterCategories(filter): Observable<any> {
     // console.log("FILTER", filter)
     return this.http.get<any>(`${environment.apiUrlG12Connect}donations/donations/filter-category`,
-    { headers: header, params: filter }).pipe(
-      map((res: any) => {
-        return res;
-      }),
-      catchError(handleError)
-    );
+      { headers: header, params: filter }).pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(handleError)
+      );
   }
 
   getCategories(): Observable<any> {
     return this.http.get<any>(`${environment.apiUrlG12Connect}managment/data-dictionary/filter`,
-    { headers: header, params: { type: 'G12_EVENT' } }).pipe(
-      map((res: any) => {
-        return res;
-      }),
-      catchError(handleError)
-    );
+      { headers: header, params: { type: 'G12_EVENT' } }).pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(handleError)
+      );
   }
-
-  setEvent(event: any){
+  setEvent(event: any) {
     localStorage.setItem("event", JSON.stringify(event));
     this.event = event;
+  }
+
+  validateCapacity(params): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrlG12Connect}donations/donations/validate-availability`,
+      { headers: header, params }).pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(handleError)
+      );
+
   }
 
   // getEventById(eventId: string){
