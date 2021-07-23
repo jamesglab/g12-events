@@ -7,7 +7,7 @@ const PAYMENT_TYPE = {
 }
 
 export const insertPayment = (formFields, event: any, assistants: any[]) => {
-    console.log('asistants', assistants)
+    // console.log('asistants', assistants)
     formFields.paymentType = PAYMENT_TYPE[formFields.paymentType];
     let JSON_payment = getJSONPaymentType(formFields, event.name, assistants.length);
     JSON_payment.usersList = assistants;

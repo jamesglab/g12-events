@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+// import { map, startWith } from 'rxjs/operators';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { parseToObject, numberOnly, toFailedStep } from 'src/app/_helpers/tools/validator.tool';
+import { parseToObjectOtherObject, numberOnly, toFailedStep } from 'src/app/_helpers/tools/validator.tool';
+import { COUNTRIES } from 'src/app/_helpers/tools/countrys.tools';
 import { ADD_ASSISTANT, error_messages } from 'src/app/_helpers/objects/forms.objects';
 
 import { MainService } from 'src/app/modules/_services/main.service';
@@ -26,11 +27,13 @@ export class AddAssistantComponent implements OnInit {
   // public documentTypes: { [key: string]: string }[] = [];
   public churchTypes: { [key: string]: string }[] = [];
   public cities: { [key: string]: string }[] = [];
+  public countries: { [key: string]: any }[] = [];
   public places: { [key: string]: string }[] = [];
+  public placesObject: { [key: string]: any } = null; // FOR OBTAIN PLACES OBJECTS - NOT ID
   public pastors: { [key: string]: string }[] = [];
-  public pastorsObject: { [key: string]: string } = null; //FOR OBTAIN PASTORS ID - NOT CODE
+  public pastorsObject: { [key: string]: any } = null; //FOR OBTAIN PASTORS OBJECT - NOT CODE
   public leaders: { [key: string]: string }[] = [];
-  public leadersObject: { [key: string]: string } = null; //FOR OBTAIN LEADER ID - NOT CODE
+  public leadersObject: { [key: string]: any } = null; //FOR OBTAIN LEADER OBJECT - NOT ID
   // public filteredOptions: Observable<any[]>;
   public step: number = 0;
   public isMobile: boolean = false;
@@ -62,6 +65,7 @@ export class AddAssistantComponent implements OnInit {
     this.buildForm();
     // this.getDocumentTypes();
     this.getChurchTypes();
+    this.getCountries();
     // this.filteredOptions = this.form.Leader.valueChanges
     //   .pipe(
     //     startWith(''),
@@ -103,6 +107,12 @@ export class AddAssistantComponent implements OnInit {
     this.unsubscribe.push(getChurchTypesSubcr);
   }
 
+  getCountries(){
+    if(this.countries.length == 0){
+      this.countries = COUNTRIES || [];
+    }
+  }
+
   getCities() {
     if (this.cities.length == 0) {
       const getCitiesSubscr = this.mainService
@@ -114,11 +124,12 @@ export class AddAssistantComponent implements OnInit {
     }
   }
 
-  getPlaces(): void {
+  getPlaces(): void { //SEDES OR CHUCHES
     const filter = { "1": "national", "2": "international" };
     const getPlacesSubscr = this.mainService
-      .getPlaces({ type: filter[this.form.registerType.value] }).subscribe((res) => {
-        this.places = res;
+      .getPlaces({ type: filter[this.form.registerType.value] }).subscribe(async (res) => {
+        this.placesObject = await parseToObjectOtherObject(res, 'id');
+        this.places = res || [];
         this.cdr.detectChanges();
       }, err => { throw err; })
     // const getPlaceSubscr = this.mainService
@@ -146,7 +157,7 @@ export class AddAssistantComponent implements OnInit {
     if (this.form.network.value && this.form.headquarters.value) {
       const getCivilSubscr = this.mainService
         .getLeadersOrPastors({ Code: this.form.network.value, IdSede: parseInt(this.form.headquarters.value) }).subscribe(async (res: any) => {
-          // this.pastorsObject = await parseToObject(res.entity, 'code', 'id');
+          this.pastorsObject = await parseToObjectOtherObject(res, 'user_code');
           this.pastors = res || [];
           this.form.pastor.enable();
           this.cdr.detectChanges();
@@ -160,7 +171,8 @@ export class AddAssistantComponent implements OnInit {
     // this.isLoading.leaders = true;
     const getLeadersSubscr = this.mainService
       .getLeadersOrPastors({ Code, IdSede: parseInt(this.form.headquarters.value) }).subscribe(async (res: any) => {
-        // this.leadersObject = await parseToObject(res.entity, 'code', 'id');
+        console.log("LEADERS OR PASTORS", res);
+        this.leadersObject = await parseToObjectOtherObject(res, 'id');
         this.leaders = res || [];
         // this.isLoading.leaders = false;
         this.form.leader.enable();
@@ -183,6 +195,7 @@ export class AddAssistantComponent implements OnInit {
       this.form.documentNumber.setErrors(null);
       this.form.city.setValidators(null);
       this.form.city.setErrors(null);
+      this.form.country.setValue(null);
     }
   }
 
@@ -200,9 +213,21 @@ export class AddAssistantComponent implements OnInit {
       this.setStep(toFailedStep(this.form));
       return;
     }
-    // this.form.pastor.setValue(this.pastorsObject[this.form.Pastor.value]);
-    // this.form.leader.setValue(this.leadersObject[this.form.Leader.value]);
-    this.dialog.close(this.assistantForm.getRawValue());
+    let pastor, leader, church: any = null;
+    if (this.form.typeChurch.value == '88') { //IN CASE OF SELECTED MCI CHURCHES
+      pastor = this.pastorsObject[this.form.pastor.value];
+      leader = this.leadersObject[this.form.leader.value];
+      church = this.placesObject[this.form.headquarters.value];
+    } else {
+      // IN CASE OF SELECTED church g12 and other
+      pastor = { name: this.form.pastorName.value }
+      leader = { name: "NO APLICA, NO IGLESIA MCI" }
+      church = { name: this.form.churchName.value }
+    }
+    let country = this.form.country.value;
+    if(!country) this.form.country.setValue("colombia");
+
+    this.dialog.close({ ...this.assistantForm.getRawValue(), ...{ pastor, leader, church } });
   }
 
   setStep(index: number, init?) {
@@ -212,7 +237,7 @@ export class AddAssistantComponent implements OnInit {
     // var validateSteapForm = this.validateFormErrors(index);
     // console.log("validate", validateSteapForm)
     // if (validateSteapForm) { 
-    this.step = index
+    this.step = index;
     // }
 
   }

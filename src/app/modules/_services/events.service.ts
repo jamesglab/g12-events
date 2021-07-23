@@ -65,14 +65,14 @@ export class EventsService {
   }
 
   validateCapacity(params): Observable<any> {
-    // return this.http.get<any>(`${environment.apiUrlG12Connect}donations/donations/validate-availability`,
-    //   { headers: header, params }).pipe(
-    //     map((res: any) => {
-    //       return res;
-    //     }),
-    //     catchError(handleError)
-    //   );
-    return new Observable((obse) => obse.next({ status: true }));
+    return this.http.get<any>(`${environment.apiUrlG12Connect}donations/donations/validate-availability`,
+      { headers: header, params }).pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(handleError)
+      );
+    // return new Observable((obse) => obse.next({ status: true }));
   }
 
   // getEventById(eventId: string){

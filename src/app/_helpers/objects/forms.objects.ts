@@ -13,6 +13,7 @@ export const ADD_ASSISTANT = {
     Validators.minLength(6)]],//
     email: ['', [Validators.email, Validators.required]],//
     city: [null, [Validators.required]],
+    country: [null],
     address: ['', [Validators.pattern(/^[#.0-9a-zA-Z\s,-]+$/), Validators.maxLength(50),
     Validators.minLength(8)]],//
     typeChurch: [null, [Validators.required]],
