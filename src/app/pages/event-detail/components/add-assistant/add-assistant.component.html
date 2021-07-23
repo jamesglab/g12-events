@@ -148,6 +148,14 @@
               </mat-error>
             </mat-form-field>
 
+            <mat-form-field appearance="fill" class="w-100" *ngIf="form.registerType.value == '2'">
+              <mat-label>País *</mat-label>
+              <mat-select type="select" formControlName="country">
+                <mat-option value="null">SELECCIONA PAIS</mat-option>
+                <mat-option *ngFor="let country of countries" value="{{country.name}}">{{ country.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Dirección</mat-label>
               <input matInput autocomplete="off" formControlName="address">

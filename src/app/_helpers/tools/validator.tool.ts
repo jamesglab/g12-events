@@ -14,6 +14,22 @@ export const parseToObject = (array: any[], key: string, value: string): Promise
     });
 }
 
+export const parseToObjectOtherObject = (array: any[], key: string): Promise<{ [key: string]: any }> => {
+    return new Promise(async (resolve, reject) => {
+        let object = {};
+        const iterateArray = async () => {
+            return Promise.all(
+                array.map((item) => {
+                    object[item[key]] = item;
+                    return Promise.resolve('ok');
+                })
+            );
+        }
+        await iterateArray();
+        resolve(object);
+    });
+}
+
 export const numberOnly = (event): boolean => {
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -66,9 +82,9 @@ export const validateCardFlag = (number: string) => {
 }
 
 export const getJSONPaymentType = (formFields, eventName: string, assistants: number): any => {
-    console.log('form', formFields);
-    console.log('event', formFields);
-    console.log('event', assistants)
+    // console.log('form', formFields);
+    // console.log('event', formFields);
+    // console.log('event', assistants)
 
 
     switch (formFields.paymentType) {
@@ -92,7 +108,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                 }
             }
         case 'TC':
-            console.log("CURRENCY", formFields.currency)
+            // console.log("CURRENCY", formFields.currency)
             return {
                 "customer": getCustomer(formFields),
                 "payment": {
@@ -128,9 +144,12 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
 
 const getCustomer = (formFields) => {
     return {
+        "document": formFields.document,
         "email": formFields.email,
         "name": formFields.name,
-        "lastName": formFields.lastName
+        "lastName": formFields.lastName,
+        "contactPhone": formFields.contactPhone,
+        "country": formFields.country
     }
 }
 

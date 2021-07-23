@@ -214,7 +214,7 @@ export class PaymentComponent implements OnInit {
     });
     dialogRef.componentInstance.response = response;
     dialogRef.afterClosed().subscribe(result => {
-      console.log("MODAL RESULT", result);
+      // console.log("MODAL RESULT", result);
       if (result.status != "FAILED") {
         this.router.navigate(['/home/all']);
       }
