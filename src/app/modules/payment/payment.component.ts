@@ -216,6 +216,7 @@ export class PaymentComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // console.log("MODAL RESULT", result);
       if (result.status != "FAILED") {
+        this.storageService.removeItem("assistants");
         this.router.navigate(['/home/all']);
       }
     });
