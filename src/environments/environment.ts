@@ -6,7 +6,12 @@ export const environment = {
   production: false,
   // apiUrlConexion12: "http://51.79.78.171:7003/",
   // apiUrlDonations: "http://51.79.78.171:3002/",
-  apiUrlG12Connect: "https://dev-api.g12connect.com/api/v2/",
+  apiUrlG12Connect: {
+    donations: 'https://dev-api.g12connect.com/api/v2/donations/',
+    managment: 'https://dev-api.g12connect.com/api/v2/',
+    users: 'https://dev-api.g12connect.com/api/v2/',
+    payments: 'https://dev-api.g12connect.com/api/v2/'
+  },
   urlResponse: "https://development.d3gdrq5zztbv0t.amplifyapp.com/payment/transaction"
   // Initialize Firebase
   // firebase.initializeApp(firebaseConfig);

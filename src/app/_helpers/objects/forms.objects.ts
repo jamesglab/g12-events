@@ -3,12 +3,13 @@ import { Validators } from '@angular/forms';
 export const ADD_ASSISTANT = {
     event: [null],
     registerType: ["1"],
+    confirmEmail :[null,Validators.required,Validators.email],
     documentNumber: [null, [Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
     Validators.maxLength(13)]],
     name: ['', [Validators.required]],//
     lastName: ['', [Validators.required]],
     gender: [null, [Validators.required]],//
-    dateBirth: [ null,[Validators.required]],//
+    dateBirth: [ null,[]],//
     mobile: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],//
     email: ['', [Validators.email, Validators.required]],//
@@ -23,7 +24,8 @@ export const ADD_ASSISTANT = {
     leader: [{ value: '', disabled: true }],//
     churchName: [null], //case church g12 and other
     pastorName: [null], //case church g12 and other
-    terms: [false, [Validators.required]]
+    terms: [false, [Validators.required]],
+    documentType :[null,Validators.required]
 };
 
 export const NEW_DONATION = {
@@ -60,7 +62,7 @@ export const NEW_DONATION = {
 export const donation_errors = {
 
     personal_information: {
-        'DocumentType': [{ type: 'required', message: 'Tipo de documento requerido' }],
+        'documentType': [{ type: 'required', message: 'Tipo de documento requerido' }],
         'document': [
             { type: 'required', message: 'Numero de documento requerido' },
             { type: 'pattern', message: 'El documento no puede tener caracteres especiales' },
@@ -69,7 +71,7 @@ export const donation_errors = {
         ],
         'name': [{ type: 'required', message: 'Nombre requerido' }],
         'lastName': [{ type: 'required', message: 'Apellido requerido' }],
-
+        'confirmEmail':[{ type: 'required', message: 'Confirmar el correo' }],
         'email': [
             { type: 'required', message: 'Correo requerido' },
             { type: 'email', message: 'Correo no identificado' }

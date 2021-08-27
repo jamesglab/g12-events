@@ -41,7 +41,7 @@ export const numberOnly = (event): boolean => {
 const getStep = (controlName: string): number => {
 
     let controls = [
-        ["DocumentType", "DocumentNumber", "Name", "LastName", "Gender", "DateBirth"], //POSITION 0 -> STEP 0
+        ["documentType", "DocumentNumber", "Name", "LastName", "Gender", "DateBirth"], //POSITION 0 -> STEP 0
         ["Movile", "Email", "City"], // POSITION 1 -> STEP 1
         ["TypeChurch", "Headquarters",
             "Pastor", "Leader", "ChurchName", "PastorName"], // POSITION 2 -> STEP 2

@@ -30,15 +30,14 @@ export class HomeComponent implements OnInit {
   }
 
   getEvents() {
-    
+
     const route = this.router.url.split("/")[2];
     var visibility = [];
 
-    if(route === "all"){ visibility = ['international','bogota']; }
-    else{ visibility = ['bogota'] }
-
+    if (route === "all") { visibility = ['international', 'bogota']; }
+    else { visibility = ['bogota'] }
     const getEventsSubscr = this.eventsService
-      .getFilter({ type: 'G12_EVENT', visibility: JSON.stringify(visibility) }).subscribe((res: Event[]) => {
+      .getFilter({ type: 'G12_EVENT' }).subscribe((res: Event[]) => {
         res.reverse(); //TO SORT ARRAY
         this.events = res;
       });
@@ -54,39 +53,41 @@ export class HomeComponent implements OnInit {
   }
 
   pushCategory(checkbox: MatCheckbox, cat: string) {
-    if(this.categoriesFilter.length > 0){
-      if(!checkbox.checked){  //TO PUSH
+    if (this.categoriesFilter.length > 0) {
+      if (!checkbox.checked) {  //TO PUSH
         this.categoriesFilter.push(cat);
-      }else{ //TO REMOVE
+      } else { //TO REMOVE
         const index = this.categoriesFilter.indexOf(cat);
-        this.categoriesFilter.splice( index, 1);
+        this.categoriesFilter.splice(index, 1);
       }
-    }else{
+    } else {
       this.categoriesFilter.push(cat);
     }
     this.checkBoxes.push(checkbox);
   }
 
   filterEventsByCategories() {
-    if(this.categoriesFilter.length > 0){
+    if (this.categoriesFilter.length > 0) {
       this.isLoading = true;
       const route = this.router.url.split("/")[2];
       let visibility = [];
-      
-      if(route === "all"){ visibility = ['international','bogota']; }
-      else{ visibility = ['bogota'] }
+
+      if (route === "all") { visibility = ['international', 'bogota']; }
+      else { visibility = ['bogota'] }
 
       const getEventsSubscr = this.eventsService
-      .getFilterCategories({ type: 'G12_EVENT', category: JSON.stringify(this.categoriesFilter), 
-      visibility: JSON.stringify(visibility) }).subscribe((res: Event[]) => {
-        this.events = res;
-        this.isLoading = false;
-      });
-    this.unsubscribe.push(getEventsSubscr);
+        .getFilterCategories({
+          type: 'G12_EVENT', category: JSON.stringify(this.categoriesFilter),
+          visibility: JSON.stringify(visibility)
+        }).subscribe((res: Event[]) => {
+          this.events = res;
+          this.isLoading = false;
+        });
+      this.unsubscribe.push(getEventsSubscr);
     }
   }
 
-  cleanFilter(){
+  cleanFilter() {
     this.checkBoxes.forEach((box) => box.checked = false)
     this.categoriesFilter = [];
     this.getEvents();
