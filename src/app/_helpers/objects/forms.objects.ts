@@ -13,7 +13,6 @@ export const ADD_ASSISTANT = {
     mobile: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],//
     email: ['', [Validators.email, Validators.required]],//
-    city: [null, [Validators.required]],
     country: [null],
     address: ['', [Validators.pattern(/^[#.0-9a-zA-Z\s,-]+$/), Validators.maxLength(50),
     Validators.minLength(8)]],//
@@ -25,7 +24,7 @@ export const ADD_ASSISTANT = {
     churchName: [null], //case church g12 and other
     pastorName: [null], //case church g12 and other
     terms: [false, [Validators.required]],
-    documentType :[null,Validators.required]
+    documentType :[null]
 };
 
 export const NEW_DONATION = {

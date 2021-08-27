@@ -29,9 +29,9 @@ export class AppComponent implements OnInit {
       apiKey: 'cd479f2ee58840e68a3abe2a42e2f5d7',
       // app_name: 'mision carismatica'
     }
-    setTimeout(() => {
-      window.keybe.webchatConversationsUiLoad(configChat)
-    }, 1000)
+    // setTimeout(() => {
+      window.keybe.webchatConversationsUiLoad(configChat);
+    // }, 1000)
   }
 
 }

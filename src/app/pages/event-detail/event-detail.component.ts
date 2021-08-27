@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,20 +22,37 @@ export class EventDetailComponent implements OnInit {
   public financialCutSelected = 0;
   private unsubscribe: Subscription[] = [];
   private validateSendMethod = false;
-
+  public innerWidth: number = 0;
+  public isResponsive: boolean;
   photo = '/assets/cover.png';
-  user = 'https://i.pinimg.com/280x280_RS/64/15/94/6415948d5a1366183e7a8c32131acb47.jpg'
+  user = 'https://i.pinimg.com/280x280_RS/64/15/94/6415948d5a1366183e7a8c32131acb47.jpg';
 
   constructor(public dialog: MatDialog, private assistantsService: AssistantsService,
     private eventsService: EventsService, private route: ActivatedRoute,
     private router: Router, private cdr: ChangeDetectorRef) { }
+  @HostListener('window:resize', ['$event'])
+
+  onResize(event?) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth <= 500) {
+      this.isResponsive = true;
+      var keybe = document.getElementById('keybe-webchat');
+      if (keybe) {
+        keybe.remove();
+      }
+    } else {
+      this.isResponsive = false;
+    }
+  }
 
   ngOnInit(): void {
-    // getEventById
-
+    // getEventById   
+    this.onResize();
     this.getEventById();
     this.assistants = this.assistantsService.assistants;
     this.susbcribeToChanges();
+
+
   }
 
   getEventById() {
@@ -91,7 +108,7 @@ export class EventDetailComponent implements OnInit {
           this.assistantsService.saveAssistantOnStorage();
           this.router.navigate(['/payment']);
         } else {
-          Swal.fire('Este evento ya no tiene disponibilidad', 'lo sentimos los cupos para este evento ya fueron comprados', 'error')
+          Swal.fire('Este evento ya no tiene disponibilidad', 'lo sentimos los cupos para este evento ya fueron comprados', 'error');
         }
       }, err => {
         this.validateSendMethod = false;

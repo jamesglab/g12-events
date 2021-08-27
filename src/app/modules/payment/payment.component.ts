@@ -44,6 +44,7 @@ export class PaymentComponent implements OnInit {
     private cdr: ChangeDetectorRef, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.scrollToTop();
     this.event = this.eventsService.event;
     if (!this.event || this.assistantsService.assistants.length < 1) {
       this.goBack();
@@ -55,7 +56,16 @@ export class PaymentComponent implements OnInit {
         if (cardFrag != null) { this.urlCard = "/assets/credit-card/" + cardFrag + ".svg"; } else { this.urlCard = "/assets/credit-card/error-card.svg"; }
       });
   }
-
+  scrollToTop() {
+    let scrollToTop = window.setInterval(() => {
+      let pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 500); // how far to scroll on each step
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 16);
+  }
   buildForm() {
     this.donationForm = this.fb.group(NEW_DONATION);
     this.donationForm.get('currency').setValue('COP');
@@ -223,9 +233,9 @@ export class PaymentComponent implements OnInit {
   }
 
   goBack() {
-    if(!this.event?.id){
+    if (!this.event?.id) {
       this.router.navigate(['/home/all']);
-    }else{
+    } else {
       this.router.navigate(['/home/event', btoa(this.event.id)]);
     }
   }
