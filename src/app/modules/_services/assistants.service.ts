@@ -41,7 +41,7 @@ export class AssistantsService {
   }
 
   saveAssistantOnStorage() {
-    console.log("SAVE ASSISTANTS ON STORAGE")
+
     this.storage.setItem("assistants", this.assistants);
   }
 
