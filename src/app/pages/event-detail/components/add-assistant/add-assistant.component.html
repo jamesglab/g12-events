@@ -2,14 +2,8 @@
   <h2 mat-dialog-title>Agregar Asistente</h2>
   <mat-dialog-content>
     <mat-accordion>
-      <mat-expansion-panel
-        disabled
-        class="mat-elevation-z-0"
-        [expanded]="step === 0"
-        (opened)="setStep(0)"
-        [disabled]="disableds[0]"
-        hideToggle="true"
-      >
+      <mat-expansion-panel disabled class="mat-elevation-z-0" [expanded]="step === 0" (opened)="setStep(0)"
+        [disabled]="disableds[0]" hideToggle="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
@@ -25,7 +19,7 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Tipo de documento* </mat-label>
+              <mat-label>Tipo de documento </mat-label>
               <mat-select type="select" formControlName="documentType">
                 <mat-option *ngFor="let type of documentTypes" [value]="type">
                   {{ type }}
@@ -33,17 +27,9 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field
-              class="w-100"
-              appearance="fill"
-              *ngIf="form.registerType.value == '1'"
-            >
+            <mat-form-field class="w-100" appearance="fill" *ngIf="form.registerType.value == '1'">
               <mat-label>Número de documento* </mat-label>
-              <input
-                matInput
-                autocomplete="off"
-                formControlName="documentNumber"
-              />
+              <input matInput autocomplete="off" formControlName="documentNumber" />
             </mat-form-field>
 
             <mat-form-field class="w-100" appearance="fill">
@@ -73,19 +59,12 @@
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel
-        class="mat-elevation-z-0"
-        [expanded]="step === 1"
-        (opened)="setStep(1)"
-        hideToggle="true"
-        [disabled]="disableds[1]"
-      >
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true"
+        [disabled]="disableds[1]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
-              <mat-icon style="color: rgb(218, 214, 214)"
-                >supervised_user_circle</mat-icon
-              >
+              <mat-icon style="color: rgb(218, 214, 214)">supervised_user_circle</mat-icon>
               Información de Contacto
             </h3>
           </mat-panel-title>
@@ -95,18 +74,10 @@
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Celular *</mat-label>
-              <input
-                matInput
-                autocomplete="off"
-                formControlName="mobile"
-                (keypress)="numberOnly($event)"
-              />
+              <input matInput autocomplete="off" formControlName="mobile" (keypress)="numberOnly($event)" />
             </mat-form-field>
 
-            <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Correo*</mat-label>
-              <input matInput autocomplete="off" formControlName="email" />
-            </mat-form-field>
+
           </div>
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
@@ -114,13 +85,22 @@
               <input matInput autocomplete="off" formControlName="address" />
             </mat-form-field>
 
+
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Correo*</mat-label>
+              <input matInput autocomplete="off" formControlName="email" />
+            </mat-form-field>
+          </div>
+          <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Confirmar correo*</mat-label>
-              <input
-                matInput
-                autocomplete="off"
-                formControlName="confirmEmail"
-              />
+              <input matInput autocomplete="off" formControlName="confirmEmail" />
             </mat-form-field>
           </div>
         </div>
@@ -135,19 +115,12 @@
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel
-        class="mat-elevation-z-0"
-        [expanded]="step === 2"
-        (opened)="setStep(2)"
-        hideToggle="true"
-        [disabled]="disableds[2]"
-      >
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true"
+        [disabled]="disableds[2]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
-              <mat-icon style="color: rgb(218, 214, 214)"
-                >maps_home_work</mat-icon
-              >
+              <mat-icon style="color: rgb(218, 214, 214)">maps_home_work</mat-icon>
               Información Ministerial
             </h3>
           </mat-panel-title>
@@ -157,124 +130,89 @@
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>País *</mat-label>
-              <mat-select
-                type="select"
-                formControlName="country"
-                (selectionChange)="getPlaces()"
-              >
-                <mat-option value="null">SELECCIONA PAIS</mat-option>
-                <mat-option
-                  *ngFor="let country of countries"
-                  value="{{ country.name }}"
-                  >{{ country.name }}</mat-option
-                >
+              <mat-select type="select" formControlName="country" (selectionChange)="getPlaces()">
+                <mat-option value="null" disabled>SELECCIONA PAIS</mat-option>
+                <mat-option *ngFor="let country of countries" value="{{ country.name }}">{{ country.name }}</mat-option>
               </mat-select>
             </mat-form-field>
 
-            <ng-container *ngIf="form.typeChurch.value == '88'">
-              <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Sede *</mat-label>
-                <mat-select
-                  type="select"
-                  formControlName="headquarters"
-                  (selectionChange)="getPastors()"
-                >
-                  <mat-option
-                    *ngFor="let place of places"
-                    value="{{ place.id }}"
-                  >
-                    {{ place.name }} | {{ place.city }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
 
-              <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Red *</mat-label>
-                <mat-select
-                  type="select"
-                  formControlName="network"
-                  (selectionChange)="getPastors()"
-                >
-                  <mat-option value="01">Hombres</mat-option>
-                  <mat-option value="02">Mujeres</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </ng-container>
-
-            <ng-container
-              *ngIf="form.typeChurch.value && form.typeChurch.value != '88'"
-            >
-              <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Nombre de la iglesia *</mat-label>
-                <input
-                  matInput
-                  autocomplete="off"
-                  formControlName="churchName"
-                />
-              </mat-form-field>
-            </ng-container>
           </div>
 
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>Iglesia *</mat-label>
-              <mat-select
-                type="select"
-                formControlName="typeChurch"
-                (selectionChange)="getPlaces()"
-              >
-                <mat-option
-                  *ngFor="let type of churchTypes"
-                  value="{{ type.idDetailMaster }}"
-                >
+              <mat-select type="select" formControlName="typeChurch" (selectionChange)="getPlaces()">
+                <mat-option *ngFor="let type of churchTypes" value="{{ type.idDetailMaster }}">
                   {{ type.description }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
+          </div>
+        </div>
+        <div class="row" *ngIf="form.typeChurch.value == '88'">
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Sede *</mat-label>
+              <mat-select type="select" formControlName="headquarters" (selectionChange)="getPastors()">
+                <mat-option *ngFor="let place of places" value="{{ place.id }}">
+                  {{ place.name }} | {{ place.city }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Red *</mat-label>
+              <mat-select type="select" formControlName="network" (selectionChange)="getPastors()">
+                <mat-option value="01">Hombres</mat-option>
+                <mat-option value="02">Mujeres</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row" *ngIf="form.typeChurch.value == '88'">
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Pastor/Lider principal *</mat-label>
+              <mat-select type="select" formControlName="pastor" (selectionChange)="getLeaders($event.value)">
+                <mat-option *ngFor="let pastor of pastors" value="{{ pastor.user_code }}">{{ pastor.name }}
+                  {{ pastor.last_name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Lider *</mat-label>
+              <mat-select type="select" formControlName="leader">
+                <mat-option *ngFor="let leader of leaders" value="{{ leader.id }}">{{ leader.name }}
+                  {{ leader.last_name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-            <ng-container *ngIf="form.typeChurch.value == '88'">
-              <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Pastor/Lider principal *</mat-label>
-                <mat-select
-                  type="select"
-                  formControlName="pastor"
-                  (selectionChange)="getLeaders($event.value)"
-                >
-                  <mat-option
-                    *ngFor="let pastor of pastors"
-                    value="{{ pastor.user_code }}"
-                    >{{ pastor.name }} {{ pastor.last_name }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Lider *</mat-label>
-                <mat-select type="select" formControlName="leader">
-                  <mat-option
-                    *ngFor="let leader of leaders"
-                    value="{{ leader.id }}"
-                    >{{ leader.name }}
-                    {{ leader.last_name }}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </ng-container>
-
-            <ng-container
-              *ngIf="form.typeChurch.value && form.typeChurch.value != '88'"
-            >
+        </div>
+        <div class="row" *ngIf="form.typeChurch.value && form.typeChurch.value != '88'">
+          <div class="col-6">
+            <ng-container *ngIf="form.typeChurch.value && form.typeChurch.value != '88'">
               <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Nombre del pastor principal *</mat-label>
-                <input
-                  matInput
-                  autocomplete="off"
-                  formControlName="pastorName"
-                />
+                <mat-label>Nombre de la iglesia *</mat-label>
+                <input matInput autocomplete="off" formControlName="churchName" />
               </mat-form-field>
             </ng-container>
           </div>
-        </div>
 
+          <div class="col-6">
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Nombre del pastor principal *</mat-label>
+              <input matInput autocomplete="off" formControlName="pastorName" />
+            </mat-form-field>
+
+
+          </div>
+        </div>
         <mat-action-row>
           <button type="button" mat-button color="accent" (click)="prevStep()">
             Anterior
@@ -285,19 +223,12 @@
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel
-        class="mat-elevation-z-0"
-        [expanded]="step === 3"
-        (opened)="setStep(3)"
-        hideToggle="true"
-        [disabled]="disableds[3]"
-      >
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true"
+        [disabled]="disableds[3]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
-              <mat-icon style="color: rgb(218, 214, 214)"
-                >text_snippet</mat-icon
-              >
+              <mat-icon style="color: rgb(218, 214, 214)">text_snippet</mat-icon>
               Terminos y condiciones
             </h3>
           </mat-panel-title>
@@ -319,13 +250,7 @@
           <button type="button" mat-button color="accent" (click)="prevStep()">
             Anterior
           </button>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            *ngIf="isMobile"
-            (click)="nextStep()"
-          >
+          <button type="button" mat-button color="primary" *ngIf="isMobile" (click)="nextStep()">
             OK
           </button>
         </mat-action-row>
@@ -333,13 +258,7 @@
     </mat-accordion>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button
-      cdkFocusInitial
-      type="button"
-      mat-button
-      style="color: gray"
-      (click)="dialog.close()"
-    >
+    <button cdkFocusInitial type="button" mat-button style="color: gray" (click)="dialog.close()">
       Cancelar
     </button>
     <button mat-button color="primary">Guardar</button>

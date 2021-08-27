@@ -1,42 +1,63 @@
-<div class="example-container mat-elevation-z0">
-    <mat-table [dataSource]="dataSource">
+<div class="example-container mat-elevation-z0" *ngIf="!isResponsive">
+  <mat-table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef>Nombre </mat-header-cell>
-            <mat-cell *matCellDef="let element" class="cursor-pointer">
-                {{ element.name }} {{ element.lastName }}</mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cursor-pointer">
+        {{ element.name }} {{ element.lastName }}</mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="document">
-            <mat-header-cell *matHeaderCellDef class="show-header">Documento</mat-header-cell>
-            <mat-cell *matCellDef="let element" class="cursor-pointer"> {{element.documentNumber}}
-            </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="document">
+      <mat-header-cell *matHeaderCellDef class="show-header">Documento</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cursor-pointer"> {{element.documentNumber}}
+      </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef class="show-header">Email</mat-header-cell>
-            <mat-cell *matCellDef="let element" class="cursor-pointer"> {{element.email}}
-            </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef class="show-header">Email</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cursor-pointer"> {{element.email}}
+      </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="phone">
-            <mat-header-cell *matHeaderCellDef> Contacto</mat-header-cell>
-            <mat-cell *matCellDef="let element" class="cursor-pointer">
-                {{ element.mobile }}</mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef> Contacto</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cursor-pointer">
+        {{ element.mobile }}</mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="delete">
-            <mat-header-cell *matHeaderCellDef>Opciones</mat-header-cell>
-            <mat-cell *matCellDef="let element; let i = index" class="cursor-pointer">
-                <button mat-button color="warn">
-                    <mat-icon (click)="handleClose(i);" color="warn">
-                        close</mat-icon>
-                </button>
-            </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef>Opciones</mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index" class="cursor-pointer">
+        <button mat-button color="warn" (click)="handleClose(i)">
+          <mat-icon color="warn">
+            close</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
 
+<div *ngIf="isResponsive">
+  <div class="responsiveTable">
+    <div class="col-6 bold">
+      Nombre
+    </div>
+    <div class="col-6 bold">
+      Opciones
+    </div>
+  </div>
+  <div class="cont-user" *ngFor="let item of dataSource.data; let i = index">
+    <div class="col-6">
+      {{item.name}}
+    </div>
+    <div class="col-6">
+      <button mat-button color="warn" (click)="handleClose(i) ">
+        <mat-icon color="warn">
+          close</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>

@@ -13,15 +13,37 @@ mat-footer-row {
 
   font-weight: bold;
   color: black;
-  
+
 }
-mat-cell{
+
+mat-cell {
   background-color: #F8F8F8;
 }
 
-mat-cell:first-of-type, mat-header-cell{
-    padding-left: 24px;
-    color: black;
-    font-weight: bold;
-    font-size: 15px !important;
+mat-cell:first-of-type,
+mat-header-cell {
+  padding-left: 24px;
+  color: black;
+  font-weight: bold;
+  font-size: 15px !important;
+}
+
+.responsiveTable {
+  display: flex;
+  background: #EAEAEA;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.cont-user {
+  display: flex;
+  border: 1px solid #eaeaea;
+
 }
