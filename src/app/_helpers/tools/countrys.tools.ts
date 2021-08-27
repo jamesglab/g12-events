@@ -143,11 +143,7 @@ export const COUNTRIES = [
     {
         "id": 33,
         "name": "Chipre"
-    },
-    {
-        "id": 82,
-        "name": "Colombia"
-    },
+    }, 
     {
         "id": 164,
         "name": "Comores"

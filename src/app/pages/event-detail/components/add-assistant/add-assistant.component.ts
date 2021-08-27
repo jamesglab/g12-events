@@ -1,10 +1,10 @@
-import {Component,OnInit,ChangeDetectorRef,HostListener,} from '@angular/core';
-import {FormGroup,FormBuilder,ValidationErrors,Validators} from '@angular/forms';
-import { Subscription} from 'rxjs';
+import { Component, OnInit, ChangeDetectorRef, HostListener, } from '@angular/core';
+import { FormGroup, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
-import {parseToObjectOtherObject,numberOnly,toFailedStep} from 'src/app/_helpers/tools/validator.tool';
+import { parseToObjectOtherObject, numberOnly, toFailedStep } from 'src/app/_helpers/tools/validator.tool';
 import { COUNTRIES } from 'src/app/_helpers/tools/countrys.tools';
-import {ADD_ASSISTANT,error_messages} from 'src/app/_helpers/objects/forms.objects';
+import { ADD_ASSISTANT, error_messages } from 'src/app/_helpers/objects/forms.objects';
 import { MainService } from 'src/app/modules/_services/main.service';
 import Swal from 'sweetalert2';
 
@@ -47,7 +47,7 @@ export class AddAssistantComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getChurchTypes();
-    this.getCountries();
+    this.handleRegisterType()
   }
   //validamos que solo se escriban numeros en input
   numberOnly($event): boolean {
@@ -159,7 +159,8 @@ export class AddAssistantComponent implements OnInit {
 
   submit() {
     if (this.assistantForm.invalid) {
-      this.setStep(toFailedStep(this.form));
+      // this.setStep(toFailedStep(this.form));
+      this.nextStep();
       return;
     }
     let pastor,
@@ -178,12 +179,33 @@ export class AddAssistantComponent implements OnInit {
     }
     let country = this.form.country.value;
     if (!country) this.form.country.setValue('colombia');
-
+    var typeChurch = this.churchTypes.find(element => element.idDetailMaster == this.form.typeChurch.value);
     this.dialog.close({
       ...this.assistantForm.getRawValue(),
-      ...{ pastor, leader, church },
+      ...{ pastor, leader, church, typeChurch },
     });
   }
+
+  handleRegisterType() {
+    const value = this.form.registerType.value;
+    this.form.documentNumber.setValidators(null);
+    if (value === "1") {
+      //NACIONAL
+      this.countries = [{
+        "id": 82,
+        "name": "Colombia"
+      },]
+      this.form.documentNumber.setValidators([Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
+      Validators.maxLength(13)]);
+    } else {
+      this.countries = COUNTRIES;
+      this.form.documentNumber.setValidators(null);
+      this.form.documentNumber.setErrors(null);
+    }
+
+    console.log('countries', this.countries)
+  }
+
 
   setStep(index: number, init?) {
     this.step = index;
@@ -214,7 +236,7 @@ export class AddAssistantComponent implements OnInit {
     if (
       this.step == 1 &&
       this.assistantForm.get('email').value !=
-        this.assistantForm.get('confirmEmail').value
+      this.assistantForm.get('confirmEmail').value
     ) {
       errorText = '- La confirmacion de correo no coincide';
     }

@@ -13,12 +13,24 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
 
+
+
         <div class="row">
-          <h2 style="font-size: large; font-weight: bold">Tipo de registro</h2>
+          <h2 style="font-size: large; font-weight: bold;">Tipo de registro</h2>
         </div>
         <div class="row">
+          <div class="col-12">
+            <mat-radio-group name="registerType" aria-label="Select an option" (change)="handleRegisterType()"
+              formControlName="registerType">
+              <mat-radio-button value="1">Registro Nacional (Colombia)</mat-radio-button>
+              <mat-radio-button class="ml-3" value="2">Registro Internacional</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-6">
-            <mat-form-field appearance="fill" class="w-100">
+            <mat-form-field appearance="fill" class="w-100" *ngIf="form.registerType.value == '1'">
               <mat-label>Tipo de documento </mat-label>
               <mat-select type="select" formControlName="documentType">
                 <mat-option *ngFor="let type of documentTypes" [value]="type">
@@ -27,11 +39,20 @@
               </mat-select>
             </mat-form-field>
 
+
+          </div>
+
+          <div class="col-6">
             <mat-form-field class="w-100" appearance="fill" *ngIf="form.registerType.value == '1'">
               <mat-label>Número de documento* </mat-label>
               <input matInput autocomplete="off" formControlName="documentNumber" />
             </mat-form-field>
+          </div>
+        </div>
 
+        <div class="row">
+
+          <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
               <mat-label>Nombre*</mat-label>
               <input matInput autocomplete="off" formControlName="name" />
@@ -42,7 +63,11 @@
               <mat-label>Apellido*</mat-label>
               <input matInput autocomplete="off" formControlName="lastName" />
             </mat-form-field>
-            <mat-form-field appearance="fill" class="w-100">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="fill">
               <mat-label>Género*</mat-label>
               <mat-select type="select" formControlName="gender">
                 <mat-option value="M">Masculino</mat-option>
@@ -50,10 +75,11 @@
               </mat-select>
             </mat-form-field>
           </div>
+
         </div>
 
         <mat-action-row>
-          <button type="button" mat-button color="primary" (click)="nextStep()">
+          <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
             Siguiente
           </button>
         </mat-action-row>
@@ -106,10 +132,11 @@
         </div>
 
         <mat-action-row>
-          <button type="button" mat-button color="accent" (click)="prevStep()">
+
+          <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
             Anterior
           </button>
-          <button type="button" mat-button color="primary" (click)="nextStep()">
+          <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
             Siguiente
           </button>
         </mat-action-row>
@@ -214,10 +241,10 @@
           </div>
         </div>
         <mat-action-row>
-          <button type="button" mat-button color="accent" (click)="prevStep()">
+          <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
             Anterior
           </button>
-          <button type="button" mat-button color="primary" (click)="nextStep()">
+          <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
             Siguiente
           </button>
         </mat-action-row>
@@ -247,7 +274,7 @@
         </div>
 
         <mat-action-row>
-          <button type="button" mat-button color="accent" (click)="prevStep()">
+          <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
             Anterior
           </button>
           <button type="button" mat-button color="primary" *ngIf="isMobile" (click)="nextStep()">
@@ -258,9 +285,9 @@
     </mat-accordion>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button cdkFocusInitial type="button" mat-button style="color: gray" (click)="dialog.close()">
+    <button cdkFocusInitial type="button" mat-button style="color: gray" class="btn-prev" (click)="dialog.close()">
       Cancelar
     </button>
-    <button mat-button color="primary">Guardar</button>
+    <button mat-button color="primary" class="btn-next">Guardar</button>
   </mat-dialog-actions>
 </form>
