@@ -149,7 +149,8 @@ const getCustomer = (formFields) => {
         "name": formFields.name,
         "lastName": formFields.lastName,
         "contactPhone": formFields.contactPhone,
-        "country": formFields.country
+        "country": formFields.country,
+        "documentType":formFields.documentType
     }
 }
 

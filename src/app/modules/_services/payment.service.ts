@@ -14,17 +14,7 @@ export class PaymentService {
 
   getePaycoBanks(): Observable<any> {
     return this.http.get<any>(
-      `${environment.apiUrlG12Connect.payments}payments/transaction/epayco/banks`).pipe(
-        map((res: any) => {
-          return res;
-        }),
-        catchError(handleError)
-      );
-  }
-
-  proccessPaymentPSE(payload: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrlG12Connect.payments}payments/transaction/epayco/pse`,
-      payload).pipe(
+      `${environment.apiUrlG12Connect.payments}/transaction/epayco/banks`).pipe(
         map((res: any) => {
           return res;
         }),
@@ -33,7 +23,7 @@ export class PaymentService {
   }
 
   getTransactionInfo(ref: string) {
-    return this.http.get<any>(`${environment.apiUrlG12Connect.payments}payments/transaction/validate-ref`,
+    return this.http.get<any>(`${environment.apiUrlG12Connect.payments}transaction/validate-ref`,
       { params: { ref } })
       .pipe(
         map((res: any) => {
@@ -43,35 +33,19 @@ export class PaymentService {
       );
   }
 
-  proccessPaymentCard(payload: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrlG12Connect.payments}payments/transaction/epayco/credit`,
-      payload).pipe(
-        map((res: any) => {
-          return res;
-        }),
-        catchError(handleError)
-      );
-  }
-
-  proccessPaymentCash(payload: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrlG12Connect.payments}payments/transaction/payu`, payload)
-      .pipe(
-        map((res: any) => {
-          return res;
-        }),
-        catchError(handleError)
-      );
-  }
-
   registerUsers(data: any): Observable<any> {
-    return this.http.post<any>(
-      `${environment.apiUrlG12Connect.donations}donations/register-users`,
-      JSON.stringify(data), { headers: header }).pipe(
-        map((res: any) => {
-          return res;
-        }),
-        catchError(handleError),
-      );
+    if (data?.payment?.currency == 'usd'){
+      delete data.customer.documentType;
+      delete data.customer.document;
+    }
+      return this.http.post<any>(
+        `${environment.apiUrlG12Connect.donations}/register-users`,
+        JSON.stringify(data), { headers: header }).pipe(
+          map((res: any) => {
+            return res;
+          }),
+          catchError(handleError),
+        );
   }
 
 }

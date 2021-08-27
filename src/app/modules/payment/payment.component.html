@@ -9,12 +9,51 @@
             Datos del Donante
           </div>
           <div class="field">
-            <label class="label">Documento</label>
-            <div class="control">
-              <input class="input" type="text" autocomplete="off" formControlName="document"
-                (keypress)="numberOnly($event);">
+        
+
+            <label class="label">País</label>
+              <div class="field has-addons">
+                <div class="control is-expanded">
+                  <div class="select is-fullwidth">
+                    <select formControlName="country">
+                      <option [value]="country.name" *ngFor="let country of countrys_language"
+                        (click)="validateCountry(country)">
+                        {{country.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="columns" *ngIf="showDocumentType">
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Documento</label>
+                <div class="control">
+                  <input class="input" type="text" autocomplete="off" formControlName="document"
+                    (keypress)="numberOnly($event);">
+                </div>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Tipo de Documento</label>
+                <div class="field has-addons">
+                  <div class="control is-expanded">
+                    <div class="select is-fullwidth">
+                      <select formControlName="documentType" >
+                        <option value="CC">CC</option>
+                        <option value="TI">TI</option>
+                        <option value="CE">CE</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
             </div>
           </div>
+
+          </div>
+
           <div class="columns">
             <div class="column is-half">
               <div class="field">
@@ -59,21 +98,7 @@
             </div>
           </div>
           <div class="columns">
-            <div class="column is-half">
-              <label class="label">País</label>
-              <div class="field has-addons">
-                <div class="control is-expanded">
-                  <div class="select is-fullwidth">
-                    <select formControlName="country">
-                      <option [value]="country.name" *ngFor="let country of countrys_language"
-                        (click)="validateCountry(country)">
-                        {{country.name}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="column is-half">
+            <div class="column is-full">
               <div class="field">
                 <label class="label">Código postal</label>
                 <div class="control">
@@ -128,7 +153,7 @@
                   <i class="far fa-credit-card fa-2x"></i>
                 </div>
                 <div class="is-flex is-justify-content-center mt-3">
-                  Credito 
+                  Credito
                 </div>
               </div>
             </div>
@@ -261,7 +286,7 @@
 
           </div>
           <button (click)="submit()" class="button btn is-small is-fullwidth mt-5"
-          [ngClass]="{ 'is-loading': isLoading }">Realizar Donación</button>
+            [ngClass]="{ 'is-loading': isLoading }">Realizar Donación</button>
         </div>
       </div>
     </div>

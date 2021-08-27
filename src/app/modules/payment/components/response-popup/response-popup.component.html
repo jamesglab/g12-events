@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="desc">
-                    {{response?.message || 'Lo sentimos, no hemos podido comunicarnos con el servidor' }}
+                    {{response?.message || 'No se pudo validar tu pago, intenta con otro metodo de pago' }}
                 </div>
 
                 <div class="desc" *ngIf="response?.message || response?.url">

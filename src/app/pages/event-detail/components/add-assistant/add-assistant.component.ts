@@ -158,11 +158,17 @@ export class AddAssistantComponent implements OnInit {
 
 
   submit() {
-    if (this.assistantForm.invalid) {
-      // this.setStep(toFailedStep(this.form));
-      this.nextStep();
+
+    if (!this.form.terms.value && this.step == 3) {
+      Swal.fire('Verifique los siguientes datos:', '- Acepta los terminos y condiciones', 'error');
       return;
+    } else {
+      if (this.assistantForm.invalid) {
+        this.nextStep();
+        return;
+      }
     }
+
     let pastor,
       leader,
       church: any = null;
@@ -240,15 +246,21 @@ export class AddAssistantComponent implements OnInit {
     ) {
       errorText = '- La confirmacion de correo no coincide';
     }
-    console.log('errorsss', this.assistantForm.controls);
+
+    //obtenemnos los keys de los controles y recorremos cada error 
     Object.keys(this.assistantForm.controls).forEach((key) => {
-      const controlErrors: ValidationErrors =
-        this.assistantForm.get(key).errors;
+      const controlErrors: ValidationErrors = this.assistantForm.get(key).errors;
+      // ponemos los el tipo o tipos de errores encontrados
       if (controlErrors != null) {
+        // calidamos si hay errores en el campo recorrido
         Object.keys(controlErrors).forEach((keyError) => {
+          // obtenemos los key de los errores
           if (error_messages[validate][key]) {
+            // calidamos que ese error exista en la posicion que estamos buscando de nuestro archivo de errores
             error_messages[validate][key].map((res) => {
+              // validamos el tipo de erro
               if (res.type == keyError)
+                // anexamos el error a la respuesta
                 errorText = `${errorText} <br>- ${res.message}`;
             });
           }

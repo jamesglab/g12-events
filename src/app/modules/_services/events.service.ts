@@ -20,7 +20,7 @@ export class EventsService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}donations`,
+    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}`,
       { headers: header }).pipe(
         map((res: any) => {
           return res;
@@ -30,7 +30,8 @@ export class EventsService {
   }
 
   getFilter(payload: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}donations/filter`,
+    console.log('url ms donations', environment.apiUrlG12Connect.donations)
+    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}/filter`,
       { headers: header, params: payload }).pipe(
         map((res: any) => {
           return res;
@@ -41,17 +42,17 @@ export class EventsService {
 
   getFilterCategories(filter): Observable<any> {
     // console.log("FILTER", filter)
-    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}donations/filter-category`,
+    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}/filter-category`,
       { headers: header, params: filter }).pipe(
         map((res: any) => {
           return res;
         }),
         catchError(handleError)
       );
-  } 
+  }
 
   getCategories(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrlG12Connect.managment}managment/data-dictionary/filter`,
+    return this.http.get<any>(`${environment.apiUrlG12Connect.managment}/data-dictionary/filter`,
       { headers: header, params: { type: 'G12_EVENT' } }).pipe(
         map((res: any) => {
           return res;
@@ -65,29 +66,12 @@ export class EventsService {
   }
 
   validateCapacity(params): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}donations/validate-availability`,
+    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}/validate-availability`,
       { headers: header, params }).pipe(
         map((res: any) => {
           return res;
         }),
         catchError(handleError)
       );
-    // return new Observable((obse) => obse.next({ status: true }));
   }
-
-  // getEventById(eventId: string){
-  //   return this.http.get<any>(
-  //     `${(environment.production) ? environment.apiUrlConexion12 : 
-  //       environment.apiUrlConexion12.replace("2","3") }Event/Get/${eventId.slice(5)}==`, { headers: header }).pipe(
-  //       map((res: any) => {
-  //         return res;
-  //       }),
-  //       catchError(this.handleError),
-  //     );
-  // }
-
-  // insertFirebaseTransaction(data: any){
-  //   return this.transactionsList.push(data);
-  // }
-
 }

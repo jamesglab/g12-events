@@ -7,10 +7,10 @@ export const environment = {
   // apiUrlConexion12: "http://51.79.78.171:7003/",
   // apiUrlDonations: "http://51.79.78.171:3002/",
   apiUrlG12Connect: {
-    donations: 'https://dev-api.g12connect.com/api/v2/donations/',
-    managment: 'https://dev-api.g12connect.com/api/v2/',
-    users: 'https://dev-api.g12connect.com/api/v2/',
-    payments: 'https://dev-api.g12connect.com/api/v2/'
+    donations: 'https://8305-201-184-17-202.ngrok.io/api/v2/donations',
+    managment: 'https://dev-api.g12connect.com/api/v2/managment',
+    users: 'https://dev-api.g12connect.com/api/v2/users',
+    payments: 'https://dev-api.g12connect.com/api/v2/payments/payments'
   },
   urlResponse: "https://development.d3gdrq5zztbv0t.amplifyapp.com/payment/transaction"
   // Initialize Firebase
