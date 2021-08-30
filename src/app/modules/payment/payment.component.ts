@@ -46,6 +46,7 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.scrollToTop();
+    this.getBanks();
     this.event = this.eventsService.event;
     if (!this.event || this.assistantsService.assistants.length < 1) {
       this.goBack();
@@ -184,6 +185,7 @@ export class PaymentComponent implements OnInit {
       .subscribe((res) => {
         this.isLoading = false;
         this.storageService.setItem("ref", res.ref);
+        this.storageService.setItem('clearAssistans', true);
         this.showPopUp(res);
         if (res.url) { window.open(res.url, '_blank'); }
       }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
@@ -196,6 +198,7 @@ export class PaymentComponent implements OnInit {
     const creditSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
+        this.storageService.setItem('clearAssistans', true);
         this.showPopUp(res);
         // console.log("CARD RESPONSE", res);
       }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
@@ -207,6 +210,7 @@ export class PaymentComponent implements OnInit {
       this.event, this.assistantsService.assistants);
     const cashSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
+        this.storageService.setItem('clearAssistans', true);
         this.isLoading = false;
         window.open(res.url, '_blank');
         this.showPopUp(res);
