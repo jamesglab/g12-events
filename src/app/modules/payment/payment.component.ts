@@ -17,6 +17,7 @@ import { StorageService } from 'src/app/modules/_services/storage.service';
 
 import { ResponsePopupComponent } from './components/response-popup/response-popup.component';
 import Swal from 'sweetalert2';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-payment',
@@ -34,7 +35,7 @@ export class PaymentComponent implements OnInit {
   public urlCard: string = "/assets/credit-card/credit-card.svg";
   public isLoading: boolean = false;
   private unsubscribe: Subscription[] = [];
-  public showDocumentType: boolean;
+  public showNational: boolean;
   public method_selected = 1;
   public countrys_language = COUNTRIES;
 
@@ -111,17 +112,18 @@ export class PaymentComponent implements OnInit {
   }
 
   validateCountry(country) {
+
     if (country == "Colombia") {
-      
-      this.showDocumentType = true;
+      this.showNational = true;
       this.donationForm.get('currency').setValue('COP');
       this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop * this.assistantsService.assistants.length);
       this.cdr.detectChanges();
       this.donationForm.get('document').setValidators([Validators.required]);
     } else {
-      this.showDocumentType = false;
+      this.showNational = false;
       this.donationForm.get('document').setErrors(null);
       this.donationForm.get('currency').setValue('USD');
+      this.method_selected = 1;
       if (this.event.financialCut[this.event.financialCutSelected].prices.usd) {
         this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.usd * this.assistantsService.assistants.length);
       } else {

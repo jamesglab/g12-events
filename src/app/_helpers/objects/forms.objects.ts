@@ -55,7 +55,6 @@ export const NEW_DONATION = {
     leader: [''],
     postalCode: [''],
     country: [''],
-    nota: [''],
     currency: ['']
 };
 
