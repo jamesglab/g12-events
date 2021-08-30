@@ -36,10 +36,10 @@ export class EventDetailComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <= 500) {
       this.isResponsive = true;
-      var keybe = document.getElementById('keybe-webchat');
-      if (keybe) {
-        keybe.remove();
-      }
+      // var keybe = document.getElementById('keybe-webchat');
+      // if (keybe) {
+      //   keybe.remove();
+      // }
     } else {
       this.isResponsive = false;
     }
@@ -47,6 +47,11 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit(): void {
     // getEventById   
+
+    var keybe = document.getElementById('keybe-webchat');
+      if (keybe) {
+        keybe.remove();
+      }
     this.onResize();
     this.getEventById();
     this.assistants = this.assistantsService.assistants;
