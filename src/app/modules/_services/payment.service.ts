@@ -34,9 +34,7 @@ export class PaymentService {
   }
 
   registerUsers(data: any): Observable<any> {
-
     // eliminamos datos que no necesitamos cuando el pago sea internacional
-    // limpiamos el storage de los asistentes
     if (data?.payment?.currency == 'usd'){
       delete data.customer.documentType;
       delete data.customer.document;

@@ -92,24 +92,29 @@ export class AddAssistantComponent implements OnInit {
 
   getPlaces(): void {
     //SEDES OR CHUCHES
-    const filter =
-      this.assistantForm.get('country').value == 'Colombia'
-        ? 'national'
-        : 'international';
-    const getPlacesSubscr = this.mainService
-      .getPlaces({ type: filter })
-      .subscribe(
-        async (res) => {
-          this.placesObject = await parseToObjectOtherObject(res, 'id');
-          this.places = res || [];
-          this.cdr.detectChanges();
-        },
-        (err) => {
-          throw err;
-        }
-      );
+    // validamos que las iglesias sean las mci
+    if (this.form.typeChurch.value == '88') {
+      const filter =
+        this.assistantForm.get('country').value == 'Colombia'
+          ? 'national'
+          : 'international';
+      const getPlacesSubscr = this.mainService
+        .getPlaces({ type: filter })
+        .subscribe(
+          async (res) => {
+            this.placesObject = await parseToObjectOtherObject(res, 'id');
+            this.places = res || [];
+            this.cdr.detectChanges();
+          },
+          (err) => {
+            throw err;
+          }
+        );
+      this.unsubscribe.push(getPlacesSubscr);
+
+    }
+
     // reiniciamos los valores de los pastores si se cambian los internacionales o los nacionales
-    this.unsubscribe.push(getPlacesSubscr);
     this.assistantForm.get('headquarters').reset();
     this.assistantForm.get('network').reset();
     this.assistantForm.get('churchName').reset();
