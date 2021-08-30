@@ -3,10 +3,10 @@ export const environment = {
   // apiUrlDonations: "https://gateway.mcidonaciones.com:1100/",
   // apiUrlConexion12: "https://plataforma.mci12.com:444/",
   apiUrlG12Connect: {
-    donations: 'https://api.g12connect.com/api/v2/',
-    managment: 'https://api.g12connect.com/api/v2/',
-    users: 'https://api.g12connect.com/api/v2/',
-    payments: 'https://api.g12connect.com/api/v2/'
+    donations: 'https://api.g12connect.com/api/v2/donations',
+    managment: 'https://api.g12connect.com/api/v2/managment',
+    users: 'https://api.g12connect.com/api/v2/users',
+    payments: 'https://api.g12connect.com/api/v2/payments'
   },
   urlResponse: "https://eventosg12.com/payment/transaction"
 

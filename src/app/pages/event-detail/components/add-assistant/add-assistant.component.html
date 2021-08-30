@@ -157,7 +157,7 @@
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>País *</mat-label>
-              <mat-select type="select" formControlName="country" (selectionChange)="getPlaces()">
+              <mat-select type="select" formControlName="country" (selectionChange)="this.assistantForm.get('typeChurch').reset();getPlaces();">
                 <mat-option value="null" disabled>SELECCIONA PAIS</mat-option>
                 <mat-option *ngFor="let country of countries" value="{{ country.name }}">{{ country.name }}</mat-option>
               </mat-select>

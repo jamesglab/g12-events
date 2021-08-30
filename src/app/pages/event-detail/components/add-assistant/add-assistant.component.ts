@@ -47,7 +47,8 @@ export class AddAssistantComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getChurchTypes();
-    this.handleRegisterType()
+    this.handleRegisterType();
+    
   }
   //validamos que solo se escriban numeros en input
   numberOnly($event): boolean {
@@ -99,7 +100,7 @@ export class AddAssistantComponent implements OnInit {
           ? 'national'
           : 'international';
       const getPlacesSubscr = this.mainService
-        .getPlaces({ type: filter })
+        .getPlaces({ type: filter, country: this.form.country.value })
         .subscribe(
           async (res) => {
             this.placesObject = await parseToObjectOtherObject(res, 'id');
@@ -113,7 +114,12 @@ export class AddAssistantComponent implements OnInit {
       this.unsubscribe.push(getPlacesSubscr);
 
     }
+    this.resetMinisterialInfo();
 
+
+  }
+
+  resetMinisterialInfo() {
     // reiniciamos los valores de los pastores si se cambian los internacionales o los nacionales
     this.assistantForm.get('headquarters').reset();
     this.assistantForm.get('network').reset();
@@ -123,10 +129,10 @@ export class AddAssistantComponent implements OnInit {
     this.pastors = [];
     this.leaders = [];
   }
-
   // consultamos los pastores por el tipo de iglesia seleccionado
   getPastors() {
     this.pastors = [];
+    this.leaders = [];
     if (this.form.network.value && this.form.headquarters.value) {
       const getCivilSubscr = this.mainService
         .getLeadersOrPastors({
@@ -200,6 +206,9 @@ export class AddAssistantComponent implements OnInit {
   handleRegisterType() {
     const value = this.form.registerType.value;
     this.form.documentNumber.setValidators(null);
+    this.assistantForm.get('country').reset();
+    this.assistantForm.get('typeChurch').reset();
+       
     if (value === "1") {
       //NACIONAL
       this.countries = [{
@@ -214,7 +223,8 @@ export class AddAssistantComponent implements OnInit {
       this.form.documentNumber.setErrors(null);
     }
 
-    console.log('countries', this.countries)
+    this.resetMinisterialInfo();
+
   }
 
 
