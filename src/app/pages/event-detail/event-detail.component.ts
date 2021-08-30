@@ -49,9 +49,9 @@ export class EventDetailComponent implements OnInit {
     // getEventById   
 
     var keybe = document.getElementById('keybe-webchat');
-      if (keybe) {
-        keybe.remove();
-      }
+    if (keybe) {
+      keybe.remove();
+    }
     this.onResize();
     this.getEventById();
     this.assistants = this.assistantsService.assistants;
@@ -87,14 +87,19 @@ export class EventDetailComponent implements OnInit {
   handleAdd() {
     //cdkFocusInitial 
     // console.log('event', this.event)
-    const dialogRef = this.dialog.open(AddAssistantComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        // result.Leader = (result.Leader) ? result.Leader.code : null;
-        this.assistantsService.addNewAssistant(result);
-        this.cdr.detectChanges();
-      }
-    });
+    if (this.assistants.length < 1) {
+      const dialogRef = this.dialog.open(AddAssistantComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          // result.Leader = (result.Leader) ? result.Leader.code : null;
+          this.assistantsService.addNewAssistant(result);
+          this.cdr.detectChanges();
+        }
+      });
+    } else {
+      Swal.fire("En este evento solo se puede registrar un usuario",'','info')
+    }
+
   }
 
   susbcribeToChanges() {
