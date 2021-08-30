@@ -251,7 +251,7 @@
 </div>
 <div class="events-container">
   <div class="container-table">
-    <app-assistants-table [search]="search"></app-assistants-table>
+    <app-assistants-table [search]="search" *ngIf="assistants.length > 0"></app-assistants-table>
     <button *ngIf="assistants.length > 0" class="button btn-register mt-2" (click)="setDataOnStorage()">
       <span class="icon">
         <i class="fa-lg fas fa-money-bill mr-5"></i>
