@@ -9,20 +9,20 @@
             Datos del Donante
           </div>
           <div class="field">
-        
+
 
             <label class="label">País</label>
-              <div class="field has-addons">
-                <div class="control is-expanded">
-                  <div class="select is-fullwidth">
-                    <select formControlName="country">
-                      <option [value]="country.name" *ngFor="let country of countrys_language"
-                        (click)="validateCountry(country)">
-                        {{country.name}}</option>
-                    </select>
-                  </div>
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                <div class="select is-fullwidth">
+                  <select formControlName="country">
+                    <option [value]="country.name" *ngFor="let country of countrys_language"
+                      (click)="validateCountry(country)">
+                      {{country.name}}</option>
+                  </select>
                 </div>
               </div>
+            </div>
           </div>
 
           <div class="columns" *ngIf="showNational">
@@ -41,16 +41,16 @@
                 <div class="field has-addons">
                   <div class="control is-expanded">
                     <div class="select is-fullwidth">
-                      <select formControlName="documentType" >
+                      <select formControlName="documentType">
                         <option value="CC">CC</option>
                         <option value="TI">TI</option>
                         <option value="CE">CE</option>
                       </select>
                     </div>
                   </div>
+                </div>
               </div>
             </div>
-          </div>
 
           </div>
 
@@ -226,13 +226,13 @@
               </div>
             </div>
           </div>
-          <div *ngIf="method_selected == 2 && showNational" >
+          <div *ngIf="method_selected == 2 && showNational">
             <div>
               <label class="label">Banco</label>
               <div class="field has-addons">
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
-                    <select name="" formControlName="financialInstitutionCode" >
+                    <select name="" formControlName="financialInstitutionCode">
                       <option *ngFor="let bank of banks" value="{{bank.bankCode}}">
                         {{bank.bankName}}
                       </option>
@@ -246,7 +246,7 @@
               <div class="field has-addons">
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
-                    <select name="" formControlName="clientType" >
+                    <select name="" formControlName="clientType">
                       <option value="0">
                         Persona Natural
                       </option>
@@ -260,10 +260,14 @@
             </div>
           </div>
 
-          <div *ngIf="method_selected == 3 && showNational" >
+          <div *ngIf="method_selected == 3 && showNational">
             <div>
               <label class="label">Efectivo</label>
-              <div class="field has-addons">
+              <span>
+                <i class="fas fa-info-circle"></i>
+                Transacciones mayores a 20.000 (pesos)
+              </span>
+              <div class="field has-addons mt-2">
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
                     <select formControlName="paymentMethod">

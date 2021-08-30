@@ -208,15 +208,24 @@ export class PaymentComponent implements OnInit {
   cashPayment() {
     const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
-    const cashSubscr = this.paymentService.registerUsers(data)
-      .subscribe((res) => {
-        this.storageService.setItem('clearAssistans', true);
-        this.isLoading = false;
-        window.open(res.url, '_blank');
-        this.showPopUp(res);
-        // console.log("CASH RESPONSE", res);
-      }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
-    this.unsubscribe.push(cashSubscr);
+    if (data.payment.amount < 20000) {
+      this.showPopUp({
+        message: "El monto minimo de la transaccion es de $ 20.000 (pesos)",
+        status: "FAILED"
+      });
+      this.isLoading = false;
+    } else {
+      const cashSubscr = this.paymentService.registerUsers(data)
+        .subscribe((res) => {
+          this.storageService.setItem('clearAssistans', true);
+          this.isLoading = false;
+          window.open(res.url, '_blank');
+          this.showPopUp(res);
+          // console.log("CASH RESPONSE", res);
+        }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
+      this.unsubscribe.push(cashSubscr);
+    }
+
   }
 
   // registerUsers(response: any) {
@@ -237,8 +246,9 @@ export class PaymentComponent implements OnInit {
     });
     dialogRef.componentInstance.response = response;
     dialogRef.afterClosed().subscribe(result => {
-      // console.log("MODAL RESULT", result);
-      if (result.status != "FAILED") {
+      console.log("MODAL RESULT", response);
+      if (result.status == "PENDING" ||
+        result.status == "SUCCESS") {
         this.storageService.removeItem("assistants");
         this.router.navigate(['/home/all']);
       }
