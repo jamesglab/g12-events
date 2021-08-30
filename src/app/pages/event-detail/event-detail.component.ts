@@ -97,7 +97,7 @@ export class EventDetailComponent implements OnInit {
         }
       });
     } else {
-      Swal.fire("En este evento solo se puede registrar un usuario",'','info')
+      Swal.fire("El registro para este evento es individual.",'','info')
     }
 
   }

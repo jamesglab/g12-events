@@ -1,64 +1,65 @@
 <app-navbar></app-navbar>
 
 <div class="app-container">
-    <div class="breadcum-element">
-        <span>Home/</span> Events
-    </div>
+  <div class="breadcum-element">
+    <span>Home/</span> Events
+  </div>
 
-    <app-events-slider [events]="events"></app-events-slider>
+  <app-events-slider [events]="events"></app-events-slider>
 
-    <div class="events-content">
-        <div class="left-side">
-            <h3>Filtros</h3>
-            <div class="categories">
-                <div class="categories-title">
-                    <span>Categorias</span>
-                    <div>
-                        <mat-icon>expand_less</mat-icon>
-                    </div>
-                </div>
-
-                <div class="categories-group">
-                    <div class="categorie-item" *ngFor="let cat of categories">
-                        <mat-checkbox #checkbox (click)="pushCategory(checkbox,cat.value)">{{ cat.value }}</mat-checkbox>
-                    </div>
-                </div>
-
-            </div>
-
-            <button class="filter-button" [ngClass]="{'button is-loading': isLoading}" [disabled]="categoriesFilter.length == 0" (click)="filterEventsByCategories()">
-                Filtrar Eventos</button>
-            <button class="clean-button" (click)="cleanFilter()">Limpiar Filtro</button>
-
+  <div class="events-content">
+    <div class="left-side" *ngIf="!isResponsive">
+      <h3>Filtros</h3>
+      <div class="categories">
+        <div class="categories-title">
+          <span>Categorias</span>
+          <div>
+            <mat-icon>expand_less</mat-icon>
+          </div>
         </div>
-        <div class="right-side">
-            <div class="title-bar">
-                <div class="title-item">
-                    <h3>Eventos</h3>
-                    <div class="visibility-types">
-                        <span [ngClass]="{ 'isActive': !isGrid }"  (click)="isGrid = false">
-                            <i class="fas fa-bars"></i>
-                        </span>
-                        &nbsp;
-                        <span [ngClass]="{ 'isActive': isGrid }" class="isActive" (click)="isGrid = true">
-                            <i class="fas fa-th-large"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class="filter-item">
-                    <span>Ordenar</span>
-                </div>
-            </div>
 
-            <div class="list-events-container">
+        <div class="categories-group">
+          <div class="categorie-item" *ngFor="let cat of categories">
+            <mat-checkbox #checkbox (click)="pushCategory(checkbox,cat.value)">{{ cat.value }}</mat-checkbox>
+          </div>
+        </div>
 
-                <div class="events-cards" [ngClass]="{ 'events-cards': isGrid, 'events-cards-list': !isGrid }">
-                    <ng-container *ngFor="let event of events">
-                        <app-event-card [event]="event" [isGrid]="isGrid"></app-event-card>
-                    </ng-container>
-                </div>
+      </div>
 
-                <!-- <div class="paginator-container">
+      <button class="filter-button" [ngClass]="{'button is-loading': isLoading}"
+        [disabled]="categoriesFilter.length == 0" (click)="filterEventsByCategories()">
+        Filtrar Eventos</button>
+      <button class="clean-button" (click)="cleanFilter()">Limpiar Filtro</button>
+
+    </div>
+    <div class="right-side">
+      <div class="title-bar">
+        <div class="title-item">
+          <h3>Eventos</h3>
+          <div class="visibility-types">
+            <span [ngClass]="{ 'isActive': !isGrid }" (click)="isGrid = false">
+              <i class="fas fa-bars"></i>
+            </span>
+            &nbsp;
+            <span [ngClass]="{ 'isActive': isGrid }" class="isActive" (click)="isGrid = true">
+              <i class="fas fa-th-large"></i>
+            </span>
+          </div>
+        </div>
+        <div class="filter-item">
+          <span>Ordenar</span>
+        </div>
+      </div>
+
+      <div class="list-events-container">
+
+        <div class="events-cards" [ngClass]="{ 'events-cards': isGrid, 'events-cards-list': !isGrid }">
+          <ng-container *ngFor="let event of events">
+            <app-event-card [event]="event" [isGrid]="isGrid"></app-event-card>
+          </ng-container>
+        </div>
+
+        <!-- <div class="paginator-container">
                     <div class="info-data">
                         Pagina 1 de 4
                     </div>
@@ -75,17 +76,17 @@
                         </nav>
                     </div>
                 </div> -->
-            </div>
+      </div>
 
 
-        </div>
     </div>
+  </div>
 
 </div>
 
 <app-features></app-features>
 <div class="subscription">
-    <app-subscription></app-subscription>
+  <app-subscription></app-subscription>
 </div>
 <app-footer></app-footer>
 

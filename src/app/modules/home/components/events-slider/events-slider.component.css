@@ -4,7 +4,21 @@
     width: 100%;
     display: flex;
     border-radius: 20px;
+    min-height: 21rem;
+    background-size: cover;
     background-color: #bfbfc0;
+    background-image: url("https://cdn.somosunogo.com/visionarios/banner_desktop.jpeg");
+}
+
+
+.slider-events-container-mobile {
+    width: 100%;
+    display: flex;
+    border-radius: 20px;
+    min-height: 24rem;
+    background-size: cover;
+    background-color: #bfbfc0;
+    background-image: url("https://cdn.somosunogo.com/visionarios/banner_mobile.jpeg");
 }
 
 .slider-left {

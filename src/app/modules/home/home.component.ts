@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -18,15 +18,29 @@ export class HomeComponent implements OnInit {
   public categoriesFilter: string[] = [];
   public checkBoxes: MatCheckbox[] = [];
   public isLoading: boolean = false;
-
+  public innerWidth
+  public isResponsive
   private unsubscribe: Subscription[] = [];
 
   constructor(private router: Router,
-    private eventsService: EventsService) { }
+    private eventsService: EventsService, private cdr: ChangeDetectorRef) { }
+  @HostListener('window:resize', ['$event'])
+
+  onResize(event?) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth <= 800) {
+      this.isResponsive = true;
+      this.cdr.detectChanges();
+    } else {
+      this.isResponsive = false;
+      this.cdr.detectChanges();
+    }
+  }
 
   ngOnInit(): void {
     this.getEvents();
     this.getCategories();
+    this.onResize();
   }
 
   getEvents() {

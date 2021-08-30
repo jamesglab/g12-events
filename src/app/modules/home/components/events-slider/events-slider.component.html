@@ -1,28 +1,59 @@
-<div class="slider-events-container">
-    <div class="slider-left">
-        <div class="circles-container">
-            <img src="/assets/figures/circles.svg">
-        </div>
-        <div class="info-container">
-            <span>Visión G12</span>
+<div class="slider-events-container"*ngIf="!isResponsive">
+  <div class="slider-left">
+    <div class="circles-container">
+      <!-- <img src="/assets/figures/circles.svg"> -->
+    </div>
+    <div class="info-container" >
+      <!-- <span>Visión G12</span>
             <h2>{{ events[currentEvent]?.name || 'Bienvenidos a Eventos G12' }}</h2>
             <p>{{ events[currentEvent]?.description || 
-                'Todos los eventos de G12 disponibles en una sola plataforma.' }}</p>
-        </div>
-        <div class="button-container">
+                'Todos los eventos de G12 disponibles en una sola plataforma.' }}</p> -->
+    </div>
+    <!-- <div class="button-container">
             <div class="btn-details" (click)="eventDetail(events[currentEvent].id)">
                 <div>Detalles</div>
                 <div>
                     <mat-icon>arrow_right_alt</mat-icon>
                 </div>
             </div>
-        </div>
-        <div class="slider-indicator" *ngIf="events">
+        </div> -->
+    <!-- <div class="slider-indicator" *ngIf="events">
             <span *ngFor="let item of events; let i = index;" (click)="setCurrentEvent(i)"
             [ngClass]="{ 'active': i == currentEvent }" class="dot"></span>
-        </div>
-    </div>
-    <div class="slider-right">
+        </div> -->
+  </div>
+  <!-- <div class="slider-right">
         <img class="ellipse" src="/assets/figures/Ellipse_3.svg">
-    </div>
+    </div> -->
 </div>
+
+
+<div class="slider-events-container-mobile" *ngIf="isResponsive">
+    <div class="slider-left">
+      <div class="circles-container">
+        <!-- <img src="/assets/figures/circles.svg"> -->
+      </div>
+      <div class="info-container" >
+        <!-- <span>Visión G12</span>
+              <h2>{{ events[currentEvent]?.name || 'Bienvenidos a Eventos G12' }}</h2>
+              <p>{{ events[currentEvent]?.description || 
+                  'Todos los eventos de G12 disponibles en una sola plataforma.' }}</p> -->
+      </div>
+      <!-- <div class="button-container">
+              <div class="btn-details" (click)="eventDetail(events[currentEvent].id)">
+                  <div>Detalles</div>
+                  <div>
+                      <mat-icon>arrow_right_alt</mat-icon>
+                  </div>
+              </div>
+          </div> -->
+      <!-- <div class="slider-indicator" *ngIf="events">
+              <span *ngFor="let item of events; let i = index;" (click)="setCurrentEvent(i)"
+              [ngClass]="{ 'active': i == currentEvent }" class="dot"></span>
+          </div> -->
+    </div>
+    <!-- <div class="slider-right">
+          <img class="ellipse" src="/assets/figures/Ellipse_3.svg">
+      </div> -->
+  </div>
+  

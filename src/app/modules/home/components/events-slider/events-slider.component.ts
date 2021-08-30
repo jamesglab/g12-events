@@ -1,5 +1,5 @@
 import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { Event } from 'src/app/modules/_models/event.model';
 
@@ -13,10 +13,25 @@ export class EventsSliderComponent implements OnInit, OnChanges {
   @Input() public events: Event[] = null;
   public currentEvent: number = 0;
   public interval: any = null;
+  public innerWidth: number = 0;
+  public isResponsive: boolean = false;
+  constructor(private router: Router,private cdr: ChangeDetectorRef) { }
+  @HostListener('window:resize', ['$event'])
 
-  constructor(private router: Router) { }
+  onResize(event?) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth <= 500) {
+      this.isResponsive = true;
+      this.cdr.detectChanges();
+    } else {
+      this.isResponsive = false;
+      this.cdr.detectChanges();
+    }
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.onResize();
+  }
 
   ngOnChanges() {
     if(this.events.length > 0){ //VALIDATE EMPTY ARRAY
