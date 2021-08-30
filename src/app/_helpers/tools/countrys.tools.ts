@@ -230,7 +230,7 @@ export const COUNTRIES = [
     },
     {
         "id": 55,
-        "name": "Estados Unidos"
+        "name": "Estados Unidos de América"
     },
     {
         "id": 68,
@@ -506,7 +506,7 @@ export const COUNTRIES = [
     },
     {
         "id": 42,
-        "name": "Mexico"
+        "name": "México"
     },
     {
         "id": 43,
@@ -574,7 +574,7 @@ export const COUNTRIES = [
     },
     {
         "id": 19,
-        "name": "Países Bajos, Holanda"
+        "name": "Países Bajos"
     },
     {
         "id": 87,
