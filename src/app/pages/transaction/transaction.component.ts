@@ -22,6 +22,7 @@ export class TransactionComponent implements OnInit {
     const paymentRef = this._storageService.getItem("ref");
     if(paymentRef){
       this.validateTrasaction({ ref: paymentRef });
+      this._storageService.removeItem("ref")
     }else{
       this.route.queryParams.subscribe((params) => {
         const { ref } = params;
