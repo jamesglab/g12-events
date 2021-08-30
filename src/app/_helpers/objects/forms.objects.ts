@@ -32,7 +32,7 @@ export const NEW_DONATION = {
     clientType: [null, [Validators.required]], //PERSON TYPE
     paymentType: [null,], //PSE,TC,PE
     orderType: ["Donacion"],
-    documentType:[null],
+    documentType:['CC'],
     paymentMethod: [null, [Validators.required]], // PSE,TC,PE
     amount: [null], //PRICE OF EVENT
     cardInstallmentsNumber: [15],

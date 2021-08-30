@@ -93,7 +93,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                 "customer": getCustomer(formFields),
                 "payment": {
                     "paymentType": "PSE",
-                    "doc_type": "CC",
+                    "doc_type": formFields.documentType ? formFields.documentType : 'CC',
                     "doc_number": formFields.document,
                     "name": formFields.name,
                     "last_name": formFields.lastName,
@@ -119,7 +119,7 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                         "exp_month": formFields.cardMonth,
                         "cvc": formFields.cardSecurityCode
                     },
-                    "doc_type": "CC",
+                    "doc_type": formFields.documentType ? formFields.documentType : 'CC',
                     "doc_number": formFields.document,
                     "name": formFields.name,
                     "last_name": formFields.lastName,
