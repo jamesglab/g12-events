@@ -208,9 +208,9 @@ export class PaymentComponent implements OnInit {
   cashPayment() {
     const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
-    if (data.payment.amount < 20000) {
+    if (data.payment.amount <= 10000) {
       this.showPopUp({
-        message: "El monto minimo de la transaccion es de $ 20.000 (pesos)",
+        message: "El monto mínimo de la transacción debe ser mayor a $10.000",
         status: "FAILED"
       });
       this.isLoading = false;
