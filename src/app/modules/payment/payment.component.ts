@@ -247,9 +247,10 @@ export class PaymentComponent implements OnInit {
     dialogRef.componentInstance.response = response;
     dialogRef.afterClosed().subscribe(result => {
       console.log("MODAL RESULT", response);
-      if (result.status == "PENDING" ||
-        result.status == "SUCCESS") {
+      if (response.status == "PENDING" ||
+      response.status == "SUCCESS") {
         this.storageService.removeItem("assistants");
+        console.log('lo tenemos')
         this.router.navigate(['/home/all']);
       }
     });
