@@ -10,7 +10,7 @@ export const environment = {
     donations: 'https://dev-api.g12connect.com/api/v2/donations',
     managment: 'https://dev-api.g12connect.com/api/v2/managment',
     users: 'https://dev-api.g12connect.com/api/v2/users',
-    payments: 'https://dev-api.g12connect.com/api/v2/payments/payments'
+    payments: 'https://dev-api.g12connect.com/api/v2/payments'
   },
   urlResponse: "https://development.d3gdrq5zztbv0t.amplifyapp.com/payment/transaction"
   // Initialize Firebase
