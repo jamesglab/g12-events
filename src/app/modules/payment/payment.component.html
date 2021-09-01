@@ -52,6 +52,7 @@
 
           </div>
 
+
           <div class="columns">
             <div class="column is-half">
               <div class="field">
@@ -137,8 +138,11 @@
           <div class="mt-6 title is-4">
             Medios de Donación
           </div>
-          <div class="columns">
-            <div class="column is-one-third">
+
+
+
+          <div class="columns is-flex-wrap-wrap">
+            <div class="column is-one-quarter">
               <div class="card p-5" [ngClass]="{'card-selected':method_selected == 1}" (click)="method_selected = 1">
                 <div class="is-flex is-justify-content-center">
                   <i class="far fa-credit-card fa-2x"></i>
@@ -148,7 +152,8 @@
                 </div>
               </div>
             </div>
-            <div class="column is-one-third" *ngIf="showNational">
+
+            <div class="column is-one-quarter" *ngIf="showNational">
               <div class="card p-5" [ngClass]="{'card-selected':method_selected == 2}" (click)="method_selected = 2">
                 <div class="is-flex is-justify-content-center">
                   <i class="fas fa-exchange-alt fa-2x"></i>
@@ -158,13 +163,23 @@
                 </div>
               </div>
             </div>
-            <div class="column is-one-third" *ngIf="showNational">
+            <div class="column is-one-quarter" *ngIf="showNational">
               <div class="card p-5" [ngClass]="{'card-selected':method_selected == 3}" (click)="method_selected = 3">
                 <div class="is-flex is-justify-content-center">
                   <i class="fas fa-money-bill-wave fa-2x"></i>
                 </div>
                 <div class="is-flex is-justify-content-center mt-3">
                   Efectivo
+                </div>
+              </div>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="card p-5" [ngClass]="{'card-selected':method_selected == 4}" (click)="method_selected = 4">
+                <div class="is-flex is-justify-content-center">
+                  <i class="fas fa-qrcode fa-2x"></i>
+                </div>
+                <div class="is-flex is-justify-content-center mt-3">
+                  Codigo
                 </div>
               </div>
             </div>
@@ -277,9 +292,20 @@
                 </div>
               </div>
             </div>
-
-
           </div>
+
+          <div *ngIf="method_selected == 4 && showNational">
+            <div>
+
+              <div class="field mt-5">
+                <label class="label">Codigo *</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Escribe el codigo " formControlName="paymentCode">
+                </div>
+              </div>
+            </div>
+          </div>
+
           <button (click)="submit()" class="button btn is-small is-fullwidth mt-5"
             [ngClass]="{ 'is-loading': isLoading }">Realizar Donación</button>
         </div>

@@ -3,13 +3,13 @@ import { Validators } from '@angular/forms';
 export const ADD_ASSISTANT = {
     event: [null],
     registerType: ["1"],
-    confirmEmail :[null,Validators.required,Validators.email],
+    confirmEmail: [null, Validators.required, Validators.email],
     documentNumber: [null, [Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
     Validators.maxLength(13)]],
     name: ['', [Validators.required]],//
     lastName: ['', [Validators.required]],
     gender: [null, [Validators.required]],//
-    dateBirth: [ null,[]],//
+    dateBirth: [null, []],//
     mobile: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],//
     email: ['', [Validators.email, Validators.required]],//
@@ -24,7 +24,7 @@ export const ADD_ASSISTANT = {
     churchName: [null], //case church g12 and other
     pastorName: [null], //case church g12 and other
     terms: [null, [Validators.required]],
-    documentType :[null]
+    documentType: [null]
 };
 
 export const NEW_DONATION = {
@@ -32,7 +32,7 @@ export const NEW_DONATION = {
     clientType: [null, [Validators.required]], //PERSON TYPE
     paymentType: [null,], //PSE,TC,PE
     orderType: ["Donacion"],
-    documentType:['CC'],
+    documentType: ['CC'],
     paymentMethod: [null, [Validators.required]], // PSE,TC,PE
     amount: [null], //PRICE OF EVENT
     cardInstallmentsNumber: [15],
@@ -49,6 +49,7 @@ export const NEW_DONATION = {
     email: ['', [Validators.required, Validators.email]],
     contactPhone: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],
+    paymentCode: [null, [Validators.required]],
     ipAddress: [null],
     returnUrl: [''], // PENDING
     pastor: [''],
@@ -70,7 +71,7 @@ export const donation_errors = {
         ],
         'name': [{ type: 'required', message: 'Nombre requerido' }],
         'lastName': [{ type: 'required', message: 'Apellido requerido' }],
-        'confirmEmail':[{ type: 'required', message: 'Confirmar el correo' }],
+        'confirmEmail': [{ type: 'required', message: 'Confirmar el correo' }],
         'email': [
             { type: 'required', message: 'Correo requerido' },
             { type: 'email', message: 'Correo no identificado' }
@@ -130,6 +131,12 @@ export const donation_errors = {
 
         ]
 
+    },
+    4: {
+        paymentCode: [
+            { type: 'required', message: 'Escribe un codigo' },
+
+        ]
     }
     // "PSE": "PSE",
     // "Crédito": "TC",

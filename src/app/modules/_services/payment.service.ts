@@ -50,5 +50,21 @@ export class PaymentService {
           catchError(handleError),
         );
   }
+  redeemCode(data){
+    if (data?.payment?.currency == 'usd'){
+      delete data.customer.documentType;
+      delete data.customer.document;
+      delete data.payment.doc_type;
+      delete data.payment.doc_number;
+    }
+      return this.http.post<any>(
+        `${environment.apiUrlG12Connect.donations}/redeem-code`,
+        JSON.stringify(data), { headers: header }).pipe(
+          map((res: any) => {
+            return res;
+          }),
+          catchError(handleError),
+        );
+  }
 
 }

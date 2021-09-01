@@ -19,11 +19,15 @@ import { ResponsePopupComponent } from './components/response-popup/response-pop
 import Swal from 'sweetalert2';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
+
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
+
+
 export class PaymentComponent implements OnInit {
 
   public event: any = null; //IN CASE OF RETURN - REMEMBER CALL SERVICE
@@ -133,54 +137,50 @@ export class PaymentComponent implements OnInit {
       this.cdr.detectChanges();
     }
   }
+
+  // recibimos los datos del formulario
   submit() {
-
+    // eliminamos la referencia por si existe en el storage
     this.storageService.removeItem('paymentRef');
+    // validamos que el usuario llene bien los campos de informacion personal si nos retorna true pasamos a validar los campos del pago
     const personal_info_validate = this.validateFormErrors();
+    // validamos el metodo de pago que vamos a usar
     this.donationForm.get('paymentType').setValue(this.method_selected.toString())
+    // si la validacion de errores de inmformacion personal fue satisfactoria procedemos a validar el pago
     if (personal_info_validate) {
-
+      // validamos los errores en los metodos de pago
       const validate_info_pay = this.validatePayInformation(this.method_selected);
+      // si la valdiacion de los campos del pago fue correcta procedemos con hacer la peticion al endPoint
       if (validate_info_pay) {
-
-        //      this.isLoading = true
-        //         this.form.amount.setValue(this.event.prices.cop * this.assistantsService.assistants.length);
-
-        // const data = {
-        // customer: insertPayment(this.donationForm.getRawValue()),
-        //   usersList: this.assistantsService.assistants
-        // };
-
-        //PRIMERO DEBO DE HACER EL PAGO CON LOS ENDPOINT DE DONACIONES
-        //LUEGO SI ES SATISFACTORIO,REGISTRAR A LOS USUARIOS
+        // ponemos un loader para que no nos ejecuten mas de una accion
         this.isLoading = true;
+        // validamos el moetodo de pago y usamos la funcion para cada uno
         if (this.method_selected == 1) {
+          // enviamos solicitud a tarjeta de credito
           this.creditCardPayment();
         } else if (this.method_selected == 2) {
+          // enviamos solicitud  pse
           this.psePayment();
-        } else {
+        } else if (this.method_selected == 3) {
+          // enviamos solicitud a payu efectivo
           this.cashPayment();
+        } else if (this.method_selected == 4) {
+          // enciamos solicitud con codigo de masivo
+          this.codePayment()
         }
-
-        // const paymentSubscr = this.eventsService
-        //   .proccessPayment(data).subscribe((res: any) => {
-        //     this.isLoading = false;
-        //     if(res.state != "Error" && !res.MessageError){
-        //       this.handleResponse(data, res);
-        //     }else{
-        //       //ERROR, ERROR
-        //       this.showPopUp({ state: 'FAILED', message: (res.MessageError) ? res.MessageError : null })
-        //     }
-        //   }, err => { throw err; })
-        // this.unsubscribe.push(paymentSubscr);
       }
     }
 
   }
 
+  ////////////////////////////////////////
+  // <---------METODOS DE PAGO--------->
+  // ////////////////////////////////////
   psePayment() {
+    // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
     const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
+
     const pseSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
@@ -193,6 +193,7 @@ export class PaymentComponent implements OnInit {
   }
 
   creditCardPayment() {
+    // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
     const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
     const creditSubscr = this.paymentService.registerUsers(data)
@@ -205,6 +206,7 @@ export class PaymentComponent implements OnInit {
     this.unsubscribe.push(creditSubscr);
   }
 
+  // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
   cashPayment() {
     const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
@@ -227,28 +229,35 @@ export class PaymentComponent implements OnInit {
     }
 
   }
+  // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
 
-  // registerUsers(response: any) {
-  //   this.paymentService.registerUsers({
-  //     usersList: this.assistantsService.assistants,
-  //     donation: this.event.id,
-  //     transaction: response.ref
-  //   })
-  //     .subscribe((res) => {
-  //       // console.log("REGISTERED USERS", res);
-  //       this.router.navigate(['/home']);
-  //     }, err => { throw err; })
-  // }
+  codePayment() {
+    const data = insertPayment({ ...this.donationForm.getRawValue() },
+      this.event, this.assistantsService.assistants);
+      const cashSubscr = this.paymentService.redeemCode(data)
+      .subscribe((res) => {
+        this.storageService.setItem('clearAssistans', true);
+        this.isLoading = false;
+        this.showPopUp(res);
+        // console.log("CASH RESPONSE", res);
+      }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
+    this.unsubscribe.push(cashSubscr);
+  }
+
+
+  //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  // <---------FIN METODOS DE PAGO--------->
+  //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 
   showPopUp(response: any) {
-    //cdkFocusInitial 
     const dialogRef = this.dialog.open(ResponsePopupComponent, {
     });
     dialogRef.componentInstance.response = response;
     dialogRef.afterClosed().subscribe(result => {
       console.log("MODAL RESULT", response);
       if (response.status == "PENDING" ||
-      response.status == "SUCCESS") {
+        response.status == "SUCCESS") {
         this.storageService.removeItem("assistants");
         console.log('lo tenemos')
         this.router.navigate(['/home/all']);

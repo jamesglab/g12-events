@@ -82,9 +82,9 @@ export const validateCardFlag = (number: string) => {
 }
 
 export const getJSONPaymentType = (formFields, eventName: string, assistants: number): any => {
-    // console.log('form', formFields);
-    // console.log('event', formFields);
-    // console.log('event', assistants)
+
+// creamos los objetos dependiendo del tipo de pago que esta haciendo el usuario
+// enviamos solo los datos que el metodo de pago requiere
 
 
     switch (formFields.paymentType) {
@@ -139,9 +139,21 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                     "addDays": 1
                 }
             }
+        case 'CODE':
+
+            return {
+                "customer": getCustomer(formFields),
+                "payment": {
+                    "paymentType": "CODE",
+                    "code": formFields.paymentCode,
+                    "amount": parseInt(formFields.amount),
+                    "description": "Compra online " + eventName,
+                }
+            }
     }
 }
 
+// creamos el customer de la transaccion o usuario donante 
 const getCustomer = (formFields) => {
     return {
         "document": formFields.document,
@@ -150,10 +162,6 @@ const getCustomer = (formFields) => {
         "lastName": formFields.lastName,
         "contactPhone": formFields.contactPhone,
         "country": formFields.country,
-        "documentType":formFields.documentType
+        "documentType": formFields.documentType
     }
 }
-
-// export const getPaymentMethod = () => { }
-
-export const getIpAddress = () => { }
