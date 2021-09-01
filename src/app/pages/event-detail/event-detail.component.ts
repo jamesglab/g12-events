@@ -89,6 +89,7 @@ export class EventDetailComponent implements OnInit {
     // console.log('event', this.event)
     if (this.assistants.length < 1) {
       const dialogRef = this.dialog.open(AddAssistantComponent);
+      dialogRef.componentInstance.event = this.event;
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           // result.Leader = (result.Leader) ? result.Leader.code : null;

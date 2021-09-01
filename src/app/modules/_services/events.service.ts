@@ -74,4 +74,15 @@ export class EventsService {
         catchError(handleError)
       );
   }
+
+  validateAsisstant(body){
+    return this.http.post<any>(`${environment.apiUrlG12Connect.donations}/validate-user`,body,
+    { headers: header }).pipe(
+      map((res: any) => {
+        return res;
+      }),
+      catchError(handleError)
+    );
+  }
+
 }

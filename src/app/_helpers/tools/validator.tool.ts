@@ -83,8 +83,8 @@ export const validateCardFlag = (number: string) => {
 
 export const getJSONPaymentType = (formFields, eventName: string, assistants: number): any => {
 
-// creamos los objetos dependiendo del tipo de pago que esta haciendo el usuario
-// enviamos solo los datos que el metodo de pago requiere
+    // creamos los objetos dependiendo del tipo de pago que esta haciendo el usuario
+    // enviamos solo los datos que el metodo de pago requiere
 
 
     switch (formFields.paymentType) {
@@ -146,6 +146,18 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                 "payment": {
                     "paymentType": "CODE",
                     "code": formFields.paymentCode,
+                    "amount": parseInt(formFields.amount),
+                    "description": "Compra online " + eventName,
+                }
+            }
+
+        case 'PAYOAL':
+
+            return {
+                "customer": getCustomer(formFields),
+                "payment": {
+                    "paymentType": "PAYPAL",
+                    "email": formFields.paymentPaypal,
                     "amount": parseInt(formFields.amount),
                     "description": "Compra online " + eventName,
                 }

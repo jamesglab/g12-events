@@ -167,6 +167,9 @@ export class PaymentComponent implements OnInit {
         } else if (this.method_selected == 4) {
           // enciamos solicitud con codigo de masivo
           this.codePayment()
+        } else if (this.method_selected == 5) {
+          // enciamos solicitud con codigo de masivo
+          this.paypalPayment();
         }
       }
     }
@@ -234,7 +237,7 @@ export class PaymentComponent implements OnInit {
   codePayment() {
     const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
-      const cashSubscr = this.paymentService.redeemCode(data)
+    const cashSubscr = this.paymentService.redeemCode(data)
       .subscribe((res) => {
         this.storageService.setItem('clearAssistans', true);
         this.isLoading = false;
@@ -243,7 +246,14 @@ export class PaymentComponent implements OnInit {
       }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
     this.unsubscribe.push(cashSubscr);
   }
+  // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
 
+  paypalPayment() {
+    const data = insertPayment({ ...this.donationForm.getRawValue() },
+    this.event, this.assistantsService.assistants);
+
+    console.log('PAGO PAYPAL',data)
+  }
 
   //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   // <---------FIN METODOS DE PAGO--------->

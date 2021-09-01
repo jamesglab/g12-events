@@ -173,6 +173,16 @@
                 </div>
               </div>
             </div>
+            <div class="column is-one-quarter" *ngIf="!showNational">
+              <div class="card p-5" [ngClass]="{'card-selected':method_selected == 5}" (click)="method_selected = 5">
+                <div class="is-flex is-justify-content-center">
+                  <i class="fab fa-paypal fa-2x"></i>
+                </div>
+                <div class="is-flex is-justify-content-center mt-3">
+                  PayPal
+                </div>
+              </div>
+            </div>
             <div class="column is-one-quarter">
               <div class="card p-5" [ngClass]="{'card-selected':method_selected == 4}" (click)="method_selected = 4">
                 <div class="is-flex is-justify-content-center">
@@ -301,6 +311,17 @@
                 <label class="label">Codigo *</label>
                 <div class="control">
                   <input class="input" type="text" placeholder="Escribe el codigo " formControlName="paymentCode">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="method_selected == 5 && !showNational">
+            <div>
+              <div class="field mt-5">
+                <label class="label">Correo *</label>
+                <div class="control">
+                  <input class="input" type="email" placeholder="Correo de paypal" formControlName="paymentPaypal">
                 </div>
               </div>
             </div>
