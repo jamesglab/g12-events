@@ -162,7 +162,6 @@ export class AddAssistantComponent implements OnInit {
         IdSede: parseInt(this.form.headquarters.value),
       })
       .subscribe(async (res: any) => {
-        console.log('LEADERS OR PASTORS', res);
         this.leadersObject = await parseToObjectOtherObject(res, 'id');
         this.leaders = res || [];
         this.form.leader.enable();
@@ -201,7 +200,6 @@ export class AddAssistantComponent implements OnInit {
     let country = this.form.country.value;
     if (!country) this.form.country.setValue('colombia');
     var typeChurch = this.churchTypes.find(element => element.idDetailMaster == this.form.typeChurch.value);
-    console.log(parseInt(atob(this.route.snapshot.paramMap.get("id"))))
     this._eventService.validateAsisstant({
       user: {
         documentNumber: this.form.documentNumber.value,
