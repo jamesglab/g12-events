@@ -48,7 +48,7 @@ export class AddAssistantComponent implements OnInit {
     this.buildForm();
     this.getChurchTypes();
     this.handleRegisterType();
-    
+
   }
   //validamos que solo se escriban numeros en input
   numberOnly($event): boolean {
@@ -91,10 +91,12 @@ export class AddAssistantComponent implements OnInit {
     }
   }
 
-  getPlaces(): void {
+  getPlaces() {
     //SEDES OR CHUCHES
     // validamos que las iglesias sean las mci
     if (this.form.typeChurch.value == '88') {
+      this.validatorsMinisterials(true);
+
       const filter =
         this.assistantForm.get('country').value == 'Colombia'
           ? 'national'
@@ -113,19 +115,51 @@ export class AddAssistantComponent implements OnInit {
         );
       this.unsubscribe.push(getPlacesSubscr);
 
+    } else {
+      this.validatorsMinisterials()
+
     }
     this.resetMinisterialInfo();
-
-
   }
 
+
+  validatorsMinisterials(mci?) {
+    console.log('tenemos la informacion ministerial')
+    if (mci) {
+      console.log('MCI')
+
+      this.form.network.setValidators([Validators.required]);
+      this.form.pastor.setValidators([Validators.required]);
+      this.form.leader.setValidators([Validators.required]);
+      this.form.headquarters.setValidators([Validators.required]);
+      this.form.churchName.setErrors(null);
+      this.form.churchName.setValidators(null);
+      this.form.pastorName.setErrors(null);
+      this.form.pastorName.setValidators(null);
+    } else {
+      console.log('OTRA')
+
+      this.form.leader.setValidators(null);
+      this.form.leader.setErrors(null);
+      this.form.pastor.setValidators(null);
+      this.form.pastor.setErrors(null);
+      this.form.network.setValidators(null);
+      this.form.network.setErrors(null);
+      this.form.headquarters.setValidators(null);
+      this.form.headquarters.setErrors(null);
+      this.form.churchName.setValidators([Validators.required]);
+      this.form.pastorName.setValidators([Validators.required]);
+    }
+
+  }
   resetMinisterialInfo() {
     // reiniciamos los valores de los pastores si se cambian los internacionales o los nacionales
-    this.assistantForm.get('headquarters').reset();
-    this.assistantForm.get('network').reset();
-    this.assistantForm.get('churchName').reset();
-    this.assistantForm.get('pastor').reset();
-    this.assistantForm.get('leader').reset();
+    this.assistantForm.get('headquarters').setValue(null);
+    this.assistantForm.get('network').setValue(null);
+    this.assistantForm.get('pastor').setValue(null);
+    this.assistantForm.get('leader').setValue(null);
+    this.assistantForm.get('pastorName').setValue(null);
+    this.assistantForm.get('churchName').setValue(null);
     this.pastors = [];
     this.leaders = [];
   }
@@ -169,7 +203,6 @@ export class AddAssistantComponent implements OnInit {
 
 
   submit() {
-
     if (!this.form.terms.value && this.step == 3) {
       Swal.fire('Verifique los siguientes datos:', '- Acepta los terminos y condiciones', 'error');
       return;
@@ -206,9 +239,15 @@ export class AddAssistantComponent implements OnInit {
   handleRegisterType() {
     const value = this.form.registerType.value;
     this.form.documentNumber.setValidators(null);
+    this.form.documentType.setValidators(null);
+    this.assistantForm.get('documentNumber').reset();
+    this.assistantForm.get('documentType').reset();
+    this.assistantForm.get('name').reset();
+    this.assistantForm.get('lastName').reset();
+    this.assistantForm.get('gender').reset();
     this.assistantForm.get('country').reset();
     this.assistantForm.get('typeChurch').reset();
-       
+
     if (value === "1") {
       //NACIONAL
       this.countries = [{
@@ -217,10 +256,14 @@ export class AddAssistantComponent implements OnInit {
       },]
       this.form.documentNumber.setValidators([Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
       Validators.maxLength(13)]);
+      this.form.documentType.setValidators([Validators.required]);
+
     } else {
       this.countries = COUNTRIES;
       this.form.documentNumber.setValidators(null);
       this.form.documentNumber.setErrors(null);
+      this.form.documentType.setValidators(null);
+      this.form.documentType.setErrors(null);
     }
 
     this.resetMinisterialInfo();
