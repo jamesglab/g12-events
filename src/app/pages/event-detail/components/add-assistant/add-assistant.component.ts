@@ -7,6 +7,8 @@ import { COUNTRIES } from 'src/app/_helpers/tools/countrys.tools';
 import { ADD_ASSISTANT, error_messages } from 'src/app/_helpers/objects/forms.objects';
 import { MainService } from 'src/app/modules/_services/main.service';
 import Swal from 'sweetalert2';
+import { EventsService } from 'src/app/modules/_services/events.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-assistant',
@@ -33,12 +35,14 @@ export class AddAssistantComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   public disableds = [false, true, true, true];
   public disabled: boolean = true;
-
+  public event: any;
   constructor(
     private fb: FormBuilder,
     private mainService: MainService,
     public dialog: MatDialogRef<AddAssistantComponent>,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private _eventService: EventsService,
+    private route: ActivatedRoute
   ) {
     this.minDate = new Date(1950, 0, 1);
     this.maxDate = new Date(new Date().getFullYear() - 5, 0, 1);
@@ -230,10 +234,23 @@ export class AddAssistantComponent implements OnInit {
     let country = this.form.country.value;
     if (!country) this.form.country.setValue('colombia');
     var typeChurch = this.churchTypes.find(element => element.idDetailMaster == this.form.typeChurch.value);
-    this.dialog.close({
-      ...this.assistantForm.getRawValue(),
-      ...{ pastor, leader, church, typeChurch },
-    });
+    console.log(parseInt(atob(this.route.snapshot.paramMap.get("id"))))
+    this._eventService.validateAsisstant({
+      user: {
+        documentNumber: this.form.documentNumber.value,
+        country: this.form.country.value,
+        email: this.form.email.value,
+      },
+      event: this.event.id
+    }).subscribe(res => {
+      this.dialog.close({
+        ...this.assistantForm.getRawValue(),
+        ...{ pastor, leader, church, typeChurch },
+      });
+    }, err => {
+      Swal.fire(err.error.message ? err.error.message : 'El usuario ya esta registrado', '', 'warning');
+    })
+
   }
 
   handleRegisterType() {

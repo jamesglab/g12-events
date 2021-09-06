@@ -5,7 +5,9 @@ const PAYMENT_TYPE = {
     "1": "TC",
     "2": "PSE",
     "3": "PE",
-    "4": "CODE"
+    "4": "CODE",
+    "5": "PAYPAL"
+
 }
 
 export const insertPayment = (formFields, event: any, assistants: any[]) => {

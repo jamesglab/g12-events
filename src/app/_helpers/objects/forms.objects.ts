@@ -50,6 +50,7 @@ export const NEW_DONATION = {
     contactPhone: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],
     paymentCode: [null, [Validators.required]],
+    paymentPaypal: [null, [Validators.required, Validators.email]],
     ipAddress: [null],
     returnUrl: [''], // PENDING
     pastor: [''],
@@ -61,6 +62,7 @@ export const NEW_DONATION = {
 
 export const donation_errors = {
 
+    // validadores de informacion personal
     personal_information: {
         'documentType': [{ type: 'required', message: 'Tipo de documento requerido' }],
         'document': [
@@ -83,16 +85,13 @@ export const donation_errors = {
             { type: 'maxlength', message: 'El celular debe tener menos de 10 dígitos' }
         ],
     },
+    // validadores de metodo de pago seleccionado
+    // 1 tarjeta de credito
+    // 2 pse
+    // 3 transferencia bancaria payu 
+    // 4 redimir codigo
+    // 5 pago por paypal
 
-    2: {
-        'financialInstitutionCode': [
-            { type: 'required', message: 'Selecciona un banco' },
-        ],
-        clientType: [
-            { type: 'required', message: 'Selecciona tipo de persona' },
-        ]
-
-    },
     1: {
         cardNumber: [
             { type: 'required', message: 'Escribe numero de tarjeta' },
@@ -107,11 +106,6 @@ export const donation_errors = {
             { type: 'required', message: 'Escribe codigo de seguridad' },
 
         ],
-        // CardExpirationDate: [
-
-        //     { type: 'required', message: 'Escribe fecha de vencimiento' },
-
-        // ],
         cardMonth: [
             { type: 'required', message: 'Escribe mes de vencimiento' },
 
@@ -121,21 +115,30 @@ export const donation_errors = {
             { type: 'required', message: 'Escribe año de vencimiento' },
 
         ],
-
-
-
+    },
+    2: {
+        'financialInstitutionCode': [
+            { type: 'required', message: 'Selecciona un banco' },
+        ],
+        clientType: [
+            { type: 'required', message: 'Selecciona tipo de persona' },
+        ]
     },
     3: {
         paymentMethod: [
             { type: 'required', message: 'Selecciona un metodo de pago' },
 
         ]
-
     },
     4: {
         paymentCode: [
             { type: 'required', message: 'Escribe un codigo' },
-
+        ]
+    },
+    5: {
+        paymentPaypal: [
+            { type: 'required', message: 'Escribe el correo de paypal' },
+            { type: 'email', message: 'Correo de paypal no identificado' }
         ]
     }
     // "PSE": "PSE",

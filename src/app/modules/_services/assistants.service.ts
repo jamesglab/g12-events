@@ -22,17 +22,17 @@ export class AssistantsService {
     router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        // const validateClearAssistans = this.storage.getItem('clearAssistans');
-        // if (validateClearAssistans) {
-        //   this.storage.removeItem('clearAssistans');
-        //   this.storage.removeItem('assistants');
-        //   this.assistants = [];
-        // } else {
-        //   if (this.previousUrl === "/payment") {
+        const validateClearAssistans = this.storage.getItem('clearAssistans');
+        if (validateClearAssistans) {
+          this.storage.removeItem('clearAssistans');
+          this.storage.removeItem('assistants');
+          this.assistants = [];
+        } else {
+          if (this.previousUrl === "/payment") {
             const assistants = this.storage.getItem("assistants");
             if (assistants) { this.assistants = assistants };
-          // }
-        // }
+          }
+        }
 
         this.previousUrl = event.url;
       });
@@ -46,6 +46,7 @@ export class AssistantsService {
   deleteItem(index: number) {
     this.assistants.splice(index, 1);
     this.assistantsEvent.emit(this.assistants);
+    this.saveAssistantOnStorage();
   }
 
   saveAssistantOnStorage() {
@@ -63,5 +64,6 @@ export class AssistantsService {
     }
     return throwError(error);
   }
+
 
 }
