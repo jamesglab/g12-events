@@ -17,7 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 //COMPONENTS
 import { NavbarComponent } from 'src/app/pages/shared-components/navbar/navbar.component';
 import { FeaturesComponent } from 'src/app/pages/shared-components/features/features.component';
@@ -46,7 +46,8 @@ import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.c
     MatAutocompleteModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxSpinnerModule
   ],
   exports:[
     NavbarComponent,
@@ -69,7 +70,8 @@ import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.c
     MatAutocompleteModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxSpinnerModule
   ],
   providers:[
     MatIconRegistry,

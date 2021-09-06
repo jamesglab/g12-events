@@ -250,9 +250,17 @@ export class PaymentComponent implements OnInit {
 
   paypalPayment() {
     const data = insertPayment({ ...this.donationForm.getRawValue() },
-    this.event, this.assistantsService.assistants);
+      this.event, this.assistantsService.assistants);
 
-    console.log('PAGO PAYPAL',data)
+    console.log('PAGO PAYPAL', data);
+    const paypalSubscr = this.paymentService.registerUsers(data)
+    .subscribe((res) => {
+      this.isLoading = false;
+      this.storageService.setItem('clearAssistans', true);
+      this.showPopUp(res);
+      if (res.url) { window.open(res.url, '_blank'); }
+    }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
+  this.unsubscribe.push(paypalSubscr);
   }
 
   //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

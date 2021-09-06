@@ -151,15 +151,15 @@ export const getJSONPaymentType = (formFields, eventName: string, assistants: nu
                 }
             }
 
-        case 'PAYOAL':
+        case 'PAYPAL':
 
             return {
                 "customer": getCustomer(formFields),
                 "payment": {
                     "paymentType": "PAYPAL",
-                    "email": formFields.paymentPaypal,
                     "amount": parseInt(formFields.amount),
                     "description": "Compra online " + eventName,
+                    "currency": formFields.currency.toLowerCase(),
                 }
             }
     }

@@ -12,7 +12,7 @@ export const environment = {
     users: 'https://dev-api.g12connect.com/api/v2/users',
     payments: 'https://dev-api.g12connect.com/api/v2/payments'
   },
-  urlResponse: "https://dev.eventosg12.com/payment/transaction"
+  urlResponse: "http://localhost:4200/payment/transaction"
   // Initialize Firebase
   // firebase.initializeApp(firebaseConfig);
   // firebase.analytics();

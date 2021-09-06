@@ -306,7 +306,6 @@
 
           <div *ngIf="method_selected == 4 && showNational">
             <div>
-
               <div class="field mt-5">
                 <label class="label">Codigo *</label>
                 <div class="control">
@@ -315,18 +314,6 @@
               </div>
             </div>
           </div>
-
-          <div *ngIf="method_selected == 5 && !showNational">
-            <div>
-              <div class="field mt-5">
-                <label class="label">Correo *</label>
-                <div class="control">
-                  <input class="input" type="email" placeholder="Correo de paypal" formControlName="paymentPaypal">
-                </div>
-              </div>
-            </div>
-          </div>
-
           <button (click)="submit()" class="button btn is-small is-fullwidth mt-5"
             [ngClass]="{ 'is-loading': isLoading }">Realizar Donación</button>
         </div>

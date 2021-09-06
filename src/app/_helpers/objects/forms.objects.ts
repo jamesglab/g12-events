@@ -50,7 +50,7 @@ export const NEW_DONATION = {
     contactPhone: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],
     paymentCode: [null, [Validators.required]],
-    paymentPaypal: [null, [Validators.required, Validators.email]],
+    paymentPaypal: [null, []],
     ipAddress: [null],
     returnUrl: [''], // PENDING
     pastor: [''],
