@@ -33,7 +33,6 @@ export class AssistantsService {
             if (assistants) { this.assistants = assistants };
           }
         }
-
         this.previousUrl = event.url;
       });
   }

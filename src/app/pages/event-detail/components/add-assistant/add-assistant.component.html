@@ -31,7 +31,7 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100" *ngIf="form.registerType.value == '1'">
-              <mat-label>Tipo de documento </mat-label>
+              <mat-label>Tipo de documento *</mat-label>
               <mat-select type="select" formControlName="documentType">
                 <mat-option *ngFor="let type of documentTypes" [value]="type">
                   {{ type }}
@@ -157,7 +157,7 @@
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>País *</mat-label>
-              <mat-select type="select" formControlName="country" (selectionChange)="this.assistantForm.get('typeChurch').reset();getPlaces();">
+              <mat-select type="select" formControlName="country" (selectionChange)="this.assistantForm.get('typeChurch').reset()">
                 <mat-option value="null" disabled>SELECCIONA PAIS</mat-option>
                 <mat-option *ngFor="let country of countries" value="{{ country.name }}">{{ country.name }}</mat-option>
               </mat-select>

@@ -25,6 +25,7 @@
     "animate.css": "^4.1.1",
     "bulma": "^0.9.2",
     "font-awesome": "^4.7.0",
+    "ngx-spinner": "^11.0.2",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.16.6",
     "tslib": "^2.0.0",

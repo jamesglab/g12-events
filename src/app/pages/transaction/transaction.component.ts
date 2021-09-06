@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PaymentService } from 'src/app/modules/_services/payment.service';
 import { StorageService } from 'src/app/modules/_services/storage.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-transaction',
@@ -13,21 +14,25 @@ export class TransactionComponent implements OnInit {
 
   public donationForm: FormGroup;
   public isLoading: boolean = false;
-
+  public validatePaypal;
   constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder,
-    private paymentService: PaymentService, private _storageService: StorageService) { }
+    private paymentService: PaymentService, private _storageService: StorageService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.buildForm();
     const paymentRef = this._storageService.getItem("ref");
-    if(paymentRef){
+    if (paymentRef) {
       this.validateTrasaction({ ref: paymentRef });
-      this._storageService.removeItem("ref");
-    }else{
+      this._storageService.removeItem("ref")
+    } else {
       this.route.queryParams.subscribe((params) => {
-        console.log('tenemos params',params)
-        const { ref } = params;
-        this.validateTrasaction({ ref });
+        if (params.paymentId) {
+          this.validatePaymentPaypal(params);
+        } else {
+          const { ref } = params;
+          this.validateTrasaction({ ref });
+        }
+
       })
     }
   }
@@ -52,20 +57,41 @@ export class TransactionComponent implements OnInit {
   get form() { return this.donationForm.controls; }
 
   validateTrasaction(params) {
+    this.spinner.show();
+
     this.paymentService.getTransactionInfo(params.ref)
       .subscribe(res => {
+        this.spinner.hide();
         this.donationForm.patchValue({ ...res, ...res.donation });
-      }, err => { throw err; })
+      }, err => { this.spinner.hide(); throw err; })
   }
 
   submit(): void {
-    const { reference } = this.donationForm.getRawValue();
-    this.isLoading = true;
-    this.paymentService.getTransactionInfo(reference)
-      .subscribe(res => {
-        this.isLoading = false;
-        this.donationForm.patchValue({ ...res, ...res.donation });
-      }, err => { throw err; })
+    if (this.validatePaypal) {
+      this.validatePaymentPaypal(this.validatePaypal)
+    } else {
+      const { reference } = this.donationForm.getRawValue();
+      this.isLoading = true;
+      this.spinner.show();
+      this.paymentService.getTransactionInfo(reference)
+        .subscribe(res => {
+          this.isLoading = false;
+          this.donationForm.patchValue({ ...res, ...res.donation });
+        }, err => { this.spinner.hide(); throw err; })
+    }
+
+  }
+
+  validatePaymentPaypal(params) {
+    this.validatePaypal = params;
+    this.spinner.show();
+    this.paymentService.validatePaymentPaypal(params).subscribe(res => {
+      this.spinner.hide();
+      this.donationForm.patchValue({ ...res, ...res.donation });
+    }, err => {
+      this.spinner.hide(); throw err
+    });
+
   }
 
 }

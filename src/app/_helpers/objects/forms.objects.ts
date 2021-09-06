@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 export const ADD_ASSISTANT = {
     event: [null],
     registerType: ["1"],
-    confirmEmail: [null, Validators.required],
+    confirmEmail :[null],
     documentNumber: [null, [Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
     Validators.maxLength(13)]],
     name: ['', [Validators.required]],//
@@ -13,7 +13,7 @@ export const ADD_ASSISTANT = {
     mobile: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],//
     email: ['', [Validators.email, Validators.required]],//
-    country: [null],
+    country: [null,Validators.required],
     address: ['', [Validators.pattern(/^[#.0-9a-zA-Z\s,-]+$/), Validators.maxLength(50),
     Validators.minLength(8)]],//
     typeChurch: [null, [Validators.required]],
@@ -24,7 +24,7 @@ export const ADD_ASSISTANT = {
     churchName: [null], //case church g12 and other
     pastorName: [null], //case church g12 and other
     terms: [null, [Validators.required]],
-    documentType: [null]
+    documentType :[null,Validators.required]
 };
 
 export const NEW_DONATION = {
@@ -50,7 +50,7 @@ export const NEW_DONATION = {
     contactPhone: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],
     paymentCode: [null, [Validators.required]],
-    paymentPaypal: [null, [Validators.required, Validators.email]],
+    paymentPaypal: [null, []],
     ipAddress: [null],
     returnUrl: [''], // PENDING
     pastor: [''],
@@ -153,12 +153,12 @@ export const error_messages = [
 
     {
         'documentType': [{ type: 'required', message: 'Tipo de documento requerido' }],
-        // 'documentNumber': [
-        //     { type: 'required', message: 'Numero de documento requerido' },
-        //     { type: 'pattern', message: 'El documento no puede tener caracteres especiales' },
-        //     { type: 'minlength', message: 'El documento debe tener mas de 6 dígitos' },
-        //     { type: 'maxlength', message: 'El documento debe tener menos de 13 dígitos' }
-        // ],
+        'documentNumber': [
+            { type: 'required', message: 'Numero de documento requerido' },
+            { type: 'pattern', message: 'El documento no puede tener caracteres especiales' },
+            { type: 'minlength', message: 'El documento debe tener mas de 6 dígitos' },
+            { type: 'maxlength', message: 'El documento debe tener menos de 13 dígitos' }
+        ],
         'name': [{ type: 'required', message: 'Nombre requerido' }],
         'lastName': [{ type: 'required', message: 'Apellido requerido' }],
         'gender': [{ type: 'required', message: 'Genero Requerido' }],
@@ -188,6 +188,12 @@ export const error_messages = [
     },
     {
         'typeChurch': [{ type: 'required', message: 'Selecciona una iglesia' }],
-
+        'pastor': [{ type: 'required', message: 'Selecciona un pastor' }],
+        'leader': [{ type: 'required', message: 'Selecciona un lider' }],
+        'churchName': [{ type: 'required', message: 'Escribe el nombre de la iglesa' }],
+        'pastorName': [{ type: 'required', message: 'Escribe el nombre del pastor' }],
+        'network': [{ type: 'required', message: 'Selecciona una red' }],
+        'headquarters': [{ type: 'required', message: 'Selecciona una sede' }],
+        'country': [{ type: 'required', message: 'Selecciona un pais' }],
     }
 ]
