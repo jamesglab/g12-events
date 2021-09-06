@@ -183,7 +183,7 @@
                 </div>
               </div>
             </div>
-            <div class="column is-one-quarter">
+            <div class="column is-one-quarter" *ngIf="assistantsValidate == 1 ">
               <div class="card p-5" [ngClass]="{'card-selected':method_selected == 4}" (click)="method_selected = 4">
                 <div class="is-flex is-justify-content-center">
                   <i class="fas fa-qrcode fa-2x"></i>

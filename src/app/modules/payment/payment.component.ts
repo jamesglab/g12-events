@@ -41,6 +41,7 @@ export class PaymentComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   public showNational: boolean;
   public method_selected = 1;
+  public assistantsValidate ;
   public countrys_language = COUNTRIES;
 
   constructor(private fb: FormBuilder, private eventsService: EventsService,
@@ -52,6 +53,7 @@ export class PaymentComponent implements OnInit {
     this.scrollToTop();
     this.getBanks();
     this.event = this.eventsService.event;
+    this.assistantsValidate = this.assistantsService.assistants.length;    
     if (!this.event || this.assistantsService.assistants.length < 1) {
       this.goBack();
     }
