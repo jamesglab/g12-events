@@ -87,7 +87,7 @@ export class EventDetailComponent implements OnInit {
   handleAdd() {
     //cdkFocusInitial 
     // console.log('event', this.event)
-    if (this.assistants.length < 1) {
+    if (this.assistants.length < this.event.quantity_register) {
       const dialogRef = this.dialog.open(AddAssistantComponent);
       dialogRef.componentInstance.event = this.event;
       dialogRef.afterClosed().subscribe(result => {
