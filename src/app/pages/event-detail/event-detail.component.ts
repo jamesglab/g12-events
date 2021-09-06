@@ -98,7 +98,7 @@ export class EventDetailComponent implements OnInit {
         }
       });
     } else {
-      Swal.fire("El registro para este evento es individual.",'','info')
+      Swal.fire("Completaste el máximo de registros",'','info')
     }
 
   }
