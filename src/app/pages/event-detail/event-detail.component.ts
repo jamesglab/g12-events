@@ -87,7 +87,7 @@ export class EventDetailComponent implements OnInit {
   handleAdd() {
     //cdkFocusInitial 
     // console.log('event', this.event)
-    if (this.assistants.length < this.event.quantity_register) {
+    if (this.assistants.length < this.event.quantity_register_max) {
       const dialogRef = this.dialog.open(AddAssistantComponent);
       dialogRef.componentInstance.event = this.event;
       dialogRef.afterClosed().subscribe(result => {
@@ -98,7 +98,7 @@ export class EventDetailComponent implements OnInit {
         }
       });
     } else {
-      Swal.fire("Completaste el máximo de registros para este evento",'','info')
+      Swal.fire("Completaste el máximo de registros para este evento", `El maximo de registros para este evento es de  ${this.event.quantity_register_min}`, 'info')
     }
 
   }
@@ -108,23 +108,29 @@ export class EventDetailComponent implements OnInit {
   }
 
   setDataOnStorage() {
-    if (!this.validateSendMethod) {
-      this.validateSendMethod = true;
-      this.eventsService.validateCapacity({ financial_cut: this.event.financialCut[this.financialCutSelected].id, users: this.assistants.length }).subscribe(res => {
-        if (res.status) {
+
+    if (this.assistants.length >= this.event.quantity_register_min) {
+      if (!this.validateSendMethod) {
+        this.validateSendMethod = true;
+        this.eventsService.validateCapacity({ financial_cut: this.event.financialCut[this.financialCutSelected].id, users: this.assistants.length }).subscribe(res => {
+          if (res.status) {
+            this.validateSendMethod = false;
+            this.event.assistants = this.assistants.length;
+            this.event.financialCutSelected = this.financialCutSelected;
+            this.eventsService.setEvent(this.event);
+            this.assistantsService.saveAssistantOnStorage();
+            this.router.navigate(['/payment']);
+          } else {
+            Swal.fire('Este evento ya no tiene disponibilidad', 'lo sentimos los cupos para este evento ya fueron comprados', 'error');
+          }
+        }, err => {
           this.validateSendMethod = false;
-          this.event.assistants = this.assistants.length;
-          this.event.financialCutSelected = this.financialCutSelected;
-          this.eventsService.setEvent(this.event);
-          this.assistantsService.saveAssistantOnStorage();
-          this.router.navigate(['/payment']);
-        } else {
-          Swal.fire('Este evento ya no tiene disponibilidad', 'lo sentimos los cupos para este evento ya fueron comprados', 'error');
-        }
-      }, err => {
-        this.validateSendMethod = false;
-      });
+        });
+      }
+    } else {
+      Swal.fire('No has completado el minimo de registros para este evento', `El minimo de registros para este evento es de  ${this.event.quantity_register_min}`, 'info')
     }
+
   }
 
   ngOnDestroy() {
