@@ -125,120 +125,107 @@
     </div>
   </div>
 </div>
+<div class="centered">
+  <div class="cont-prices">
 
-<div class="cont-prices">
 
-
-  <ng-container *ngIf="event?.financialCut.length === 1">
-    <div class="container-items-2">
-      <ng-container>
-        <div class="cont-btn-register">
-          <button class="button btn-register mt-2" (click)="handleAdd()">
-            <span class="icon">
-              <i class="fa-lg fas fa-users mr-5"></i>
-            </span>
-            <span>Registrar Usuario</span>
-          </button>
-        </div>
-        <div class="financial-item">
-          <div class="info-price">
-
-            <!-- <div class="old-price">
-              ${{ (assistants.length > 0) ? (event?.financialCut[0].prices.cop * assistants.length) + (((event?.financialCut[0].prices.cop * assistants.length) * 20)/100) : 
-                (event?.financialCut[0].prices.cop) + ((event?.financialCut[0].prices.cop*20)/100) }}
-            </div> -->
-            <div class="current-price">
-              ${{ (assistants.length > 0) ? event?.financialCut[0].prices.cop * assistants.length : event?.financialCut[0].prices.cop }}
-            </div>
-            <!-- <div class="discount">
-              20%
-            </div> -->
+    <!-- <ng-container *ngIf="event?.financialCut.length === 1">
+      <div class="container-items-2">
+        <ng-container>
+          <div class="cont-btn-register">
+            <button class="button btn-register mt-2" (click)="handleAdd()">
+              <span class="icon">
+                <i class="fa-lg fas fa-users mr-5"></i>
+              </span>
+              <span>Registrar Usuario</span>
+            </button>
           </div>
-    
-          <div class="info-price">
-            <!-- <div>
-              -
-            </div> -->
-            <div>
-             EVENTOS G12
-            </div>
-            <!-- <div>
-            -
-            </div> -->
-          </div>
-        </div>
-      </ng-container>
-
-      <ng-container></ng-container>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="event?.financialCut.length > 1">
-    <div class="subtitle bold-text">
-      Seleccionar Oferta
-    </div>
-    <div class="container-items">
-      <ng-container  *ngFor="let cut of event?.financialCut; let i = index;">
-        <div class="financial-item" [ngClass]="{ 'is-selected-item': i === financialCutSelected }" 
-        (click)="financialCutSelected = i;">
-          <h4>{{cut.name}}</h4>
-    
-          <ng-container>
+          <div class="financial-item">
             <div class="info-price">
-    
-              <div class="old-price">
-                ${{ (assistants.length > 0) ? (cut?.prices.cop * assistants.length) - (((cut?.prices.cop * assistants.length) * 20)/100) : 
-                  (cut?.prices.cop) - (cut?.prices.cop*20)/100 }}
-              </div>
               <div class="current-price">
-                ${{ (assistants.length > 0) ? cut?.prices.cop * assistants.length : cut?.prices.cop }}
+                ${{ (assistants.length > 0) ? event?.financialCut[0].prices.cop * assistants.length : event?.financialCut[0].prices.cop }}
+              </div>
+            </div>
+            <div class="info-price">
+              <div>
+                EVENTOS G12
+              </div>
+            </div>
+          </div>
+        </ng-container>
+  
+        <ng-container></ng-container>
+      </div>
+    </ng-container> -->
+  
+    <ng-container>
+      <div class="subtitle bold-text">
+        Seleccionar ticket
+      </div>
+      <div class="container-items">
+        <ng-container *ngFor="let cut of event?.financialCut; let i = index;">
+          <div class="financial-item" [ngClass]="{ 'is-selected-item': i === financialCutSelected }"
+            (click)="changueFinancialCut(i)">
+            <h4>{{cut.name}}</h4>
+  
+            <ng-container>
+              <div class="info-price" *ngIf="!cut.is_group">
+                <div class="current-price" *ngIf="financialCutSelected == i ">
+                  COP ${{ (assistants.length > 0) ? cut?.prices.cop * assistants.length : cut?.prices.cop }}
+                </div>
+                <div class="current-price" *ngIf="financialCutSelected == i ">
+                  USD ${{ (assistants.length > 0) ? cut?.prices.usd * assistants.length : cut?.prices.usd }}
+                </div>
+                <div class="current-price" *ngIf="financialCutSelected != i ">
+                  COP  ${{ cut?.prices.cop }} 
+                </div>
+                <div class="current-price" *ngIf="financialCutSelected != i ">
+                  USD ${{ cut?.prices.usd }}
+                </div>
+              </div>
+  
+  
+              <div class="info-price" *ngIf="cut.is_group">
+                <div class="current-price">
+                  COP ${{cut.price_group.cop}}
+                </div>
+  
+                <div class="current-price">
+                  USD ${{cut.price_group.usd}}
+                </div>
+              </div>
+            </ng-container>
+  
+            <ng-container></ng-container>
+  
+            <!--MAKE NGIF LANG == EN -->
+            <!-- <div class="info-price"> 
+              <div class="current-price">
+                ${{ (assistants.length > 0) ? event?.prices.usd * assistants.length : event?.prices.cop }}
+              </div>
+              <div class="old-price">
+                ${{ (assistants.length > 0) ? (event?.prices.cop * assistants.length) - (((event?.prices.cop * assistants.length) * 20)/100) : event?.prices.cop }}
               </div>
               <div class="discount">
                 20%
               </div>
-            </div>
-      
-            <div class="info-price">
-              <div>
-                ANTES
-              </div>
-              <div>
-                AHORA
-              </div>
-              <div>
-              DESC.
-              </div>
-            </div>
-          </ng-container>
-    
-          <ng-container></ng-container>
-      
-              <!--MAKE NGIF LANG == EN -->
-          <!-- <div class="info-price"> 
-            <div class="current-price">
-              ${{ (assistants.length > 0) ? event?.prices.usd * assistants.length : event?.prices.cop }}
-            </div>
-            <div class="old-price">
-              ${{ (assistants.length > 0) ? (event?.prices.cop * assistants.length) - (((event?.prices.cop * assistants.length) * 20)/100) : event?.prices.cop }}
-            </div>
-            <div class="discount">
-              20%
-            </div>
-          </div> -->
-      
-        </div>
-      </ng-container>
-    </div>
-    <div class="cont-btn-register">
-      <button class="button btn-register mt-2" (click)="handleAdd()">
-        <span class="icon">
-          <i class="fa-lg fas fa-users mr-5"></i>
-        </span>
-        <span>Registrar Usuario</span>
-      </button>
-    </div>
-  </ng-container>
+            </div> -->
+  
+          </div>
+        </ng-container>
+      </div>
+      <div class="cont-btn-register">
+        <button class="button btn-register mt-2" (click)="handleAdd()">
+          <span class="icon">
+            <i class="fa-lg fas fa-users mr-5"></i>
+          </span>
+          <span>Registrar Usuario</span>
+        </button>
+      </div>
+    </ng-container>
+  </div>
 </div>
+
 
 <div class="events-container">
   <!-- <div class="cont-register">

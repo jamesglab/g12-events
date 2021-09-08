@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 export const ADD_ASSISTANT = {
     event: [null],
     registerType: ["1"],
-    confirmEmail :[null],
+    confirmEmail: [null],
     documentNumber: [null, [Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
     Validators.maxLength(13)]],
     name: ['', [Validators.required]],//
@@ -13,7 +13,7 @@ export const ADD_ASSISTANT = {
     mobile: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
     Validators.minLength(6)]],//
     email: ['', [Validators.email, Validators.required]],//
-    country: [null,Validators.required],
+    country: [null, Validators.required],
     address: ['', [Validators.pattern(/^[#.0-9a-zA-Z\s,-]+$/), Validators.maxLength(50),
     Validators.minLength(8)]],//
     typeChurch: [null, [Validators.required]],
@@ -24,7 +24,7 @@ export const ADD_ASSISTANT = {
     churchName: [null], //case church g12 and other
     pastorName: [null], //case church g12 and other
     terms: [null, [Validators.required]],
-    documentType :[null,Validators.required]
+    documentType: [null, Validators.required]
 };
 
 export const NEW_DONATION = {
@@ -34,7 +34,7 @@ export const NEW_DONATION = {
     orderType: ["Donacion"],
     documentType: ['CC'],
     paymentMethod: [null, [Validators.required]], // PSE,TC,PE
-    amount: [null], //PRICE OF EVENT
+    amount: [{ value: null,disabled: true}], //PRICE OF EVENT
     cardInstallmentsNumber: [15],
     cardNumber: [null, [Validators.required]],
     cardName: [null, [Validators.required]],

@@ -41,7 +41,7 @@ export class PaymentComponent implements OnInit {
   private unsubscribe: Subscription[] = [];
   public showNational: boolean;
   public method_selected = 1;
-  public assistantsValidate ;
+  public assistantsValidate;
   public countrys_language = COUNTRIES;
 
   constructor(private fb: FormBuilder, private eventsService: EventsService,
@@ -53,7 +53,7 @@ export class PaymentComponent implements OnInit {
     this.scrollToTop();
     this.getBanks();
     this.event = this.eventsService.event;
-    this.assistantsValidate = this.assistantsService.assistants.length;    
+    this.assistantsValidate = this.assistantsService.assistants.length;
     if (!this.event || this.assistantsService.assistants.length < 1) {
       this.goBack();
     }
@@ -80,8 +80,15 @@ export class PaymentComponent implements OnInit {
     this.donationForm.controls.currency.disable();
     this.donationForm.get('country').setValue('Colombia');
     this.validateCountry('Colombia');
-    this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop * this.assistantsService.assistants.length);
-    this.donationForm.controls.amount.disable();
+    console.log('el evento es', this.event.financialCut[this.event.financialCutSelected])
+    if (this.event.financialCut[this.event.financialCutSelected].is_group) {
+      this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].price_group.cop);
+      this.donationForm.controls.amount.disable();
+
+    } else {
+      this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop * this.assistantsService.assistants.length);
+      this.donationForm.controls.amount.disable();
+    }
     this.form.paymentType.setValue("CAR");
     this.donationForm.get("country").valueChanges.subscribe(country => {
       this.validateCountry(country)
@@ -123,7 +130,14 @@ export class PaymentComponent implements OnInit {
     if (country == "Colombia") {
       this.showNational = true;
       this.donationForm.get('currency').setValue('COP');
-      this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop * this.assistantsService.assistants.length);
+      if (this.event.financialCut[this.event.financialCutSelected].is_group) {
+        this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].price_group.cop);
+        this.donationForm.controls.amount.disable();
+
+      } else {
+        this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop * this.assistantsService.assistants.length);
+        this.donationForm.controls.amount.disable();
+      }
       this.cdr.detectChanges();
       this.donationForm.get('document').setValidators([Validators.required]);
     } else {
@@ -132,7 +146,14 @@ export class PaymentComponent implements OnInit {
       this.donationForm.get('currency').setValue('USD');
       this.method_selected = 1;
       if (this.event.financialCut[this.event.financialCutSelected].prices.usd) {
-        this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.usd * this.assistantsService.assistants.length);
+        if (this.event.financialCut[this.event.financialCutSelected].is_group) {
+          this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].price_group.usd);
+          this.donationForm.controls.amount.disable();
+    
+        } else {
+          this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.usd * this.assistantsService.assistants.length);
+          this.donationForm.controls.amount.disable();
+        }
       } else {
         this.donationForm.get('country').setValue('Colombia')
       }
@@ -186,6 +207,7 @@ export class PaymentComponent implements OnInit {
     const data = insertPayment({ ...this.donationForm.getRawValue() },
       this.event, this.assistantsService.assistants);
 
+    console.log('insert payment', data);
     const pseSubscr = this.paymentService.registerUsers(data)
       .subscribe((res) => {
         this.isLoading = false;
@@ -256,13 +278,13 @@ export class PaymentComponent implements OnInit {
 
     console.log('PAGO PAYPAL', data);
     const paypalSubscr = this.paymentService.registerUsers(data)
-    .subscribe((res) => {
-      this.isLoading = false;
-      this.storageService.setItem('clearAssistans', true);
-      this.showPopUp(res);
-      if (res.url) { window.open(res.url, '_blank'); }
-    }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
-  this.unsubscribe.push(paypalSubscr);
+      .subscribe((res) => {
+        this.isLoading = false;
+        this.storageService.setItem('clearAssistans', true);
+        this.showPopUp(res);
+        if (res.url) { window.open(res.url, '_blank'); }
+      }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
+    this.unsubscribe.push(paypalSubscr);
   }
 
   //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

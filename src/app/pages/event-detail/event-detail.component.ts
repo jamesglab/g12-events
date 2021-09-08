@@ -7,6 +7,7 @@ import { AddAssistantComponent } from './components/add-assistant/add-assistant.
 import { EventsService } from 'src/app/modules/_services/events.service';
 import { AssistantsService } from 'src/app/modules/_services/assistants.service';
 import Swal from 'sweetalert2';
+import { StorageService } from 'src/app/modules/_services/storage.service';
 
 @Component({
   selector: 'app-event-detail',
@@ -28,7 +29,7 @@ export class EventDetailComponent implements OnInit {
   user = 'https://i.pinimg.com/280x280_RS/64/15/94/6415948d5a1366183e7a8c32131acb47.jpg';
 
   constructor(public dialog: MatDialog, private assistantsService: AssistantsService,
-    private eventsService: EventsService, private route: ActivatedRoute,
+    private eventsService: EventsService, private route: ActivatedRoute, private storageService: StorageService,
     private router: Router, private cdr: ChangeDetectorRef) { }
   @HostListener('window:resize', ['$event'])
 
@@ -55,8 +56,8 @@ export class EventDetailComponent implements OnInit {
     this.onResize();
     this.getEventById();
     this.assistants = this.assistantsService.assistants;
+    this.financialCutSelected = this.assistantsService.financialCutSelected;
     this.susbcribeToChanges();
-
 
   }
 
@@ -87,7 +88,7 @@ export class EventDetailComponent implements OnInit {
   handleAdd() {
     //cdkFocusInitial 
     // console.log('event', this.event)
-    if (this.assistants.length < this.event.quantity_register_max) {
+    if (this.assistants.length < this.event.financialCut[this.financialCutSelected].quantity_register_max) {
       const dialogRef = this.dialog.open(AddAssistantComponent);
       dialogRef.componentInstance.event = this.event;
       dialogRef.afterClosed().subscribe(result => {
@@ -98,7 +99,8 @@ export class EventDetailComponent implements OnInit {
         }
       });
     } else {
-      Swal.fire("Completaste el máximo de registros para este evento", `El maximo de registros para este evento es de  ${this.event.quantity_register_min}`, 'info')
+      Swal.fire("Completaste el máximo de registros para este ticket",
+        `El maximo de registros para este ticket es de  ${this.event.financialCut[this.financialCutSelected].quantity_register_max}`, 'info')
     }
 
   }
@@ -109,7 +111,7 @@ export class EventDetailComponent implements OnInit {
 
   setDataOnStorage() {
 
-    if (this.assistants.length >= this.event.quantity_register_min) {
+    if (this.assistants.length >= this.event.financialCut[this.financialCutSelected].quantity_register_min) {
       if (!this.validateSendMethod) {
         this.validateSendMethod = true;
         this.eventsService.validateCapacity({ financial_cut: this.event.financialCut[this.financialCutSelected].id, users: this.assistants.length }).subscribe(res => {
@@ -128,7 +130,36 @@ export class EventDetailComponent implements OnInit {
         });
       }
     } else {
-      Swal.fire('No has completado el minimo de registros para este evento', `El minimo de registros para este evento es de  ${this.event.quantity_register_min}`, 'info')
+      Swal.fire('No has completado el minimo de registros para este ticket',
+        `El minimo de registros para este ticket es de  ${this.event.financialCut[this.financialCutSelected].quantity_register_max}`, 'info')
+    }
+
+  }
+
+  changueFinancialCut(i) {
+    if (this.financialCutSelected != i && this.assistants.length > 0) {
+      Swal.fire({
+        title: 'Cambiar de ticket',
+        text: "Al cambiar de ticket se eliminaran los registros actuales",
+        showDenyButton: true,
+        confirmButtonText: 'Cambiar',
+        icon: 'question',
+        reverseButtons: true,
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.assistants = [];
+          this.assistantsService.assistants = [];
+          this.financialCutSelected = i;
+          this.storageService.setItem('financialCutSelected',i);
+        } else if (result.isDenied) {
+
+        }
+      })
+    } else if (this.assistants.length == 0) {
+      this.financialCutSelected = i;
+      this.storageService.setItem('financialCutSelected',i);
     }
 
   }
@@ -142,3 +173,4 @@ export class EventDetailComponent implements OnInit {
   }
 
 }
+
