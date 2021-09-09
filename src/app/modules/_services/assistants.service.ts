@@ -17,7 +17,7 @@ export class AssistantsService {
   @Output() assistantsEvent: EventEmitter<any[]> = new EventEmitter();
   public assistants: any[] = [];
   public previousUrl: string = "";
-  public financialCutSelected = 0;
+  public financialCutSelected: any;
 
   constructor(private storage: StorageService, private router: Router) {
     router.events
@@ -28,7 +28,7 @@ export class AssistantsService {
           this.storage.removeItem('clearAssistans');
           this.storage.removeItem('assistants');
           this.assistants = [];
-          this.financialCutSelected = 0;
+          this.financialCutSelected = null;
         } else {
           if (this.previousUrl === "/payment") {
             const assistants = this.storage.getItem("assistants");

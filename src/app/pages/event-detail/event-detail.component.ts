@@ -20,7 +20,7 @@ export class EventDetailComponent implements OnInit {
   public date: Date = new Date();
   public search: string = "";
   public assistants: any[] = [];
-  public financialCutSelected = 0;
+  public financialCutSelected: any;
   private unsubscribe: Subscription[] = [];
   private validateSendMethod = false;
   public innerWidth: number = 0;
@@ -57,28 +57,22 @@ export class EventDetailComponent implements OnInit {
     this.getEventById();
     this.assistants = this.assistantsService.assistants;
     this.financialCutSelected = this.assistantsService.financialCutSelected;
+
+
     this.susbcribeToChanges();
 
   }
 
   getEventById() {
-    // localStorage.clear();
     const eventId = atob(this.route.snapshot.paramMap.get("id"));
     const getEventSubscr = this.eventsService
       .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
-        // console.log("RESS", res[0]);
         this.event = res[0];
+        if (!this.financialCutSelected) {
+          this.financialCutSelected = res[0].financialCut[0]
+        }
       });
     this.unsubscribe.push(getEventSubscr);
-    // if (eventId != "2") {
-    //   const getCivilSubscr = this.eventsService
-    //     .getEventById(eventId).subscribe((res: any) => {
-    //       res.entity[0].eventIdEncrypted = eventId;
-    //       this.event = res.entity[0];
-    //       this.cdr.detectChanges();
-    //     });
-    //   this.unsubscribe.push(getCivilSubscr);
-    // }
   }
 
   onSearch(value: string) {
@@ -86,21 +80,18 @@ export class EventDetailComponent implements OnInit {
   }
 
   handleAdd() {
-    //cdkFocusInitial 
-    // console.log('event', this.event)
-    if (this.assistants.length < this.event.financialCut[this.financialCutSelected].quantity_register_max) {
+    if (this.assistants.length < this.financialCutSelected.quantity_register_max) {
       const dialogRef = this.dialog.open(AddAssistantComponent);
       dialogRef.componentInstance.event = this.event;
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          // result.Leader = (result.Leader) ? result.Leader.code : null;
           this.assistantsService.addNewAssistant(result);
           this.cdr.detectChanges();
         }
       });
     } else {
       Swal.fire("Completaste el máximo de registros para este ticket",
-        `El maximo de registros para este ticket es de  ${this.event.financialCut[this.financialCutSelected].quantity_register_max}`, 'info')
+        `El maximo de registros para este ticket es de  ${this.financialCutSelected.quantity_register_max}`, 'info')
     }
 
   }
@@ -111,10 +102,10 @@ export class EventDetailComponent implements OnInit {
 
   setDataOnStorage() {
 
-    if (this.assistants.length >= this.event.financialCut[this.financialCutSelected].quantity_register_min) {
+    if (this.assistants.length >= this.financialCutSelected.quantity_register_min) {
       if (!this.validateSendMethod) {
         this.validateSendMethod = true;
-        this.eventsService.validateCapacity({ financial_cut: this.event.financialCut[this.financialCutSelected].id, users: this.assistants.length }).subscribe(res => {
+        this.eventsService.validateCapacity({ financial_cut: this.financialCutSelected.id, users: this.assistants.length }).subscribe(res => {
           if (res.status) {
             this.validateSendMethod = false;
             this.event.assistants = this.assistants.length;
@@ -131,13 +122,13 @@ export class EventDetailComponent implements OnInit {
       }
     } else {
       Swal.fire('No has completado el minimo de registros para este ticket',
-        `El minimo de registros para este ticket es de  ${this.event.financialCut[this.financialCutSelected].quantity_register_max}`, 'info')
+        `El minimo de registros para este ticket es de  ${this.financialCutSelected.quantity_register_max}`, 'info')
     }
 
   }
 
-  changueFinancialCut(i) {
-    if (this.financialCutSelected != i && this.assistants.length > 0) {
+  changueFinancialCut(cut) {
+    if (this.financialCutSelected.id != cut.id && this.assistants.length > 0) {
       Swal.fire({
         title: 'Cambiar de ticket',
         text: "Al cambiar de ticket se eliminaran los registros actuales",
@@ -151,15 +142,15 @@ export class EventDetailComponent implements OnInit {
         if (result.isConfirmed) {
           this.assistants = [];
           this.assistantsService.assistants = [];
-          this.financialCutSelected = i;
-          this.storageService.setItem('financialCutSelected',i);
+          this.financialCutSelected = cut;
+          this.storageService.setItem('financialCutSelected', cut);
         } else if (result.isDenied) {
 
         }
       })
     } else if (this.assistants.length == 0) {
-      this.financialCutSelected = i;
-      this.storageService.setItem('financialCutSelected',i);
+      this.financialCutSelected = cut;
+      this.storageService.setItem('financialCutSelected', cut);
     }
 
   }

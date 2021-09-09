@@ -80,13 +80,13 @@ export class PaymentComponent implements OnInit {
     this.donationForm.controls.currency.disable();
     this.donationForm.get('country').setValue('Colombia');
     this.validateCountry('Colombia');
-    console.log('el evento es', this.event.financialCut[this.event.financialCutSelected])
-    if (this.event.financialCut[this.event.financialCutSelected].is_group) {
-      this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].price_group.cop);
+    console.log('el evento es', this.event.financialCutSelected)
+    if (this.event.financialCutSelected.is_group) {
+      this.donationForm.get('amount').setValue(this.event.financialCutSelected.price_group.cop);
       this.donationForm.controls.amount.disable();
 
     } else {
-      this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop * this.assistantsService.assistants.length);
+      this.donationForm.get('amount').setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
       this.donationForm.controls.amount.disable();
     }
     this.form.paymentType.setValue("CAR");
@@ -130,12 +130,12 @@ export class PaymentComponent implements OnInit {
     if (country == "Colombia") {
       this.showNational = true;
       this.donationForm.get('currency').setValue('COP');
-      if (this.event.financialCut[this.event.financialCutSelected].is_group) {
-        this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].price_group.cop);
+      if (this.event.financialCutSelected.is_group) {
+        this.donationForm.get('amount').setValue(this.event.financialCutSelected.price_group.cop);
         this.donationForm.controls.amount.disable();
 
       } else {
-        this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.cop * this.assistantsService.assistants.length);
+        this.donationForm.get('amount').setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
         this.donationForm.controls.amount.disable();
       }
       this.cdr.detectChanges();
@@ -145,13 +145,13 @@ export class PaymentComponent implements OnInit {
       this.donationForm.get('document').setErrors(null);
       this.donationForm.get('currency').setValue('USD');
       this.method_selected = 1;
-      if (this.event.financialCut[this.event.financialCutSelected].prices.usd) {
-        if (this.event.financialCut[this.event.financialCutSelected].is_group) {
-          this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].price_group.usd);
+      if (this.event.financialCutSelected.prices.usd) {
+        if (this.event.financialCutSelected.is_group) {
+          this.donationForm.get('amount').setValue(this.event.financialCutSelected.price_group.usd);
           this.donationForm.controls.amount.disable();
     
         } else {
-          this.donationForm.get('amount').setValue(this.event.financialCut[this.event.financialCutSelected].prices.usd * this.assistantsService.assistants.length);
+          this.donationForm.get('amount').setValue(this.event.financialCutSelected.prices.usd * this.assistantsService.assistants.length);
           this.donationForm.controls.amount.disable();
         }
       } else {

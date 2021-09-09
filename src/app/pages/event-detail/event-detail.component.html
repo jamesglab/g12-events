@@ -164,8 +164,8 @@
       </div>
       <div class="container-items">
         <ng-container *ngFor="let cut of event?.financialCut; let i = index;">
-          <div class="financial-item" [ngClass]="{ 'is-selected-item': i === financialCutSelected }"
-            (click)="changueFinancialCut(i)">
+          <div class="financial-item" [ngClass]="{ 'is-selected-item': cut?.id === financialCutSelected?.id }"
+            (click)="changueFinancialCut(cut)">
             <h4>{{cut.name}}</h4>
   
             <ng-container>
