@@ -29,6 +29,6 @@ export const insertPayment = (formFields, event: any, assistants: any[]) => {
     // anexamos el evento a el campo donacion
     JSON_payment.donation = event;
     // enviamos el corte que selecciono el usuario del evento 
-    JSON_payment.financialCut = event.financialCut[event.financialCutSelected];
+    JSON_payment.financialCut = event.financialCutSelected;
     return JSON_payment;
 }
