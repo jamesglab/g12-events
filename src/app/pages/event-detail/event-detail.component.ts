@@ -101,8 +101,7 @@ export class EventDetailComponent implements OnInit {
   }
 
   setDataOnStorage() {
-
-    if (this.assistants.length < this.financialCutSelected.quantity_register_min) {
+    if (this.assistants.length >= this.financialCutSelected.quantity_register_min) {
       if (!this.validateSendMethod) {
         this.validateSendMethod = true;
         this.eventsService.validateCapacity({ financial_cut: this.financialCutSelected.id, users: this.assistants.length }).subscribe(res => {
@@ -122,7 +121,7 @@ export class EventDetailComponent implements OnInit {
       }
     } else {
       Swal.fire('No has completado el minimo de registros para este ticket',
-        `El minimo de registros para este ticket es de  ${this.financialCutSelected.quantity_register_max}`, 'info')
+        `El minimo de registros para este ticket es de  ${this.financialCutSelected.quantity_register_min}`, 'info')
     }
 
   }

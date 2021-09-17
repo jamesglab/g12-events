@@ -16,18 +16,13 @@
         <span *ngFor="let cat of event.category">{{ cat }} </span>
       </div>
 
-      <div class="cont-price" *ngIf="event.financialCut.length == 1">
+      <div class="cont-price" >
         <div class="price">
           ${{ event?.financialCut[0].prices.cop }}
           COP
         </div>
       </div>
-      <div class="cont-price" *ngIf="event.financialCut.length > 1">
-        <div class="price">
-          <span>{{event.financialCut.length}} </span>
-          <i class="fas fa-ticket-alt"></i>
-        </div>
-      </div>
+  
 
     </div>
   </div>
@@ -52,18 +47,13 @@
       </div>
 
       <div class="cont-price-list">
-        <div class="cont-price" *ngIf="event.financialCut.length == 1">
+        <div class="cont-price" >
           <div class="price">
             ${{ event?.financialCut[0].prices.cop }}
             COP
           </div>
         </div>
-        <div class="cont-price" *ngIf="event.financialCut.length > 1">
-          <div class="price">
-            <span>{{event.financialCut.length}} </span>
-            <i class="fas fa-ticket-alt"></i>
-          </div>
-        </div>
+        
 
       </div>
 
