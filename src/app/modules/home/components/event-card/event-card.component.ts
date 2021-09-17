@@ -19,23 +19,37 @@ export class EventCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  eventDetail(id: number) {
+  async eventDetail(id: number) {
     if (!this.validateSendMethod) {
       this.validateSendMethod = true;
-      this._eventsService.validateCapacity({ financial_cut: this.event?.financialCut[0].id, users: 1 }).subscribe(res => {
-        if (res.status) {
+      let validateCuts = false;
+
+
+      this.event?.financialCut.map(cut => {
+        this._eventsService.validateCapacity({ financial_cut: cut.id, users: 1 }).subscribe(res => {
+          if (res.status) {
+            validateCuts = true;
+            this.validateStatus(res.status, id);
+            this.validateSendMethod = false;
+          } else {
+          }
+        }, err => {
           this.validateSendMethod = false;
-          const _id = btoa(id.toString());
-          this.router.navigate(['home/event', _id]); // ENCRIPT ID AND GO TO DETAIL
-        } else {
-          Swal.fire('Este evento ya no tiene disponibilidad', 'lo sentimos los cupos para este evento ya fueron comprados', 'error')
-        }
-      },err=>{
-        this.validateSendMethod = false;
+          this.validateStatus(false, id);
+
+        });
       });
     }
   }
 
+  validateStatus(status, id) {
+    if (status) {
+      const _id = btoa(id.toString());
+      this.router.navigate(['home/event', _id]); // ENCRIPT ID AND GO TO DETAIL
+    } else if (this.validateSendMethod){
+      Swal.fire('Este evento ya no tiene disponibilidad', 'lo sentimos los cupos para este evento ya fueron comprados', 'error')
+    }
+  }
   handleErrorImage($event: any) {
     $event.target.src = "/assets/cover.png";
   }

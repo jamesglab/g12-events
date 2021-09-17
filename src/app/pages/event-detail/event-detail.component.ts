@@ -102,7 +102,7 @@ export class EventDetailComponent implements OnInit {
 
   setDataOnStorage() {
 
-    if (this.assistants.length >= this.financialCutSelected.quantity_register_min) {
+    if (this.assistants.length < this.financialCutSelected.quantity_register_min) {
       if (!this.validateSendMethod) {
         this.validateSendMethod = true;
         this.eventsService.validateCapacity({ financial_cut: this.financialCutSelected.id, users: this.assistants.length }).subscribe(res => {
