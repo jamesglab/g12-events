@@ -106,11 +106,14 @@
 
           </div>
           <div class="col-6">
-            <mat-form-field class="w-100" appearance="fill">
+            <!-- <mat-form-field class="w-100" appearance="fill">
               <mat-label>Dirección</mat-label>
               <input matInput autocomplete="off" formControlName="address" />
+            </mat-form-field> -->
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Correo*</mat-label>
+              <input matInput autocomplete="off" formControlName="email" />
             </mat-form-field>
-
 
           </div>
         </div>
@@ -119,15 +122,12 @@
 
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Correo*</mat-label>
-              <input matInput autocomplete="off" formControlName="email" />
-            </mat-form-field>
-          </div>
-          <div class="col-6">
-            <mat-form-field class="w-100" appearance="fill">
               <mat-label>Confirmar correo*</mat-label>
               <input matInput autocomplete="off" formControlName="confirmEmail" />
             </mat-form-field>
+          </div>
+          <div class="col-6">
+            
           </div>
         </div>
 
