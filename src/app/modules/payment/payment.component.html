@@ -13,10 +13,8 @@
             <div class="field has-addons">
               <div class="control is-expanded">
                 <div class="select is-fullwidth">
-                  <select formControlName="country">
-                    <option [value]="country.name" *ngFor="let country of countrys_language"
-                      (click)="validateCountry(country)">
-                      {{country.name}}</option>
+                  <select formControlName="country" (selectionChange)="validateCountry($event)">
+                    <option [value]="country.name" *ngFor="let country of countrys_language">{{country.name}}</option>
                   </select>
                 </div>
               </div>

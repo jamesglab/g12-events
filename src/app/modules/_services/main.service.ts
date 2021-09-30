@@ -40,7 +40,7 @@ export class MainService {
 
   getLeadersOrPastors(data: { Code: string, IdSede: number }): Observable<any> {
     return this.http.get<any>(
-      `${environment.apiUrlG12Connect.users}/user/pastor`, {
+      `${environment.apiUrlG12Connect.users}/pastor`, {
       headers: header, params: {
         userCode: data.Code, church: data.IdSede.toString()
       }

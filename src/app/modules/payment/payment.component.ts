@@ -126,7 +126,7 @@ export class PaymentComponent implements OnInit {
   }
 
   validateCountry(country) {
-
+console.log('validamos',country)
     if (country == "Colombia") {
       this.showNational = true;
       this.donationForm.get('currency').setValue('COP');
