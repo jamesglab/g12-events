@@ -126,7 +126,7 @@ export class PaymentComponent implements OnInit {
   }
 
   validateCountry(country) {
-console.log('validamos',country)
+    console.log('validamos', country)
     if (country == "Colombia") {
       this.showNational = true;
       this.donationForm.get('currency').setValue('COP');
@@ -138,7 +138,7 @@ console.log('validamos',country)
         this.donationForm.get('amount').setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
         this.donationForm.controls.amount.disable();
       }
-      this.cdr.detectChanges();
+      // this.cdr.detectChanges();
       this.donationForm.get('document').setValidators([Validators.required]);
     } else {
       this.showNational = false;
@@ -149,15 +149,16 @@ console.log('validamos',country)
         if (this.event.financialCutSelected.is_group) {
           this.donationForm.get('amount').setValue(this.event.financialCutSelected.price_group.usd);
           this.donationForm.controls.amount.disable();
-    
+
         } else {
           this.donationForm.get('amount').setValue(this.event.financialCutSelected.prices.usd * this.assistantsService.assistants.length);
           this.donationForm.controls.amount.disable();
         }
       } else {
-        this.donationForm.get('country').setValue('Colombia')
+        Swal.fire('Error','Este corte no tiene pago en dolares','warning');
+        this.donationForm.get('country').setValue('Colombia');
       }
-      this.cdr.detectChanges();
+      // this.cdr.detectChanges();
     }
   }
 
