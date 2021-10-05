@@ -27,12 +27,12 @@ export class EventCardComponent implements OnInit {
 
       this.event?.financialCut.map(cut => {
         this._eventsService.validateCapacity({ financial_cut: cut.id, users: 1 }).subscribe(res => {
-          if (res.status) {
+          // if (res.status) {
             validateCuts = true;
             this.validateStatus(res.status, id);
             this.validateSendMethod = false;
-          } else {
-          }
+          // } else {
+          // }
         }, err => {
           this.validateSendMethod = false;
           this.validateStatus(false, id);
