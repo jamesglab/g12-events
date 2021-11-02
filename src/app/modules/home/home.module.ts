@@ -12,6 +12,8 @@ import { AddAssistantComponent } from 'src/app/pages/event-detail/components/add
 import { AssistantsTableComponent } from 'src/app/pages/event-detail/components/assistants-table/assistants-table.component';
 import { TermsConditionsComponent } from 'src/app/pages/event-detail/components/terms-conditions/terms-conditions.component';
 import { EventsSliderComponent } from './components/events-slider/events-slider.component';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 @NgModule({
   declarations: [
@@ -21,14 +23,16 @@ import { EventsSliderComponent } from './components/events-slider/events-slider.
     AddAssistantComponent,
     AssistantsTableComponent,
     TermsConditionsComponent,
-    EventsSliderComponent
+    EventsSliderComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    TranslateModule
+
   ]
 })
 export class HomeModule { }

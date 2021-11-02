@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 declare global {
   interface Window {
-      keybe:any;
+    keybe: any;
   }
 }
 @Component({
@@ -13,10 +14,15 @@ declare global {
 
 export class AppComponent implements OnInit {
   title = 'g12-events';
-  ngOnInit(){
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['es', 'en', 'fr', 'pt', 'ru']);
+  }
 
+  ngOnInit() {
     this.createKeybe();
   }
+
+
 
   createKeybe() {
     var keybe = document.getElementById('keybe')
@@ -30,7 +36,7 @@ export class AppComponent implements OnInit {
       // app_name: 'mision carismatica'
     }
     // setTimeout(() => {
-      window.keybe.webchatConversationsUiLoad(configChat);
+    window.keybe.webchatConversationsUiLoad(configChat);
     // }, 1000)
   }
 

@@ -23,6 +23,7 @@ import { NavbarComponent } from 'src/app/pages/shared-components/navbar/navbar.c
 import { FeaturesComponent } from 'src/app/pages/shared-components/features/features.component';
 import { SubscriptionComponent } from 'src/app/pages/shared-components/subscription/subscription.component';
 import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -47,7 +48,8 @@ import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.c
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatButtonModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    TranslateModule
   ],
   exports:[
     NavbarComponent,

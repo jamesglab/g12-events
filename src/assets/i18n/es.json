@@ -1,4 +1,12 @@
 {
-  
-
+  "language": {
+    "es": "Español",
+    "en": "English",
+    "fr": "Français",
+    "pt": "Português",
+    "ru": "русский"
+  },
+  "home": {
+    "events": "Eventos"
+  }
 }
