@@ -47,8 +47,6 @@ export class EventDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // getEventById   
-
     var keybe = document.getElementById('keybe-webchat');
     if (keybe) {
       keybe.remove();
@@ -57,27 +55,27 @@ export class EventDetailComponent implements OnInit {
     this.getEventById();
     this.assistants = this.assistantsService.assistants;
     this.financialCutSelected = this.assistantsService.financialCutSelected;
-
-
     this.susbcribeToChanges();
 
   }
 
   getEventById() {
     const eventId = atob(this.route.snapshot.paramMap.get("id"));
-    if (parseInt(eventId) == 29){
-      this.router.navigate(['/home/all']);
-    }else {
-      const getEventSubscr = this.eventsService
+    const getEventSubscr = this.eventsService
       .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
+        if (!res[0]) {
+          this.router.navigate(['/home/all']);
+          return
+        }
         this.event = res[0];
         if (!this.financialCutSelected) {
           this.financialCutSelected = res[0].financialCut[0]
         }
+
       });
-    this.unsubscribe.push(getEventSubscr);  
-    }
-    
+    this.unsubscribe.push(getEventSubscr);
+    // }
+
   }
 
   onSearch(value: string) {

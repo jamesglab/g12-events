@@ -54,12 +54,11 @@ export class HomeComponent implements OnInit {
       .getFilter({ type: 'G12_EVENT' }).subscribe((res: Event[]) => {
         res.reverse(); //TO SORT ARRAY
         this.events = res;
-        this.events.map((event, i) => {
-          if (event.id == 29) {
-            this.events.splice(i, 1)
-          }
-
-        })
+        // this.events.map((event, i) => {
+        //   if (event.id == 29) {
+        //     this.events.splice(i, 1)
+        //   }
+        // })
       });
     this.unsubscribe.push(getEventsSubscr);
   }
