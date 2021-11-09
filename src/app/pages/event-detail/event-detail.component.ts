@@ -65,14 +65,19 @@ export class EventDetailComponent implements OnInit {
 
   getEventById() {
     const eventId = atob(this.route.snapshot.paramMap.get("id"));
-    const getEventSubscr = this.eventsService
+    if (parseInt(eventId) == 29){
+      this.router.navigate(['/home/all']);
+    }else {
+      const getEventSubscr = this.eventsService
       .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
         this.event = res[0];
         if (!this.financialCutSelected) {
           this.financialCutSelected = res[0].financialCut[0]
         }
       });
-    this.unsubscribe.push(getEventSubscr);
+    this.unsubscribe.push(getEventSubscr);  
+    }
+    
   }
 
   onSearch(value: string) {
