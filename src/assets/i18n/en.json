@@ -7,7 +7,12 @@
     "ru": "русский"
   },
   "home": {
-    "events": "Events"
+    "events": "Eventos",
+    "filter": "Filtros",
+    "categories": "Categorias",
+    "filter_events": "Filtrar Eventos",
+    "delete_filter": "Clear filter",
+    "order": "Ordenar",
+    "buy_tickets": "buy tickets"
   }
-  
 }

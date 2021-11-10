@@ -2,17 +2,17 @@
 
 <div class="app-container">
   <div class="breadcum-element">
-    <span>Home/</span> Events
+
   </div>
 
   <app-events-slider [events]="events"></app-events-slider>
 
   <div class="events-content">
     <div class="left-side" *ngIf="!isResponsive">
-      <h3>Filtros</h3>
+      <h3>{{'home.filter' |translate}}</h3>
       <div class="categories">
         <div class="categories-title">
-          <span>Categorias</span>
+          <span>{{'home.categories' |translate}}</span>
           <div>
             <mat-icon>expand_less</mat-icon>
           </div>
@@ -28,8 +28,8 @@
 
       <button class="filter-button" [ngClass]="{'button is-loading': isLoading}"
         [disabled]="categoriesFilter.length == 0" (click)="filterEventsByCategories()">
-        Filtrar Eventos</button>
-      <button class="clean-button" (click)="cleanFilter()">Limpiar Filtro</button>
+        {{'home.filter_events' |translate}}</button>
+      <button class="clean-button" (click)="cleanFilter()">{{'home.delete_filter' |translate}}</button>
 
     </div>
     <div class="right-side">
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="filter-item">
-          <span>Ordenar</span>
+          <span>{{'home.order' |translate}}</span>
         </div>
       </div>
 

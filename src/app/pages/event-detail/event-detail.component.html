@@ -84,16 +84,17 @@
         </div> -->
         <div class="ml-4">
           <div>
-            Publicado por
+            {{'detail_event.published_by' | translate}}
           </div>
           <div class="bold-text">
-            Eventos G12
+            {{'detail_event.events_G12' | translate}}
           </div>
         </div>
 
         <div class="ml-6">
           <div>
-            Categoria
+            {{'detail_event.category' | translate}}
+            
           </div>
           <div class="bold-text">
             {{ event?.category[0] || 'DEFAULT' }}
@@ -101,7 +102,7 @@
         </div>
         <div class="ml-6">
           <div>
-            Year
+            {{'detail_event.year' | translate}}
           </div>
           <div class="bold-text">
             {{ date | date:'YYYY' }}
@@ -119,7 +120,9 @@
           <span class="icon">
             <i class="fas fa-shield-alt fa-lg"></i>
           </span>
-          <span>DONACIÓN SEGURA</span>
+          <span>
+            {{'detail_event.secure_donation' | translate}}
+          </span>
         </button>
       </div>
     </div>
@@ -157,17 +160,18 @@
         <ng-container></ng-container>
       </div>
     </ng-container> -->
-  
+
     <ng-container>
       <div class="subtitle bold-text">
-        Seleccionar ticket
+        {{'detail_event.select_ticket' | translate}}
+        
       </div>
       <div class="container-items">
         <ng-container *ngFor="let cut of event?.financialCut; let i = index;">
           <div class="financial-item" [ngClass]="{ 'is-selected-item': cut?.id === financialCutSelected?.id }"
             (click)="changueFinancialCut(cut)">
             <h4>{{cut.name}}</h4>
-  
+
             <ng-container>
               <div class="info-price" *ngIf="!cut.is_group">
                 <div class="current-price" *ngIf="financialCutSelected == i ">
@@ -177,27 +181,27 @@
                   USD ${{ (assistants.length > 0) ? cut?.prices.usd * assistants.length : cut?.prices.usd }}
                 </div>
                 <div class="current-price" *ngIf="financialCutSelected != i ">
-                  COP  ${{ cut?.prices.cop }} 
+                  COP ${{ cut?.prices.cop }}
                 </div>
                 <div class="current-price" *ngIf="financialCutSelected != i ">
                   USD ${{ cut?.prices.usd }}
                 </div>
               </div>
-  
-  
+
+
               <div class="info-price" *ngIf="cut.is_group">
                 <div class="current-price">
                   COP ${{cut.price_group.cop}}
                 </div>
-  
+
                 <div class="current-price">
                   USD ${{cut.price_group.usd}}
                 </div>
               </div>
             </ng-container>
-  
+
             <ng-container></ng-container>
-  
+
             <!--MAKE NGIF LANG == EN -->
             <!-- <div class="info-price"> 
               <div class="current-price">
@@ -210,7 +214,7 @@
                 20%
               </div>
             </div> -->
-  
+
           </div>
         </ng-container>
       </div>
@@ -219,7 +223,10 @@
           <span class="icon">
             <i class="fa-lg fas fa-users mr-5"></i>
           </span>
-          <span>Registrar Usuario</span>
+          <span>
+        {{'detail_event.register_user' | translate}}
+
+          </span>
         </button>
       </div>
     </ng-container>
