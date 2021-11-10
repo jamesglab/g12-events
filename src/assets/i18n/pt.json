@@ -77,59 +77,60 @@
     "terms_and_conditions": "Termos e Condições",
     "description_terms_and_conditions": {
       "title": "A Igreja Misión Carismática Internacional MCI procurando melhorar continuamente o uso das novas tecnologias coloca a disposição da comunidade a plataforma chamada PAYULATAM a qual funciona através da página www.eventosg12.com e permite assim realizar doações online. Ao utilizar esta página você aceita os termos e condições de uso por tanto é indispensável que você conheça os conceitos, leia, compreenda e esteja de acordo com o descrito na continuação.",
-      "0": "Donante: Se entiende la persona natural o jurídica de derecho privado, nacional o extranjera, que tiene capacidad legal e interés en transferir gratuita e irrevocablemente parte de sus bienes a la Iglesia.",
-      "1": "Formulario de donación: Este será el diligenciado por el donante al ingresar al sitio Web el cual contiene los datos personales del donante, entendido este por la ley colombiana como la oferta de donación.",
-      "2": "Personas inhábiles para donar: Son inhábiles para donar los que no tienen la libre administración de sus bienes; salvo en los casos y con los requisitos que las leyes prescriben.Propiedad La Iglesia MCI es propietaria de la página",
-      "3": "que le permite realizar donaciones en línea. Al utilizar esta página usted acepta los términos y condiciones de uso por lo tanto es indispensable que usted conozca los conceptos, lea, comprenda y este de acuerdo con lo descrito a continuación.",
-      "concepts": "Conceptos",
+      "0": "Doação: É definida como o ato mediante o qual uma pessoa física ou jurídica transfere parte dos seus bens, de forma gratuita e irrevogável à Igreja e esta o aceita.",
+      "1": "Doador: Se entende como uma pessoa física ou jurídica de direito privado, nacional ou estrangeira, que tem a capacidade legal ou interesse de transferir gratuitamente e irrevogavelmente parte de seus bens à Igreja.",
+      "2": "Formulário de doação: Este será preenchido pelo doador ao entrar no site, o qual contém os dados pessoais do doador, entendido este pela lei colombiana como a oferta de doação.",
+      "3": "Pessoas inaptas para doar: São inaptas para doar os que não tem a livre administração de seus bens, salvo os casos e com os requisitos da lei.",
+      "4": "que le permite realizar donaciones en línea. Al utilizar esta página usted acepta los términos y condiciones de uso por lo tanto es indispensable que usted conozca los conceptos, lea, comprenda y este de acuerdo con lo descrito a continuación.",
+      "concepts": "Conceitos",
       "donation": {
-        "title": "Donación:",
-        "description": "Es definida como el acto mediante el cual una persona natural o jurídica. transfiere parte de sus bienes, de forma gratuita e irrevocable a la Iglesia y esta lo acepta."
+        "title": "Doação:",
+        "description": "É definida como o ato mediante o qual uma pessoa física ou jurídica transfere parte dos seus bens, de forma gratuita e irrevogável à Igreja e esta o aceita."
       },
       "donor": {
-        "title": "Donante:",
-        "description": "Se entiende la persona natural o jurídica de derecho privado, nacional o extranjera, que tiene capacidad legal e interés en transferir gratuita e irrevocablemente parte de sus bienes a la Iglesia."
+        "title": "Doador:",
+        "description": "Se entende como uma pessoa física ou jurídica de direito privado, nacional ou estrangeira, que tem a capacidade legal ou interesse de transferir gratuitamente e irrevogavelmente parte de seus bens à Igreja."
       },
       "form_donation": {
-        "title": "Formulario de donación:",
-        "description": "Este será el diligenciado por el donante al ingresar al sitio Web el cual contiene los datos personales del donante, entendido este por la ley colombiana como la oferta de donación."
+        "title": "Formulário de doação:",
+        "description": "Este será preenchido pelo doador ao entrar no site, o qual contém os dados pessoais do doador, entendido este pela lei colombiana como a oferta de doação."
       },
       "disable_person": {
-        "title": "Personas inhábiles para donar:",
-        "description": "Son inhábiles para donar los que no tienen la libre administración de sus bienes; salvo en los casos y con los requisitos que las leyes prescriben."
+        "title": "Pessoas inaptas para doar:",
+        "description": "São inaptas para doar os que não tem a livre administração de seus bens, salvo os casos e com os requisitos da lei."
       },
       "property": {
-        "title": "Propiedad",
-        "0": "La Iglesia MCI es propietaria de la página web",
-        "1": "y de manera expresa otorgo mi consentimiento previo expreso y libre de apremio para el tratamiento (recolección, almacenamiento, uso, circulación o supresión) de mis datos personales en las bases de datos de la iglesia Misión carismática internacional M.C.I. cuya finalidad es acompañarme en mi proceso de crecimiento espiritual, educativo, desarrollo einclusión en programas sociales, asuntos administrativos, divulgación de eventos, recibir información comercial de terceros aliados relacionada con la misión y visión de la iglesia por un término de diez (10) años. Por tratarse de una organización sin ánimo de lucro, la autorizo explícitamente para el tratamiento de datos sensibles en razón de mi fe. Declaro haber leído y entendido las políticas de protección de datos personales publicados en la página www.mci12.com y mis derechos a conocer, actualizar, rectificar, revocar y suprimir mi consentimiento, presentar quejas y reclamos a través del correo electrónico privacidad@mci12.com"
+        "title": "Propriedade",
+        "0": "A Igreja MCI é proprietária da página web https://convenciong12.com",
+        "1": "e de modo expresso concedo meu consentimento prévio livre de premência para o tratamento (coleta, armazenamento, uso, circulação ou eliminação) dos meus dados pessoais nas bases de dados da Igreja Misión Carismática Internacional M.C.I. cuja finalidade é acompanhar o meu processo de crescimento espiritual, educativo, desenvolvimento e inclusão em programas sociais, assuntos administrativos, divulgação de eventos, receber informação comercial de terceiros aliados relacionada com a missão e visão da Igreja por um termo de dez (10) anos. Por se tratar de uma organização sem fins lucrativos, autorizo expressamente para o tratamento de dados sensíveis em razão da minha fé. Declaro ter lido e entendido as políticas de proteção de dados pessoais publicados na página www.mci12.com e meus direitos de conhecer, atualizar, retificar, revogar e eliminar meu consentimento, apresentar queixas e reclamações através do e-mail privacidad@mci12.com"
       },
       "security": {
-        "title": "Seguridad",
-        "description": "Para las transacciones en línea en entidades financieras la Iglesia Misión Carismática Internacional MCI cuenta con la seguridad necesaria operada bajo el protocolo de seguridad SSL y utiliza pasarelas de pago para las transacciones con débito y crédito."
+        "title": "Segurança",
+        "description": "Para as transações online em entidades financeiras a Igreja Misión Carismática Internacional MCI conta com a segurança necessária operada sob o protocolo de segurança SSL e utiliza plataformas de pagamento para as transações com débito e crédito."
       },
       "donor_responsibilities": {
-        "title": "Deberes del donante",
-        "description": "El donante garantiza a la Iglesia Misión Carismática Internacional:",
-        "0": "Que es legalmente capaz de realizar el acto jurídico en cuestión.",
-        "1": "Que es el propietario del medio de pago con el que se realiza la donación.",
-        "2": "Que el origen de los recursos que dona a la iglesia Misión Carismática Internacional, provienen de una ocupación, oficio, profesión, actividad o negocio lícito. El origen de estos recursos no proviene de ninguna actividad ilícita de las contempladas en la ley colombiana. La Misión carismática internacional quedará eximida de toda responsabilidad que se derive por la información errónea, falsa o inexacta que se proporcione con ocasión de esta donación.",
-        "3": "Que la procedencia de los dineros es fruto de su actividad económica, y que con la donación que realiza no sufre desmejora alguna en su patrimonio que afecte el cumplimiento de sus obligaciones, así como su subsistencia, la de su familia y sus personas a cargo.",
-        "4": "El donante se compromete a manejar racionalmente la página de donaciones en línea, haciendo un uso lícito, diligente, honrado y correcto de toda la información o contenido al que tenga acceso."
+        "title": "Deveres do doador",
+        "description": "O doador garante a Igreja Misión Carismática Internacional:",
+        "0": "Que é legalmente capaz de realizar o ato jurídico em questão",
+        "1": "Que é proprietário do meio de pagamento com o que se realiza a doação",
+        "2": "Que a origem dos recursos doados à Igreja Misión Carismática Internacional, provém de uma ocupação, ofício, profissão, atividade ou negócio lícito. A origem destes recursos não provém de nenhuma atividade ilícita das contempladas na lei colombiana. A Misión Carismática Internacional ficará isenta de toda responsabilidade que se derive pela informação errada, falsa ou incorreta que se proporcione com a ocasião desta doação.",
+        "3": "Que a procedência do dinheiro é fruto da sua atividade econômica, e que com a doação que realiza não é agravado seu patrimônio que afete o cumprimento das suas obrigações, assim como a sua subsistência, da sua família e das pessoas encarregadas.",
+        "4": "O doador se compromete a gerenciar racionalmente a página de doações online, fazendo um uso lícito, cuidadoso, honrado e correto de toda a informação ou conteúdo ao que tenha acesso."
       },
       "mount": {
-        "title": "Donaciones en razón al monto",
-        "description": "En este sitio Web solo se podrán realizar donaciones mensuales que no excedan el valor de TREINTA MILLONES DE PESOS COLOMBIANOS ($30.000.000) o su equivalente en moneda extranjera, ya que le corresponde al notario autorizar mediante escritura pública las donaciones cuyo valor excedan la suma de cincuenta (50) salarios mínimos mensuales, siempre que donante y donatario sean plenamente capaces, lo soliciten de común acuerdo y no se contravenga ninguna disposición legal."
+        "title": "Doações em relação ao montante total",
+        "description": "Neste site só poderão se realizar doações mensais que não ultrapasse o valor de TRINTA MILHÕES DE PESOS COLOMBIANOS (COP 30.000.000) ou o equivalente em moeda estrangeira, já que corresponde ao cartório autorizar mediante escritura pública as doações cujo o valor ultrapasse a soma de cinquenta (50) salários mínimos mensais, sempre que o doador e o donatário sejam plenamente capaz, o solicitem de comum acordo e não viole nenhum dispositivo legal."
       },
       "privileges": {
         "title": "Privilegios",
-        "description": "Los donantes de este sitio Web tendrán acceso a los distintos eventos especiales que se desarrollen al interior de la Iglesia MCI, por lo tanto si el donante desea reprogramarlo para un próximo evento solo se podrá realizar en caso de fuerza mayor debidamente comprobada, para esto deberá realizarlo con 10 días de anticipación a fecha de inicio del evento enviando una comunicación al correo inscripciones@mci12.com. Para los eventos que se realicen de manera virtual es necesario la revisión previa por parte del donante que cuente con los medios tecnológicos y de conexión a internet que se requieren, ya que sin esto no es posible garantizar su participación en los diferentes eventos."
+        "description": "Os doadores deste site terão acesso aos diferentes eventos especiais que se desenvolvam no interior da Igreja MCI, por tanto se o doador deseja reprogramar para um próximo evento só poderá fazer isto em caso de força maior devidamente comprovada, para isto deverá realizar com 10 dias de antecedência da data de início do evento enviando uma comunicação ao email inscripciones@mci12.com. Para os eventos que se realizem de modo virtual é necessário a revisão prévia por parte do doador que conte com os meios tecnológicos e de conexão a internet que sejam requeridos, já que sem isso não é possível garantir sua participação nos diferentes eventos."
       },
       "pay_donation": {
-        "title": "Formulario de donación",
-        "description_0": "El donante únicamente podrá realizar su donación a través del siguiente link",
-        "description_1": "el cual debe diligenciar bajo los siguientes parámetros:",
-        "step_1": "Paso 1: Datos personales – Identificación del Donante. La Iglesia MCI cuenta con una política de protección de datos personales, para continuar con el proceso de donación es necesario que el usuario la conozca y manifieste su consentimiento previo, expreso e informado dando clic en acepto términos y condiciones.",
-        "step_2": "Paso 2: Detalle de la Donación – en este espacio debe especificar claramente el monto, el concepto, la forma de pago, si requiere o no certificado de su donación, etc.",
+        "title": "Formulário de doação",
+        "description_0": "O doador somente poderá realizar a doação através do seguinte link https://convenciong12.com",
+        "description_1": "o qual deve preencher as informações sob os seguintes parâmetros:",
+        "step_1": "Passo 1: Dados pessoais - Identificação do doador. A Igreja MCI conta com uma política de proteção de dados pessoais, para continuar com o processo de doação é necessário que o usuário conheça e manifeste seu consentimento prévio, expresso e informado dando um clique em “Aceito Termos e Condições”.",
+        "step_2": "Passo 2: Detalhe da doação - neste espaço deve especificar claramente o valor, o conceito, a forma de pagamento, se precisa ou não do certificado da sua doação, etc.",
         "step_3": "Paso 3: Vinculo de aceptación de términos y condiciones.",
         "final_desription": "Este sitio puede tener enlaces a otros sitios de interés o páginas web cuyos titulares son diferentes a los de la Iglesia Misión Carismática Internacional, lo que implica que si el usuario accede a esos sitios se somete a los términos y condiciones de uso de la página o sitio web al que accede."
       },
