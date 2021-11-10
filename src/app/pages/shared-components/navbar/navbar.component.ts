@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
 
     if (this.currentLanguage) {
       this.changeLang(this.currentLanguage);
+    }else {
+      this.changeLang('es')
     }
   }
 
