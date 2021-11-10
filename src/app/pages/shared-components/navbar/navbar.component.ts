@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -8,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class NavbarComponent implements OnInit {
   public currentLanguage = localStorage.getItem('language');
+  public select_language = new FormControl(this.currentLanguage? this.currentLanguage : 'es');
   constructor(
     public translate: TranslateService,
   ) { }
@@ -19,6 +21,10 @@ export class NavbarComponent implements OnInit {
     }else {
       this.changeLang('es')
     }
+
+    this.select_language.valueChanges.subscribe(res=>{
+      this.changeLang(res);
+    })
   }
 
   changeLang(lang) {

@@ -6,15 +6,20 @@
       <img src="/assets/logo.png" alt="Eventos G12: El mejor lugar para avanzar" width="115">
 
     </a>
+    <div class="select_language_mobile">
+      <div class="select">
+        <select  [formControl]="select_language" >
+          <option *ngFor="let lang of translate.getLangs();"[value]="lang">
+            {{ 'language.'+lang | translate }}
+          </option>
+        </select>
+      </div>
+    </div>
 
-    <!-- <div class="navbar-burger" data-target="navMenuColorlight-example">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div> -->
   </div>
   <div id="navMenuColorlight-example" class="navbar-menu">
     <div class="navbar-start">
+
       <!-- <div class="navbar-item" style="margin-left: 20%;">
                 <div class="field has-addons" style="width: 600px;">
                   <p class="control">
