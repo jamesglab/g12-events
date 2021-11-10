@@ -1,10 +1,8 @@
 {
   "language": {
     "es": "Español",
-    "en": "Ingres",
-    "fr": "Frances",
-    "pt": "Portugues",
-    "ru": "Ruso"
+    "en": "Ingles",
+    "pt": "Portugues"
   },
   "footer": {
     "events_G12": "Eventos G12",
