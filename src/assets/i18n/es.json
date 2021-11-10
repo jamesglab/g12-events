@@ -38,7 +38,13 @@
     "secure_donation": "Donación Segura",
     "select_ticket": "Seleccionar ticket",
     "register_user": "Registrar Usuario",
-    "add_assistant": "Agregar Asistente"
+    "add_assistant": "Agregar Asistente",
+    "table_name": "Nombre",
+    "table_document": "Documento",
+    "table_email": "Email",
+    "table_contact": "Contacto",
+    "table_options": "Opciones",
+    "donate_now": "Donar Ahora"
   },
   "form_add_assistant": {
     "personal_information": "Información Personal",
@@ -73,13 +79,7 @@
     "accept_ters_and_conditions": "Acepto los terminos y condiciones",
     "next": "Siguiente",
     "back": "Anterior",
-    "cancel": "Cancelar",
-    "table_name": "Nombre",
-    "table_document": "Documento",
-    "table_email": "Email",
-    "table_contact": "Contacto",
-    "table_options": "Opciones",
-    "donate_now": "Donar Ahora"
+    "cancel": "Cancelar"
   },
   "data_donor": {
     "data_donor": "Datos del Donante",
