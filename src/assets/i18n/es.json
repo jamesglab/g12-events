@@ -76,6 +76,7 @@
     "church_name": "Nombre del iglesia *",
     "terms_and_conditions": "Terminos y condiciones",
     "description_terms_and_conditions": {
+      "title":"La Iglesia Misión Carismática Internacional MCI en busca del mejoramiento continuo y el uso de las nuevas tecnologías pone a disposición de la comunidad una plataforma denominada PAYULATAM la cual funciona a través de la página www.eventosg12.com que le permite realizar donaciones en línea. Al utilizar esta página usted acepta los términos y condiciones de uso por lo tanto es indispensable que usted conozca los conceptos, lea, comprenda y este de acuerdo con lo descrito a continuación.",
       "0": "Donante: Se entiende la persona natural o jurídica de derecho privado, nacional o extranjera, que tiene capacidad legal e interés en transferir gratuita e irrevocablemente parte de sus bienes a la Iglesia.",
       "1": "Formulario de donación: Este será el diligenciado por el donante al ingresar al sitio Web el cual contiene los datos personales del donante, entendido este por la ley colombiana como la oferta de donación.",
       "2": "Personas inhábiles para donar: Son inhábiles para donar los que no tienen la libre administración de sus bienes; salvo en los casos y con los requisitos que las leyes prescriben.Propiedad La Iglesia MCI es propietaria de la página",
@@ -113,7 +114,28 @@
         "1": "Que es el propietario del medio de pago con el que se realiza la donación.",
         "2": "Que el origen de los recursos que dona a la iglesia Misión Carismática Internacional, provienen de una ocupación, oficio, profesión, actividad o negocio lícito. El origen de estos recursos no proviene de ninguna actividad ilícita de las contempladas en la ley colombiana. La Misión carismática internacional quedará eximida de toda responsabilidad que se derive por la información errónea, falsa o inexacta que se proporcione con ocasión de esta donación.",
         "3": "Que la procedencia de los dineros es fruto de su actividad económica, y que con la donación que realiza no sufre desmejora alguna en su patrimonio que afecte el cumplimiento de sus obligaciones, así como su subsistencia, la de su familia y sus personas a cargo.",
-        "4":"El donante se compromete a manejar racionalmente la página de donaciones en línea, haciendo un uso lícito, diligente, honrado y correcto de toda la información o contenido al que tenga acceso."
+        "4": "El donante se compromete a manejar racionalmente la página de donaciones en línea, haciendo un uso lícito, diligente, honrado y correcto de toda la información o contenido al que tenga acceso."
+      },
+      "mount": {
+        "title": "Donaciones en razón al monto",
+        "description": "En este sitio Web solo se podrán realizar donaciones mensuales que no excedan el valor de TREINTA MILLONES DE PESOS COLOMBIANOS ($30.000.000) o su equivalente en moneda extranjera, ya que le corresponde al notario autorizar mediante escritura pública las donaciones cuyo valor excedan la suma de cincuenta (50) salarios mínimos mensuales, siempre que donante y donatario sean plenamente capaces, lo soliciten de común acuerdo y no se contravenga ninguna disposición legal."
+      },
+      "privileges": {
+        "title": "Privilegios",
+        "description": "Los donantes de este sitio Web tendrán acceso a los distintos eventos especiales que se desarrollen al interior de la Iglesia MCI, por lo tanto si el donante desea reprogramarlo para un próximo evento solo se podrá realizar en caso de fuerza mayor debidamente comprobada, para esto deberá realizarlo con 10 días de anticipación a fecha de inicio del evento enviando una comunicación al correo inscripciones@mci12.com. Para los eventos que se realicen de manera virtual es necesario la revisión previa por parte del donante que cuente con los medios tecnológicos y de conexión a internet que se requieren, ya que sin esto no es posible garantizar su participación en los diferentes eventos."
+      },
+      "pay_donation": {
+        "title": "Formulario de donación",
+        "description_0": "El donante únicamente podrá realizar su donación a través del siguiente link",
+        "description_1": "el cual debe diligenciar bajo los siguientes parámetros:",
+        "step_1":"Paso 1: Datos personales – Identificación del Donante. La Iglesia MCI cuenta con una política de protección de datos personales, para continuar con el proceso de donación es necesario que el usuario la conozca y manifieste su consentimiento previo, expreso e informado dando clic en acepto términos y condiciones.",
+        "step_2":"Paso 2: Detalle de la Donación – en este espacio debe especificar claramente el monto, el concepto, la forma de pago, si requiere o no certificado de su donación, etc.",
+        "step_3":"Paso 3: Vinculo de aceptación de términos y condiciones.",
+        "final_desription":"Este sitio puede tener enlaces a otros sitios de interés o páginas web cuyos titulares son diferentes a los de la Iglesia Misión Carismática Internacional, lo que implica que si el usuario accede a esos sitios se somete a los términos y condiciones de uso de la página o sitio web al que accede."
+      },
+      "intellectual_property":{
+        "title":"Propiedad intelectual",
+        "description_0":""
       }
     },
     "accept_ters_and_conditions": "Acepto los terminos y condiciones",
