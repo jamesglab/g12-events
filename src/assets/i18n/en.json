@@ -76,7 +76,7 @@
     "church_name": "Name of the main church *",
     "terms_and_conditions": "Terms and conditions",
     "description_terms_and_conditions": {
-      "title":"La Iglesia Misión Carismática Internacional MCI en busca del mejoramiento continuo y el uso de las nuevas tecnologías pone a disposición de la comunidad una plataforma denominada PAYULATAM la cual funciona a través de la página www.eventosg12.com que le permite realizar donaciones en línea. Al utilizar esta página usted acepta los términos y condiciones de uso por lo tanto es indispensable que usted conozca los conceptos, lea, comprenda y este de acuerdo con lo descrito a continuación.",
+      "title": "La Iglesia Misión Carismática Internacional MCI en busca del mejoramiento continuo y el uso de las nuevas tecnologías pone a disposición de la comunidad una plataforma denominada PAYULATAM la cual funciona a través de la página www.eventosg12.com que le permite realizar donaciones en línea. Al utilizar esta página usted acepta los términos y condiciones de uso por lo tanto es indispensable que usted conozca los conceptos, lea, comprenda y este de acuerdo con lo descrito a continuación.",
       "0": "Donante: Se entiende la persona natural o jurídica de derecho privado, nacional o extranjera, que tiene capacidad legal e interés en transferir gratuita e irrevocablemente parte de sus bienes a la Iglesia.",
       "1": "Formulario de donación: Este será el diligenciado por el donante al ingresar al sitio Web el cual contiene los datos personales del donante, entendido este por la ley colombiana como la oferta de donación.",
       "2": "Personas inhábiles para donar: Son inhábiles para donar los que no tienen la libre administración de sus bienes; salvo en los casos y con los requisitos que las leyes prescriben.Propiedad La Iglesia MCI es propietaria de la página",
@@ -128,14 +128,23 @@
         "title": "Formulario de donación",
         "description_0": "El donante únicamente podrá realizar su donación a través del siguiente link",
         "description_1": "el cual debe diligenciar bajo los siguientes parámetros:",
-        "step_1":"Paso 1: Datos personales – Identificación del Donante. La Iglesia MCI cuenta con una política de protección de datos personales, para continuar con el proceso de donación es necesario que el usuario la conozca y manifieste su consentimiento previo, expreso e informado dando clic en acepto términos y condiciones.",
-        "step_2":"Paso 2: Detalle de la Donación – en este espacio debe especificar claramente el monto, el concepto, la forma de pago, si requiere o no certificado de su donación, etc.",
-        "step_3":"Paso 3: Vinculo de aceptación de términos y condiciones.",
-        "final_desription":"Este sitio puede tener enlaces a otros sitios de interés o páginas web cuyos titulares son diferentes a los de la Iglesia Misión Carismática Internacional, lo que implica que si el usuario accede a esos sitios se somete a los términos y condiciones de uso de la página o sitio web al que accede."
+        "step_1": "Paso 1: Datos personales – Identificación del Donante. La Iglesia MCI cuenta con una política de protección de datos personales, para continuar con el proceso de donación es necesario que el usuario la conozca y manifieste su consentimiento previo, expreso e informado dando clic en acepto términos y condiciones.",
+        "step_2": "Paso 2: Detalle de la Donación – en este espacio debe especificar claramente el monto, el concepto, la forma de pago, si requiere o no certificado de su donación, etc.",
+        "step_3": "Paso 3: Vinculo de aceptación de términos y condiciones.",
+        "final_desription": "Este sitio puede tener enlaces a otros sitios de interés o páginas web cuyos titulares son diferentes a los de la Iglesia Misión Carismática Internacional, lo que implica que si el usuario accede a esos sitios se somete a los términos y condiciones de uso de la página o sitio web al que accede."
       },
-      "intellectual_property":{
-        "title":"Propiedad intelectual",
-        "description_0":""
+      "intellectual_property": {
+        "title": "Propiedad intelectual",
+        "description_0": "Los signos comerciales, marcas, distintivos, logotipos, textos, graficas, imágenes, dibujos y contenidos en la página",
+        "description_1": "son de titularidad de la Iglesia Misión Carismática Internacional y de otros titulares que autorizaron su",
+        "description_2": "Con base en lo anterior, todos los derechos patrimoniales de autor (Reproducción, comunicación pública, transformación y distribución) o de explotación económica sobre los contenidos, software, bases o bancos de datos, creaciones multimedia y demás material protegido, estarán amparados por las normas del Convenio de Berna para la protección de las obras literarias, científicas y artísticas, revisión de 1971, instrumento particular OMPI del 20 de diciembre de 1996 sobre derecho de autor, el Convenio de París para la protección de la Propiedad Industrial, la ley 23 de 1982 sobre derecho de Autor, la ley 44 de 1993, las Decisiones Andinas 351 de 1993 y 486 de 2000 que crearon un régimen común sobre derecho de autor y derechos conexos, y Propiedad Industrial para los cinco países de la Comunidad Andina, así como todas las demás normas concordantes sobre la materia se refiere. La protección y utilización de estos materiales se refiere no solo a su expresión o utilización en formato o soporte material, sino que se extiende a toda forma de utilización en medios magnéticos, ópticos, electrónicos y similares, en forma de mensaje de datos (Internet, EDI, Correo electrónico etc.), y en general a cualquier medio conocido o por conocer.",
+        "description_3": "En caso de reclamaciones referentes a la propiedad intelectual de la información y contenidos de la página web deberán ser dirigidas al correo electrónico tesoreria@mci12.com que al ser notificado y luego de la comprobación, eliminara automáticamente el material objeto de controversia."
+      },
+      "responsibilities": {
+        "title": "Descargo de responsabilidad",
+        "description_0": "Las donaciones a favor de la Iglesia Misión Carismática Internacional deben efectuarse únicamente a través de la página web",
+        "description_1": "La Iglesia no se hace responsable por los contenidos, datos e información financiera que cada uno de los usuarios o visitantes registren en formulario de donación en línea, se recomienda a los usuarios de este portal solicitar previamente a su banco la activación del servicio de pagos por medios electrónicos y que conozca al detalle las restricciones de su Banco en cuanto a montos de transacciones y claves de accesos. El usuario acepta y consiente el procesamiento técnico y transmisión del servicio de donación online incluyendo su contenido.",
+        "description_2":"Los términos y condiciones contenidos en esta página comenzarán a regir a partir de la fecha en que se suscribe. El donante deja constancia que ha leído y que acepta todas y cada una de las estipulaciones previstas en estos términos y condiciones de uso."
       }
     },
     "accept_ters_and_conditions": "I accept the terms and conditions",
