@@ -63,21 +63,64 @@
     "ministerial_information": "Church information",
     "country": "Country",
     "church": "Church",
-    "church_mci": "MCI Church",
-    "church_G12": "G12 Church",
-    "others_church": "Other Church",
+    "88": "MCI Church",
+    "89": "G12 Church",
+    "90": "Other Church",
     "headquarter": "Sede *",
     "network": "Red *",
     "mens": "Men",
     "womens": "Woman",
     "pastor": "Pastor / Princiapl leader",
     "leader": "Leader",
+    "pastor_name": "Senior pastor name *",
+    "church_name": "Name of the main church *",
     "terms_and_conditions": "Terms and conditions",
-    "description_terms_and_conditions": "The International Charismatic Mission Church is in search of continuous improvement and the use of new technologies makes available to the community a platform called PAYULATAM which works through the page www.eventosg12.com that allows you to make online donations. By using this page you accept the terms and conditions of use, therefore it is essential that you know the concepts, read, understand and agree to what is described below. Concepts Donation: It is defined as the act by which a natural or legal person transfers part of their assets, free of charge and irrevocably to the Church and it accepts it. Donor: It is understood the natural or legal person of private law, national or foreign, who has the legal capacity and interest in freely and irrevocably transferring part of their assets to the Church. Donation form: This will be the one filled out by the donor when entering the website which contains the donor's personal data, understood by Colombian law as the donation offer. People unskilled to donate: Those who do not have the free administration of their assets are unskilled to donate; except in the cases and with the requirements prescribed by law. Property The MCI Church is the owner of the website https://convenciong12.com/ and I expressly grant my express prior consent and free of pressure for the treatment (collection, storage, use, circulation or deletion) of my personal data in the Church databases MCI International Charismatic Mission whose purpose is to accompany me in my process of spiritual growth, education, development and inclusion in social programs, administrative matters, dissemination of events, receive commercial information from third-party allies related to the mission and vision of the church for a term of ten (10) years. As it is a non-profit organization, I explicitly authorize it to process sensitive data based on my faith. I declare that I have read and understood the personal data protection policies published on the www.mci12.com page and my rights to know, update, rectify, revoke and suppress my consent, submit complaints and claims through the email privacy @ mci12. com Security For online transactions in financial institutions, the MCI International Charismatic Mission Church has the necessary security operated under the SSL security protocol and uses payment gateways for debit and credit transactions. Donor duties The donor guarantees to the International Charismatic Mission Church: That he is legally capable of performing the legal act in question. That he is the owner of the means of payment with which the donation is made. That the origin of the resources that you donate to the International Charismatic Mission church come from an occupation, trade, profession, activity or lawful business. The origin of these resources does not come from any illicit activity contemplated in Colombian law. The International Charismatic Mission will be exempted from any liability arising from erroneous, false or inaccurate information provided on the occasion of this donation. That the origin of the money is the result of his economic activity, and that with the donation he makes, he does not suffer any deterioration in his assets that affects the fulfillment of his obligations, as well as his subsistence, that of his family and his dependents. The donor agrees to rationally manage the online donation page, making lawful, diligent, honest and correct use of all the information or content to which it has access. Donations based on the amount On this website, monthly donations may only be made that do not exceed the value of THIRTY MILLION COLOMBIAN PESOS ($ 30,000,000) or its equivalent in foreign currency, since it is the responsibility of the notary to authorize by public deed the donations whose value exceeds the sum of fifty (50) monthly minimum wages, provided that the donor and donee are fully capable, request it by mutual agreement and no legal provision is contravened. Privileges The donors of this website will have access to the different special events that take place within the MCI Church, therefore, if the donor wishes to reschedule it for an upcoming event, it can only be done in the event of a duly proven force majeure. do it 10 days in advance of the event's start date by sending a communication to the email inscriptions@mci12.com. For events that take place virtually, it is necessary to have a prior review by the donor who has the technological means and internet connection that are required, since without this it is not possible to guarantee their participation in the different events. Donation form The donor can only make a donation through the following link https://convenciong12.com/ which must be completed under the following parameters: Step 1: Personal Data - Donor Identification. The MCI Church has a personal data protection policy, to continue with the donation process it is necessary for the user to know it and express their prior, express and informed consent by clicking I accept terms and conditions. Step 2: Donation Detail - in this space you must clearly specify the amount, the concept, the form of payment, whether or not you require a certificate of your donation, etc. Step 3: Link of acceptance of terms and conditions. This site may have links to other sites of interest or web pages whose headlines are different from those of the International Charismatic Mission Church, which implies that if the user accesses those sites they are subject to the terms and conditions of use of the page or website you access. Intellectual property The commercial signs, brands, badges, logos, texts, graphics, images, drawings and content on the page https://convenciong12.com are owned by the International Charismatic Mission Church and other owners who authorized their use. Based on the foregoing, all copyright (reproduction, public communication, transformation and distribution) or economic exploitation rights over the content, software, databases or databases, multimedia creations and other protected material, will be protected by the regulations of the Berne Convention for the protection of literary, scientific and artistic works, revision of 1971, WIPO particular instrument of December 20, 1996 on copyright, the Paris Convention for the protection of Industrial Property, Law 23 of 1982 on Copyright, Law 44 of 1993, Andean Decisions 351 of 1993 and 486 of 2000 that created a common regime on copyright and related rights, and Industrial Property for the five countries of the Andean Community, as well as all the other concordant norms on the matter are concerned. The protection and use of these materials refers not only to their expression or use in format or material support, but also extends to all forms of use in magnetic, optical, electronic and similar media, in the form of data messages (Internet, EDI, E-mail etc.), and in general to any known or unknown medium. In case of claims regarding the intellectual property of the information and contents of the website, they should be directed to the email tesoreria@mci12.com which, when notified and after verification, will automatically eliminate the material that is the subject of controversy. Disclaimer Donations in favor of the International Charismatic Mission Church should only be made through the website https://convenciong12.com/",
+    "description_terms_and_conditions": {
+      "0": "Donante: Se entiende la persona natural o jurídica de derecho privado, nacional o extranjera, que tiene capacidad legal e interés en transferir gratuita e irrevocablemente parte de sus bienes a la Iglesia.",
+      "1": "Formulario de donación: Este será el diligenciado por el donante al ingresar al sitio Web el cual contiene los datos personales del donante, entendido este por la ley colombiana como la oferta de donación.",
+      "2": "Personas inhábiles para donar: Son inhábiles para donar los que no tienen la libre administración de sus bienes; salvo en los casos y con los requisitos que las leyes prescriben.Propiedad La Iglesia MCI es propietaria de la página",
+      "3": "que le permite realizar donaciones en línea. Al utilizar esta página usted acepta los términos y condiciones de uso por lo tanto es indispensable que usted conozca los conceptos, lea, comprenda y este de acuerdo con lo descrito a continuación.",
+      "concepts": "Conceptos",
+      "donation": {
+        "title": "Donación:",
+        "description": "Es definida como el acto mediante el cual una persona natural o jurídica. transfiere parte de sus bienes, de forma gratuita e irrevocable a la Iglesia y esta lo acepta."
+      },
+      "donor": {
+        "title": "Donante:",
+        "description": "Se entiende la persona natural o jurídica de derecho privado, nacional o extranjera, que tiene capacidad legal e interés en transferir gratuita e irrevocablemente parte de sus bienes a la Iglesia."
+      },
+      "form_donation": {
+        "title": "Formulario de donación:",
+        "description": "Este será el diligenciado por el donante al ingresar al sitio Web el cual contiene los datos personales del donante, entendido este por la ley colombiana como la oferta de donación."
+      },
+      "disable_person": {
+        "title": "Personas inhábiles para donar:",
+        "description": "Son inhábiles para donar los que no tienen la libre administración de sus bienes; salvo en los casos y con los requisitos que las leyes prescriben."
+      },
+      "property": {
+        "title": "Propiedad",
+        "0": "La Iglesia MCI es propietaria de la página web",
+        "1": "y de manera expresa otorgo mi consentimiento previo expreso y libre de apremio para el tratamiento (recolección, almacenamiento, uso, circulación o supresión) de mis datos personales en las bases de datos de la iglesia Misión carismática internacional M.C.I. cuya finalidad es acompañarme en mi proceso de crecimiento espiritual, educativo, desarrollo einclusión en programas sociales, asuntos administrativos, divulgación de eventos, recibir información comercial de terceros aliados relacionada con la misión y visión de la iglesia por un término de diez (10) años. Por tratarse de una organización sin ánimo de lucro, la autorizo explícitamente para el tratamiento de datos sensibles en razón de mi fe. Declaro haber leído y entendido las políticas de protección de datos personales publicados en la página www.mci12.com y mis derechos a conocer, actualizar, rectificar, revocar y suprimir mi consentimiento, presentar quejas y reclamos a través del correo electrónico privacidad@mci12.com"
+      },
+      "security": {
+        "title": "Seguridad",
+        "description": "Para las transacciones en línea en entidades financieras la Iglesia Misión Carismática Internacional MCI cuenta con la seguridad necesaria operada bajo el protocolo de seguridad SSL y utiliza pasarelas de pago para las transacciones con débito y crédito."
+      },
+      "donor_responsibilities": {
+        "title": "Deberes del donante",
+        "description": "El donante garantiza a la Iglesia Misión Carismática Internacional:",
+        "0": "Que es legalmente capaz de realizar el acto jurídico en cuestión.",
+        "1": "Que es el propietario del medio de pago con el que se realiza la donación.",
+        "2": "Que el origen de los recursos que dona a la iglesia Misión Carismática Internacional, provienen de una ocupación, oficio, profesión, actividad o negocio lícito. El origen de estos recursos no proviene de ninguna actividad ilícita de las contempladas en la ley colombiana. La Misión carismática internacional quedará eximida de toda responsabilidad que se derive por la información errónea, falsa o inexacta que se proporcione con ocasión de esta donación.",
+        "3": "Que la procedencia de los dineros es fruto de su actividad económica, y que con la donación que realiza no sufre desmejora alguna en su patrimonio que afecte el cumplimiento de sus obligaciones, así como su subsistencia, la de su familia y sus personas a cargo.",
+        "4":"El donante se compromete a manejar racionalmente la página de donaciones en línea, haciendo un uso lícito, diligente, honrado y correcto de toda la información o contenido al que tenga acceso."
+      }
+    },
     "accept_ters_and_conditions": "I accept the terms and conditions",
     "next": "Next",
     "back": "Back",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "save": "Save"
   },
   "data_donor": {
     "data_donor": "Donor information",

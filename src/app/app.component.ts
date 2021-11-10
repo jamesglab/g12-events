@@ -15,7 +15,7 @@ declare global {
 export class AppComponent implements OnInit {
   title = 'g12-events';
   constructor(public translate: TranslateService) {
-    translate.addLangs(['es', 'en', 'fr', 'pt', 'ru']);
+    translate.addLangs(['es', 'en', 'pt']);
   }
 
   ngOnInit() {
