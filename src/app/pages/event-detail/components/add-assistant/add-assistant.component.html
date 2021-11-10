@@ -1,5 +1,5 @@
 <form [formGroup]="assistantForm" (ngSubmit)="submit()" style="width: 100%">
-  <h2 mat-dialog-title>Agregar Asistente</h2>
+  <h2 mat-dialog-title>{{'detail_event.add_assistant'|translate}}</h2>
   <mat-dialog-content>
     <mat-accordion>
       <mat-expansion-panel disabled class="mat-elevation-z-0" [expanded]="step === 0" (opened)="setStep(0)"
@@ -8,7 +8,7 @@
           <mat-panel-title>
             <h3>
               <mat-icon style="color: white">account_circle</mat-icon>
-              Información Personal
+              {{'form_add_assistant.personal_information'|translate}}
             </h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -16,14 +16,20 @@
 
 
         <div class="row">
-          <h2 style="font-size: large; font-weight: bold;">Tipo de registro</h2>
+          <h2 style="font-size: large; font-weight: bold;">
+            {{'form_add_assistant.type_register'|translate}}
+          </h2>
         </div>
         <div class="row">
           <div class="col-12">
             <mat-radio-group name="registerType" aria-label="Select an option" (change)="handleRegisterType()"
               formControlName="registerType">
-              <mat-radio-button value="1">Registro Nacional (Colombia)</mat-radio-button>
-              <mat-radio-button class="ml-3" value="2">Registro Internacional</mat-radio-button>
+              <mat-radio-button value="1">
+                {{'form_add_assistant.register_national'|translate}}
+              </mat-radio-button>
+              <mat-radio-button class="ml-3" value="2">
+                {{'form_add_assistant.register_international'|translate}}
+              </mat-radio-button>
             </mat-radio-group>
           </div>
         </div>
@@ -31,7 +37,9 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100" *ngIf="form.registerType.value == '1'">
-              <mat-label>Tipo de documento *</mat-label>
+              <mat-label>
+                {{'form_add_assistant.type_document'|translate}}
+              </mat-label>
               <mat-select type="select" formControlName="documentType">
                 <mat-option *ngFor="let type of documentTypes" [value]="type">
                   {{ type }}
@@ -44,7 +52,10 @@
 
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill" *ngIf="form.registerType.value == '1'">
-              <mat-label>Número de documento* </mat-label>
+              <mat-label>
+                {{'form_add_assistant.number_document'|translate}}
+
+              </mat-label>
               <input matInput autocomplete="off" formControlName="documentNumber" />
             </mat-form-field>
           </div>
@@ -54,13 +65,18 @@
 
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Nombre*</mat-label>
+              <mat-label>
+                {{'form_add_assistant.name'|translate}}
+
+              </mat-label>
               <input matInput autocomplete="off" formControlName="name" />
             </mat-form-field>
           </div>
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Apellido*</mat-label>
+              <mat-label>
+                {{'form_add_assistant.last_name'|translate}}
+              </mat-label>
               <input matInput autocomplete="off" formControlName="lastName" />
             </mat-form-field>
           </div>
@@ -68,10 +84,18 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="fill">
-              <mat-label>Género*</mat-label>
+              <mat-label>
+                {{'form_add_assistant.gender'|translate}}
+
+              </mat-label>
               <mat-select type="select" formControlName="gender">
-                <mat-option value="M">Masculino</mat-option>
-                <mat-option value="F">Femenino</mat-option>
+                <mat-option value="M">
+                  {{'form_add_assistant.male'|translate}}
+
+                </mat-option>
+                <mat-option value="F">
+                  {{'form_add_assistant.female'|translate}}
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -80,7 +104,8 @@
 
         <mat-action-row>
           <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
-            Siguiente
+            {{'form_add_assistant.next'|translate}}
+
           </button>
         </mat-action-row>
       </mat-expansion-panel>
@@ -91,7 +116,7 @@
           <mat-panel-title>
             <h3>
               <mat-icon style="color: rgb(218, 214, 214)">supervised_user_circle</mat-icon>
-              Información de Contacto
+              {{'form_add_assistant.contact_information'|translate}}
             </h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -99,7 +124,10 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Celular *</mat-label>
+              <mat-label>
+                {{'form_add_assistant.cell_phone'|translate}}
+
+              </mat-label>
               <input matInput autocomplete="off" formControlName="mobile" (keypress)="numberOnly($event)" />
             </mat-form-field>
 
@@ -111,7 +139,10 @@
               <input matInput autocomplete="off" formControlName="address" />
             </mat-form-field> -->
             <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Correo*</mat-label>
+              <mat-label>
+                {{'form_add_assistant.email'|translate}}
+
+              </mat-label>
               <input matInput autocomplete="off" formControlName="email" />
             </mat-form-field>
 
@@ -122,22 +153,26 @@
 
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Confirmar correo*</mat-label>
+              <mat-label>
+                {{'form_add_assistant.confirm_email'|translate}}
+
+              </mat-label>
               <input matInput autocomplete="off" formControlName="confirmEmail" />
             </mat-form-field>
           </div>
           <div class="col-6">
-            
+
           </div>
         </div>
 
         <mat-action-row>
 
           <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
-            Anterior
+            {{'form_add_assistant.back'|translate}}
+
           </button>
           <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
-            Siguiente
+            {{'form_add_assistant.next'|translate}}
           </button>
         </mat-action-row>
       </mat-expansion-panel>
@@ -148,7 +183,8 @@
           <mat-panel-title>
             <h3>
               <mat-icon style="color: rgb(218, 214, 214)">maps_home_work</mat-icon>
-              Información Ministerial
+              {{'form_add_assistant.ministerial_information'|translate}}
+
             </h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -156,9 +192,11 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>País *</mat-label>
-              <mat-select type="select" formControlName="country" (selectionChange)="this.assistantForm.get('typeChurch').reset()">
-                <mat-option value="null" disabled>SELECCIONA PAIS</mat-option>
+              <mat-label>
+                {{'form_add_assistant.country'|translate}}
+              </mat-label>
+              <mat-select type="select" formControlName="country"
+                (selectionChange)="this.assistantForm.get('typeChurch').reset()">
                 <mat-option *ngFor="let country of countries" value="{{ country.name }}">{{ country.name }}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -168,10 +206,12 @@
 
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Iglesia *</mat-label>
+              <mat-label>
+                {{'form_add_assistant.church'|translate}}
+              </mat-label>
               <mat-select type="select" formControlName="typeChurch" (selectionChange)="getPlaces()">
                 <mat-option *ngFor="let type of churchTypes" value="{{ type.idDetailMaster }}">
-                  {{ type.description }}
+                  {{ 'form_add_assistant.'+type.idDetailMaster |translate}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -180,7 +220,7 @@
         <div class="row" *ngIf="form.typeChurch.value == '88'">
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Sede *</mat-label>
+              <mat-label>{{'form_add_assistant.headquarter'|translate}}*</mat-label>
               <mat-select type="select" formControlName="headquarters" (selectionChange)="getPastors()">
                 <mat-option *ngFor="let place of places" value="{{ place.id }}">
                   {{ place.name }} | {{ place.city }}
@@ -190,10 +230,19 @@
           </div>
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Red *</mat-label>
+              <mat-label>
+                {{'form_add_assistant.network'|translate}}
+
+              </mat-label>
               <mat-select type="select" formControlName="network" (selectionChange)="getPastors()">
-                <mat-option value="01">Hombres</mat-option>
-                <mat-option value="02">Mujeres</mat-option>
+                <mat-option value="01">
+                  {{'form_add_assistant.mens'|translate}}
+
+                </mat-option>
+                <mat-option value="02">
+                  {{'form_add_assistant.womens'|translate}}
+
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -201,7 +250,9 @@
         <div class="row" *ngIf="form.typeChurch.value == '88'">
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Pastor/Lider principal *</mat-label>
+              <mat-label>
+                {{'form_add_assistant.pastor'|translate}}
+              </mat-label>
               <mat-select type="select" formControlName="pastor" (selectionChange)="getLeaders($event.value)">
                 <mat-option *ngFor="let pastor of pastors" value="{{ pastor.user_code }}">{{ pastor.name }}
                   {{ pastor.last_name }}
@@ -211,7 +262,9 @@
           </div>
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Lider *</mat-label>
+              <mat-label>
+                {{'form_add_assistant.leader'|translate}}
+              </mat-label>
               <mat-select type="select" formControlName="leader">
                 <mat-option *ngFor="let leader of leaders" value="{{ leader.id }}">{{ leader.name }}
                   {{ leader.last_name }}
@@ -225,7 +278,9 @@
           <div class="col-6">
             <ng-container *ngIf="form.typeChurch.value && form.typeChurch.value != '88'">
               <mat-form-field class="w-100" appearance="fill">
-                <mat-label>Nombre de la iglesia *</mat-label>
+                <mat-label>
+                  {{'form_add_assistant.church_name'|translate}}
+                </mat-label>
                 <input matInput autocomplete="off" formControlName="churchName" />
               </mat-form-field>
             </ng-container>
@@ -233,7 +288,10 @@
 
           <div class="col-6">
             <mat-form-field class="w-100" appearance="fill">
-              <mat-label>Nombre del pastor principal *</mat-label>
+              <mat-label>
+                {{'form_add_assistant.pastor_name'|translate}}
+
+              </mat-label>
               <input matInput autocomplete="off" formControlName="pastorName" />
             </mat-form-field>
 
@@ -242,10 +300,11 @@
         </div>
         <mat-action-row>
           <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
-            Anterior
+            {{'form_add_assistant.back'|translate}}
+
           </button>
           <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
-            Siguiente
+            {{'form_add_assistant.next'|translate}}
           </button>
         </mat-action-row>
       </mat-expansion-panel>
@@ -256,7 +315,7 @@
           <mat-panel-title>
             <h3>
               <mat-icon style="color: rgb(218, 214, 214)">text_snippet</mat-icon>
-              Terminos y condiciones
+              {{'form_add_assistant.terms_and_conditions'|translate}}
             </h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -268,17 +327,19 @@
             <mat-checkbox formControlName="terms"></mat-checkbox>
           </div>
           <div style="display: block; margin-left: 10px">
-            <strong>Acepto</strong>
-            los terminos y condiciones
+            {{'form_add_assistant.accept_ters_and_conditions'|translate}}
+            
           </div>
         </div>
 
         <mat-action-row>
           <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
-            Anterior
+            {{'form_add_assistant.back'|translate}}
+            
           </button>
           <button type="button" mat-button color="primary" *ngIf="isMobile" (click)="nextStep()">
-            OK
+            {{'form_add_assistant.next'|translate}}
+            
           </button>
         </mat-action-row>
       </mat-expansion-panel>
@@ -286,8 +347,12 @@
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button cdkFocusInitial type="button" mat-button style="color: gray" class="btn-prev" (click)="dialog.close()">
-      Cancelar
+      {{'form_add_assistant.cancel'|translate}}
+      
     </button>
-    <button mat-button color="primary" class="btn-next">Guardar</button>
+    <button mat-button color="primary" class="btn-next">
+      {{'form_add_assistant.save'|translate}}
+
+    </button>
   </mat-dialog-actions>
 </form>
