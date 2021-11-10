@@ -101,7 +101,7 @@
       },
       "property": {
         "title": "Propriedade",
-        "0": "A Igreja MCI é proprietária da página web https://convenciong12.com",
+        "0": "A Igreja MCI é proprietária da página web",
         "1": "e de modo expresso concedo meu consentimento prévio livre de premência para o tratamento (coleta, armazenamento, uso, circulação ou eliminação) dos meus dados pessoais nas bases de dados da Igreja Misión Carismática Internacional M.C.I. cuja finalidade é acompanhar o meu processo de crescimento espiritual, educativo, desenvolvimento e inclusão em programas sociais, assuntos administrativos, divulgação de eventos, receber informação comercial de terceiros aliados relacionada com a missão e visão da Igreja por um termo de dez (10) anos. Por se tratar de uma organização sem fins lucrativos, autorizo expressamente para o tratamento de dados sensíveis em razão da minha fé. Declaro ter lido e entendido as políticas de proteção de dados pessoais publicados na página www.mci12.com e meus direitos de conhecer, atualizar, retificar, revogar e eliminar meu consentimento, apresentar queixas e reclamações através do e-mail privacidad@mci12.com"
       },
       "security": {
@@ -127,25 +127,25 @@
       },
       "pay_donation": {
         "title": "Formulário de doação",
-        "description_0": "O doador somente poderá realizar a doação através do seguinte link https://convenciong12.com",
+        "description_0": "O doador somente poderá realizar a doação através do seguinte link",
         "description_1": "o qual deve preencher as informações sob os seguintes parâmetros:",
         "step_1": "Passo 1: Dados pessoais - Identificação do doador. A Igreja MCI conta com uma política de proteção de dados pessoais, para continuar com o processo de doação é necessário que o usuário conheça e manifeste seu consentimento prévio, expresso e informado dando um clique em “Aceito Termos e Condições”.",
         "step_2": "Passo 2: Detalhe da doação - neste espaço deve especificar claramente o valor, o conceito, a forma de pagamento, se precisa ou não do certificado da sua doação, etc.",
-        "step_3": "Paso 3: Vinculo de aceptación de términos y condiciones.",
-        "final_desription": "Este sitio puede tener enlaces a otros sitios de interés o páginas web cuyos titulares son diferentes a los de la Iglesia Misión Carismática Internacional, lo que implica que si el usuario accede a esos sitios se somete a los términos y condiciones de uso de la página o sitio web al que accede."
+        "step_3": "Passo 3: Vínculo de aceitação de termos e condições.",
+        "final_desription": "Este site pode ter links para outros sites de interesses ou páginas web cujos os titulares são diferentes aos da Igreja Misión Carismática Internacional, o que implica que se o usuário acessa a estes sites se submete aos termos e condições de uso da página ou site ao que acessa."
       },
       "intellectual_property": {
-        "title": "Propiedad intelectual",
-        "description_0": "Los signos comerciales, marcas, distintivos, logotipos, textos, graficas, imágenes, dibujos y contenidos en la página",
+        "title": "Propriedade Intelectual",
+        "description_0": "Os símbolos comerciais, marcas, distintivos, logotipos, textos, gráficos, imagens, desenhos e conteúdos na pagina https://convenciong12.com são de titularidade da Igreja Misión Carismática Internacional e de outros titulares que autorizam o seu uso.",
         "description_1": "son de titularidad de la Iglesia Misión Carismática Internacional y de otros titulares que autorizaron su",
-        "description_2": "Con base en lo anterior, todos los derechos patrimoniales de autor (Reproducción, comunicación pública, transformación y distribución) o de explotación económica sobre los contenidos, software, bases o bancos de datos, creaciones multimedia y demás material protegido, estarán amparados por las normas del Convenio de Berna para la protección de las obras literarias, científicas y artísticas, revisión de 1971, instrumento particular OMPI del 20 de diciembre de 1996 sobre derecho de autor, el Convenio de París para la protección de la Propiedad Industrial, la ley 23 de 1982 sobre derecho de Autor, la ley 44 de 1993, las Decisiones Andinas 351 de 1993 y 486 de 2000 que crearon un régimen común sobre derecho de autor y derechos conexos, y Propiedad Industrial para los cinco países de la Comunidad Andina, así como todas las demás normas concordantes sobre la materia se refiere. La protección y utilización de estos materiales se refiere no solo a su expresión o utilización en formato o soporte material, sino que se extiende a toda forma de utilización en medios magnéticos, ópticos, electrónicos y similares, en forma de mensaje de datos (Internet, EDI, Correo electrónico etc.), y en general a cualquier medio conocido o por conocer.",
-        "description_3": "En caso de reclamaciones referentes a la propiedad intelectual de la información y contenidos de la página web deberán ser dirigidas al correo electrónico tesoreria@mci12.com que al ser notificado y luego de la comprobación, eliminara automáticamente el material objeto de controversia."
+        "description_2": "Com base ao anterior, todos os direitos patrimoniais de autor (reprodução, comunicação pública, transformação e distribuição) ou de exploração econômica sobre os conteúdos, software, bases ou banco de dados, criações multimídia e outros materiais protegidos, estarão amparados pelas normas do Convenção de Berna para a proteção das obras literárias, científicas e artísticas, revisão de 1971, instrumento particular OMPI de 20 de dezembro de 1996 sobre direito do autor, a Convenção de Paris para a proteção da Propriedade Industrial, a lei 23 de 1982 sobre direito do Autor, a lei 44 de 1993, as Decisões Andinas 351 de 1993 e 486 de 2000 que criaram um regime comum sobre o direito do autor e direitos conexos, e Propriedade Industrial para os cincos países da Comunidade Andina, assim como todas as demais normas concordantes sobre a matéria referida. A proteção e utilização destes materiais se refere não só a sua expressão ou utilização em formato ou suporte material, senão que também se estende a toda forma de utilização nos meios magnéticos, eletrônicos e similares, em forma de mensagem de dados (Internet, EDI, e-mail etc), e em geral a qualquer meio conhecido ou que venha ser conhecido.",
+        "description_3": "Em caso de reclamações referentes a propriedade intelectual da informação e conteúdos da página web deverão ser dirigidas ao e-mail tesoreria@mci12.com que ao ser notificado e logo da comprovação, eliminará automaticamente o material objeto de controvérsia."
       },
       "responsibilities": {
-        "title": "Descargo de responsabilidad",
-        "description_0": "Las donaciones a favor de la Iglesia Misión Carismática Internacional deben efectuarse únicamente a través de la página web",
-        "description_1": "La Iglesia no se hace responsable por los contenidos, datos e información financiera que cada uno de los usuarios o visitantes registren en formulario de donación en línea, se recomienda a los usuarios de este portal solicitar previamente a su banco la activación del servicio de pagos por medios electrónicos y que conozca al detalle las restricciones de su Banco en cuanto a montos de transacciones y claves de accesos. El usuario acepta y consiente el procesamiento técnico y transmisión del servicio de donación online incluyendo su contenido.",
-        "description_2":"Los términos y condiciones contenidos en esta página comenzarán a regir a partir de la fecha en que se suscribe. El donante deja constancia que ha leído y que acepta todas y cada una de las estipulaciones previstas en estos términos y condiciones de uso."
+        "title": "Isenção de responsabilidade",
+        "description_0": "As doações a favor da Igreja Misión Carismática Internacional devem ser efetuadas unicamente através da página web",
+        "description_1": "A Igreja não se responsabiliza pelos conteúdos, dados e informação financeira que cada um dos usuários ou visitantes registrem no formulário de doação online, recomenda-se aos usuários deste portal solicitar previamente ao seu banco a ativação do serviço de pagamento por meio de transação e chaves de acessos. O usuário aceita e consente o processamento técnico e a transmissão do serviço de doação online incluindo seu conteúdo.",
+        "description_2":"Os termos e condições contidos nesta página começaram a valer a partir da data em que se é inscrito. O doador deixa constar que leu e que aceita todas e cada uma das estipulações previstas nestes termos e condições de uso."
       }
     },
     "accept_ters_and_conditions": "Aceito os Termos e Condições",
