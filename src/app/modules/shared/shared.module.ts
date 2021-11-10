@@ -24,6 +24,7 @@ import { FeaturesComponent } from 'src/app/pages/shared-components/features/feat
 import { SubscriptionComponent } from 'src/app/pages/shared-components/subscription/subscription.component';
 import { FooterComponent } from 'src/app/pages/shared-components/footer/footer.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -49,7 +50,9 @@ import { TranslateModule } from '@ngx-translate/core';
     MatProgressSpinnerModule,
     MatButtonModule,
     NgxSpinnerModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     NavbarComponent,
