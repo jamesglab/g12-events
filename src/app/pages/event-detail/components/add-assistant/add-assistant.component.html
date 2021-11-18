@@ -220,7 +220,7 @@
         <div class="row" *ngIf="form.typeChurch.value == '88'">
           <div class="col-6">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>{{'form_add_assistant.headquarter'|translate}}*</mat-label>
+              <mat-label>{{'form_add_assistant.headquarter'|translate}}</mat-label>
               <mat-select type="select" formControlName="headquarters" (selectionChange)="getPastors()">
                 <mat-option *ngFor="let place of places" value="{{ place.id }}">
                   {{ place.name }} | {{ place.city }}
@@ -328,6 +328,18 @@
           </div>
           <div style="display: block; margin-left: 10px">
             {{'form_add_assistant.accept_ters_and_conditions'|translate}}
+            
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: start; margin-top: 9px;">
+          <div>
+            <mat-checkbox formControlName="politics"></mat-checkbox>
+          </div>
+          <div style="display: block; margin-left: 10px;">
+            <a href="https://mci12.com/politicasdedatos/" target="blank" style="color: black;">
+              {{'form_add_assistant.accept_politics'|translate}}
+            </a>
             
           </div>
         </div>

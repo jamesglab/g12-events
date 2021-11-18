@@ -24,6 +24,7 @@ export const ADD_ASSISTANT = {
     churchName: [null], //case church g12 and other
     pastorName: [null], //case church g12 and other
     terms: [null, [Validators.required]],
+    politics: [null, [Validators.required]],
     documentType: [null, Validators.required]
 };
 
@@ -34,7 +35,7 @@ export const NEW_DONATION = {
     orderType: ["Donacion"],
     documentType: ['CC'],
     paymentMethod: [null, [Validators.required]], // PSE,TC,PE
-    amount: [{ value: null,disabled: true}], //PRICE OF EVENT
+    amount: [{ value: null, disabled: true }], //PRICE OF EVENT
     cardInstallmentsNumber: [15],
     cardNumber: [null, [Validators.required]],
     cardName: [null, [Validators.required]],

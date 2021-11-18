@@ -209,7 +209,10 @@ export class AddAssistantComponent implements OnInit {
     if (!this.form.terms.value && this.step == 3) {
       Swal.fire('Verifique los siguientes datos:', '- Acepta los terminos y condiciones', 'error');
       return;
-    } else {
+    } else if (!this.form.politics.value && this.step == 3){
+      Swal.fire('Verifique los siguientes datos:', '- Acepta las politicas', 'error');
+      return;
+    }else {
       if (this.assistantForm.invalid) {
         this.nextStep();
         return;
