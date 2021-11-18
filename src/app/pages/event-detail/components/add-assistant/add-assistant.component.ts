@@ -209,7 +209,7 @@ export class AddAssistantComponent implements OnInit {
     if (!this.form.terms.value && this.step == 3) {
       Swal.fire('Verifique los siguientes datos:', '- Acepta los terminos y condiciones', 'error');
       return;
-    } else if (!this.form.politics.value && this.step == 3){
+    } else if (!this.form.politics.value && this.step == 4){
       Swal.fire('Verifique los siguientes datos:', '- Acepta las politicas', 'error');
       return;
     }else {
@@ -294,6 +294,14 @@ export class AddAssistantComponent implements OnInit {
   }
 
   async nextStep() {
+
+    if (!this.form.terms.value && this.step == 3) {
+      Swal.fire('Verifique los siguientes datos:', '- Acepta los terminos y condiciones', 'error');
+      return;
+    } else if (!this.form.politics.value && this.step == 4){
+      Swal.fire('Verifique los siguientes datos:', '- Acepta las politicas', 'error');
+      return;
+    }
     var disable = this.step + 1;
     var validateSteapForm = this.validateFormErrors(this.step);
     if (validateSteapForm) {

@@ -23,8 +23,8 @@ export const ADD_ASSISTANT = {
     leader: [{ value: '', disabled: true }],//
     churchName: [null], //case church g12 and other
     pastorName: [null], //case church g12 and other
-    terms: [null, [Validators.required]],
-    politics: [null, [Validators.required]],
+    terms: [null],
+    politics: [null],
     documentType: [null, Validators.required]
 };
 

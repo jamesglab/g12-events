@@ -74,6 +74,7 @@
     "leader": "Leader",
     "pastor_name": "Senior pastor name *",
     "church_name": "Name of the main church *",
+    "politics": "Politicas",
     "terms_and_conditions": "Terms and conditions",
     "accept_politics":"Personal data protection policy",
     "description_terms_and_conditions": {

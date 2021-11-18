@@ -332,29 +332,76 @@
           </div>
         </div>
 
-        <div style="display: flex; justify-content: start; margin-top: 9px;">
-          <div>
-            <mat-checkbox formControlName="politics"></mat-checkbox>
-          </div>
-          <div style="display: block; margin-left: 10px;">
-            <a href="https://mci12.com/politicasdedatos/" target="blank" style="color: black;">
-              {{'form_add_assistant.accept_politics'|translate}}
-            </a>
-            
-          </div>
-        </div>
 
         <mat-action-row>
           <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
             {{'form_add_assistant.back'|translate}}
             
           </button>
-          <button type="button" mat-button color="primary" *ngIf="isMobile" (click)="nextStep()">
+          <button type="button" mat-button color="primary" (click)="nextStep()">
             {{'form_add_assistant.next'|translate}}
             
           </button>
         </mat-action-row>
       </mat-expansion-panel>
+
+
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 4" (opened)="setStep(4)" hideToggle="true"
+      [disabled]="disableds[4]">
+      <mat-expansion-panel-header>
+
+
+
+        
+        <mat-panel-title>
+          <h3>
+            <mat-icon style="color: rgb(218, 214, 214)">text_snippet</mat-icon>
+            {{'form_add_assistant.politics'|translate}}
+          </h3>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+
+      <div class="politics">
+        Autorizo de manera voluntaria, previa, expresa e informada a LA IGLESIA MISIÓN CARISMÁTICA INTERNACIONAL "M.C.I." identificada con NIT. 800.195.397-7 y dirección
+         electrónica contabilidad@mci12.com  en calidad de RESPONSABLE, para tratar mis datos personales de acuerdo con su Política de Tratamiento 
+         de Datos Personales publicada en <a href="https://mci12.com/politicasdedatos/" target="blank">https://mci12.com/politicasdedatos/ .</a> 
+         LA IGLESIA MISIÓN CARISMÁTICA INTERNACIONAL "M.C.I."
+          queda autorizado para recolectar, compilar, almacenar, usar, circular, compartir, comunicar,
+         procesar, actualizar, cruzar, transferir, transmitir, depurar, suprimir y disponer mis datos personales aquí suministrados, 
+         de acuerdo con las finalidades relacionadas con el objeto social de la Entidad Religiosa y en especial para utilizar mis datos 
+         personales con la finalidad de mantener contacto, remitir información de interés, acompañarme en mi proceso de crecimiento espiritual,
+          educativo, desarrollo e inclusión en programas sociales, asuntos administrativos, divulgación de eventos, recibir información comercial
+           de terceros aliados relacionada con la misión y visión de la iglesia. Finalmente declaro que la información y datos personales que he
+            dispuesto para el tratamiento por parte de LA IGLESIA MCI la he suministrado de forma voluntaria y es verídica. Como titular de datos 
+            personales he sido informado de que la posibilidad de ejercer el derecho de consulta, queja o reclamo, así como la actualización, supresión 
+            o modificación de mis datos o cualquier derecho, dirigiendo de forma gratuita una Consulta y/o Comunicación en este sentido a la dirección electrónica: privacidad@mci12.com
+         o de forma presencial en la siguiente dirección física: Calle 22C No. 31- 01 de la ciudad de Bogotá D.C.
+      </div>
+      
+      <div style="display: flex; justify-content: start; margin-top: 9px;">
+        <div>
+          <mat-checkbox formControlName="politics"></mat-checkbox>
+        </div>
+        <div style="display: block; margin-left: 10px;">
+          <a href="https://mci12.com/politicasdedatos/" target="blank" style="color: black;">
+            {{'form_add_assistant.accept_politics'|translate}}
+          </a>
+        </div>
+      </div>
+
+      <mat-action-row>
+        <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
+          {{'form_add_assistant.back'|translate}}
+          
+        </button>
+        <button type="button" mat-button color="primary" *ngIf="isMobile" (click)="nextStep()">
+          {{'form_add_assistant.next'|translate}}
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+
     </mat-accordion>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
