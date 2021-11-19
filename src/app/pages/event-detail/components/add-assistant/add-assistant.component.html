@@ -254,8 +254,8 @@
                 {{'form_add_assistant.pastor'|translate}}
               </mat-label>
               <mat-select type="select" formControlName="pastor" (selectionChange)="getLeaders($event.value)">
-                <mat-option *ngFor="let pastor of pastors" value="{{ pastor.user_code }}">{{ pastor.name }}
-                  {{ pastor.last_name }}
+                <mat-option *ngFor="let pastor of pastors" value="{{ pastor.user_code }}">{{ pastor.name |uppercase}}
+                  {{ pastor.last_name|uppercase }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -266,8 +266,8 @@
                 {{'form_add_assistant.leader'|translate}}
               </mat-label>
               <mat-select type="select" formControlName="leader">
-                <mat-option *ngFor="let leader of leaders" value="{{ leader.id }}">{{ leader.name }}
-                  {{ leader.last_name }}
+                <mat-option *ngFor="let leader of leaders" value="{{ leader.id }}">{{ leader.name |uppercase }}
+                  {{ leader.last_name |uppercase}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
