@@ -130,8 +130,6 @@ export class AddAssistantComponent implements OnInit {
   validatorsMinisterials(mci?) {
     console.log('tenemos la informacion ministerial')
     if (mci) {
-      console.log('MCI')
-
       this.form.network.setValidators([Validators.required]);
       this.form.pastor.setValidators([Validators.required]);
       this.form.leader.setValidators([Validators.required]);
@@ -141,8 +139,6 @@ export class AddAssistantComponent implements OnInit {
       this.form.pastorName.setErrors(null);
       this.form.pastorName.setValidators(null);
     } else {
-      console.log('OTRA')
-
       this.form.leader.setValidators(null);
       this.form.leader.setErrors(null);
       this.form.pastor.setValidators(null);

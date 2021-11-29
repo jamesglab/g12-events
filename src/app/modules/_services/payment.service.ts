@@ -6,15 +6,17 @@ import { header, handleError } from 'src/app/_helpers/tools/header.tool';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaymentService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getePaycoBanks(): Observable<any> {
-    return this.http.get<any>(
-      `${environment.apiUrlG12Connect.payments}/transaction/epayco/banks`).pipe(
+    return this.http
+      .get<any>(
+        `${environment.apiUrlG12Connect.payments}/transaction/epayco/banks`
+      )
+      .pipe(
         map((res: any) => {
           return res;
         }),
@@ -23,8 +25,11 @@ export class PaymentService {
   }
 
   getTransactionInfo(ref: string) {
-    return this.http.get<any>(`${environment.apiUrlG12Connect.payments}/transaction/validate-ref`,
-      { params: { ref } })
+    return this.http
+      .get<any>(
+        `${environment.apiUrlG12Connect.payments}/transaction/validate-ref`,
+        { params: { ref } }
+      )
       .pipe(
         map((res: any) => {
           return res;
@@ -34,20 +39,26 @@ export class PaymentService {
   }
 
   registerUsers(data: any): Observable<any> {
-    // eliminamos datos que no necesitamos cuando el pago sea internacional
-    if (data?.payment?.currency == 'usd') {
-      delete data.customer.documentType;
-      delete data.customer.document;
-      delete data.payment.doc_type;
-      delete data.payment.doc_number;
-    }
-    return this.http.post<any>(
-      `${environment.apiUrlG12Connect.donations}/register-users`,
-      JSON.stringify(data), { headers: header }).pipe(
+    console.log('send data', data);
+    // if (data?.payment?.currency == 'usd') {
+    //   delete data.customer.documentType;
+    //   delete data.customer.document;
+    //   delete data.payment.doc_type;
+    //   delete data.payment.doc_number;
+    // }
+    return this.http
+      .post<any>(
+        // `${environment.apiUrlG12Connect.donations}/register-users`
+        'http://localhost:3000/api/v2/payments/transaction/payment-register-users'
+        ,
+        data,
+        { headers: header }
+      )
+      .pipe(
         map((res: any) => {
           return res;
         }),
-        catchError(handleError),
+        catchError(handleError)
       );
   }
   redeemCode(data) {
@@ -57,23 +68,30 @@ export class PaymentService {
       delete data.payment.doc_type;
       delete data.payment.doc_number;
     }
-    return this.http.post<any>(
-      `${environment.apiUrlG12Connect.donations}/redeem-code`,
-      JSON.stringify(data), { headers: header }).pipe(
+    return this.http
+      .post<any>(
+        `${environment.apiUrlG12Connect.donations}/redeem-code`,
+        JSON.stringify(data),
+        { headers: header }
+      )
+      .pipe(
         map((res: any) => {
           return res;
         }),
-        catchError(handleError),
+        catchError(handleError)
       );
   }
   validatePaymentPaypal(params) {
-    return this.http.get<any>(
-      `${environment.apiUrlG12Connect.payments}/transaction/validate-paypal`,
-      { headers: header, params }).pipe(
+    return this.http
+      .get<any>(
+        `${environment.apiUrlG12Connect.payments}/transaction/validate-paypal`,
+        { headers: header, params }
+      )
+      .pipe(
         map((res: any) => {
           return res;
         }),
-        catchError(handleError),
+        catchError(handleError)
       );
   }
 }
