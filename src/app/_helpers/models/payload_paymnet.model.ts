@@ -34,12 +34,14 @@ export class ReadFinancialCut {
 export class PaymentInformation {
   currency: string;
   amount: number;
+  url_response: string;
+  platform: string;
   bank?: string;
   type_person?: string;
   payment_type: string;
   point_payment?: string;
   add_days?: number;
-  code ? : string;
+  code?: string;
 }
 
 export class Cash {

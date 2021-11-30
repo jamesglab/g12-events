@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { PaymentInformation } from '../models/payload_paymnet.model';
 
 export const parseToObject = (
@@ -112,6 +113,8 @@ export const getJSONPaymentType = (
     amount: parseInt(formFields.amount),
     currency: formFields.currency.toUpperCase(),
     payment_type: '',
+    url_response: environment.urlResponse,
+    platform: 'EVENTOSG12',
   };
 
   switch (formFields.paymentType) {
@@ -150,12 +153,11 @@ export const getJSONPaymentType = (
     }
     case 'PAYPAL': {
       response.payment_type = 'PAYPAL';
-      break
+      break;
     }
     case 'BOX': {
       response.payment_type = 'BOX';
-      break
-
+      break;
     }
   }
 

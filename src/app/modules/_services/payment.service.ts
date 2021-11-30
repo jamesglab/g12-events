@@ -48,8 +48,7 @@ export class PaymentService {
     // }
     return this.http
       .post<any>(
-        // `${environment.apiUrlG12Connect.donations}/register-users`
-        'http://localhost:3000/api/v2/payments/transaction/payment-register-users'
+        `${environment.apiUrlG12Connect.payments_v3}/to-events`
         ,
         data,
         { headers: header }
