@@ -36,6 +36,7 @@ export class PaymentInformation {
   amount: number;
   url_response: string;
   platform: string;
+  status : string;
   bank?: string;
   type_person?: string;
   payment_type: string;
