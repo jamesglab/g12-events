@@ -226,9 +226,7 @@
                 <div class="is-flex is-justify-content-center">
                   <i class="fas fa-exchange-alt fa-2x"></i>
                 </div>
-                <div class="is-flex is-justify-content-center mt-3">
-                  {{ "data_donor.bank" | translate }}
-                </div>
+                <div class="is-flex is-justify-content-center mt-3">BANCO</div>
               </div>
             </div>
             <div class="column is-one-quarter" *ngIf="showNational">
@@ -384,13 +382,15 @@
           </div>
           <div *ngIf="method_selected == 2 && showNational">
             <div>
-              <label class="label">
-                {{ "data_donor.bank" | translate }}
-              </label>
+              <label class="label"> Banco </label>
               <div class="field has-addons">
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
-                    <select name="" formControlName="financialInstitutionCode">
+                    <select
+                      name=""
+                      formControlName="financialInstitutionCode"
+                      (click)="validateBanks()"
+                    >
                       <option
                         *ngFor="let bank of banks"
                         value="{{ bank.bankCode }}"

@@ -257,13 +257,13 @@ export class PaymentComponent implements OnInit {
       this.assistantsService.assistants
     );
 
-    console.log('insert payment', data);
     const pseSubscr = this.paymentService.registerUsers(data).subscribe(
       (res) => {
         this.isLoading = false;
         this.storageService.setItem('ref', res.ref);
         this.storageService.setItem('clearAssistans', true);
         this.showPopUp(res);
+        console.log('ress pse', res);
         if (res.url) {
           window.open(res.url, '_blank');
         }
@@ -380,7 +380,7 @@ export class PaymentComponent implements OnInit {
     this.unsubscribe.push(paypalSubscr);
   }
 
-  async boxPayment(){
+  async boxPayment() {
     const data = await insertPayment(
       { ...this.donationForm.getRawValue() },
       this.event,
@@ -480,6 +480,12 @@ export class PaymentComponent implements OnInit {
       return false;
     } else {
       return true;
+    }
+  }
+  validateBanks() {
+    console.log('tenemso sss');
+    if (this.banks.length == 0) {
+      this.getBanks();
     }
   }
 }

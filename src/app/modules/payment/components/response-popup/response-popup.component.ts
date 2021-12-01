@@ -6,15 +6,17 @@ import { EventsService } from 'src/app/modules/_services/events.service';
 @Component({
   selector: 'app-response-popup',
   templateUrl: './response-popup.component.html',
-  styleUrls: ['./response-popup.component.css']
+  styleUrls: ['./response-popup.component.css'],
 })
 export class ResponsePopupComponent implements OnInit {
-
   public response: any = null;
 
-  constructor(public dialog: MatDialogRef<ResponsePopupComponent>,
-    private eventsService: EventsService, private cdr: ChangeDetectorRef,
-    private storage: StorageService) { }
+  constructor(
+    public dialog: MatDialogRef<ResponsePopupComponent>,
+    private eventsService: EventsService,
+    private cdr: ChangeDetectorRef,
+    private storage: StorageService
+  ) {}
 
   ngOnInit(): void {
     //console.log("RESPONSE POPUP", this.response);
@@ -28,34 +30,33 @@ export class ResponsePopupComponent implements OnInit {
   }
 
   redirectAgain() {
-    setTimeout(() => { window.open(this.response.url, '_blank'); }, 500);
+    setTimeout(() => {
+      window.open(this.response.url, '_blank');
+    }, 500);
   }
 
   messageTitle(titles: string) {
-
-    let title: string = "";
-    switch (titles) {
-      case "SUCCESS":
-        title = 'Yayy!';
+    let title: string = '';
+    switch (titles?.toString().toUpperCase()) {
+      case 'SUCCESS':
+        title = 'Transacción Exitosa';
         break;
 
-      case "pse":
-      case "PENDING":
+      case 'PENDING':
         title = 'Transacción Pendiente';
         break;
-      case "FAILED":
-        title = 'Oops!';
+      case 'FAILED':
+        title = 'Transacción Fallida';
         break;
 
       default:
-        title = 'Oops!'
+        title = 'Transacción Fallida ?';
         break;
     }
     return title;
   }
 
-  handleClose(){
-    this.dialog.close(this.response)
+  handleClose() {
+    this.dialog.close(this.response);
   }
-
 }

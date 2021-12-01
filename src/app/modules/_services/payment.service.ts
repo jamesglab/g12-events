@@ -24,11 +24,11 @@ export class PaymentService {
       );
   }
 
-  getTransactionInfo(ref: string) {
+  getTransactionInfo(transaction_id: string) {
     return this.http
       .get<any>(
-        `${environment.apiUrlG12Connect.payments}/transaction/validate-ref`,
-        { params: { ref } }
+        `${environment.apiUrlG12Connect.payments_v3}/detail-payment`,
+        { params: { transaction_id } }
       )
       .pipe(
         map((res: any) => {
