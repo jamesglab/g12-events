@@ -240,7 +240,7 @@ export class PaymentComponent implements OnInit {
           // enciamos solicitud con codigo de masivo
           this.paypalPayment();
         } else if (this.method_selected == 6) {
-          this.paypalPayment();
+          this.boxPayment();
         }
       }
     }

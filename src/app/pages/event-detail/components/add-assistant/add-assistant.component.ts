@@ -225,9 +225,9 @@ export class AddAssistantComponent implements OnInit {
       church = this.placesObject[this.form.headquarters.value];
     } else {
       // IN CASE OF SELECTED church g12 and other
-      pastor = { name: this.form.pastorName.value };
+      pastor = { name: this.form.pastorName.value.toUpperCase() };
       leader = { name: 'NO APLICA, NO IGLESIA MCI' };
-      church = { name: this.form.churchName.value };
+      church = { name: this.form.churchName.value.toUpperCase() };
     }
     let country = this.form.country.value;
     if (!country) this.form.country.setValue('colombia');

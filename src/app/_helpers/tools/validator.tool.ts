@@ -153,7 +153,7 @@ export const getJSONPaymentType = (
       break;
     }
     case 'PAYPAL': {
-      response.payment_type = 'PAYPAL';
+      response.payment_type = 'PAYPAL_CREDIT';
       break;
     }
     case 'BOX': {

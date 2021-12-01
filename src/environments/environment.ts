@@ -9,9 +9,8 @@ export const environment = {
     managment: 'https://dev-api.g12connect.com/api/v2/managment',
     users: 'https://dev-api.g12connect.com/api/v2/users',
     payments: 'https://dev-api.g12connect.com/api/v2/payments',
-    payments_v3 : "https://6735-181-55-4-148.ngrok.io/api/v3/payments"
+    payments_v3: 'https://dev-api.g12connect.com/api/v3/payments',
   },
-  // urlResponse: "https://dev.eventosg12.com/payment/transaction"
-  urlResponse: "http://localhost:4200/payment/transaction"
-
+  urlResponse: 'https://dev.eventosg12.com/payment/transaction',
+  // urlResponse: "http://localhost:4200/payment/transaction"
 };
