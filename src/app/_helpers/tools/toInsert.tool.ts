@@ -21,8 +21,6 @@ export const insertPayment = async (
   //////////// formFields contiene los datos de todo el fomrulario
   ////////////event contiene los datos del evento
   //////////// asistant contiente los asistentes del evento
-
-  console.log('payment',formFields)
   const payload: PyloadPayment = await {
     event_information: {
       event,

@@ -115,7 +115,6 @@ export const getJSONPaymentType = (
     payment_type: '',
     url_response: environment.urlResponse,
     platform: 'EVENTOSG12',
-    status: '2',
   };
 
   switch (formFields.paymentType) {
@@ -158,6 +157,8 @@ export const getJSONPaymentType = (
     }
     case 'BOX': {
       response.payment_type = 'BOX';
+      response.status = '2';
+
       break;
     }
   }
