@@ -51,7 +51,7 @@ export class AddAssistantComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getChurchTypes();
-    this.handleRegisterType();
+    
 
   }
   //validamos que solo se escriban numeros en input
@@ -62,6 +62,7 @@ export class AddAssistantComponent implements OnInit {
   // creamos el formulario para diligenciar los campos y su estructura se encuentra en ADD_ASSISTANT conjunto a los validators
   buildForm() {
     this.assistantForm = this.fb.group(ADD_ASSISTANT);
+    this.handleRegisterType();
   }
 
   get form() {

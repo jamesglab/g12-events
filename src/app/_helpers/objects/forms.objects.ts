@@ -45,7 +45,7 @@ export const ADD_ASSISTANT = {
   pastorName: [null], //case church g12 and other
   terms: [null],
   politics: [null],
-  documentType: [null, Validators.required],
+  documentType: [null],
 };
 
 export const NEW_DONATION = {
@@ -181,9 +181,7 @@ export const donation_errors = {
 
 export const error_messages = [
   {
-    documentType: [
-      { type: 'required', message: 'Tipo de documento requerido' },
-    ],
+    
     documentNumber: [
       { type: 'required', message: 'Numero de documento requerido' },
       {
@@ -198,6 +196,9 @@ export const error_messages = [
         type: 'maxlength',
         message: 'El documento debe tener menos de 13 dígitos',
       },
+    ],
+    documentType: [
+      { type: 'required', message: 'Tipo de documento requerido' },
     ],
     name: [{ type: 'required', message: 'Nombre requerido' }],
     lastName: [{ type: 'required', message: 'Apellido requerido' }],
