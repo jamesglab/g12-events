@@ -10,7 +10,7 @@ export const ADD_ASSISTANT = {
     lastName: ['', [Validators.required]],
     gender: [null, [Validators.required]],//
     dateBirth: [null, []],//
-    mobile: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(10),
+    mobile: ['', [Validators.required, Validators.pattern(/^[0-9+]*$/), Validators.maxLength(13),
     Validators.minLength(6)]],//
     email: ['', [Validators.email, Validators.required]],//
     country: [null, Validators.required],
