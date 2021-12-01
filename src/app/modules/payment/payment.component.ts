@@ -34,10 +34,6 @@ import { StorageService } from 'src/app/modules/_services/storage.service';
 
 import { ResponsePopupComponent } from './components/response-popup/response-popup.component';
 import Swal from 'sweetalert2';
-<<<<<<< HEAD
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-=======
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
 
 @Component({
   selector: 'app-payment',
@@ -217,45 +213,6 @@ export class PaymentComponent implements OnInit {
     this.donationForm
       .get('paymentType')
       .setValue(this.method_selected.toString());
-<<<<<<< HEAD
-
-    //VALIDAMOS QUE EL CORTE SELECCIONADO SE ENCUENTRE EN EL EVENTO
-    let find_cut = false;
-    this.event.financialCut.map((f_c) => {
-      if (f_c.id == this.event.financialCutSelected.id) {
-        find_cut = true;
-      }
-    });
-
-    if (find_cut) {
-      // si la validacion de errores de inmformacion personal fue satisfactoria procedemos a validar el pago
-      if (personal_info_validate) {
-        // validamos los errores en los metodos de pago
-        const validate_info_pay = this.validatePayInformation(
-          this.method_selected
-        );
-        // si la valdiacion de los campos del pago fue correcta procedemos con hacer la peticion al endPoint
-        if (validate_info_pay) {
-          // ponemos un loader para que no nos ejecuten mas de una accion
-          this.isLoading = true;
-          // validamos el moetodo de pago y usamos la funcion para cada uno
-          if (this.method_selected == 1) {
-            // enviamos solicitud a tarjeta de credito
-            this.creditCardPayment();
-          } else if (this.method_selected == 2) {
-            // enviamos solicitud  pse
-            this.psePayment();
-          } else if (this.method_selected == 3) {
-            // enviamos solicitud a payu efectivo
-            this.cashPayment();
-          } else if (this.method_selected == 4) {
-            // enciamos solicitud con codigo de masivo
-            this.codePayment();
-          } else if (this.method_selected == 5) {
-            // enciamos solicitud con codigo de masivo
-            this.paypalPayment();
-          }
-=======
     // si la validacion de errores de inmformacion personal fue satisfactoria procedemos a validar el pago
     if (personal_info_validate) {
       // validamos los errores en los metodos de pago
@@ -284,7 +241,6 @@ export class PaymentComponent implements OnInit {
           this.paypalPayment();
         } else if (this.method_selected == 6) {
           this.boxPayment();
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
         }
       }
     } else {
@@ -303,30 +259,19 @@ export class PaymentComponent implements OnInit {
   // ////////////////////////////////////
   async psePayment() {
     // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
-<<<<<<< HEAD
-    const data = insertPayment(
-=======
     const data = await insertPayment(
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
       { ...this.donationForm.getRawValue() },
       this.event,
       this.assistantsService.assistants
     );
 
-<<<<<<< HEAD
-    console.log('insert payment', data);
-=======
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
     const pseSubscr = this.paymentService.registerUsers(data).subscribe(
       (res) => {
         this.isLoading = false;
         this.storageService.setItem('ref', res.ref);
         this.storageService.setItem('clearAssistans', true);
         this.showPopUp(res);
-<<<<<<< HEAD
-=======
         console.log('ress pse', res);
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
         if (res.url) {
           window.open(res.url, '_blank');
         }
@@ -342,11 +287,7 @@ export class PaymentComponent implements OnInit {
 
   async creditCardPayment() {
     // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
-<<<<<<< HEAD
-    const data = insertPayment(
-=======
     const data = await insertPayment(
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
       { ...this.donationForm.getRawValue() },
       this.event,
       this.assistantsService.assistants
@@ -368,47 +309,12 @@ export class PaymentComponent implements OnInit {
   }
 
   // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
-<<<<<<< HEAD
-  cashPayment() {
-    const data = insertPayment(
-=======
   async cashPayment() {
     const data = await insertPayment(
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
       { ...this.donationForm.getRawValue() },
       this.event,
       this.assistantsService.assistants
     );
-<<<<<<< HEAD
-    if (data.payment.amount <= 10000) {
-      this.showPopUp({
-        message: 'El monto mínimo de la transacción debe ser mayor a $10.000',
-        status: 'FAILED',
-      });
-      this.isLoading = false;
-    } else {
-      const cashSubscr = this.paymentService.registerUsers(data).subscribe(
-        (res) => {
-          this.storageService.setItem('clearAssistans', true);
-          this.isLoading = false;
-          window.open(res.url, '_blank');
-          this.showPopUp(res);
-          // console.log("CASH RESPONSE", res);
-        },
-        (err) => {
-          this.showPopUp(err.error);
-          this.isLoading = false;
-          throw err;
-        }
-      );
-      this.unsubscribe.push(cashSubscr);
-    }
-  }
-  // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
-
-  codePayment() {
-    const data = insertPayment(
-=======
     // if (data.payment.amount <= 10000) {
     //   this.showPopUp({
     //     message: "El monto mínimo de la transacción debe ser mayor a $10.000",
@@ -437,7 +343,6 @@ export class PaymentComponent implements OnInit {
 
   async codePayment() {
     const data = await insertPayment(
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
       { ...this.donationForm.getRawValue() },
       this.event,
       this.assistantsService.assistants
@@ -459,21 +364,12 @@ export class PaymentComponent implements OnInit {
   }
   // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
 
-<<<<<<< HEAD
-  paypalPayment() {
-    const data = insertPayment(
-=======
   async paypalPayment() {
     const data = await insertPayment(
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
       { ...this.donationForm.getRawValue() },
       this.event,
       this.assistantsService.assistants
     );
-<<<<<<< HEAD
-
-    console.log('PAGO PAYPAL', data);
-=======
     const paypalSubscr = this.paymentService.registerUsers(data).subscribe(
       (res) => {
         this.isLoading = false;
@@ -498,7 +394,6 @@ export class PaymentComponent implements OnInit {
       this.event,
       this.assistantsService.assistants
     );
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
     const paypalSubscr = this.paymentService.registerUsers(data).subscribe(
       (res) => {
         this.isLoading = false;
@@ -595,13 +490,10 @@ export class PaymentComponent implements OnInit {
       return true;
     }
   }
-<<<<<<< HEAD
-=======
   validateBanks() {
     console.log('tenemso sss');
     if (this.banks.length == 0) {
       this.getBanks();
     }
   }
->>>>>>> cb6766e9d0095af6467d53938605e1dc05eff124
 }
