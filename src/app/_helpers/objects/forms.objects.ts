@@ -46,6 +46,7 @@ export const ADD_ASSISTANT = {
   terms: [null],
   politics: [null],
   documentType: [null],
+  language: [null, Validators.required],
 };
 
 export const NEW_DONATION = {
@@ -181,7 +182,6 @@ export const donation_errors = {
 
 export const error_messages = [
   {
-    
     documentNumber: [
       { type: 'required', message: 'Numero de documento requerido' },
       {
@@ -239,6 +239,7 @@ export const error_messages = [
         message: 'La dirección no puede tener menos de 8 caracteres',
       },
     ],
+    language: [{ type: 'required', message: 'Lenguaje requerido' }],
   },
   {
     typeChurch: [{ type: 'required', message: 'Selecciona una iglesia' }],

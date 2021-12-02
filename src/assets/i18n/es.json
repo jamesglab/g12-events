@@ -45,6 +45,7 @@
     "donate_now": "Donar Ahora"
   },
   "form_add_assistant": {
+    "language":"Idioma",
     "personal_information": "Información Personal",
     "type_register": "Tipo de registro",
     "register_national": "Registro Nacional (Colombia)",
