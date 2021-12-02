@@ -347,7 +347,7 @@ export class PaymentComponent implements OnInit {
       this.event,
       this.assistantsService.assistants
     );
-    const cashSubscr = this.paymentService.redeemCode(data).subscribe(
+    const cashSubscr = this.paymentService.registerUsers(data).subscribe(
       (res) => {
         this.storageService.setItem('clearAssistans', true);
         this.isLoading = false;
