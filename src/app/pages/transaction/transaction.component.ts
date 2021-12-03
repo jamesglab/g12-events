@@ -77,7 +77,10 @@ export class TransactionComponent implements OnInit {
           amount: res?.transaction.amount,
           currency: res?.transaction.currency,
           paymentMethod: this.validatePaymentMethod(
-            res?.transaction.payment_method
+            //MIRAR SI SE PUEDE MEJORAR
+            res?.transaction.payment_gateway.toLowerCase() === 'box' //SE VALIDA SI EL METODO DE PAGO ES CAJA
+              ? 'box' //SI ESCAJA SE ASIGNA EL VALOR
+              : res?.transaction.payment_method //SI ES DIFERENTE DE CAJA SE ASIGNA EL METODO DE PAGO
           ),
           reference: res?.transaction.payment_ref,
           status: this.validateStatus(res?.transaction.status),
@@ -137,6 +140,7 @@ export class TransactionComponent implements OnInit {
   }
 
   validatePaymentMethod(payment_method) {
+    console.log(payment_method);
     if (payment_method.toLowerCase() == 'credit') {
       return 'Tarjeta de credito';
     } else if (payment_method.toLowerCase() == 'pse') {
@@ -147,6 +151,8 @@ export class TransactionComponent implements OnInit {
       return 'Administración';
     } else if (payment_method.toLowerCase() == 'code') {
       return 'Codigo';
+    } else if (payment_method.toLowerCase() == 'box') {
+      return 'Caja';
     }
   }
 }
