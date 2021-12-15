@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'transaction',
     component: TransactionComponent
-  }
+  },
 ];
 
 @NgModule({

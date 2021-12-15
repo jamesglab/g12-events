@@ -100,7 +100,13 @@ a:hover {
   text-decoration: underline;
 }
 
-.input[disabled], .select fieldset[disabled] select, .select select[disabled], .textarea[disabled], fieldset[disabled] .input, fieldset[disabled] .select select, fieldset[disabled] .textarea {
+.input[disabled],
+.select fieldset[disabled] select,
+.select select[disabled],
+.textarea[disabled],
+fieldset[disabled] .input,
+fieldset[disabled] .select select,
+fieldset[disabled] .textarea {
   background-color: #fff;
   border-color: #dfdede;
   box-shadow: none;
@@ -144,6 +150,7 @@ a:hover {
 
 .card {
   cursor: pointer;
+  min-width: 10rem;
 }
 
 .card-selected {
@@ -151,5 +158,3 @@ a:hover {
   background: #F0F0F0 !important;
   border: 1px solid !important;
 }
-
-
