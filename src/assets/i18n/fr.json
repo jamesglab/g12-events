@@ -38,12 +38,12 @@
     "select_ticket": "Sélectionner ticket",
     "register_user": "Enregistrer utilisateur",
     "add_assistant": "Ajouter participant",
-    "table_name": "Nombre",
-    "table_document": "Documento",
+    "table_name": "Prénom",
+    "table_document": "d'identité",
     "table_email": "Email",
-    "table_contact": "Contacto",
-    "table_options": "Opciones",
-    "donate_now": "Donar Ahora"
+    "table_contact": "Contact",
+    "table_options": "choix",
+    "donate_now": "Faire un don maintenant"
   },
   "form_add_assistant": {
     "language":"Langage",
