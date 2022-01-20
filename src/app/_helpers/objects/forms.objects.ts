@@ -17,15 +17,7 @@ export const ADD_ASSISTANT = {
   lastName: ['', [Validators.required]],
   gender: [null, [Validators.required]], //
   dateBirth: [null, []], //
-  mobile: [
-    '',
-    [
-      Validators.required,
-      Validators.pattern(/^[0-9+]*$/),
-      Validators.maxLength(10),
-      Validators.minLength(6),
-    ],
-  ], //
+  mobile: [''], //
   email: ['', [Validators.email, Validators.required]], //
   country: [null, Validators.required],
   address: [
@@ -213,10 +205,15 @@ export const error_messages = [
         type: 'pattern',
         message: 'El celular no puede tener caracteres especiales o letras',
       },
-      { type: 'minlength', message: 'El  celular debe tener mas de 6 dígitos' },
+      {
+        type: 'minlength',
+        message:
+          'El celular no tiene el minimo de digitos especificados por el pais',
+      },
       {
         type: 'maxlength',
-        message: 'El celular debe tener menos de 10 dígitos',
+        message:
+          'El celular no tiene el maximo de digitos especificado por el pais',
       },
     ],
 

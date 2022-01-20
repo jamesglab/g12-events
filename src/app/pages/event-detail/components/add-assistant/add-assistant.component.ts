@@ -1,10 +1,26 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener, } from '@angular/core';
-import { FormGroup, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  HostListener,
+} from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
-import { parseToObjectOtherObject, numberOnly, toFailedStep } from 'src/app/_helpers/tools/validator.tool';
+import {
+  parseToObjectOtherObject,
+  numberOnly,
+} from 'src/app/_helpers/tools/validator.tool';
 import { COUNTRIES } from 'src/app/_helpers/tools/countrys.tools';
-import { ADD_ASSISTANT, error_messages } from 'src/app/_helpers/objects/forms.objects';
+import {
+  ADD_ASSISTANT,
+  error_messages,
+} from 'src/app/_helpers/objects/forms.objects';
 import { MainService } from 'src/app/modules/_services/main.service';
 import Swal from 'sweetalert2';
 import { EventsService } from 'src/app/modules/_services/events.service';
@@ -51,8 +67,6 @@ export class AddAssistantComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getChurchTypes();
-    
-
   }
   //validamos que solo se escriban numeros en input
   numberOnly($event): boolean {
@@ -119,17 +133,13 @@ export class AddAssistantComponent implements OnInit {
           }
         );
       this.unsubscribe.push(getPlacesSubscr);
-
     } else {
-      this.validatorsMinisterials()
-
+      this.validatorsMinisterials();
     }
     this.resetMinisterialInfo();
   }
 
-
   validatorsMinisterials(mci?) {
-    console.log('tenemos la informacion ministerial')
     if (mci) {
       this.form.network.setValidators([Validators.required]);
       this.form.pastor.setValidators([Validators.required]);
@@ -151,8 +161,8 @@ export class AddAssistantComponent implements OnInit {
       this.form.churchName.setValidators([Validators.required]);
       this.form.pastorName.setValidators([Validators.required]);
     }
-
   }
+
   resetMinisterialInfo() {
     // reiniciamos los valores de los pastores si se cambian los internacionales o los nacionales
     this.assistantForm.get('headquarters').setValue(null);
@@ -184,7 +194,7 @@ export class AddAssistantComponent implements OnInit {
     }
   }
 
-  // consultamos los lideres segun el pastor 
+  // consultamos los lideres segun el pastor
   getLeaders(Code: string) {
     this.leaders = [];
     const getLeadersSubscr = this.mainService
@@ -201,15 +211,22 @@ export class AddAssistantComponent implements OnInit {
     this.unsubscribe.push(getLeadersSubscr);
   }
 
-
   submit() {
     if (!this.form.terms.value && this.step == 3) {
-      Swal.fire('Verifique los siguientes datos:', '- Acepta los terminos y condiciones', 'error');
+      Swal.fire(
+        'Verifique los siguientes datos:',
+        '- Acepta los terminos y condiciones',
+        'error'
+      );
       return;
-    } else if (!this.form.politics.value && this.step == 4){
-      Swal.fire('Verifique los siguientes datos:', '- Acepta las politicas', 'error');
+    } else if (!this.form.politics.value && this.step == 4) {
+      Swal.fire(
+        'Verifique los siguientes datos:',
+        '- Acepta las politicas',
+        'error'
+      );
       return;
-    }else {
+    } else {
       if (this.assistantForm.invalid) {
         this.nextStep();
         return;
@@ -232,23 +249,35 @@ export class AddAssistantComponent implements OnInit {
     }
     let country = this.form.country.value;
     if (!country) this.form.country.setValue('colombia');
-    var typeChurch = this.churchTypes.find(element => element.idDetailMaster == this.form.typeChurch.value);
-    this._eventService.validateAsisstant({
-      user: {
-        documentNumber: this.form.documentNumber.value,
-        country: this.form.country.value,
-        email: this.form.email.value,
-      },
-      event: this.event.id
-    }).subscribe(res => {
-      this.dialog.close({
-        ...this.assistantForm.getRawValue(),
-        ...{ pastor, leader, church, typeChurch },
-      });
-    }, err => {
-      Swal.fire(err.error.message ? err.error.message : 'El usuario ya esta registrado', '', 'warning');
-    })
-
+    var typeChurch = this.churchTypes.find(
+      (element) => element.idDetailMaster == this.form.typeChurch.value
+    );
+    this._eventService
+      .validateAsisstant({
+        user: {
+          documentNumber: this.form.documentNumber.value,
+          country: this.form.country.value,
+          email: this.form.email.value,
+        },
+        event: this.event.id,
+      })
+      .subscribe(
+        (res) => {
+          this.dialog.close({
+            ...this.assistantForm.getRawValue(),
+            ...{ pastor, leader, church, typeChurch },
+          });
+        },
+        (err) => {
+          Swal.fire(
+            err.error.message
+              ? err.error.message
+              : 'El usuario ya esta registrado',
+            '',
+            'warning'
+          );
+        }
+      );
   }
 
   handleRegisterType() {
@@ -263,40 +292,54 @@ export class AddAssistantComponent implements OnInit {
     this.assistantForm.get('country').reset();
     this.assistantForm.get('typeChurch').reset();
 
-    if (value === "1") {
+    console.log(this.form.mobile);
+    if (value === '1') {
       //NACIONAL
-      this.countries = [{
-        "id": 82,
-        "name": "Colombia"
-      },]
-      this.form.documentNumber.setValidators([Validators.required, Validators.pattern(/^[0-9a-zA-Z\s,-]+$/), Validators.minLength(6),
-      Validators.maxLength(13)]);
+      this.countries = [
+        {
+          id: 82,
+          name: 'Colombia',
+        },
+      ];
+      this.form.documentNumber.setValidators([
+        Validators.required,
+        Validators.pattern(/^[0-9a-zA-Z\s,-]+$/),
+        Validators.minLength(6),
+        Validators.maxLength(13),
+      ]);
       this.form.documentType.setValidators([Validators.required]);
-
+      this.form.mobile.setValidators([Validators.minLength(10),Validators.required,Validators.maxLength(10)]);
     } else {
       this.countries = COUNTRIES;
+
       this.form.documentNumber.setValidators(null);
       this.form.documentNumber.setErrors(null);
       this.form.documentType.setValidators(null);
       this.form.documentType.setErrors(null);
+      this.form.mobile.setValidators([Validators.minLength(13),Validators.required,Validators.maxLength(13)]);
     }
 
     this.resetMinisterialInfo();
-
   }
-
 
   setStep(index: number, init?) {
     this.step = index;
   }
 
   async nextStep() {
-
     if (!this.form.terms.value && this.step == 3) {
-      Swal.fire('Verifique los siguientes datos:', '- Acepta los terminos y condiciones', 'error');
+      Swal.fire(
+        'Verifique los siguientes datos:',
+        '- Acepta los terminos y condiciones',
+        'error'
+      );
       return;
-    } else if (!this.form.politics.value && this.step == 4){
-      Swal.fire('Verifique los siguientes datos:', '- Acepta las politicas', 'error');
+    } else if (!this.form.politics.value && this.step == 4) {
+      Swal.fire(
+        'Verifique los siguientes datos:',
+        '- Acepta las politicas',
+        'error'
+      );
       return;
     }
     var disable = this.step + 1;
@@ -323,14 +366,15 @@ export class AddAssistantComponent implements OnInit {
     if (
       this.step == 1 &&
       this.assistantForm.get('email').value !=
-      this.assistantForm.get('confirmEmail').value
+        this.assistantForm.get('confirmEmail').value
     ) {
       errorText = '- La confirmacion de correo no coincide';
     }
 
-    //obtenemnos los keys de los controles y recorremos cada error 
+    //obtenemnos los keys de los controles y recorremos cada error
     Object.keys(this.assistantForm.controls).forEach((key) => {
-      const controlErrors: ValidationErrors = this.assistantForm.get(key).errors;
+      const controlErrors: ValidationErrors =
+        this.assistantForm.get(key).errors;
       // ponemos los el tipo o tipos de errores encontrados
       if (controlErrors != null) {
         // calidamos si hay errores en el campo recorrido
