@@ -308,7 +308,7 @@ export class AddAssistantComponent implements OnInit {
         Validators.maxLength(13),
       ]);
       this.form.documentType.setValidators([Validators.required]);
-      this.form.mobile.setValidators([Validators.minLength(10),Validators.required,Validators.maxLength(10)]);
+      
     } else {
       this.countries = COUNTRIES;
 
@@ -316,7 +316,7 @@ export class AddAssistantComponent implements OnInit {
       this.form.documentNumber.setErrors(null);
       this.form.documentType.setValidators(null);
       this.form.documentType.setErrors(null);
-      this.form.mobile.setValidators([Validators.minLength(13),Validators.required,Validators.maxLength(13)]);
+      
     }
 
     this.resetMinisterialInfo();
