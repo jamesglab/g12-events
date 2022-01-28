@@ -1,15 +1,32 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
-import { numberOnly, validateCardFlag } from 'src/app/_helpers/tools/validator.tool';
-import { MONTHS_CREDIT_CARD, YEARS_CREDIT_CARD } from 'src/app/_helpers/tools/fakedb.tool';
-import { NEW_DONATION, donation_errors } from 'src/app/_helpers/objects/forms.objects';
+import {
+  numberOnly,
+  validateCardFlag,
+} from 'src/app/_helpers/tools/validator.tool';
+import {
+  MONTHS_CREDIT_CARD,
+  YEARS_CREDIT_CARD,
+} from 'src/app/_helpers/tools/fakedb.tool';
+import {
+  NEW_DONATION,
+  donation_errors,
+} from 'src/app/_helpers/objects/forms.objects';
 import { insertPayment } from 'src/app/_helpers/tools/toInsert.tool';
-import { COUNTRIES, ENGLISH_COUNTRIES } from 'src/app/_helpers/tools/countrys.tools'
+import {
+  COUNTRIES,
+  ENGLISH_COUNTRIES,
+} from 'src/app/_helpers/tools/countrys.tools';
 import { EventsService } from 'src/app/modules/_services/events.service';
 import { AssistantsService } from 'src/app/modules/_services/assistants.service';
 import { PaymentService } from 'src/app/modules/_services/payment.service';
@@ -17,26 +34,20 @@ import { StorageService } from 'src/app/modules/_services/storage.service';
 
 import { ResponsePopupComponent } from './components/response-popup/response-popup.component';
 import Swal from 'sweetalert2';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
-
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.css'],
 })
-
-
 export class PaymentComponent implements OnInit {
-
   public event: any = null; //IN CASE OF RETURN - REMEMBER CALL SERVICE
   public donationForm: FormGroup;
   public documentTypes: any[] = [];
   public banks: any[] = [];
   public monthsCreditCard: any[] = MONTHS_CREDIT_CARD;
   public yearsCreditCard: any[] = YEARS_CREDIT_CARD;
-  public urlCard: string = "/assets/credit-card/credit-card.svg";
+  public urlCard: string = '/assets/credit-card/credit-card.svg';
   public isLoading: boolean = false;
   private unsubscribe: Subscription[] = [];
   public showNational: boolean;
@@ -44,10 +55,16 @@ export class PaymentComponent implements OnInit {
   public assistantsValidate;
   public countrys_language = COUNTRIES;
 
-  constructor(private fb: FormBuilder, private eventsService: EventsService,
-    private assistantsService: AssistantsService, private paymentService: PaymentService,
-    private storageService: StorageService, private router: Router,
-    private cdr: ChangeDetectorRef, public dialog: MatDialog) { }
+  constructor(
+    private fb: FormBuilder,
+    private eventsService: EventsService,
+    private assistantsService: AssistantsService,
+    private paymentService: PaymentService,
+    private storageService: StorageService,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.scrollToTop();
@@ -58,11 +75,14 @@ export class PaymentComponent implements OnInit {
       this.goBack();
     }
     this.buildForm();
-    this.form.cardNumber.valueChanges
-      .subscribe(value => {
-        const cardFrag = this.getFlagCard(value);
-        if (cardFrag != null) { this.urlCard = "/assets/credit-card/" + cardFrag + ".svg"; } else { this.urlCard = "/assets/credit-card/error-card.svg"; }
-      });
+    this.form.cardNumber.valueChanges.subscribe((value) => {
+      const cardFrag = this.getFlagCard(value);
+      if (cardFrag != null) {
+        this.urlCard = '/assets/credit-card/' + cardFrag + '.svg';
+      } else {
+        this.urlCard = '/assets/credit-card/error-card.svg';
+      }
+    });
   }
   scrollToTop() {
     let scrollToTop = window.setInterval(() => {
@@ -80,22 +100,30 @@ export class PaymentComponent implements OnInit {
     this.donationForm.controls.currency.disable();
     this.donationForm.get('country').setValue('Colombia');
     this.validateCountry('Colombia');
-    console.log('el evento es', this.event.financialCutSelected)
+    console.log('el evento es', this.event.financialCutSelected);
     if (this.event.financialCutSelected.is_group) {
-      this.donationForm.get('amount').setValue(this.event.financialCutSelected.price_group.cop);
+      this.donationForm
+        .get('amount')
+        .setValue(this.event.financialCutSelected.price_group.cop);
       this.donationForm.controls.amount.disable();
-
     } else {
-      this.donationForm.get('amount').setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
+      this.donationForm
+        .get('amount')
+        .setValue(
+          this.event.financialCutSelected.prices.cop *
+            this.assistantsService.assistants.length
+        );
       this.donationForm.controls.amount.disable();
     }
-    this.form.paymentType.setValue("CAR");
-    this.donationForm.get("country").valueChanges.subscribe(country => {
-      this.validateCountry(country)
-    })
+    this.form.paymentType.setValue('CAR');
+    this.donationForm.get('country').valueChanges.subscribe((country) => {
+      this.validateCountry(country);
+    });
   }
 
-  get form() { return this.donationForm.controls; }
+  get form() {
+    return this.donationForm.controls;
+  }
 
   numberOnly($event) {
     return numberOnly($event);
@@ -112,10 +140,11 @@ export class PaymentComponent implements OnInit {
   getBanks() {
     if (this.banks.length == 0) {
       const banksSubscr = this.paymentService
-        .getePaycoBanks().subscribe((res: any) => {
+        .getePaycoBanks()
+        .subscribe((res: any) => {
           this.banks = res || [];
           this.cdr.detectChanges();
-        })
+        });
       this.unsubscribe.push(banksSubscr);
     }
   }
@@ -126,16 +155,22 @@ export class PaymentComponent implements OnInit {
   }
 
   validateCountry(country) {
-    console.log('validamos', country)
-    if (country == "Colombia") {
+    console.log('validamos', country);
+    if (country == 'Colombia') {
       this.showNational = true;
       this.donationForm.get('currency').setValue('COP');
       if (this.event.financialCutSelected.is_group) {
-        this.donationForm.get('amount').setValue(this.event.financialCutSelected.price_group.cop);
+        this.donationForm
+          .get('amount')
+          .setValue(this.event.financialCutSelected.price_group.cop);
         this.donationForm.controls.amount.disable();
-
       } else {
-        this.donationForm.get('amount').setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
+        this.donationForm
+          .get('amount')
+          .setValue(
+            this.event.financialCutSelected.prices.cop *
+              this.assistantsService.assistants.length
+          );
         this.donationForm.controls.amount.disable();
       }
       // this.cdr.detectChanges();
@@ -147,15 +182,21 @@ export class PaymentComponent implements OnInit {
       this.method_selected = 1;
       if (this.event.financialCutSelected.prices.usd) {
         if (this.event.financialCutSelected.is_group) {
-          this.donationForm.get('amount').setValue(this.event.financialCutSelected.price_group.usd);
+          this.donationForm
+            .get('amount')
+            .setValue(this.event.financialCutSelected.price_group.usd);
           this.donationForm.controls.amount.disable();
-
         } else {
-          this.donationForm.get('amount').setValue(this.event.financialCutSelected.prices.usd * this.assistantsService.assistants.length);
+          this.donationForm
+            .get('amount')
+            .setValue(
+              this.event.financialCutSelected.prices.usd *
+                this.assistantsService.assistants.length
+            );
           this.donationForm.controls.amount.disable();
         }
       } else {
-        Swal.fire('Error','Este corte no tiene pago en dolares','warning');
+        Swal.fire('Error', 'Este corte no tiene pago en dolares', 'warning');
         this.donationForm.get('country').setValue('Colombia');
       }
       // this.cdr.detectChanges();
@@ -169,11 +210,15 @@ export class PaymentComponent implements OnInit {
     // validamos que el usuario llene bien los campos de informacion personal si nos retorna true pasamos a validar los campos del pago
     const personal_info_validate = this.validateFormErrors();
     // validamos el metodo de pago que vamos a usar
-    this.donationForm.get('paymentType').setValue(this.method_selected.toString())
+    this.donationForm
+      .get('paymentType')
+      .setValue(this.method_selected.toString());
     // si la validacion de errores de inmformacion personal fue satisfactoria procedemos a validar el pago
     if (personal_info_validate) {
       // validamos los errores en los metodos de pago
-      const validate_info_pay = this.validatePayInformation(this.method_selected);
+      const validate_info_pay = this.validatePayInformation(
+        this.method_selected
+      );
       // si la valdiacion de los campos del pago fue correcta procedemos con hacer la peticion al endPoint
       if (validate_info_pay) {
         // ponemos un loader para que no nos ejecuten mas de una accion
@@ -190,101 +235,180 @@ export class PaymentComponent implements OnInit {
           this.cashPayment();
         } else if (this.method_selected == 4) {
           // enciamos solicitud con codigo de masivo
-          this.codePayment()
+          this.codePayment();
         } else if (this.method_selected == 5) {
           // enciamos solicitud con codigo de masivo
           this.paypalPayment();
+        } else if (this.method_selected == 6) {
+          this.boxPayment();
         }
       }
+    } else {
+      Swal.fire(
+        'No se pudo procesar el pago',
+        'lo sentimos, no se pudo realizar el pago intentalo nuevamente',
+        'error'
+      ).then((res) => {
+        this.router.navigate(['/home/all']);
+      });
     }
-
   }
 
   ////////////////////////////////////////
   // <---------METODOS DE PAGO--------->
   // ////////////////////////////////////
-  psePayment() {
+  async psePayment() {
     // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
-    const data = insertPayment({ ...this.donationForm.getRawValue() },
-      this.event, this.assistantsService.assistants);
+    const data = await insertPayment(
+      { ...this.donationForm.getRawValue() },
+      this.event,
+      this.assistantsService.assistants
+    );
 
-    console.log('insert payment', data);
-    const pseSubscr = this.paymentService.registerUsers(data)
-      .subscribe((res) => {
+    const pseSubscr = this.paymentService.registerUsers(data).subscribe(
+      (res) => {
         this.isLoading = false;
-        this.storageService.setItem("ref", res.ref);
+        this.storageService.setItem('ref', res.ref);
         this.storageService.setItem('clearAssistans', true);
         this.showPopUp(res);
-        if (res.url) { window.open(res.url, '_blank'); }
-      }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
+        console.log('ress pse', res);
+        if (res.url) {
+          window.open(res.url, '_blank');
+        }
+      },
+      (err) => {
+        this.isLoading = false;
+        this.showPopUp(err.error);
+        throw err;
+      }
+    );
     this.unsubscribe.push(pseSubscr);
   }
 
-  creditCardPayment() {
+  async creditCardPayment() {
     // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
-    const data = insertPayment({ ...this.donationForm.getRawValue() },
-      this.event, this.assistantsService.assistants);
-    const creditSubscr = this.paymentService.registerUsers(data)
-      .subscribe((res) => {
+    const data = await insertPayment(
+      { ...this.donationForm.getRawValue() },
+      this.event,
+      this.assistantsService.assistants
+    );
+    const creditSubscr = this.paymentService.registerUsers(data).subscribe(
+      (res) => {
         this.isLoading = false;
         this.storageService.setItem('clearAssistans', true);
         this.showPopUp(res);
         // console.log("CARD RESPONSE", res);
-      }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
+      },
+      (err) => {
+        this.showPopUp(err.error);
+        this.isLoading = false;
+        throw err;
+      }
+    );
     this.unsubscribe.push(creditSubscr);
   }
 
   // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
-  cashPayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue() },
-      this.event, this.assistantsService.assistants);
-    if (data.payment.amount <= 10000) {
-      this.showPopUp({
-        message: "El monto mínimo de la transacción debe ser mayor a $10.000",
-        status: "FAILED"
-      });
-      this.isLoading = false;
-    } else {
-      const cashSubscr = this.paymentService.registerUsers(data)
-        .subscribe((res) => {
-          this.storageService.setItem('clearAssistans', true);
-          this.isLoading = false;
-          window.open(res.url, '_blank');
-          this.showPopUp(res);
-          // console.log("CASH RESPONSE", res);
-        }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
-      this.unsubscribe.push(cashSubscr);
-    }
-
+  async cashPayment() {
+    const data = await insertPayment(
+      { ...this.donationForm.getRawValue() },
+      this.event,
+      this.assistantsService.assistants
+    );
+    // if (data.payment.amount <= 10000) {
+    //   this.showPopUp({
+    //     message: "El monto mínimo de la transacción debe ser mayor a $10.000",
+    //     status: "FAILED"
+    //   });
+    //   this.isLoading = false;
+    // } else {
+    const cashSubscr = this.paymentService.registerUsers(data).subscribe(
+      (res) => {
+        this.storageService.setItem('clearAssistans', true);
+        this.isLoading = false;
+        window.open(res.url, '_blank');
+        this.showPopUp(res);
+        // console.log("CASH RESPONSE", res);
+      },
+      (err) => {
+        this.showPopUp(err.error);
+        this.isLoading = false;
+        throw err;
+      }
+    );
+    this.unsubscribe.push(cashSubscr);
+    // }
   }
   // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
 
-  codePayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue() },
-      this.event, this.assistantsService.assistants);
-    const cashSubscr = this.paymentService.redeemCode(data)
-      .subscribe((res) => {
+  async codePayment() {
+    const data = await insertPayment(
+      { ...this.donationForm.getRawValue() },
+      this.event,
+      this.assistantsService.assistants
+    );
+    const cashSubscr = this.paymentService.registerUsers(data).subscribe(
+      (res) => {
         this.storageService.setItem('clearAssistans', true);
         this.isLoading = false;
         this.showPopUp(res);
         // console.log("CASH RESPONSE", res);
-      }, err => { this.showPopUp(err.error); this.isLoading = false; throw err; })
+      },
+      (err) => {
+        this.showPopUp(err.error);
+        this.isLoading = false;
+        throw err;
+      }
+    );
     this.unsubscribe.push(cashSubscr);
   }
   // creamos el objeto que recibira el enpint enviamos todos los datos de la donacion del evento y los asistentes que estan en el servicio
 
-  paypalPayment() {
-    const data = insertPayment({ ...this.donationForm.getRawValue() },
-      this.event, this.assistantsService.assistants);
-
-    console.log('PAGO PAYPAL', data);
-    const paypalSubscr = this.paymentService.registerUsers(data)
-      .subscribe((res) => {
+  async paypalPayment() {
+    const data = await insertPayment(
+      { ...this.donationForm.getRawValue() },
+      this.event,
+      this.assistantsService.assistants
+    );
+    const paypalSubscr = this.paymentService.registerUsers(data).subscribe(
+      (res) => {
         this.isLoading = false;
         this.storageService.setItem('clearAssistans', true);
         this.showPopUp(res);
-        if (res.url) { window.open(res.url, '_blank'); }
-      }, err => { this.isLoading = false; this.showPopUp(err.error); throw err; })
+        if (res.url) {
+          window.open(res.url, '_blank');
+        }
+      },
+      (err) => {
+        this.isLoading = false;
+        this.showPopUp(err.error);
+        throw err;
+      }
+    );
+    this.unsubscribe.push(paypalSubscr);
+  }
+
+  async boxPayment() {
+    const data = await insertPayment(
+      { ...this.donationForm.getRawValue() },
+      this.event,
+      this.assistantsService.assistants
+    );
+    const paypalSubscr = this.paymentService.registerUsers(data).subscribe(
+      (res) => {
+        this.isLoading = false;
+        this.storageService.setItem('clearAssistans', true);
+        this.showPopUp(res);
+        if (res.url) {
+          window.open(res.url, '_blank');
+        }
+      },
+      (err) => {
+        this.isLoading = false;
+        this.showPopUp(err.error);
+        throw err;
+      }
+    );
     this.unsubscribe.push(paypalSubscr);
   }
 
@@ -292,17 +416,14 @@ export class PaymentComponent implements OnInit {
   // <---------FIN METODOS DE PAGO--------->
   //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-
   showPopUp(response: any) {
-    const dialogRef = this.dialog.open(ResponsePopupComponent, {
-    });
+    const dialogRef = this.dialog.open(ResponsePopupComponent, {});
     dialogRef.componentInstance.response = response;
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("MODAL RESULT", response);
-      if (response.status == "PENDING" ||
-        response.status == "SUCCESS") {
-        this.storageService.removeItem("assistants");
-        console.log('lo tenemos')
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('MODAL RESULT', response);
+      if (response.status == 'PENDING' || response.status == 'SUCCESS') {
+        this.storageService.removeItem('assistants');
+        console.log('lo tenemos');
         this.router.navigate(['/home/all']);
       }
     });
@@ -322,13 +443,15 @@ export class PaymentComponent implements OnInit {
 
   validateFormErrors() {
     let errorText = '';
-    Object.keys(this.donationForm.controls).forEach(key => {
+    Object.keys(this.donationForm.controls).forEach((key) => {
       const controlErrors: ValidationErrors = this.donationForm.get(key).errors;
       if (controlErrors != null) {
-        Object.keys(controlErrors).forEach(keyError => {
-
+        Object.keys(controlErrors).forEach((keyError) => {
           if (donation_errors.personal_information[key]) {
-            donation_errors.personal_information[key].map(res => { if (res.type == keyError) errorText = `${errorText} <br>- ${res.message}`; })
+            donation_errors.personal_information[key].map((res) => {
+              if (res.type == keyError)
+                errorText = `${errorText} <br>- ${res.message}`;
+            });
           }
         });
       }
@@ -337,22 +460,23 @@ export class PaymentComponent implements OnInit {
       setTimeout(() => {
         Swal.fire('Verifique los siguientes datos:', errorText, 'error');
       }, 500);
-      return false
+      return false;
     } else {
       return true;
     }
-
   }
 
   validatePayInformation(pay_info) {
-
     let errorText = '';
-    Object.keys(this.donationForm.controls).forEach(key => {
+    Object.keys(this.donationForm.controls).forEach((key) => {
       const controlErrors: ValidationErrors = this.donationForm.get(key).errors;
       if (controlErrors != null) {
-        Object.keys(controlErrors).forEach(keyError => {
+        Object.keys(controlErrors).forEach((keyError) => {
           if (donation_errors[pay_info][key]) {
-            donation_errors[pay_info][key].map(res => { if (res.type == keyError) errorText = `${errorText} <br>- ${res.message}`; })
+            donation_errors[pay_info][key].map((res) => {
+              if (res.type == keyError)
+                errorText = `${errorText} <br>- ${res.message}`;
+            });
           }
         });
       }
@@ -361,11 +485,15 @@ export class PaymentComponent implements OnInit {
       setTimeout(() => {
         Swal.fire('Verifique los siguientes datos:', errorText, 'error');
       }, 500);
-      return false
+      return false;
     } else {
       return true;
     }
-
   }
-
+  validateBanks() {
+    console.log('tenemso sss');
+    if (this.banks.length == 0) {
+      this.getBanks();
+    }
+  }
 }

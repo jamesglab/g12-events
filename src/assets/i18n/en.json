@@ -2,7 +2,8 @@
   "language": {
     "es": "Spanish",
     "en": "English",
-    "pt": "Portugues"
+    "pt": "Portugues",
+    "fr": "French"
   },
   "footer": {
     "events_G12": "G12 Events",
@@ -45,6 +46,7 @@
     "donate_now": "Donate now"
   },
   "form_add_assistant": {
+    "language":"Language",
     "personal_information": "Personal information",
     "type_register": "Type of regsitration",
     "register_national": "National registration (Colombia)",
@@ -74,7 +76,9 @@
     "leader": "Leader",
     "pastor_name": "Senior pastor name *",
     "church_name": "Name of the main church *",
+    "politics": "Politicas",
     "terms_and_conditions": "Terms and conditions",
+    "accept_politics": "I accept the processing of personal data",
     "description_terms_and_conditions": {
       "description_0": "The International Charismatic Mission Church is in search of continuous improvement and the use of new technologies makes available to the community a platform called PAYULATAM which works through the page",
       "description_1": "that allows you to make online donations. By using this page you accept the terms and conditions of use, therefore it is essential that you know the concepts, read, understand and agree to what is described below.",
@@ -141,7 +145,7 @@
         "title": "Disclaimer",
         "description_0": "Donations in favor of the International Charismatic Mission Church should only be made through the website",
         "description_1": "The Church is not responsible for the content, data and financial information that each of the users or visitors register in the online donation form, users of this portal are recommended to previously request from their bank the activation of the payment service by electronic means and that you know in detail the restrictions of your Bank in terms of transaction amounts and access codes. The user accepts and consents to the technical processing and transmission of the online donation service including its content.",
-        "description_2":"The terms and conditions contained in this page will take effect from the date you subscribe. The donor states that he has read and accepts each and every one of the stipulations provided in these terms and conditions of use."
+        "description_2": "The terms and conditions contained in this page will take effect from the date you subscribe. The donor states that he has read and accepts each and every one of the stipulations provided in these terms and conditions of use."
       }
     },
     "accept_ters_and_conditions": "I accept the terms and conditions",
@@ -172,6 +176,7 @@
     "means_of_donation": "Donation method",
     "credit": "Credit",
     "bank": "Bank",
+    "box": "Box",
     "cash": "Cash",
     "code": "Code",
     "paypal": "PayPal",

@@ -50,7 +50,7 @@
                     </article>
 
                     <div class="content-link"
-                        *ngIf="response?.typePayment == 'pse' || response?.typePayment == 'cash' || response?.typePayment == 'stripe' || response?.typePayment == 'paypal'">
+                        *ngIf="response?.typePayment?.toUpperCase() == 'PSE' || response?.typePayment?.toUpperCase() == 'CASH' || response?.typePayment?.toUpperCase() == 'STRIPE' || response?.typePayment?.toUpperCase() == 'PAYPAL'">
 
                         <ng-container *ngIf="response?.status != 'FAILED'">
                             Si no te redireccionó a tu portal bancario, haz clic

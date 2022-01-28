@@ -2,7 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
-import { filter } from 'rxjs/operators'
+import { filter } from 'rxjs/operators';
 // import { map, catchError } from 'rxjs/operators';
 
 // import { header } from 'src/app/_helpers/tools/header.tool';
@@ -10,18 +10,17 @@ import { filter } from 'rxjs/operators'
 import { StorageService } from 'src/app/modules/_services/storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AssistantsService {
-
   @Output() assistantsEvent: EventEmitter<any[]> = new EventEmitter();
   public assistants: any[] = [];
-  public previousUrl: string = "";
+  public previousUrl: string = '';
   public financialCutSelected: any;
 
   constructor(private storage: StorageService, private router: Router) {
     router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         const validateClearAssistans = this.storage.getItem('clearAssistans');
         if (validateClearAssistans) {
@@ -30,11 +29,22 @@ export class AssistantsService {
           this.assistants = [];
           this.financialCutSelected = null;
         } else {
-          if (this.previousUrl === "/payment") {
-            const assistants = this.storage.getItem("assistants");
-            this.financialCutSelected = this.storage.getItem("financialCutSelected");
-            if (assistants) { this.assistants = assistants };
+          if (this.previousUrl === '/payment') {
+            const assistants = this.storage.getItem('assistants');
+            this.financialCutSelected = this.storage.getItem(
+              'financialCutSelected'
+            );
+            if (assistants) {
+              this.assistants = assistants;
+            }
           }
+        }
+        //VALIDAMOS SI EL USUARIO SE DIRECCIONO A EL HOME DE EVENTOS
+        if (event.url == '/home/all') {
+          //LIMPIAMOS LAS VARIABLES DE ACCESO
+          this.storage.clear();
+          this.assistants = [];
+          this.financialCutSelected = null;
         }
         this.previousUrl = event.url;
       });
@@ -52,8 +62,7 @@ export class AssistantsService {
   }
 
   saveAssistantOnStorage() {
-
-    this.storage.setItem("assistants", this.assistants);
+    this.storage.setItem('assistants', this.assistants);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -61,11 +70,9 @@ export class AssistantsService {
       throw error.error.message;
     } else {
       console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
+      );
     }
     return throwError(error);
   }
-
-
 }
