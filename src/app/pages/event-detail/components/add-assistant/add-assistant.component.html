@@ -2,14 +2,8 @@
   <h2 mat-dialog-title>{{ "detail_event.add_assistant" | translate }}</h2>
   <mat-dialog-content>
     <mat-accordion>
-      <mat-expansion-panel
-        disabled
-        class="mat-elevation-z-0"
-        [expanded]="step === 0"
-        (opened)="setStep(0)"
-        [disabled]="disableds[0]"
-        hideToggle="true"
-      >
+      <mat-expansion-panel disabled class="mat-elevation-z-0" [expanded]="step === 0" (opened)="setStep(0)"
+        [disabled]="disableds[0]" hideToggle="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
@@ -26,12 +20,8 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <mat-radio-group
-              name="registerType"
-              aria-label="Select an option"
-              (change)="handleRegisterType()"
-              formControlName="registerType"
-            >
+            <mat-radio-group name="registerType" aria-label="Select an option" (change)="handleRegisterType()"
+              formControlName="registerType">
               <mat-radio-button value="1">
                 {{ "form_add_assistant.register_national" | translate }}
               </mat-radio-button>
@@ -44,11 +34,7 @@
 
         <div class="row">
           <div class="col-6">
-            <mat-form-field
-              appearance="fill"
-              class="w-100"
-              *ngIf="form.registerType.value == '1'"
-            >
+            <mat-form-field appearance="fill" class="w-100" *ngIf="form.registerType.value == '1'">
               <mat-label>
                 {{ "form_add_assistant.type_document" | translate }}
               </mat-label>
@@ -61,19 +47,11 @@
           </div>
 
           <div class="col-6">
-            <mat-form-field
-              class="w-100"
-              appearance="fill"
-              *ngIf="form.registerType.value == '1'"
-            >
+            <mat-form-field class="w-100" appearance="fill" *ngIf="form.registerType.value == '1'">
               <mat-label>
                 {{ "form_add_assistant.number_document" | translate }}
               </mat-label>
-              <input
-                matInput
-                autocomplete="off"
-                formControlName="documentNumber"
-              />
+              <input matInput autocomplete="off" formControlName="documentNumber" />
             </mat-form-field>
           </div>
         </div>
@@ -115,31 +93,18 @@
         </div>
 
         <mat-action-row>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            class="btn-next"
-            (click)="nextStep()"
-          >
+          <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
             {{ "form_add_assistant.next" | translate }}
           </button>
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel
-        class="mat-elevation-z-0"
-        [expanded]="step === 1"
-        (opened)="setStep(1)"
-        hideToggle="true"
-        [disabled]="disableds[1]"
-      >
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true"
+        [disabled]="disableds[1]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
-              <mat-icon style="color: rgb(218, 214, 214)"
-                >supervised_user_circle</mat-icon
-              >
+              <mat-icon style="color: rgb(218, 214, 214)">supervised_user_circle</mat-icon>
               {{ "form_add_assistant.contact_information" | translate }}
             </h3>
           </mat-panel-title>
@@ -151,12 +116,8 @@
               <mat-label>
                 {{ "form_add_assistant.cell_phone" | translate }}
               </mat-label>
-              <input
-                matInput
-                autocomplete="off"
-                formControlName="mobile"
-                (keypress)="numberOnly($event)"
-              />
+              aaaa
+              <input matInput autocomplete="off" formControlName="mobile" (keypress)="numberOnly($event)" />
             </mat-form-field>
           </div>
           <div class="col-6">
@@ -168,7 +129,7 @@
               <mat-label>
                 {{ "form_add_assistant.email" | translate }}
               </mat-label>
-              <input matInput autocomplete="off" formControlName="email" />
+              <input matInput autocomplete="off" formControlName="email" onpaste="return false;" />
             </mat-form-field>
           </div>
         </div>
@@ -179,11 +140,7 @@
               <mat-label>
                 {{ "form_add_assistant.confirm_email" | translate }}
               </mat-label>
-              <input
-                matInput
-                autocomplete="off"
-                formControlName="confirmEmail"
-              />
+              <input matInput autocomplete="off" formControlName="confirmEmail" onpaste="return false;" />
             </mat-form-field>
           </div>
           <div class="col-6">
@@ -192,17 +149,13 @@
                 {{ "form_add_assistant.language" | translate }}
               </mat-label>
 
-              <mat-select
-                type="select"
-                formControlName="language"
-                (selectionChange)="getPastors()"
-              >
+              <mat-select type="select" formControlName="language" (selectionChange)="getPastors()">
                 <mat-option value="ES">
                   {{ "language.es" | translate }}
                 </mat-option>
                 <mat-option value="EN">
-                  {{ "language.en" | translate }} </mat-option
-                ><mat-option value="PT">
+                  {{ "language.en" | translate }} </mat-option>
+                <mat-option value="PT">
                   {{ "language.pt" | translate }}
                 </mat-option>
                 <mat-option value="FR">
@@ -214,40 +167,21 @@
         </div>
 
         <mat-action-row>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            class="btn-prev"
-            (click)="prevStep()"
-          >
+          <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
             {{ "form_add_assistant.back" | translate }}
           </button>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            class="btn-next"
-            (click)="nextStep()"
-          >
+          <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
             {{ "form_add_assistant.next" | translate }}
           </button>
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel
-        class="mat-elevation-z-0"
-        [expanded]="step === 2"
-        (opened)="setStep(2)"
-        hideToggle="true"
-        [disabled]="disableds[2]"
-      >
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true"
+        [disabled]="disableds[2]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
-              <mat-icon style="color: rgb(218, 214, 214)"
-                >maps_home_work</mat-icon
-              >
+              <mat-icon style="color: rgb(218, 214, 214)">maps_home_work</mat-icon>
               {{ "form_add_assistant.ministerial_information" | translate }}
             </h3>
           </mat-panel-title>
@@ -259,16 +193,9 @@
               <mat-label>
                 {{ "form_add_assistant.country" | translate }}
               </mat-label>
-              <mat-select
-                type="select"
-                formControlName="country"
-                (selectionChange)="this.assistantForm.get('typeChurch').reset()"
-              >
-                <mat-option
-                  *ngFor="let country of countries"
-                  value="{{ country.name }}"
-                  >{{ country.name }}</mat-option
-                >
+              <mat-select type="select" formControlName="country"
+                (selectionChange)="this.assistantForm.get('typeChurch').reset()">
+                <mat-option *ngFor="let country of countries" value="{{ country.name }}">{{ country.name }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -278,15 +205,8 @@
               <mat-label>
                 {{ "form_add_assistant.church" | translate }}
               </mat-label>
-              <mat-select
-                type="select"
-                formControlName="typeChurch"
-                (selectionChange)="getPlaces()"
-              >
-                <mat-option
-                  *ngFor="let type of churchTypes"
-                  value="{{ type.idDetailMaster }}"
-                >
+              <mat-select type="select" formControlName="typeChurch" (selectionChange)="getPlaces()">
+                <mat-option *ngFor="let type of churchTypes" value="{{ type.idDetailMaster }}">
                   {{ "form_add_assistant." + type.idDetailMaster | translate }}
                 </mat-option>
               </mat-select>
@@ -298,12 +218,8 @@
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>{{
                 "form_add_assistant.headquarter" | translate
-              }}</mat-label>
-              <mat-select
-                type="select"
-                formControlName="headquarters"
-                (selectionChange)="getPastors()"
-              >
+                }}</mat-label>
+              <mat-select type="select" formControlName="headquarters" (selectionChange)="getPastors()">
                 <mat-option *ngFor="let place of places" value="{{ place.id }}">
                   {{ place.name }} | {{ place.city }}
                 </mat-option>
@@ -315,11 +231,7 @@
               <mat-label>
                 {{ "form_add_assistant.network" | translate }}
               </mat-label>
-              <mat-select
-                type="select"
-                formControlName="network"
-                (selectionChange)="getPastors()"
-              >
+              <mat-select type="select" formControlName="network" (selectionChange)="getPastors()">
                 <mat-option value="01">
                   {{ "form_add_assistant.mens" | translate }}
                 </mat-option>
@@ -336,15 +248,8 @@
               <mat-label>
                 {{ "form_add_assistant.pastor" | translate }}
               </mat-label>
-              <mat-select
-                type="select"
-                formControlName="pastor"
-                (selectionChange)="getLeaders($event.value)"
-              >
-                <mat-option
-                  *ngFor="let pastor of pastors"
-                  value="{{ pastor.user_code }}"
-                  >{{ pastor.name | uppercase }}
+              <mat-select type="select" formControlName="pastor" (selectionChange)="getLeaders($event.value)">
+                <mat-option *ngFor="let pastor of pastors" value="{{ pastor.user_code }}">{{ pastor.name | uppercase }}
                   {{ pastor.last_name | uppercase }}
                 </mat-option>
               </mat-select>
@@ -356,33 +261,21 @@
                 {{ "form_add_assistant.leader" | translate }}
               </mat-label>
               <mat-select type="select" formControlName="leader">
-                <mat-option
-                  *ngFor="let leader of leaders"
-                  value="{{ leader.id }}"
-                  >{{ leader.name | uppercase }}
+                <mat-option *ngFor="let leader of leaders" value="{{ leader.id }}">{{ leader.name | uppercase }}
                   {{ leader.last_name | uppercase }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
-        <div
-          class="row"
-          *ngIf="form.typeChurch.value && form.typeChurch.value != '88'"
-        >
+        <div class="row" *ngIf="form.typeChurch.value && form.typeChurch.value != '88'">
           <div class="col-6">
-            <ng-container
-              *ngIf="form.typeChurch.value && form.typeChurch.value != '88'"
-            >
+            <ng-container *ngIf="form.typeChurch.value && form.typeChurch.value != '88'">
               <mat-form-field class="w-100" appearance="fill">
                 <mat-label>
                   {{ "form_add_assistant.church_name" | translate }}
                 </mat-label>
-                <input
-                  matInput
-                  autocomplete="off"
-                  formControlName="churchName"
-                />
+                <input matInput autocomplete="off" formControlName="churchName" />
               </mat-form-field>
             </ng-container>
           </div>
@@ -397,40 +290,21 @@
           </div>
         </div>
         <mat-action-row>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            class="btn-prev"
-            (click)="prevStep()"
-          >
+          <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
             {{ "form_add_assistant.back" | translate }}
           </button>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            class="btn-next"
-            (click)="nextStep()"
-          >
+          <button type="button" mat-button color="primary" class="btn-next" (click)="nextStep()">
             {{ "form_add_assistant.next" | translate }}
           </button>
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel
-        class="mat-elevation-z-0"
-        [expanded]="step === 3"
-        (opened)="setStep(3)"
-        hideToggle="true"
-        [disabled]="disableds[3]"
-      >
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 3" (opened)="setStep(3)" hideToggle="true"
+        [disabled]="disableds[3]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
-              <mat-icon style="color: rgb(218, 214, 214)"
-                >text_snippet</mat-icon
-              >
+              <mat-icon style="color: rgb(218, 214, 214)">text_snippet</mat-icon>
               {{ "form_add_assistant.terms_and_conditions" | translate }}
             </h3>
           </mat-panel-title>
@@ -448,13 +322,7 @@
         </div>
 
         <mat-action-row>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            class="btn-prev"
-            (click)="prevStep()"
-          >
+          <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
             {{ "form_add_assistant.back" | translate }}
           </button>
           <button type="button" mat-button color="primary" (click)="nextStep()">
@@ -463,19 +331,12 @@
         </mat-action-row>
       </mat-expansion-panel>
 
-      <mat-expansion-panel
-        class="mat-elevation-z-0"
-        [expanded]="step === 4"
-        (opened)="setStep(4)"
-        hideToggle="true"
-        [disabled]="disableds[4]"
-      >
+      <mat-expansion-panel class="mat-elevation-z-0" [expanded]="step === 4" (opened)="setStep(4)" hideToggle="true"
+        [disabled]="disableds[4]">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3>
-              <mat-icon style="color: rgb(218, 214, 214)"
-                >text_snippet</mat-icon
-              >
+              <mat-icon style="color: rgb(218, 214, 214)">text_snippet</mat-icon>
               {{ "form_add_assistant.politics" | translate }}
             </h3>
           </mat-panel-title>
@@ -487,9 +348,7 @@
           NIT. 800.195.397-7 y dirección electrónica contabilidad@mci12.com en
           calidad de RESPONSABLE, para tratar mis datos personales de acuerdo
           con su Política de Tratamiento de Datos Personales publicada en
-          <a href="https://mci12.com/politicasdedatos/" target="blank"
-            >https://mci12.com/politicasdedatos/ .</a
-          >
+          <a href="https://mci12.com/politicasdedatos/" target="blank">https://mci12.com/politicasdedatos/ .</a>
           LA IGLESIA MISIÓN CARISMÁTICA INTERNACIONAL "M.C.I." queda autorizado
           para recolectar, compilar, almacenar, usar, circular, compartir,
           comunicar, procesar, actualizar, cruzar, transferir, transmitir,
@@ -517,33 +376,17 @@
             <mat-checkbox formControlName="politics"></mat-checkbox>
           </div>
           <div style="display: block; margin-left: 10px">
-            <a
-              href="https://mci12.com/politicasdedatos/"
-              target="blank"
-              style="color: black"
-            >
+            <a href="https://mci12.com/politicasdedatos/" target="blank" style="color: black">
               {{ "form_add_assistant.accept_politics" | translate }}
             </a>
           </div>
         </div>
 
         <mat-action-row>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            class="btn-prev"
-            (click)="prevStep()"
-          >
+          <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">
             {{ "form_add_assistant.back" | translate }}
           </button>
-          <button
-            type="button"
-            mat-button
-            color="primary"
-            *ngIf="isMobile"
-            (click)="nextStep()"
-          >
+          <button type="button" mat-button color="primary" *ngIf="isMobile" (click)="nextStep()">
             {{ "form_add_assistant.next" | translate }}
           </button>
         </mat-action-row>
@@ -551,14 +394,7 @@
     </mat-accordion>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button
-      cdkFocusInitial
-      type="button"
-      mat-button
-      style="color: gray"
-      class="btn-prev"
-      (click)="dialog.close()"
-    >
+    <button cdkFocusInitial type="button" mat-button style="color: gray" class="btn-prev" (click)="dialog.close()">
       {{ "form_add_assistant.cancel" | translate }}
     </button>
     <button mat-button color="primary" class="btn-next">

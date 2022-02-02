@@ -17,22 +17,30 @@ import { StorageService } from 'src/app/modules/_services/storage.service';
 export class EventDetailComponent implements OnInit {
 
   public event: any = null;
-  public date: Date = new Date();
-  public search: string = "";
-  public assistants: any[] = [];
+
   public financialCutSelected: any;
+
+  public assistants: any[] = [];
   private unsubscribe: Subscription[] = [];
+
   private validateSendMethod = false;
+  public isResponsive: boolean = false;
+
   public innerWidth: number = 0;
-  public isResponsive: boolean;
-  photo = '/assets/cover.png';
-  user = 'https://i.pinimg.com/280x280_RS/64/15/94/6415948d5a1366183e7a8c32131acb47.jpg';
 
-  constructor(public dialog: MatDialog, private assistantsService: AssistantsService,
+  public photo = '/assets/cover.png';
+  public user = 'https://i.pinimg.com/280x280_RS/64/15/94/6415948d5a1366183e7a8c32131acb47.jpg';
+  public search: string = "";
+
+  public date: Date = new Date();
+
+  constructor(
+    public dialog: MatDialog, private assistantsService: AssistantsService,
     private eventsService: EventsService, private route: ActivatedRoute, private storageService: StorageService,
-    private router: Router, private cdr: ChangeDetectorRef) { }
-  @HostListener('window:resize', ['$event'])
+    private router: Router, private cdr: ChangeDetectorRef
+  ) { }
 
+  @HostListener('window:resize', ['$event'])
   onResize(event?) {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <= 500) {
@@ -65,16 +73,16 @@ export class EventDetailComponent implements OnInit {
       .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
         if (!res[0]) {
           this.router.navigate(['/home/all']);
-          return
+          return;
         }
         this.event = res[0];
+
         if (!this.financialCutSelected) {
           this.financialCutSelected = res[0].financialCut[0]
         }
 
       });
     this.unsubscribe.push(getEventSubscr);
-    // }
 
   }
 
