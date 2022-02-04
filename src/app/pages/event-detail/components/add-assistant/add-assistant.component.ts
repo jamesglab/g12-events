@@ -67,6 +67,7 @@ export class AddAssistantComponent implements OnInit {
   ngOnInit(): void {
     this.buildForm();
     this.getChurchTypes();
+    this.onResize();
   }
   //validamos que solo se escriban numeros en input
   numberOnly($event): boolean {
@@ -86,7 +87,7 @@ export class AddAssistantComponent implements OnInit {
   //metodo para validar si el estamos en mobile o desktop
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
-    if (window.innerWidth <= 550) {
+    if (window.innerWidth <= 600) {
       this.isMobile = true;
     } else {
       this.isMobile = false;
@@ -291,8 +292,7 @@ export class AddAssistantComponent implements OnInit {
     this.assistantForm.get('gender').reset();
     this.assistantForm.get('country').reset();
     this.assistantForm.get('typeChurch').reset();
-
-    console.log(this.form.mobile);
+    
     if (value === '1') {
       //NACIONAL
       this.countries = [

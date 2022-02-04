@@ -201,6 +201,7 @@ h4 {
 
 .financial-item:hover {
   box-shadow: 0px 25px 33px rgba(108, 93, 211, 0.25);
+  border: 1px solid #83838359;
 }
 
 .is-selected-item {
