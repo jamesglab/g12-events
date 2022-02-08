@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     if (route === "all") { visibility = ['international', 'bogota']; }
     else { visibility = ['bogota'] }
     const getEventsSubscr = this.eventsService
-      .getFilter({}).subscribe((res: Event[]) => {
+      .getEvent({}).subscribe((res: Event[]) => {
         res.reverse(); //TO SORT ARRAY
         this.events = res;
         // this.events.map((event, i) => {

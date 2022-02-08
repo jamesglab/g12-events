@@ -31,6 +31,17 @@ export class EventsService {
 
   getFilter(payload: any): Observable<any> {
     console.log('url ms donations', environment.apiUrlG12Connect.donations)
+    return this.http.get<any>(`${environment.apiUrlG12Connect.donations}/filter`,
+      { headers: header, params: payload }).pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError(handleError)
+      );
+  }
+
+  getEvent(payload: any): Observable<any> {
+    console.log('url ms donations', environment.apiUrlG12Connect.donations)
     return this.http.get<any>(`${environment.apiUrlG12Connect.donations}/events`,
       { headers: header, params: payload }).pipe(
         map((res: any) => {
