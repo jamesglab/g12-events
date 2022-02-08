@@ -310,6 +310,8 @@ export class AddAssistantComponent implements OnInit {
       this.form.documentType.setValidators([Validators.required]);
       
     } else {
+      const indexCountry = COUNTRIES.findIndex((value) => value.name === 'Colombia');
+      COUNTRIES.splice(indexCountry, 1);
       this.countries = COUNTRIES;
 
       this.form.documentNumber.setValidators(null);
