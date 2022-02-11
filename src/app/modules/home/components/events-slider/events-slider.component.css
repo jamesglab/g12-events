@@ -1,122 +1,121 @@
 /*SLIDER*/
 
 .slider-events-container {
-    width: 100%;
-    display: flex;
-    border-radius: 20px;
-    min-height: 21rem;
-    background-size: cover;
-    background-color: #bfbfc0;
-    background-image: url("https://cdn.somosunogo.com/2022/banner.jpeg");
+  width: 100%;
+  display: flex;
+  border-radius: 20px;
+  min-height: 21rem;
+  background-size: cover;
+  background-color: #bfbfc0;
+  background-image: url("https://cdn.somosunogo.com/2023/banner-eventos.jpeg");
 }
 
-
 .slider-events-container-mobile {
-    width: 100%;
-    display: flex;
-    border-radius: 20px;
-    min-height: 24rem;
-    background-size: cover;
-    background-color: #bfbfc0;
-    background-image: url("https://cdn.somosunogo.com/2022/mobile-banner.jpeg");
+  width: 100%;
+  display: flex;
+  border-radius: 20px;
+  min-height: 24rem;
+  background-size: cover;
+  background-color: #bfbfc0;
+  background-image: url("https://cdn.somosunogo.com/2023/2023-mobile.jpeg");
 }
 
 .slider-left {
-    padding-top: 20px;
-    width: 70%;
+  padding-top: 20px;
+  width: 70%;
 }
 
 .circles-container {
-    width: 100%;
-    padding-left: 60px;
+  width: 100%;
+  padding-left: 60px;
 }
 
 .info-container {
-    padding-left: 110px;
-    margin-bottom: 20px;
+  padding-left: 110px;
+  margin-bottom: 20px;
 }
 
-.info-container>span {
-    color: var(--purple);
-    font-weight: bold;
+.info-container > span {
+  color: var(--purple);
+  font-weight: bold;
 }
 
-.info-container>h2 {
-    color: var(--darkpurple);
-    font-weight: bold;
-    font-size: 40px;
+.info-container > h2 {
+  color: var(--darkpurple);
+  font-weight: bold;
+  font-size: 40px;
 }
 
-.info-container>p {
-    color: rgb(70, 61, 70);
-    font-weight: bold;
-    font-size: 14px;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.info-container > p {
+  color: rgb(70, 61, 70);
+  font-weight: bold;
+  font-size: 14px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .button-container {
-    width: 100%;
-    padding-left: 100px;
-    margin-bottom: 30px;
+  width: 100%;
+  padding-left: 100px;
+  margin-bottom: 30px;
 }
 
 .btn-details {
-    background: var(--purple);
-    box-shadow: 0px 25px 33px rgba(108, 93, 211, 0.25);
-    border-radius: 14px;
-    border: none;
-    height: 50px;
-    width: 15rem;
-    font-size: 18px;
-    cursor: pointer;
-    color: whitesmoke;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  background: var(--purple);
+  box-shadow: 0px 25px 33px rgba(108, 93, 211, 0.25);
+  border-radius: 14px;
+  border: none;
+  height: 50px;
+  width: 15rem;
+  font-size: 18px;
+  cursor: pointer;
+  color: whitesmoke;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .slider-indicator {
-    width: 20%;
-    padding-left: 100px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
+  width: 20%;
+  padding-left: 100px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dot {
-    height: 15px;
-    width: 15px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
+  height: 15px;
+  width: 15px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .active {
-    background-color: var(--purple) !important;
+  background-color: var(--purple) !important;
 }
 
 .slider-right {
-    width: 30%;
-    display: flex;
-    justify-content: flex-end;
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .ellipse {
-    height: 200px;
-    border-top-right-radius: 20px;
+  height: 200px;
+  border-top-right-radius: 20px;
 }
 
 @media only screen and (max-width: 700px) {
-    .info-container {
-        padding-left: 2.5rem;
-    }
-    .button-container {
-        padding-left: 2.5rem;
-    }
+  .info-container {
+    padding-left: 2.5rem;
+  }
+  .button-container {
+    padding-left: 2.5rem;
+  }
 }
 
 /*</ SLIDER*/
