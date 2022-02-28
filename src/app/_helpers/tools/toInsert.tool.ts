@@ -17,6 +17,7 @@ export const insertPayment = async (
   event: any,
   assistants: any[]
 ) => {
+  console.log(formFields)
   formFields.paymentType = PAYMENT_TYPE[formFields.paymentType];
   //////////// formFields contiene los datos de todo el fomrulario
   ////////////event contiene los datos del evento

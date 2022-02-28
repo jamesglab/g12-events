@@ -43,6 +43,8 @@ export class PaymentInformation {
   point_payment?: string;
   add_days?: number;
   code?: string;
+  is_translator?: boolean;
+  translator?: number;
 }
 
 export class Cash {
