@@ -39,7 +39,9 @@ export const ADD_ASSISTANT = {
   politics: [null],
   documentType: [null],
   language: [null, Validators.required],
-  have_translator: [null, false]
+  have_translator: [false, null],
+  is_translator: [false, null],
+  translator: [0, null]
 };
 
 export const NEW_DONATION = {

@@ -68,16 +68,6 @@ export class PaymentComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  countUsersWithTranslator() {
-    let numberUsers: any = [];
-    for (const data of this.assistantsService.assistants) {
-      if (data.have_translator) {
-        numberUsers.push(data);
-        return numberUsers
-      }
-    }
-  }
-
   ngOnInit(): void {
     this.scrollToTop();
     this.getBanks();
@@ -149,6 +139,16 @@ export class PaymentComponent implements OnInit {
     this.donationForm.get('country').valueChanges.subscribe((country) => {
       this.validateCountry(country);
     });
+  }
+
+  countUsersWithTranslator() {
+    let numberUsers: any = [];
+    for (const data of this.assistantsService.assistants) {
+      if (data.have_translator) {
+        numberUsers.push(data);
+        return numberUsers;
+      }
+    }
   }
 
   get form() {
@@ -280,6 +280,10 @@ export class PaymentComponent implements OnInit {
       );
       // si la valdiacion de los campos del pago fue correcta procedemos con hacer la peticion al endPoint
       if (validate_info_pay) {
+        for (const data of this.assistantsService.assistants) {
+          data.is_translator = data.have_translator ? data.have_translator : false;
+          data.translator = data.have_translator ? parseInt(this.donationForm.get('translator').value) / this.usersWithTranslator: 0;
+        }
         // ponemos un loader para que no nos ejecuten mas de una accion
         this.isLoading = true;
         // validamos el moetodo de pago y usamos la funcion para cada uno
