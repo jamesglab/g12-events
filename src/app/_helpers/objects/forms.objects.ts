@@ -39,6 +39,9 @@ export const ADD_ASSISTANT = {
   politics: [null],
   documentType: [null],
   language: [null, Validators.required],
+  have_translator: [false, null],
+  is_translator: [false, null],
+  translator: [0, null]
 };
 
 export const NEW_DONATION = {
@@ -87,6 +90,9 @@ export const NEW_DONATION = {
   postalCode: [''],
   country: [''],
   currency: [''],
+  is_translator: [false, null],
+  translator: [0, null],
+  subTotal: [0, null]
 };
 
 export const donation_errors = {

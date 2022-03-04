@@ -15,14 +15,8 @@
             <div class="field has-addons">
               <div class="control is-expanded">
                 <div class="select is-fullwidth">
-                  <select
-                    formControlName="country"
-                    (selectionChange)="validateCountry($event)"
-                  >
-                    <option
-                      [value]="country.name"
-                      *ngFor="let country of countrys_language"
-                    >
+                  <select formControlName="country" (selectionChange)="validateCountry($event)">
+                    <option [value]="country.name" *ngFor="let country of countrys_language">
                       {{ country.name }}
                     </option>
                   </select>
@@ -38,13 +32,8 @@
                   {{ "data_donor.document" | translate }}
                 </label>
                 <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    autocomplete="off"
-                    formControlName="document"
-                    (keypress)="numberOnly($event)"
-                  />
+                  <input class="input" type="text" autocomplete="off" formControlName="document"
+                    (keypress)="numberOnly($event)" />
                 </div>
               </div>
             </div>
@@ -75,14 +64,9 @@
                   {{ "data_donor.name" | translate }}
                 </label>
                 <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="{{
+                  <input class="input" type="text" placeholder="{{
                       'data_donor.placeholder_name' | translate
-                    }}"
-                    formControlName="name"
-                  />
+                    }}" formControlName="name" />
                 </div>
               </div>
             </div>
@@ -92,14 +76,9 @@
                   {{ "data_donor.last_name" | translate }}
                 </label>
                 <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="{{
+                  <input class="input" type="text" placeholder="{{
                       'data_donor.placeholder_last_name' | translate
-                    }}"
-                    formControlName="lastName"
-                  />
+                    }}" formControlName="lastName" />
                 </div>
               </div>
             </div>
@@ -111,14 +90,9 @@
                   {{ "data_donor.email" | translate }}
                 </label>
                 <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="{{
+                  <input class="input" type="text" placeholder="{{
                       'data_donor.placeholder_email' | translate
-                    }}"
-                    formControlName="email"
-                  />
+                    }}" formControlName="email" />
                 </div>
               </div>
             </div>
@@ -128,15 +102,9 @@
                   {{ "data_donor.number_phone" | translate }}
                 </label>
                 <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="{{
+                  <input class="input" type="text" placeholder="{{
                       'data_donor.placeholder_number_phone' | translate
-                    }}"
-                    formControlName="contactPhone"
-                    (keypress)="numberOnly($event)"
-                  />
+                    }}" formControlName="contactPhone" (keypress)="numberOnly($event)" />
                 </div>
               </div>
             </div>
@@ -146,13 +114,8 @@
               {{ "data_donor.address" | translate }}
             </label>
             <div class="control">
-              <input
-                class="input"
-                type="text"
-                formControlName="address"
-                placeholder="{{ 'data_donor.placeholder_address' | translate }}"
-                form=""
-              />
+              <input class="input" type="text" formControlName="address"
+                placeholder="{{ 'data_donor.placeholder_address' | translate }}" form="" />
             </div>
           </div>
         </div>
@@ -166,33 +129,36 @@
             </div>
           </div>
           <div class="columns mt-5">
-            <div class="column is-half">
+            <div class="column">
               <div class="field">
                 <label class="label">
-                  {{ "data_donor.currency" | translate }}
+                  {{ "data_donor.value_translate" | translate }}
                 </label>
                 <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="{{ 'data_donor.currency' | translate }}"
-                    formControlName="currency"
-                  />
+                  <input class="input" type="text" placeholder="{{ 'data_donor.value_translate' | translate }}"
+                    formControlName="translator" disabled />
                 </div>
               </div>
             </div>
-            <div class="column is-half">
+            <div class="column">
+              <div class="field">
+                <label class="label">
+                  {{ "data_donor.value_ticket" | translate }}
+                </label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="{{ 'data_donor.value_ticket' | translate }}"
+                    formControlName="subTotal" disabled />
+                </div>
+              </div>
+            </div>
+            <div class="column">
               <div class="field">
                 <label class="label">
                   {{ "data_donor.value" | translate }}
                 </label>
                 <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="{{ 'data_donor.value' | translate }}"
-                    formControlName="amount"
-                  />
+                  <input class="input" type="text" placeholder="{{ 'data_donor.value' | translate }}"
+                    formControlName="amount" disabled />
                 </div>
               </div>
             </div>
@@ -203,11 +169,7 @@
 
           <div class="columns is-flex-wrap-wrap">
             <div class="column is-half">
-              <div
-                class="card p-5"
-                [ngClass]="{ 'card-selected': method_selected == 1 }"
-                (click)="method_selected = 1"
-              >
+              <div class="card p-5" [ngClass]="{ 'card-selected': method_selected == 1 }" (click)="method_selected = 1">
                 <div class="is-flex is-justify-content-center">
                   <i class="far fa-credit-card fa-2x"></i>
                 </div>
@@ -218,11 +180,7 @@
             </div>
 
             <div class="column is-half" *ngIf="showNational">
-              <div
-                class="card p-5"
-                [ngClass]="{ 'card-selected': method_selected == 2 }"
-                (click)="method_selected = 2"
-              >
+              <div class="card p-5" [ngClass]="{ 'card-selected': method_selected == 2 }" (click)="method_selected = 2">
                 <div class="is-flex is-justify-content-center">
                   <i class="fas fa-exchange-alt fa-2x"></i>
                 </div>
@@ -230,11 +188,7 @@
               </div>
             </div>
             <div class="column is-half" *ngIf="showNational">
-              <div
-                class="card p-5"
-                [ngClass]="{ 'card-selected': method_selected == 3 }"
-                (click)="method_selected = 3"
-              >
+              <div class="card p-5" [ngClass]="{ 'card-selected': method_selected == 3 }" (click)="method_selected = 3">
                 <div class="is-flex is-justify-content-center">
                   <i class="fas fa-money-bill-wave fa-2x"></i>
                 </div>
@@ -258,11 +212,7 @@
               </div>
             </div> -->
             <div class="column is-half" *ngIf="assistantsValidate == 1">
-              <div
-                class="card p-5"
-                [ngClass]="{ 'card-selected': method_selected == 4 }"
-                (click)="method_selected = 4"
-              >
+              <div class="card p-5" [ngClass]="{ 'card-selected': method_selected == 4 }" (click)="method_selected = 4">
                 <div class="is-flex is-justify-content-center">
                   <i class="fas fa-qrcode fa-2x"></i>
                 </div>
@@ -272,12 +222,8 @@
               </div>
             </div>
             <div class="column is-half">
-              <div
-                class="card p-5"
-                [ngClass]="{ 'card-selected': method_selected == 6 }"
-                (click)="method_selected = 6"
-                *ngIf="showNational"
-              >
+              <div class="card p-5" [ngClass]="{ 'card-selected': method_selected == 6 }" (click)="method_selected = 6"
+                *ngIf="showNational">
                 <div class="is-flex is-justify-content-center">
                   <i class="fas fa-box-open fa-2x"></i>
                 </div>
@@ -294,12 +240,8 @@
                 {{ "data_donor.card_name" | translate }}
               </label>
               <div class="control">
-                <input
-                  class="input"
-                  type="text"
-                  placeholder="{{ 'data_donor.card_name' | translate }}"
-                  formControlName="cardName"
-                />
+                <input class="input" type="text" placeholder="{{ 'data_donor.card_name' | translate }}"
+                  formControlName="cardName" />
               </div>
             </div>
             <div class="columns">
@@ -309,14 +251,8 @@
                     {{ "data_donor.card_number" | translate }}
                   </label>
                   <div class="control">
-                    <input
-                      class="input"
-                      type="text"
-                      placeholder="00000-00000-0000-0000"
-                      formControlName="cardNumber"
-                      maxlength="18"
-                      (keypress)="numberOnly($event)"
-                    />
+                    <input class="input" type="text" placeholder="00000-00000-0000-0000" formControlName="cardNumber"
+                      maxlength="18" (keypress)="numberOnly($event)" />
                   </div>
                 </div>
               </div>
@@ -326,14 +262,8 @@
                     {{ "data_donor.cvc" | translate }}
                   </label>
                   <div class="control">
-                    <input
-                      class="input"
-                      type="text"
-                      placeholder="***"
-                      formControlName="cardSecurityCode"
-                      autocomplete="off"
-                      maxlength="4"
-                    />
+                    <input class="input" type="text" placeholder="***" formControlName="cardSecurityCode"
+                      autocomplete="off" maxlength="4" />
                   </div>
                 </div>
               </div>
@@ -347,10 +277,7 @@
                   <div class="control is-expanded">
                     <div class="select is-fullwidth">
                       <select formControlName="cardMonth">
-                        <option
-                          *ngFor="let month of monthsCreditCard"
-                          value="{{ month.id }}"
-                        >
+                        <option *ngFor="let month of monthsCreditCard" value="{{ month.id }}">
                           {{ month.name }}
                         </option>
                       </select>
@@ -366,10 +293,7 @@
                   <div class="control is-expanded">
                     <div class="select is-fullwidth">
                       <select formControlName="cardYear">
-                        <option
-                          *ngFor="let year of yearsCreditCard"
-                          value="{{ year.id }}"
-                        >
+                        <option *ngFor="let year of yearsCreditCard" value="{{ year.id }}">
                           {{ year.name }}
                         </option>
                       </select>
@@ -385,15 +309,8 @@
               <div class="field has-addons">
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
-                    <select
-                      name=""
-                      formControlName="financialInstitutionCode"
-                      (click)="validateBanks()"
-                    >
-                      <option
-                        *ngFor="let bank of banks"
-                        value="{{ bank.bankCode }}"
-                      >
+                    <select name="" formControlName="financialInstitutionCode" (click)="validateBanks()">
+                      <option *ngFor="let bank of banks" value="{{ bank.bankCode }}">
                         {{ bank.bankName }}
                       </option>
                     </select>
@@ -448,25 +365,15 @@
           <div *ngIf="method_selected == 4">
             <div>
               <div class="field mt-5">
-                <label class="label"
-                  >{{ "data_donor.code" | translate }}*</label
-                >
+                <label class="label">{{ "data_donor.code" | translate }}*</label>
                 <div class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Escribe el codigo "
-                    formControlName="paymentCode"
-                  />
+                  <input class="input" type="text" placeholder="Escribe el codigo " formControlName="paymentCode" />
                 </div>
               </div>
             </div>
           </div>
-          <button
-            (click)="submit()"
-            class="button btn is-small is-fullwidth mt-5"
-            [ngClass]="{ 'is-loading': isLoading }"
-          >
+          <button (click)="submit()" class="button btn is-small is-fullwidth mt-5"
+            [ngClass]="{ 'is-loading': isLoading }">
             {{ "data_donor.make_donation" | translate }}
           </button>
         </div>

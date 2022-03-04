@@ -166,6 +166,10 @@
             </mat-form-field>
           </div>
         </div>
+        <ng-container *ngIf="event.is_translator">
+          <input type="checkbox" formControlName="have_translator" style="margin-left: 15px; align-items: center; margin-top: 15px;">
+          <label for="have_translator" style="margin-left: 10px;">Agregar traductor</label>
+        </ng-container>
 
         <mat-action-row>
           <button type="button" mat-button color="primary" class="btn-prev" (click)="prevStep()">

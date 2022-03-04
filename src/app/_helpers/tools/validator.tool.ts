@@ -115,6 +115,8 @@ export const getJSONPaymentType = (
     payment_type: '',
     url_response: environment.urlResponse,
     platform: 'EVENTOSG12',
+    is_translator: formFields.is_translator,
+    translator: formFields.translator
   };
 
   switch (formFields.paymentType) {

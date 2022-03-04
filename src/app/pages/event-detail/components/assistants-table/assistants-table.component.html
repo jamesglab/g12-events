@@ -34,6 +34,13 @@
       >
     </ng-container>
 
+    <ng-container matColumnDef="translator">
+      <mat-header-cell *matHeaderCellDef> {{ "detail_event.translator" | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let element" class="cursor-pointer">
+        {{ element.have_translator ? 'Si' : 'No' }}</mat-cell
+      >
+    </ng-container>
+
     <ng-container matColumnDef="delete">
       <mat-header-cell *matHeaderCellDef>{{ "detail_event.table_options" | translate }}</mat-header-cell>
       <mat-cell *matCellDef="let element; let i = index" class="cursor-pointer">

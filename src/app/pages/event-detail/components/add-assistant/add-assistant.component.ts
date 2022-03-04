@@ -292,6 +292,7 @@ export class AddAssistantComponent implements OnInit {
     this.assistantForm.get('gender').reset();
     this.assistantForm.get('country').reset();
     this.assistantForm.get('typeChurch').reset();
+    this.assistantForm.get('have_translator').reset();
     
     if (value === '1') {
       //NACIONAL

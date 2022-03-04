@@ -54,6 +54,8 @@ export class PaymentComponent implements OnInit {
   public method_selected = 1;
   public assistantsValidate;
   public countrys_language = COUNTRIES;
+  public price_translators: any = {};
+  public usersWithTranslator = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -64,13 +66,16 @@ export class PaymentComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.scrollToTop();
     this.getBanks();
     this.event = this.eventsService.event;
     this.assistantsValidate = this.assistantsService.assistants.length;
+    this.price_translators = this.event.translators ? this.event.translators : {};
+    const numberUsers = this.countUsersWithTranslator();
+    this.usersWithTranslator = numberUsers.length;
     if (!this.event || this.assistantsService.assistants.length < 1) {
       this.goBack();
     }
@@ -84,6 +89,7 @@ export class PaymentComponent implements OnInit {
       }
     });
   }
+
   scrollToTop() {
     let scrollToTop = window.setInterval(() => {
       let pos = window.pageYOffset;
@@ -94,31 +100,55 @@ export class PaymentComponent implements OnInit {
       }
     }, 16);
   }
+
   buildForm() {
     this.donationForm = this.fb.group(NEW_DONATION);
     this.donationForm.get('currency').setValue('COP');
     this.donationForm.controls.currency.disable();
     this.donationForm.get('country').setValue('Colombia');
     this.validateCountry('Colombia');
-    console.log('el evento es', this.event.financialCutSelected);
+    this.donationForm
+      .get('translator')
+      .setValue(parseInt(this.price_translators.cop) * this.usersWithTranslator);
+    this.donationForm
+      .get('is_translator')
+      .setValue(this.usersWithTranslator > 0 ? true : false);
     if (this.event.financialCutSelected.is_group) {
       this.donationForm
         .get('amount')
+        .setValue(this.event.financialCutSelected.price_group.cop + (parseInt(this.price_translators.cop) * this.usersWithTranslator));
+      this.donationForm
+        .get('subTotal')
         .setValue(this.event.financialCutSelected.price_group.cop);
       this.donationForm.controls.amount.disable();
     } else {
       this.donationForm
         .get('amount')
         .setValue(
-          this.event.financialCutSelected.prices.cop *
-            this.assistantsService.assistants.length
+          (this.event.financialCutSelected.prices.cop *
+            this.assistantsService.assistants.length) +
+          (parseInt(this.price_translators.cop) *
+            this.usersWithTranslator)
         );
+      this.donationForm
+        .get('subTotal')
+        .setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
       this.donationForm.controls.amount.disable();
     }
     this.form.paymentType.setValue('CAR');
     this.donationForm.get('country').valueChanges.subscribe((country) => {
       this.validateCountry(country);
     });
+  }
+
+  countUsersWithTranslator() {
+    let numberUsers: any = [];
+    for (const data of this.assistantsService.assistants) {
+      if (data.have_translator) {
+        numberUsers.push(data);
+        return numberUsers;
+      }
+    }
   }
 
   get form() {
@@ -155,24 +185,38 @@ export class PaymentComponent implements OnInit {
   }
 
   validateCountry(country) {
-    console.log('validamos', country);
     if (country == 'Colombia') {
       this.showNational = true;
       this.donationForm.get('currency').setValue('COP');
       if (this.event.financialCutSelected.is_group) {
         this.donationForm
           .get('amount')
-          .setValue(this.event.financialCutSelected.price_group.cop);
+          .setValue(this.event.financialCutSelected.price_group.cop + (parseInt(this.price_translators.cop) *
+            this.usersWithTranslator));
+        this.donationForm
+          .get('subTotal')
+          .setValue(this.event.financialCutSelected.prices.cop);
         this.donationForm.controls.amount.disable();
       } else {
         this.donationForm
           .get('amount')
           .setValue(
-            this.event.financialCutSelected.prices.cop *
-              this.assistantsService.assistants.length
+            (this.event.financialCutSelected.prices.cop *
+              this.assistantsService.assistants.length) +
+            (parseInt(this.price_translators.cop) *
+              this.usersWithTranslator)
           );
+        this.donationForm
+          .get('subTotal')
+          .setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
         this.donationForm.controls.amount.disable();
       }
+      this.donationForm
+        .get('translator')
+        .setValue(parseInt(this.price_translators.cop) * this.usersWithTranslator);
+      this.donationForm
+        .get('is_translator')
+        .setValue(this.usersWithTranslator > 0 ? true : false);
       // this.cdr.detectChanges();
       this.donationForm.get('document').setValidators([Validators.required]);
     } else {
@@ -180,19 +224,34 @@ export class PaymentComponent implements OnInit {
       this.donationForm.get('document').setErrors(null);
       this.donationForm.get('currency').setValue('USD');
       this.method_selected = 1;
+      this.donationForm
+        .get('translator')
+        .setValue(parseInt(this.price_translators.usd) * this.usersWithTranslator);
+      this.donationForm
+        .get('is_translator')
+        .setValue(this.usersWithTranslator > 0 ? true : false);
       if (this.event.financialCutSelected.prices.usd) {
         if (this.event.financialCutSelected.is_group) {
           this.donationForm
             .get('amount')
-            .setValue(this.event.financialCutSelected.price_group.usd);
+            .setValue(this.event.financialCutSelected.price_group.usd + (parseInt(this.price_translators.usd) *
+              this.usersWithTranslator));
+          this.donationForm
+            .get('subTotal')
+            .setValue(this.event.financialCutSelected.prices.usd);
           this.donationForm.controls.amount.disable();
         } else {
           this.donationForm
             .get('amount')
             .setValue(
-              this.event.financialCutSelected.prices.usd *
-                this.assistantsService.assistants.length
+              (this.event.financialCutSelected.prices.usd *
+                this.assistantsService.assistants.length) +
+              (parseInt(this.price_translators.usd) *
+                this.usersWithTranslator)
             );
+          this.donationForm
+            .get('subTotal')
+            .setValue(this.event.financialCutSelected.prices.usd * this.assistantsService.assistants.length);
           this.donationForm.controls.amount.disable();
         }
       } else {
@@ -221,6 +280,10 @@ export class PaymentComponent implements OnInit {
       );
       // si la valdiacion de los campos del pago fue correcta procedemos con hacer la peticion al endPoint
       if (validate_info_pay) {
+        for (const data of this.assistantsService.assistants) {
+          data.is_translator = data.have_translator ? data.have_translator : false;
+          data.translator = data.have_translator ? parseInt(this.donationForm.get('translator').value) / this.usersWithTranslator: 0;
+        }
         // ponemos un loader para que no nos ejecuten mas de una accion
         this.isLoading = true;
         // validamos el moetodo de pago y usamos la funcion para cada uno

@@ -43,7 +43,8 @@
     "table_email": "E-mail",
     "table_contact": "Contato",
     "table_options": "Opções",
-    "donate_now": "Doar Agora"
+    "donate_now": "Doar Agora",
+    "translator": "tradutor"
   },
   "form_add_assistant": {
     "language": "Idioma",
@@ -194,6 +195,8 @@
     "person_natura": "Pessoa Física",
     "person_legal": "Pessoa Jurídica",
     "description_validate_amount": "O valor mínimo da transação deve ser maior que COP10.000",
-    "make_donation": "Realizar Doação"
+    "make_donation": "Realizar Doação",
+    "value_translate": "valor do tradutor",
+    "value_ticket": "Valor do evento"
   }
 }

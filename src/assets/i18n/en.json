@@ -43,7 +43,8 @@
     "table_email": "Email",
     "table_contact": "Contact",
     "table_options": "Options",
-    "donate_now": "Donate now"
+    "donate_now": "Donate now",
+    "translator": "translator"
   },
   "form_add_assistant": {
     "language":"Language",
@@ -190,6 +191,8 @@
     "person_natura": "Natural person",
     "person_legal": "Legal entity",
     "description_validate_amount": "The minimum transaction amount must be higer than COP 10,000",
-    "make_donation": "Make donation"
+    "make_donation": "Make donation",
+    "value_translate": "Value Translator",
+    "value_ticket": "Value Event"
   }
 }

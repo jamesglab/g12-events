@@ -44,7 +44,8 @@
     "table_email": "Email",
     "table_contact": "Contacto",
     "table_options": "Opciones",
-    "donate_now": "Donar Ahora"
+    "donate_now": "Donar Ahora",
+    "translator": "Traductor"
   },
   "form_add_assistant": {
     "language":"Idioma",
@@ -191,6 +192,8 @@
     "person_natura": "Persona Natural",
     "person_legal": "Persona Juridica",
     "description_validate_amount": "El monto mínimo de la transacción debe ser mayor a $10.000",
-    "make_donation": "Realizar Donación"
+    "make_donation": "Realizar Donación",
+    "value_translate": "Valor Traductor",
+    "value_ticket": "Valor Del Evento"
   }
 }
