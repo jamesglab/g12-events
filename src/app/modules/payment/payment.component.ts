@@ -66,14 +66,16 @@ export class PaymentComponent implements OnInit {
     private router: Router,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.scrollToTop();
     this.getBanks();
     this.event = this.eventsService.event;
     this.assistantsValidate = this.assistantsService.assistants.length;
-    this.price_translators = this.event.translators ? this.event.translators : {};
+    this.price_translators = this.event.translators
+      ? this.event.translators
+      : {};
     const numberUsers = this.countUsersWithTranslator();
     this.usersWithTranslator = numberUsers.length;
     if (!this.event || this.assistantsService.assistants.length < 1) {
@@ -109,14 +111,19 @@ export class PaymentComponent implements OnInit {
     this.validateCountry('Colombia');
     this.donationForm
       .get('translator')
-      .setValue(parseInt(this.price_translators.cop) * this.usersWithTranslator);
+      .setValue(
+        parseInt(this.price_translators.cop) * this.usersWithTranslator
+      );
     this.donationForm
       .get('is_translator')
       .setValue(this.usersWithTranslator > 0 ? true : false);
     if (this.event.financialCutSelected.is_group) {
       this.donationForm
         .get('amount')
-        .setValue(this.event.financialCutSelected.price_group.cop + (parseInt(this.price_translators.cop) * this.usersWithTranslator));
+        .setValue(
+          this.event.financialCutSelected.price_group.cop +
+            parseInt(this.price_translators.cop) * this.usersWithTranslator
+        );
       this.donationForm
         .get('subTotal')
         .setValue(this.event.financialCutSelected.price_group.cop);
@@ -125,14 +132,16 @@ export class PaymentComponent implements OnInit {
       this.donationForm
         .get('amount')
         .setValue(
-          (this.event.financialCutSelected.prices.cop *
-            this.assistantsService.assistants.length) +
-          (parseInt(this.price_translators.cop) *
-            this.usersWithTranslator)
+          this.event.financialCutSelected.prices.cop *
+            this.assistantsService.assistants.length +
+            parseInt(this.price_translators.cop) * this.usersWithTranslator
         );
       this.donationForm
         .get('subTotal')
-        .setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
+        .setValue(
+          this.event.financialCutSelected.prices.cop *
+            this.assistantsService.assistants.length
+        );
       this.donationForm.controls.amount.disable();
     }
     this.form.paymentType.setValue('CAR');
@@ -146,9 +155,9 @@ export class PaymentComponent implements OnInit {
     for (const data of this.assistantsService.assistants) {
       if (data.have_translator) {
         numberUsers.push(data);
-        return numberUsers;
       }
     }
+    return numberUsers;
   }
 
   get form() {
@@ -191,8 +200,10 @@ export class PaymentComponent implements OnInit {
       if (this.event.financialCutSelected.is_group) {
         this.donationForm
           .get('amount')
-          .setValue(this.event.financialCutSelected.price_group.cop + (parseInt(this.price_translators.cop) *
-            this.usersWithTranslator));
+          .setValue(
+            this.event.financialCutSelected.price_group.cop +
+              parseInt(this.price_translators.cop) * this.usersWithTranslator
+          );
         this.donationForm
           .get('subTotal')
           .setValue(this.event.financialCutSelected.prices.cop);
@@ -201,19 +212,23 @@ export class PaymentComponent implements OnInit {
         this.donationForm
           .get('amount')
           .setValue(
-            (this.event.financialCutSelected.prices.cop *
-              this.assistantsService.assistants.length) +
-            (parseInt(this.price_translators.cop) *
-              this.usersWithTranslator)
+            this.event.financialCutSelected.prices.cop *
+              this.assistantsService.assistants.length +
+              parseInt(this.price_translators.cop) * this.usersWithTranslator
           );
         this.donationForm
           .get('subTotal')
-          .setValue(this.event.financialCutSelected.prices.cop * this.assistantsService.assistants.length);
+          .setValue(
+            this.event.financialCutSelected.prices.cop *
+              this.assistantsService.assistants.length
+          );
         this.donationForm.controls.amount.disable();
       }
       this.donationForm
         .get('translator')
-        .setValue(parseInt(this.price_translators.cop) * this.usersWithTranslator);
+        .setValue(
+          parseInt(this.price_translators.cop) * this.usersWithTranslator
+        );
       this.donationForm
         .get('is_translator')
         .setValue(this.usersWithTranslator > 0 ? true : false);
@@ -226,7 +241,9 @@ export class PaymentComponent implements OnInit {
       this.method_selected = 1;
       this.donationForm
         .get('translator')
-        .setValue(parseInt(this.price_translators.usd) * this.usersWithTranslator);
+        .setValue(
+          parseInt(this.price_translators.usd) * this.usersWithTranslator
+        );
       this.donationForm
         .get('is_translator')
         .setValue(this.usersWithTranslator > 0 ? true : false);
@@ -234,8 +251,10 @@ export class PaymentComponent implements OnInit {
         if (this.event.financialCutSelected.is_group) {
           this.donationForm
             .get('amount')
-            .setValue(this.event.financialCutSelected.price_group.usd + (parseInt(this.price_translators.usd) *
-              this.usersWithTranslator));
+            .setValue(
+              this.event.financialCutSelected.price_group.usd +
+                parseInt(this.price_translators.usd) * this.usersWithTranslator
+            );
           this.donationForm
             .get('subTotal')
             .setValue(this.event.financialCutSelected.prices.usd);
@@ -244,14 +263,16 @@ export class PaymentComponent implements OnInit {
           this.donationForm
             .get('amount')
             .setValue(
-              (this.event.financialCutSelected.prices.usd *
-                this.assistantsService.assistants.length) +
-              (parseInt(this.price_translators.usd) *
-                this.usersWithTranslator)
+              this.event.financialCutSelected.prices.usd *
+                this.assistantsService.assistants.length +
+                parseInt(this.price_translators.usd) * this.usersWithTranslator
             );
           this.donationForm
             .get('subTotal')
-            .setValue(this.event.financialCutSelected.prices.usd * this.assistantsService.assistants.length);
+            .setValue(
+              this.event.financialCutSelected.prices.usd *
+                this.assistantsService.assistants.length
+            );
           this.donationForm.controls.amount.disable();
         }
       } else {
@@ -281,8 +302,13 @@ export class PaymentComponent implements OnInit {
       // si la valdiacion de los campos del pago fue correcta procedemos con hacer la peticion al endPoint
       if (validate_info_pay) {
         for (const data of this.assistantsService.assistants) {
-          data.is_translator = data.have_translator ? data.have_translator : false;
-          data.translator = data.have_translator ? parseInt(this.donationForm.get('translator').value) / this.usersWithTranslator: 0;
+          data.is_translator = data.have_translator
+            ? data.have_translator
+            : false;
+          data.translator = data.have_translator
+            ? parseInt(this.donationForm.get('translator').value) /
+              this.usersWithTranslator
+            : 0;
         }
         // ponemos un loader para que no nos ejecuten mas de una accion
         this.isLoading = true;
