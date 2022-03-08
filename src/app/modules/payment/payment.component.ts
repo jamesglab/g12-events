@@ -73,9 +73,9 @@ export class PaymentComponent implements OnInit {
     this.getBanks();
     this.event = this.eventsService.event;
     this.assistantsValidate = this.assistantsService.assistants.length;
-    this.price_translators = this.event.translators
+    this.price_translators = this.event.translators.cop != ''
       ? this.event.translators
-      : {};
+      : { cop: 0, usd: 0 };
     const numberUsers = this.countUsersWithTranslator();
     this.usersWithTranslator = numberUsers.length;
     if (!this.event || this.assistantsService.assistants.length < 1) {
