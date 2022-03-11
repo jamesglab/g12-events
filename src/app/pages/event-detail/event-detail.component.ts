@@ -1,5 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  HostListener,
+} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { AddAssistantComponent } from './components/add-assistant/add-assistant.component';
@@ -12,10 +17,9 @@ import { StorageService } from 'src/app/modules/_services/storage.service';
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
-  styleUrls: ['./event-detail.component.css']
+  styleUrls: ['./event-detail.component.css'],
 })
 export class EventDetailComponent implements OnInit {
-
   public event: any = null;
 
   public financialCutSelected: any;
@@ -29,16 +33,21 @@ export class EventDetailComponent implements OnInit {
   public innerWidth: number = 0;
 
   public photo = '/assets/cover.png';
-  public user = 'https://i.pinimg.com/280x280_RS/64/15/94/6415948d5a1366183e7a8c32131acb47.jpg';
-  public search: string = "";
+  public user =
+    'https://i.pinimg.com/280x280_RS/64/15/94/6415948d5a1366183e7a8c32131acb47.jpg';
+  public search: string = '';
 
   public date: Date = new Date();
 
   constructor(
-    public dialog: MatDialog, private assistantsService: AssistantsService,
-    private eventsService: EventsService, private route: ActivatedRoute, private storageService: StorageService,
-    private router: Router, private cdr: ChangeDetectorRef
-  ) { }
+    public dialog: MatDialog,
+    private assistantsService: AssistantsService,
+    private eventsService: EventsService,
+    private route: ActivatedRoute,
+    private storageService: StorageService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
@@ -64,13 +73,13 @@ export class EventDetailComponent implements OnInit {
     this.assistants = this.assistantsService.assistants;
     this.financialCutSelected = this.assistantsService.financialCutSelected;
     this.susbcribeToChanges();
-
   }
 
   getEventById() {
-    const eventId = atob(this.route.snapshot.paramMap.get("id"));
+    const eventId = atob(this.route.snapshot.paramMap.get('id'));
     const getEventSubscr = this.eventsService
-      .getFilter({ id: parseInt(eventId) }).subscribe((res: Event) => {
+      .getFilter({ id: parseInt(eventId) })
+      .subscribe((res: Event) => {
         if (!res[0]) {
           this.router.navigate(['/home/all']);
           return;
@@ -78,12 +87,10 @@ export class EventDetailComponent implements OnInit {
         this.event = res[0];
 
         if (!this.financialCutSelected) {
-          this.financialCutSelected = res[0].financialCut[0]
+          this.financialCutSelected = res[0].financialCut[0];
         }
-
       });
     this.unsubscribe.push(getEventSubscr);
-
   }
 
   onSearch(value: string) {
@@ -91,57 +98,79 @@ export class EventDetailComponent implements OnInit {
   }
 
   handleAdd() {
-    if (this.assistants.length < this.financialCutSelected.quantity_register_max) {
+    if (
+      this.assistants.length < this.financialCutSelected.quantity_register_max
+    ) {
       const dialogRef = this.dialog.open(AddAssistantComponent);
       dialogRef.componentInstance.event = this.event;
-      dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe((result) => {
         if (result) {
           this.assistantsService.addNewAssistant(result);
           this.cdr.detectChanges();
         }
       });
     } else {
-      Swal.fire("Completaste el máximo de registros para este ticket",
-        `El maximo de registros para este ticket es de  ${this.financialCutSelected.quantity_register_max}`, 'info')
+      Swal.fire(
+        'Completaste el máximo de registros para este ticket',
+        `El maximo de registros para este ticket es de  ${this.financialCutSelected.quantity_register_max}`,
+        'info'
+      );
     }
-
   }
 
   susbcribeToChanges() {
-    this.assistantsService.assistantsEvent.subscribe(assistants => this.assistants = assistants)
+    this.assistantsService.assistantsEvent.subscribe(
+      (assistants) => (this.assistants = assistants)
+    );
   }
 
   setDataOnStorage() {
-    if (this.assistants.length >= this.financialCutSelected.quantity_register_min) {
+    if (
+      this.assistants.length >= this.financialCutSelected.quantity_register_min
+    ) {
       if (!this.validateSendMethod) {
         this.validateSendMethod = true;
-        this.eventsService.validateCapacity({ financial_cut: this.financialCutSelected.id, users: this.assistants.length }).subscribe(res => {
-          if (res.status) {
-            this.validateSendMethod = false;
-            this.event.assistants = this.assistants.length;
-            this.event.financialCutSelected = this.financialCutSelected;
-            this.eventsService.setEvent(this.event);
-            this.assistantsService.saveAssistantOnStorage();
-            this.router.navigate(['/payment']);
-          } else {
-            Swal.fire('Este evento ya no tiene disponibilidad', 'lo sentimos los cupos para este evento ya fueron comprados', 'error');
-          }
-        }, err => {
-          this.validateSendMethod = false;
-        });
+        this.eventsService
+          .validateCapacity({
+            financial_cut: this.financialCutSelected.id,
+            users: this.assistants.length,
+          })
+          .subscribe(
+            (res) => {
+              if (res.status) {
+                this.validateSendMethod = false;
+                this.event.assistants = this.assistants.length;
+                this.event.financialCutSelected = this.financialCutSelected;
+                this.eventsService.setEvent(this.event);
+                this.assistantsService.saveAssistantOnStorage();
+                this.router.navigate(['/payment']);
+              } else {
+                Swal.fire(
+                  'Este evento ya no tiene disponibilidad',
+                  'lo sentimos los cupos para este evento ya fueron comprados',
+                  'error'
+                );
+              }
+            },
+            (err) => {
+              this.validateSendMethod = false;
+            }
+          );
       }
     } else {
-      Swal.fire('No has completado el minimo de registros para este ticket',
-        `El minimo de registros para este ticket es de  ${this.financialCutSelected.quantity_register_min}`, 'info')
+      Swal.fire(
+        'No has completado el minimo de registros para este ticket',
+        `El minimo de registros para este ticket es de  ${this.financialCutSelected.quantity_register_min}`,
+        'info'
+      );
     }
-
   }
 
   changueFinancialCut(cut) {
     if (this.financialCutSelected.id != cut.id && this.assistants.length > 0) {
       Swal.fire({
         title: 'Cambiar de ticket',
-        text: "Al cambiar de ticket se eliminaran los registros actuales",
+        text: 'Al cambiar de ticket se eliminaran los registros actuales',
         showDenyButton: true,
         confirmButtonText: 'Cambiar',
         icon: 'question',
@@ -155,14 +184,12 @@ export class EventDetailComponent implements OnInit {
           this.financialCutSelected = cut;
           this.storageService.setItem('financialCutSelected', cut);
         } else if (result.isDenied) {
-
         }
-      })
+      });
     } else if (this.assistants.length == 0) {
       this.financialCutSelected = cut;
       this.storageService.setItem('financialCutSelected', cut);
     }
-
   }
 
   ngOnDestroy() {
@@ -170,8 +197,6 @@ export class EventDetailComponent implements OnInit {
   }
 
   handleErrorImage($event: any) {
-    $event.target.src = "/assets/cover.png";
+    $event.target.src = '/assets/cover.png';
   }
-
 }
-
