@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrlG12Connect: {
-    donations: 'http://localhost:3001/api/v2/donations',
+    donations: 'https://dev-api.g12connect.com/api/v2/donations',
     managment: 'https://dev-api.g12connect.com/api/v2/managment',
     users: 'https://dev-api.g12connect.com/api/v2/users',
     payments: 'https://dev-api.g12connect.com/api/v2/payments',
