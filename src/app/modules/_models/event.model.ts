@@ -24,4 +24,5 @@ export interface Event {
     created_at?: string,
     updated_at?: string,
     status: boolean
+    image_banner: {[key: string]: string}
 }

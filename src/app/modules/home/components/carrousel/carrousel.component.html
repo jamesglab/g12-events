@@ -1,0 +1,7 @@
+<carousel [height]="350" [cellsToShow]="1" [loop]="true" [autoplay]="true" [autoplayInterval]="2000" [pauseOnHover]="true" [counter]="true"  >
+    <div class="carousel-cell" *ngFor="let image of images">
+        <a [href]="image.url" target="_blank">
+            <img [src]="image.image">
+        </a>
+    </div>
+</carousel>

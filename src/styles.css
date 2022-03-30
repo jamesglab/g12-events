@@ -192,3 +192,7 @@ textarea:focus, input:focus, button:focus {
     border-color: unset !important;
     box-shadow: unset !important;
 }
+
+.carousel-cells .carousel-cell img{
+    object-fit: cover !important;
+}
