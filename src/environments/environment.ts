@@ -12,5 +12,5 @@ export const environment = {
     payments_v3: 'https://dev-api.g12connect.com/api/v3/payments',
   },
   urlResponse: 'https://dev-eventosg12.com/payment/transaction',
-  urlDetailEvent: 'http://localhost:4200/home/event'
+  urlDetailEvent: 'https://dev.eventosg12.com/home/event'
 };
