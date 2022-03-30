@@ -11,7 +11,6 @@ import { EventDetailComponent } from 'src/app/pages/event-detail/event-detail.co
 import { AddAssistantComponent } from 'src/app/pages/event-detail/components/add-assistant/add-assistant.component';
 import { AssistantsTableComponent } from 'src/app/pages/event-detail/components/assistants-table/assistants-table.component';
 import { TermsConditionsComponent } from 'src/app/pages/event-detail/components/terms-conditions/terms-conditions.component';
-import { EventsSliderComponent } from './components/events-slider/events-slider.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { IvyCarouselModule } from "angular-responsive-carousel";
@@ -25,7 +24,6 @@ import { IvyCarouselModule } from "angular-responsive-carousel";
     AddAssistantComponent,
     AssistantsTableComponent,
     TermsConditionsComponent,
-    EventsSliderComponent,
     CarrouselComponent,
   ],
   imports: [
