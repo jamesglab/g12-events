@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { EventsService } from '../_services/events.service';
 import { Event } from '../_models/event.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   public isLoading: boolean = false;
   public innerWidth
   public isResponsive
+  public images = [];
   private unsubscribe: Subscription[] = [];
 
   constructor(private router: Router,
@@ -52,8 +54,20 @@ export class HomeComponent implements OnInit {
     else { visibility = ['bogota'] }
     const getEventsSubscr = this.eventsService
       .getEvent({}).subscribe((res: Event[]) => {
-        res.reverse(); //TO SORT ARRAY
         this.events = res;
+        for (const event of res) {
+          if(event.image_banner) {
+            console.log("URL", {
+              image: event.image_banner.url,
+              url: `${environment.urlDetailEvent}/${btoa(event.id.toString())}`
+            })
+            this.images.push({
+              image: event.image_banner.url,
+              url: `${environment.urlDetailEvent}/${btoa(event.id.toString())}`
+            })
+          }
+        }
+        console.log(this.images)
         // this.events.map((event, i) => {
         //   if (event.id == 29) {
         //     this.events.splice(i, 1)

@@ -1,0 +1,3 @@
+.carousel-cell > img {
+    object-fit: cover !important;
+}

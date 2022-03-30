@@ -13,6 +13,8 @@ import { AssistantsTableComponent } from 'src/app/pages/event-detail/components/
 import { TermsConditionsComponent } from 'src/app/pages/event-detail/components/terms-conditions/terms-conditions.component';
 import { EventsSliderComponent } from './components/events-slider/events-slider.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { CarrouselComponent } from './components/carrousel/carrousel.component';
+import { IvyCarouselModule } from "angular-responsive-carousel";
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
     AssistantsTableComponent,
     TermsConditionsComponent,
     EventsSliderComponent,
+    CarrouselComponent,
   ],
   imports: [
     CommonModule,
@@ -31,8 +34,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     HomeRoutingModule,
-    TranslateModule
-
+    TranslateModule,
+    IvyCarouselModule
   ]
 })
 export class HomeModule { }
