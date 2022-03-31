@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
         for (const event of res) {
           if(event.image_banner) {
             this.images.push({
-              image: event.image_banner,
+              path: event.image_banner,
               url: `${environment.urlDetailEvent}/${btoa(event.id.toString())}`
             })
           }

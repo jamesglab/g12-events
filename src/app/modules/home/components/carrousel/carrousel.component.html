@@ -1,7 +1,17 @@
-<carousel [height]="350" [cellsToShow]="1" [loop]="true" [autoplay]="true" [autoplayInterval]="2000" [pauseOnHover]="true" [counter]="true"  >
-    <div class="carousel-cell" *ngFor="let image of images">
-        <a [href]="image.url" target="_blank">
-            <img [src]="image.image">
-        </a>
-    </div>
+<carousel
+  [images]="images"
+  [height]="350"
+  [cellsToShow]="1"
+  [loop]="true"
+  [autoplay]="true"
+  [autoplayInterval]="2000"
+  [counter]="true"
+  [pauseOnHover]="true"
+  [arrows]="true"
+>
+  <div class="carousel-cell" *ngFor="let image of images">
+    <a [href]="image.url" target="_blank">
+      <img class="img-test" [src]="image.path" />
+    </a>
+  </div>
 </carousel>
