@@ -14,7 +14,7 @@ export class PaymentService {
   getePaycoBanks(): Observable<any> {
     return this.http
       .get<any>(
-        `${environment.apiUrlG12Connect.payments}/transaction/epayco/banks`
+        `${environment.apiUrlG12Connect.payments_v3}/banks`
       )
       .pipe(
         map((res: any) => {
