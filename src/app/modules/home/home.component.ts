@@ -57,12 +57,8 @@ export class HomeComponent implements OnInit {
         this.events = res;
         for (const event of res) {
           if(event.image_banner) {
-            console.log("URL", {
-              image: event.image_banner.url,
-              url: `${environment.urlDetailEvent}/${btoa(event.id.toString())}`
-            })
             this.images.push({
-              image: event.image_banner.url,
+              image: event.image_banner,
               url: `${environment.urlDetailEvent}/${btoa(event.id.toString())}`
             })
           }
